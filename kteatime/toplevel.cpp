@@ -171,10 +171,10 @@ TopLevel::TopLevel() : KSystemTray()
 	action = config->readEntry("Action");
 	useTrayVis = config->readBoolEntry("UseTrayVis", true);
 
-	mugPixmap = loadIcon("mug");
-	teaNotReadyPixmap = loadIcon("tea_not_ready");
-	teaAnim1Pixmap = loadIcon("tea_anim1");
-	teaAnim2Pixmap = loadIcon("tea_anim2");
+	mugPixmap = loadSizedIcon("mug", width());
+	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
+	teaAnim1Pixmap = loadSizedIcon("tea_anim1", width());
+	teaAnim2Pixmap = loadSizedIcon("tea_anim2", width());
 
 	confdlg = 0L;
 	anondlg = 0L;
@@ -201,6 +201,14 @@ TopLevel::~TopLevel()
 	// FIXME: must delete more (like all the QWidgets in config-window)?
 }
 
+void TopLevel::resizeEvent ( QResizeEvent * )
+{
+	mugPixmap = loadSizedIcon("mug", width());
+	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
+	teaAnim1Pixmap = loadSizedIcon("tea_anim1", width());
+	teaAnim2Pixmap = loadSizedIcon("tea_anim2", width());
+	repaint();
+}
 
 /** Handle mousePressEvent */
 void TopLevel::mousePressEvent(QMouseEvent *event)
@@ -248,8 +256,8 @@ void TopLevel::paintEvent(QPaintEvent *)
 		QPainter pm(&mask);
 		pm.setBrush(Qt::color1);                            // fill with "foreground-colour"
 		pm.setPen(Qt::NoPen);                               // no border needed/wanted
-		pm.drawPie(0+1, 9+1, 11, 11, 90*16, -360*16);       // full circle of small size
-		pm.drawPie(0, 9, 13, 13, 90*16, percentDone*16);    // pie part of big size
+		pm.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);       // full circle of small size
+		pm.drawPie(0, ((float) width()/(float) 2.44444444444), ((float) width()/(float) 1.69230769231), ((float) width()/(float) 1.69230769231), 90*16, percentDone*16);    // pie part of big size
 		pm.end();
 		base.setMask(mask);
 
@@ -257,10 +265,10 @@ void TopLevel::paintEvent(QPaintEvent *)
 		QPainter px(&base);
 		px.setPen(QPen(Qt::black, 0));                      // black border
 		px.setBrush(QColor(192, 0, 0));                     // red fill colour for small circle
-		px.drawPie(0+1, 9+1, 11, 11, 90*16, -360*16);
+		px.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);
 
 		px.setBrush(QColor(0, 192, 0));                     // green fill colour for pie part
-		px.drawPie(0, 9, 13, 13, 90*16, percentDone*16);
+		px.drawPie(0, ((float) width()/(float) 2.44444444444), ((float) width()/(float) 1.69230769231), ((float) width()/(float) 1.69230769231), 90*16, percentDone*16);
 		px.end();
 	}
 	// FIXME: over-emphasize first and last few percent? (for better visibility)
@@ -269,8 +277,8 @@ void TopLevel::paintEvent(QPaintEvent *)
 
 	// set new tray icon
 	QPainter p(this);
-	int x = 1 + (12 - pm->width()/2);
-	int y = 1 + (12 - pm->height()/2);
+	int x = 1 + (((float) width()/(float) 1.83333333333) - pm->width()/2);
+	int y = 1 + (((float) width()/(float) 1.83333333333) - pm->height()/2);
 	p.drawPixmap(x, y, base);
 	p.end();
 }

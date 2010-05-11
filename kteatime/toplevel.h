@@ -54,6 +54,7 @@ protected:
 	void paintEvent(QPaintEvent *);
 	void mousePressEvent(QMouseEvent *);
 	void timerEvent(QTimerEvent *);
+	void resizeEvent(QResizeEvent *);
 
 private slots:
 
