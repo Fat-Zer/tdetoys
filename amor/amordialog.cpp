@@ -25,17 +25,17 @@
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
 
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <qslider.h>
-#include <qpainter.h>
+#include <tqcheckbox.h>
+#include <tqlabel.h>
+#include <tqslider.h>
+#include <tqpainter.h>
 #include <kapplication.h>
 #include <ksimpleconfig.h>
 #include "amordialog.h"
 #include "amordialog.moc"
 #include "version.h"
 #include <klocale.h>
-#include <qvbox.h>
+#include <tqvbox.h>
 #include <kstandarddirs.h>
 
 //---------------------------------------------------------------------------
@@ -46,22 +46,22 @@ AmorDialog::AmorDialog()
     : KDialogBase(0, "amordlg", false, i18n("Options"), Ok|Apply|Cancel, Ok )
 {
     mConfig.read();
-    QVBox *mainwidget = makeVBoxMainWidget();
+    TQVBox *mainwidget = makeVBoxMainWidget();
 
-    QHBox *hb = new QHBox(mainwidget);
+    TQHBox *hb = new TQHBox(mainwidget);
 
     // Theme list
-    QVBox *themeBox = new QVBox(hb);
+    TQVBox *themeBox = new TQVBox(hb);
     themeBox->setSpacing(spacingHint());
 
-    QLabel *label = new QLabel(i18n("Theme:"), themeBox);
+    TQLabel *label = new TQLabel(i18n("Theme:"), themeBox);
 
-    mThemeListBox = new QListBox(themeBox);
-    connect(mThemeListBox,SIGNAL(highlighted(int)),SLOT(slotHighlighted(int)));
+    mThemeListBox = new TQListBox(themeBox);
+    connect(mThemeListBox,TQT_SIGNAL(highlighted(int)),TQT_SLOT(slotHighlighted(int)));
     mThemeListBox->setMinimumSize( fontMetrics().maxWidth()*20,
 				   fontMetrics().lineSpacing()*6 );
 
-    mAboutEdit = new QMultiLineEdit(themeBox);
+    mAboutEdit = new TQMultiLineEdit(themeBox);
     mAboutEdit->setReadOnly(true);
     mAboutEdit->setMinimumHeight( fontMetrics().lineSpacing()*4 );
 
@@ -69,29 +69,29 @@ AmorDialog::AmorDialog()
     themeBox->setStretchFactor(mAboutEdit, 1);
 
     // Animation offset
-    QVBox *offsetBox = new QVBox(hb);
+    TQVBox *offsetBox = new TQVBox(hb);
     offsetBox->setSpacing(spacingHint());
-    label = new QLabel(i18n("Offset:"), offsetBox);
+    label = new TQLabel(i18n("Offset:"), offsetBox);
 
-    QSlider *slider = new QSlider(-40, 40, 5, mConfig.mOffset,
-                                    QSlider::Vertical, offsetBox);
-    connect(slider, SIGNAL(valueChanged(int)), SLOT(slotOffset(int)));
+    TQSlider *slider = new TQSlider(-40, 40, 5, mConfig.mOffset,
+                                    TQSlider::Vertical, offsetBox);
+    connect(slider, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(slotOffset(int)));
 
     // Always on top
-    QCheckBox *checkBox = new QCheckBox(i18n("Always on top"), mainwidget);
-    connect(checkBox, SIGNAL(toggled(bool)), SLOT(slotOnTop(bool)));
+    TQCheckBox *checkBox = new TQCheckBox(i18n("Always on top"), mainwidget);
+    connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotOnTop(bool)));
     checkBox->setChecked(mConfig.mOnTop);
 
-    checkBox = new QCheckBox(i18n("Show random tips"), mainwidget);
-    connect(checkBox, SIGNAL(toggled(bool)), SLOT(slotRandomTips(bool)));
+    checkBox = new TQCheckBox(i18n("Show random tips"), mainwidget);
+    connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotRandomTips(bool)));
     checkBox->setChecked(mConfig.mTips); // always keep this one after the connect, or the QList would not be grayed when it should
 
-    checkBox = new QCheckBox(i18n("Use a random character"), mainwidget);
-    connect(checkBox, SIGNAL(toggled(bool)), SLOT(slotRandomTheme(bool)));
+    checkBox = new TQCheckBox(i18n("Use a random character"), mainwidget);
+    connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotRandomTheme(bool)));
     checkBox->setChecked(mConfig.mRandomTheme);
 
-    checkBox = new QCheckBox(i18n("Allow application tips"), mainwidget);
-    connect(checkBox, SIGNAL(toggled(bool)), SLOT(slotApplicationTips(bool)));
+    checkBox = new TQCheckBox(i18n("Allow application tips"), mainwidget);
+    connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotApplicationTips(bool)));
     checkBox->setChecked(mConfig.mAppTips);
 
     readThemes();
@@ -111,13 +111,13 @@ AmorDialog::~AmorDialog()
 //
 void AmorDialog::readThemes()
 {
-    QStringList files;
+    TQStringList files;
 
     // Non-recursive search for theme files, with the relative paths stored
     // in files so that absolute paths are not used.
     KGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
 
-    for (QStringList::ConstIterator it = files.begin();
+    for (TQStringList::ConstIterator it = files.begin();
 	 it != files.end();
 	 it++)
       addTheme(*it);
@@ -127,13 +127,13 @@ void AmorDialog::readThemes()
 //
 // Add a single theme to the list
 //
-void AmorDialog::addTheme(const QString& file)
+void AmorDialog::addTheme(const TQString& file)
 {
     KSimpleConfig config(locate("appdata", file), true);
 
     config.setGroup("Config");
 
-    QString pixmapPath = config.readPathEntry("PixmapPath");
+    TQString pixmapPath = config.readPathEntry("PixmapPath");
     if (pixmapPath.isEmpty())
     {
         return;
@@ -147,13 +147,13 @@ void AmorDialog::addTheme(const QString& file)
         pixmapPath = locate("appdata", pixmapPath);
     }
 
-    QString description = config.readEntry("Description");
-    QString about = config.readEntry("About", " ");
-    QString pixmapName = config.readEntry("Icon");
+    TQString description = config.readEntry("Description");
+    TQString about = config.readEntry("About", " ");
+    TQString pixmapName = config.readEntry("Icon");
 
     pixmapPath += pixmapName;
 
-    QPixmap pixmap(pixmapPath);
+    TQPixmap pixmap(pixmapPath);
 
     AmorListBoxItem *item = new AmorListBoxItem(description, pixmap);
     mThemeListBox->insertItem(item);
@@ -261,10 +261,10 @@ void AmorDialog::slotCancel()
 //
 // AmorListBoxItem implements a list box items for selection of themes
 //
-void AmorListBoxItem::paint( QPainter *p )
+void AmorListBoxItem::paint( TQPainter *p )
 {
     p->drawPixmap( 3, 0, mPixmap );
-    QFontMetrics fm = p->fontMetrics();
+    TQFontMetrics fm = p->fontMetrics();
     int yPos;                       // vertical text position
     if ( mPixmap.height() < fm.height() )
         yPos = fm.ascent() + fm.leading()/2;
@@ -273,12 +273,12 @@ void AmorListBoxItem::paint( QPainter *p )
     p->drawText( mPixmap.width() + 5, yPos, text() );
 }
 
-int AmorListBoxItem::height(const QListBox *lb ) const
+int AmorListBoxItem::height(const TQListBox *lb ) const
 {
     return QMAX( mPixmap.height(), lb->fontMetrics().lineSpacing() + 1 );
 }
 
-int AmorListBoxItem::width(const QListBox *lb ) const
+int AmorListBoxItem::width(const TQListBox *lb ) const
 {
     return mPixmap.width() + lb->fontMetrics().width( text() ) + 6;
 }

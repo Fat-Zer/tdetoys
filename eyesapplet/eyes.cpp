@@ -18,9 +18,9 @@
 
 #include <math.h>
 
-#include <qpainter.h>
-#include <qcursor.h>
-#include <qimage.h>
+#include <tqpainter.h>
+#include <tqcursor.h>
+#include <tqimage.h>
 
 #include <klocale.h>
 #include <kglobal.h>
@@ -33,7 +33,7 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(QWidget *parent, const QString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("keyesapplet");
         EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, parent, "keyesapplet");
@@ -41,16 +41,16 @@ extern "C"
     }
 }
 
-EyesApplet::EyesApplet(const QString& configFile, Type t, int actions,
-                       QWidget *parent, const char *name)
+EyesApplet::EyesApplet(const TQString& configFile, Type t, int actions,
+                       TQWidget *parent, const char *name)
   : KPanelApplet( configFile, t, actions, parent, name )
 {
     setWFlags(WNoAutoErase);
     setBackgroundOrigin(AncestorOrigin);
     startTimer(50);
-    oldleft = QPoint(-1, -1);
-    oldright = QPoint(-1, -1);
-    oldMouse = QPoint(-1, -1);
+    oldleft = TQPoint(-1, -1);
+    oldright = TQPoint(-1, -1);
+    oldMouse = TQPoint(-1, -1);
 }
 
 int EyesApplet::widthForHeight(int h) const
@@ -62,19 +62,19 @@ int EyesApplet::heightForWidth(int w) const
     return static_cast<int>(w / 1.4); // rectangular shape.
 }
 
-void EyesApplet::resizeEvent( QResizeEvent*e )
+void EyesApplet::resizeEvent( TQResizeEvent*e )
 {
-    QWidget::resizeEvent(e);
+    TQWidget::resizeEvent(e);
 }
 
-void EyesApplet::timerEvent(QTimerEvent*)
+void EyesApplet::timerEvent(TQTimerEvent*)
 {
-    QPoint mouse = mapFromGlobal(QCursor::pos());
+    TQPoint mouse = mapFromGlobal(TQCursor::pos());
     if (mouse != oldMouse)
         update();
 }
 
-void EyesApplet::paintEvent(QPaintEvent*)
+void EyesApplet::paintEvent(TQPaintEvent*)
 {
     int spWidth = width() * AAFACTOR;
     int spHeight = height() * AAFACTOR;
@@ -82,16 +82,16 @@ void EyesApplet::paintEvent(QPaintEvent*)
     if (spWidth != _cache.width() || spHeight != _cache.height())
         _cache.resize(spWidth, spHeight);
     
-    QPainter paint(&_cache);
+    TQPainter paint(&_cache);
     
     if (paletteBackgroundPixmap())
     {
-        QPixmap bg(width(), height());
-        QPainter p(&bg);
-        QPoint offset = backgroundOffset();
+        TQPixmap bg(width(), height());
+        TQPainter p(&bg);
+        TQPoint offset = backgroundOffset();
         p.drawTiledPixmap(0, 0, width(), height(), *paletteBackgroundPixmap(), offset.x(), offset.y());
         p.end();
-        QImage bgImage = bg.convertToImage().scale(spWidth, spHeight);
+        TQImage bgImage = bg.convertToImage().scale(spWidth, spHeight);
         paint.drawImage(0, 0, bgImage);
     }
     else
@@ -100,8 +100,8 @@ void EyesApplet::paintEvent(QPaintEvent*)
     }
     
     // draw eyes, no pupils
-    paint.setPen(QPen(black, 2 * AAFACTOR));
-    paint.setBrush(QBrush(white));
+    paint.setPen(TQPen(black, 2 * AAFACTOR));
+    paint.setBrush(TQBrush(white));
     
     int w = spWidth; // - AAFACTOR * 2;
     int h = spHeight; // - AAFACTOR * 2;
@@ -116,22 +116,22 @@ void EyesApplet::paintEvent(QPaintEvent*)
     drawPupils(&paint);
     paint.end();
     
-    QPainter paintFinal(this);
-    QImage spImage = _cache.convertToImage();
-    QImage displayImage = spImage.smoothScale(size());
+    TQPainter paintFinal(this);
+    TQImage spImage = _cache.convertToImage();
+    TQImage displayImage = spImage.smoothScale(size());
     paintFinal.drawImage(0, 0, displayImage);
     paintFinal.end();
 }
 
-void EyesApplet::drawPupils(QPainter* p)
+void EyesApplet::drawPupils(TQPainter* p)
 {
-    QPoint pos, mouse, vect;
+    TQPoint pos, mouse, vect;
     double cos_alpha,sin_alpha;
     
     int w = width() * AAFACTOR;
     int h = height() * AAFACTOR;
 
-    oldMouse = mapFromGlobal(QCursor::pos());
+    oldMouse = mapFromGlobal(TQCursor::pos());
     mouse =  oldMouse * AAFACTOR;
     int tmp = QMIN(h, w)/6;
 
@@ -155,13 +155,13 @@ void EyesApplet::drawPupils(QPainter* p)
         int sizeEye=QMIN(h,w)/6;
 
 //         // draw over old pos
-// 	p->setPen(QPen(NoPen));
-// 	p->setBrush(QBrush(white));
+// 	p->setPen(TQPen(NoPen));
+// 	p->setBrush(TQBrush(white));
 // 	p->drawEllipse(oldleft.x() - sizeEye/2, oldleft.y() - sizeEye/2, sizeEye, sizeEye);
 
         // draw left pupil
-        p->setPen(QPen(NoPen));
-        p->setBrush(QBrush(black));
+        p->setPen(TQPen(NoPen));
+        p->setBrush(TQBrush(black));
         p->drawEllipse(pos.x() - sizeEye/2, pos.y() - sizeEye/2, sizeEye, sizeEye);
 
     //oldleft = pos;
@@ -188,13 +188,13 @@ void EyesApplet::drawPupils(QPainter* p)
         int sizeEye=QMIN(h,w)/6;
 
 //         // draw over old pos
-// 	p->setPen(QPen(NoPen));
-// 	p->setBrush(QBrush(white));
+// 	p->setPen(TQPen(NoPen));
+// 	p->setBrush(TQBrush(white));
 // 	p->drawEllipse(oldright.x() - sizeEye/2, oldright.y() - sizeEye/2, sizeEye, sizeEye);
 
         // draw left pupil
-        p->setPen(QPen(NoPen));
-        p->setBrush(QBrush(black));
+        p->setPen(TQPen(NoPen));
+        p->setBrush(TQBrush(black));
         p->drawEllipse(pos.x() - sizeEye/2, pos.y() - sizeEye/2, sizeEye, sizeEye);
 
     //oldright = pos;

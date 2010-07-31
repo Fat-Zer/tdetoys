@@ -54,15 +54,15 @@ AmorPixmapManager::~AmorPixmapManager()
 // Returns:
 //   pointer to pixmap if loaded successfully, 0 otherwise.
 //
-const QPixmap *AmorPixmapManager::load(const QString & img)
+const TQPixmap *AmorPixmapManager::load(const TQString & img)
 {
-    QPixmap *pixmap = mPixmaps.find(img);
+    TQPixmap *pixmap = mPixmaps.find(img);
 
     if (!pixmap)
     {
         // pixmap has not yet been loaded.
-        QString path = mPixmapDir + QString("/") + img;
-        pixmap = new QPixmap(path);
+        TQString path = mPixmapDir + TQString("/") + img;
+        pixmap = new TQPixmap(path);
 
         if (!pixmap->isNull())
         {

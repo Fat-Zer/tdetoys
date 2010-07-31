@@ -22,14 +22,14 @@
 #ifndef _WEATHER_SERVICE
 #define _WEATHER_SERVICE
 
-#include <qstringlist.h>
+#include <tqstringlist.h>
 #include <dcopobject.h>
-#include <qpixmap.h>
+#include <tqpixmap.h>
 
 class WeatherLib;
 class StationDatabase;
 
-class WeatherService : public QObject, public DCOPObject
+class WeatherService : public TQObject, public DCOPObject
 {
 	Q_OBJECT
 	K_DCOP
@@ -38,56 +38,56 @@ class WeatherService : public QObject, public DCOPObject
 		WeatherLib  *m_weatherLib;
 
 	private slots:
-		void updated(const QString &stationID);
-		void updating(const QString &stationID);
-		void slotStationRemoved(const QString &stationID);
+		void updated(const TQString &stationID);
+		void updating(const TQString &stationID);
+		void slotStationRemoved(const TQString &stationID);
 
 	public:
-		WeatherService(QObject *parent, const char *name);
+		WeatherService(TQObject *parent, const char *name);
 		~WeatherService();
 
 	k_dcop_signals:
-		void fileUpdating(QString);
-		void fileUpdate(QString);
-		void stationRemoved(QString);
+		void fileUpdating(TQString);
+		void fileUpdate(TQString);
+		void stationRemoved(TQString);
 
 	k_dcop:
-		QString temperature(const QString &stationID);
-		QString dewPoint(const QString &stationID);
-		QString relativeHumidity(const QString &stationID);
-		QString heatIndex(const QString &stationID);
-		QString windChill(const QString &stationID);
-		QString wind(const QString &stationID);
-		QString pressure(const QString &stationID);
-		QPixmap currentIcon(const QString &stationID);
-		QPixmap icon(const QString &stationID);
-		QString currentIconString(const QString &stationID);
-		QString iconFileName(const QString &stationID);
-		QString date(const QString &stationID);
-		QString visibility(const QString &stationID);
-		QStringList cover(const QString &stationID);
-		QStringList weather(const QString &stationID);
-		bool stationNeedsMaintenance(const QString &stationID);
+		TQString temperature(const TQString &stationID);
+		TQString dewPoint(const TQString &stationID);
+		TQString relativeHumidity(const TQString &stationID);
+		TQString heatIndex(const TQString &stationID);
+		TQString windChill(const TQString &stationID);
+		TQString wind(const TQString &stationID);
+		TQString pressure(const TQString &stationID);
+		TQPixmap currentIcon(const TQString &stationID);
+		TQPixmap icon(const TQString &stationID);
+		TQString currentIconString(const TQString &stationID);
+		TQString iconFileName(const TQString &stationID);
+		TQString date(const TQString &stationID);
+		TQString visibility(const TQString &stationID);
+		TQStringList cover(const TQString &stationID);
+		TQStringList weather(const TQString &stationID);
+		bool stationNeedsMaintenance(const TQString &stationID);
 
-		QString stationName(const QString &stationID);
-		QString stationCountry(const QString &stationID);
-		QString longitude(const QString &stationID);
-		QString latitude(const QString &stationID);
+		TQString stationName(const TQString &stationID);
+		TQString stationCountry(const TQString &stationID);
+		TQString longitude(const TQString &stationID);
+		TQString latitude(const TQString &stationID);
 
-		QStringList findStations(float lon, float lat);
+		TQStringList findStations(float lon, float lat);
 
-		QString sunRiseTime(const QString &stationID);
-		QString sunSetTime(const QString &stationID);
-		QString civilTwilightStart(const QString &stationID);
-		QString civilTwilightEnd(const QString &stationID);
+		TQString sunRiseTime(const TQString &stationID);
+		TQString sunSetTime(const TQString &stationID);
+		TQString civilTwilightStart(const TQString &stationID);
+		TQString civilTwilightEnd(const TQString &stationID);
 
-		void update(const QString &stationID);
+		void update(const TQString &stationID);
 		void updateAll();
-		void forceUpdate(const QString &stationID);
-		void removeStation(const QString &stationID);
-		void addStation(const QString &stationID);
-		QStringList listStations();
-		QString stationCode( const QString &stationName );
+		void forceUpdate(const TQString &stationID);
+		void removeStation(const TQString &stationID);
+		void addStation(const TQString &stationID);
+		TQStringList listStations();
+		TQString stationCode( const TQString &stationName );
 		
 		void exit();
 
@@ -101,7 +101,7 @@ class WeatherService : public QObject, public DCOPObject
 		};
 	  
 		void saveSettings();
-		QString getTime(const QString &stationID, TimeType timeType);
+		TQString getTime(const TQString &stationID, TimeType timeType);
 		StationDatabase *stationDB;
 };
 #endif

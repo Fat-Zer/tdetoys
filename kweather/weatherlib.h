@@ -17,10 +17,10 @@
 
 #ifndef WEATHERLIB_H
 #define WEATHERLIB_H
-#include <qobject.h>
-#include <qstring.h>
-#include <qregexp.h>
-#include <qdict.h>
+#include <tqobject.h>
+#include <tqstring.h>
+#include <tqregexp.h>
+#include <tqdict.h>
 
 namespace KIO
 {
@@ -36,47 +36,47 @@ class WeatherLib : public QObject
 	public:
 		class Data;
 
-		WeatherLib(StationDatabase *stationDB, QObject *parent =0L, const char *name =0L);
+		WeatherLib(StationDatabase *stationDB, TQObject *parent =0L, const char *name =0L);
 		virtual ~WeatherLib();
 
-		QString temperature(const QString &stationID);
-		QString dewPoint(const QString &stationID);
-		QString relHumidity(const QString &stationID);
-		QString heatIndex(const QString &stationID);
-		QString windChill(const QString &stationID);
-		QString wind(const QString &stationID);
-		QString pressure(const QString &stationID);
-		QString iconName(const QString &stationID);
-		QString date(const QString &stationID);
-		QStringList weather(const QString &stationID);
-		QString visibility(const QString &stationID);
-		QStringList cover(const QString &stationID);
-		bool stationNeedsMaintenance(const QString &stationID);
+		TQString temperature(const TQString &stationID);
+		TQString dewPoint(const TQString &stationID);
+		TQString relHumidity(const TQString &stationID);
+		TQString heatIndex(const TQString &stationID);
+		TQString windChill(const TQString &stationID);
+		TQString wind(const TQString &stationID);
+		TQString pressure(const TQString &stationID);
+		TQString iconName(const TQString &stationID);
+		TQString date(const TQString &stationID);
+		TQStringList weather(const TQString &stationID);
+		TQString visibility(const TQString &stationID);
+		TQStringList cover(const TQString &stationID);
+		bool stationNeedsMaintenance(const TQString &stationID);
 		
-		QStringList stations();
-		bool isNight(const QString &stationID) const;
+		TQStringList stations();
+		bool isNight(const TQString &stationID) const;
 		
-		void update(const QString &stationID);
-		void forceUpdate(const QString &stationID);
-		void remove(const QString &stationID);
+		void update(const TQString &stationID);
+		void forceUpdate(const TQString &stationID);
+		void remove(const TQString &stationID);
 		
 	signals:
-		void fileUpdating(const QString &stationID);
-		void fileUpdate(const QString &stationID);
-		void stationRemoved(const QString &stationID);
+		void fileUpdating(const TQString &stationID);
+		void fileUpdate(const TQString &stationID);
+		void stationRemoved(const TQString &stationID);
 
 	private slots:
 		void slotCopyDone(KIO::Job*);
 
 	private:
-		Data* findData(const QString &stationID);
+		Data* findData(const TQString &stationID);
 		void clearData(Data *d);
 		void getData(Data *d, bool force = false);
-		void processData(const QString &metar, Data *d);
+		void processData(const TQString &metar, Data *d);
 
 		StationDatabase *m_StationDb;
 
-		QDict<Data> data;
+		TQDict<Data> data;
 		bool fileDownloaded;
 		bool hostDown;
 };

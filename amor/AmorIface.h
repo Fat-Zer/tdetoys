@@ -36,9 +36,9 @@ class AmorIface : virtual public DCOPObject
 public:
 
 k_dcop:
-    virtual void showTip(QString tip) = 0;
-    virtual void showMessage(QString message ) = 0;
-    virtual void showMessage(QString message, int msec ) = 0;
+    virtual void showTip(TQString tip) = 0;
+    virtual void showMessage(TQString message ) = 0;
+    virtual void showMessage(TQString message, int msec ) = 0;
 
     virtual void screenSaverStopped() = 0;
     virtual void screenSaverStarted() = 0;

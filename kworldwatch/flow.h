@@ -15,39 +15,39 @@
 #ifndef FLOW_H
 #define FLOW_H
 
-#include <qlayout.h>
-#include <qptrlist.h>
+#include <tqlayout.h>
+#include <tqptrlist.h>
 
 class SimpleFlow : public QLayout
 {
 public:
-    SimpleFlow( QWidget *parent, int border=0, int space=-1,
+    SimpleFlow( TQWidget *parent, int border=0, int space=-1,
 		const char *name=0 )
-	: QLayout( parent, border, space, name ),
+	: TQLayout( parent, border, space, name ),
 	cached_width(0), cached_hfw(0) {}
-    SimpleFlow( QLayout* parent, int space=-1, const char *name=0 )
-	: QLayout( parent, space, name ),
+    SimpleFlow( TQLayout* parent, int space=-1, const char *name=0 )
+	: TQLayout( parent, space, name ),
 	cached_width(0), cached_hfw(0) {}
     SimpleFlow( int space=-1, const char *name=0 )
-	: QLayout( space, name ),
+	: TQLayout( space, name ),
 	cached_width(0), cached_hfw(0) {}
 
     ~SimpleFlow();
 
-    void addItem( QLayoutItem *item);
+    void addItem( TQLayoutItem *item);
     bool hasHeightForWidth() const;
     int heightForWidth( int ) const;
-    QSize sizeHint() const;
-    QSize minimumSize() const;
-    QLayoutIterator iterator();
-    QSizePolicy::ExpandData expanding() const;
+    TQSize sizeHint() const;
+    TQSize minimumSize() const;
+    TQLayoutIterator iterator();
+    TQSizePolicy::ExpandData expanding() const;
 
 protected:
-    void setGeometry( const QRect& );
+    void setGeometry( const TQRect& );
 
 private:
-    int doLayout( const QRect&, bool testonly = FALSE );
-    QPtrList<QLayoutItem> list;
+    int doLayout( const TQRect&, bool testonly = FALSE );
+    TQPtrList<TQLayoutItem> list;
     int cached_width;
     int cached_hfw;
 };

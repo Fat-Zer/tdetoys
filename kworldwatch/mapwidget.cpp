@@ -30,7 +30,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include <qdatetime.h>
+#include <tqdatetime.h>
 
 #include <kapplication.h>
 #include <kcmdlineargs.h>
@@ -42,12 +42,12 @@
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
 
-#include <qcursor.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qregexp.h>
-#include <qiconset.h>
-#include <qtooltip.h>
+#include <tqcursor.h>
+#include <tqpainter.h>
+#include <tqpopupmenu.h>
+#include <tqregexp.h>
+#include <tqiconset.h>
+#include <tqtooltip.h>
 
 
 #include "cities.h"
@@ -56,8 +56,8 @@
 #include "mapwidget.moc"
 
 
-MapWidget::MapWidget(bool applet, bool restore, QWidget *parent, const char *name)
-  : QWidget(parent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
+MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *name)
+  : TQWidget(parent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
     _applet(applet), _width(0), _height(0)
 {
   // this ugly construction is necessary so we don't load 
@@ -74,7 +74,7 @@ MapWidget::MapWidget(bool applet, bool restore, QWidget *parent, const char *nam
 	delete config;
     }
 
-  setBackgroundMode(QWidget::NoBackground);
+  setBackgroundMode(TQWidget::NoBackground);
   
   gmt_position = 0;
   time_t t = time(NULL);
@@ -83,37 +83,37 @@ MapWidget::MapWidget(bool applet, bool restore, QWidget *parent, const char *nam
   _flagList = new FlagList;
 
   int id;
-  _flagPopup = new QPopupMenu(this);
-  QPixmap flag = QPixmap(locate("data", "kworldclock/pics/flag-red.png"));
-  id = _flagPopup->insertItem(QIconSet(flag), i18n("Add &Red"), this, SLOT(addFlag(int)));
+  _flagPopup = new TQPopupMenu(this);
+  TQPixmap flag = TQPixmap(locate("data", "kworldclock/pics/flag-red.png"));
+  id = _flagPopup->insertItem(TQIconSet(flag), i18n("Add &Red"), this, TQT_SLOT(addFlag(int)));
   _flagPopup->setItemParameter(id, 0);
-  flag = QPixmap(locate("data", "kworldclock/pics/flag-green.png"));
-  id = _flagPopup->insertItem(QIconSet(flag), i18n("Add &Green"), this, SLOT(addFlag(int)));
+  flag = TQPixmap(locate("data", "kworldclock/pics/flag-green.png"));
+  id = _flagPopup->insertItem(TQIconSet(flag), i18n("Add &Green"), this, TQT_SLOT(addFlag(int)));
   _flagPopup->setItemParameter(id, 1);
-  flag = QPixmap(locate("data", "kworldclock/pics/flag-blue.png"));
-  id = _flagPopup->insertItem(QIconSet(flag), i18n("Add &Blue"), this, SLOT(addFlag(int)));
+  flag = TQPixmap(locate("data", "kworldclock/pics/flag-blue.png"));
+  id = _flagPopup->insertItem(TQIconSet(flag), i18n("Add &Blue"), this, TQT_SLOT(addFlag(int)));
   _flagPopup->setItemParameter(id, 2);
-  id = _flagPopup->insertItem(i18n("Add &Custom..."), this, SLOT(addFlag(int)));
+  id = _flagPopup->insertItem(i18n("Add &Custom..."), this, TQT_SLOT(addFlag(int)));
   _flagPopup->setItemParameter(id, 3);
   _flagPopup->insertSeparator();
-  _flagPopup->insertItem(i18n("&Remove Flag"), this, SLOT(removeFlag()));
-  _flagPopup->insertItem(i18n("&Remove All Flags"), this, SLOT(removeAllFlags()));
+  _flagPopup->insertItem(i18n("&Remove Flag"), this, TQT_SLOT(removeFlag()));
+  _flagPopup->insertItem(i18n("&Remove All Flags"), this, TQT_SLOT(removeAllFlags()));
 
-  _themePopup = new QPopupMenu(this);
+  _themePopup = new TQPopupMenu(this);
   _themes = MapLoader::themes();
   int cnt=0;
-  QPtrListIterator<MapTheme> it(_themes);
+  TQPtrListIterator<MapTheme> it(_themes);
   for ( ; it.current(); ++it)
     {
-      int id = _themePopup->insertItem(it.current()->name(), this, SLOT(themeSelected(int)));
+      int id = _themePopup->insertItem(it.current()->name(), this, TQT_SLOT(themeSelected(int)));
       _themePopup->setItemParameter(id, cnt++);
       it.current()->setID(id);
     }
 
-  QPopupMenu *_clocksPopup = new QPopupMenu(this);
-  _clocksPopup->insertItem(i18n("&Add..."), this, SLOT(addClock()));
+  TQPopupMenu *_clocksPopup = new TQPopupMenu(this);
+  _clocksPopup->insertItem(i18n("&Add..."), this, TQT_SLOT(addClock()));
 
-  _popup = new QPopupMenu(this);
+  _popup = new TQPopupMenu(this);
   _popup->insertItem(i18n("&Flags"), _flagPopup);
   
   if (!applet)
@@ -121,37 +121,37 @@ MapWidget::MapWidget(bool applet, bool restore, QWidget *parent, const char *nam
 
   _popup->insertSeparator();
   _popup->insertItem(i18n("&Map Theme"), _themePopup);
-  _illuminationID = _popup->insertItem(i18n("Show &Daylight"), this, SLOT(toggleIllumination()));
-  _citiesID = _popup->insertItem(i18n("Show &Cities"), this, SLOT(toggleCities()));
-  _flagsID = _popup->insertItem(i18n("Show F&lags"), this, SLOT(toggleFlags()));
+  _illuminationID = _popup->insertItem(i18n("Show &Daylight"), this, TQT_SLOT(toggleIllumination()));
+  _citiesID = _popup->insertItem(i18n("Show &Cities"), this, TQT_SLOT(toggleCities()));
+  _flagsID = _popup->insertItem(i18n("Show F&lags"), this, TQT_SLOT(toggleFlags()));
 
   if (!applet)
     {
       _popup->insertSeparator();
-      _popup->insertItem(i18n("&Save Settings"), this, SLOT(slotSaveSettings()));
+      _popup->insertItem(i18n("&Save Settings"), this, TQT_SLOT(slotSaveSettings()));
     }
 
   _popup->insertSeparator();
-  _popup->insertItem(i18n("&About"), this, SLOT(about()));
+  _popup->insertItem(i18n("&About"), this, TQT_SLOT(about()));
 
-  QTimer *timer = new QTimer(this);
-  connect(timer, SIGNAL(timeout()), this, SLOT(timeout()));
+  TQTimer *timer = new TQTimer(this);
+  connect(timer, TQT_SIGNAL(timeout()), this, TQT_SLOT(timeout()));
   timer->start(1000);
 
-  _cityIndicator = new QLabel(0,0, WStyle_StaysOnTop | WStyle_Customize | WStyle_NoBorder | WStyle_Tool | WX11BypassWM );
+  _cityIndicator = new TQLabel(0,0, WStyle_StaysOnTop | WStyle_Customize | WStyle_NoBorder | WStyle_Tool | WX11BypassWM );
   _cityIndicator->setMargin(1);
   _cityIndicator->setIndent(0);
   _cityIndicator->setAutoMask(false);
   _cityIndicator->setLineWidth(1);
-  _cityIndicator->setAlignment(QLabel::AlignAuto | QLabel::AlignTop);
+  _cityIndicator->setAlignment(TQLabel::AlignAuto | TQLabel::AlignTop);
   _cityIndicator->setAutoResize(true);
-  _cityIndicator->setFrameStyle(QFrame::Box | QFrame::Plain);
-  _cityIndicator->setPalette(QToolTip::palette());
+  _cityIndicator->setFrameStyle(TQFrame::Box | TQFrame::Plain);
+  _cityIndicator->setPalette(TQToolTip::palette());
 
   if (restore && !applet)
     load(kapp->config());
     
-  connect(&m_timer, SIGNAL(timeout()), this, SLOT(updateCityIndicator()));
+  connect(&m_timer, TQT_SIGNAL(timeout()), this, TQT_SLOT(updateCityIndicator()));
 }
 
 
@@ -178,7 +178,7 @@ void MapWidget::load(KConfig *config)
   {
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if (args->isSet("theme"))
-      setTheme(QString::fromLocal8Bit(args->getOption("theme")));
+      setTheme(TQString::fromLocal8Bit(args->getOption("theme")));
     else
       setTheme(config->readEntry("Theme", "depths"));
 
@@ -210,10 +210,10 @@ void MapWidget::addClock()
   if (!_cityList)
     _cityList = new CityList;
 
-  QPoint where;
+  TQPoint where;
   City *c = _cityList->getNearestCity(_width, _height, gmt_position, _flagPos.x(), _flagPos.y(), where);     
   
-  QString zone = "";
+  TQString zone = "";
   if (c)
     zone = c->name();
 
@@ -223,7 +223,7 @@ void MapWidget::addClock()
 
 void MapWidget::addFlag(int index)
 {
-  QColor col = Qt::red;
+  TQColor col = Qt::red;
 
   switch (index)
     {
@@ -262,7 +262,7 @@ void MapWidget::removeFlag()
 
 void MapWidget::removeAllFlags()
 {
-  if ( KMessageBox::warningContinueCancel( this, i18n( "Do you really want to remove all flags?" ), QString::null, KStdGuiItem::del() ) == KMessageBox::Continue )
+  if ( KMessageBox::warningContinueCancel( this, i18n( "Do you really want to remove all flags?" ), TQString::null, KStdGuiItem::del() ) == KMessageBox::Continue )
     _flagList->removeAllFlags();
 
   update();
@@ -325,7 +325,7 @@ void MapWidget::updateBackground()
 }
 
 
-QPixmap MapWidget::getPixmap()
+TQPixmap MapWidget::getPixmap()
 {
   return _pixmap;
 }
@@ -350,13 +350,13 @@ void MapWidget::timeout()
 }
 
 
-QString MapWidget::cityTime(const QString &city)
+TQString MapWidget::cityTime(const TQString &city)
 {
-  QString result = i18n(city.latin1()); // Time zone translation
+  TQString result = i18n(city.latin1()); // Time zone translation
   int pos = result.find("/");
   if (pos >= 0)
     result = result.mid(pos+1);
-  result.replace(QRegExp("_"), " ");
+  result.replace(TQRegExp("_"), " ");
   result.append(": ");
 
   char *initial_TZ = getenv("TZ");
@@ -364,9 +364,9 @@ QString MapWidget::cityTime(const QString &city)
   tzset();
   
   time_t t = time(NULL);
-  QDateTime dt;
+  TQDateTime dt;
   dt.setTime_t(t);
-  result.append(QString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  result.append(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -377,13 +377,13 @@ QString MapWidget::cityTime(const QString &city)
 }
 
 
-void MapWidget::enterEvent(QEvent *)
+void MapWidget::enterEvent(TQEvent *)
 {
   if ( _cities )
     updateCityIndicator();
 } 
  
-void MapWidget::leaveEvent(QEvent *)
+void MapWidget::leaveEvent(TQEvent *)
 {
   _cityIndicator->hide();
   m_timer.stop();
@@ -399,15 +399,15 @@ void MapWidget::about()
 
 void MapWidget::themeSelected(int index)
 {
-  QString t = _themes.at(index)->tag();
+  TQString t = _themes.at(index)->tag();
   if (!t.isEmpty())
     setTheme(t);
 }
 
 
-void MapWidget::mousePressEvent(QMouseEvent *ev)
+void MapWidget::mousePressEvent(TQMouseEvent *ev)
 {
-  if (ev->button() == QMouseEvent::RightButton)
+  if (ev->button() == TQMouseEvent::RightButton)
     {
       _flagPos = ev->pos();
       _popup->exec(ev->globalPos()); 
@@ -415,7 +415,7 @@ void MapWidget::mousePressEvent(QMouseEvent *ev)
 } 
 
 
-void MapWidget::mouseMoveEvent(QMouseEvent *)
+void MapWidget::mouseMoveEvent(TQMouseEvent *)
 {
   if (!_cities)
     return;
@@ -426,8 +426,8 @@ void MapWidget::mouseMoveEvent(QMouseEvent *)
 
 void MapWidget::updateCityIndicator()
 {
-  QPoint where;
-  QPoint pos = mapFromGlobal(QCursor::pos());
+  TQPoint where;
+  TQPoint pos = mapFromGlobal(TQCursor::pos());
   
   if (!_cityList)
     _cityList = new CityList;
@@ -436,23 +436,23 @@ void MapWidget::updateCityIndicator()
   if (c)
     {
       _currentCity = c->name();
-      showIndicator(QCursor::pos());
+      showIndicator(TQCursor::pos());
     }
   else
     _cityIndicator->hide();
 }
 
 
-void MapWidget::showIndicator(const QPoint &pos)
+void MapWidget::showIndicator(const TQPoint &pos)
 {
   _cityIndicator->setText(cityTime(_currentCity));
 
   int w = _cityIndicator->width();
   int h = _cityIndicator->height();
 
-  QRect desk = KGlobalSettings::desktopGeometry(pos);
+  TQRect desk = KGlobalSettings::desktopGeometry(pos);
 
-	QPoint newPos;
+	TQPoint newPos;
 
   if (pos.x()+w+10 > desk.right())
     newPos.setX(pos.x()-w-5);
@@ -471,11 +471,11 @@ void MapWidget::showIndicator(const QPoint &pos)
 }
 
 
-void MapWidget::setTheme(const QString &theme)
+void MapWidget::setTheme(const TQString &theme)
 {
   _theme = theme;
 
-  QPtrListIterator<MapTheme> it(_themes);
+  TQPtrListIterator<MapTheme> it(_themes);
   for ( ; it.current(); ++it)
    _themePopup->setItemChecked(it.current()->ID(), theme == it.current()->tag());
 
@@ -509,13 +509,13 @@ void MapWidget::setSize(int w, int h)
   updateBackground();
 }
 
-void MapWidget::resizeEvent(QResizeEvent *ev)
+void MapWidget::resizeEvent(TQResizeEvent *ev)
 {
   setSize(width(), height());
-  QWidget::resizeEvent(ev);
+  TQWidget::resizeEvent(ev);
 }
 
-void MapWidget::paintContents(QPainter *p)
+void MapWidget::paintContents(TQPainter *p)
 {
   if (_cities)
     _cityList->paint(p, _width, _height, gmt_position);
@@ -523,13 +523,13 @@ void MapWidget::paintContents(QPainter *p)
     _flagList->paint(p, _width, _height, gmt_position);
 }
 
-void MapWidget::paintEvent(QPaintEvent *ev)
+void MapWidget::paintEvent(TQPaintEvent *ev)
 {
-  QWidget::paintEvent(ev);
+  TQWidget::paintEvent(ev);
 
   if (_cities || _flags)
     {
-       QPainter p(this);
+       TQPainter p(this);
 
        p.setClipping(true);
        p.setClipRegion(ev->region());
@@ -539,16 +539,16 @@ void MapWidget::paintEvent(QPaintEvent *ev)
 }
 
 
-QPixmap MapWidget::calculatePixmap()
+TQPixmap MapWidget::calculatePixmap()
 {
-  QPixmap map;
+  TQPixmap map;
 
   if (_illumination)
     {
       map = _loader.darkMap();
-      QPixmap clean = _loader.lightMap();
+      TQPixmap clean = _loader.lightMap();
 
-      QPainter mp(&map);
+      TQPainter mp(&map);
       clean.setMask(_loader.darkMask(map.width(), map.height()));
       mp.drawPixmap(0,0, clean);
     }
@@ -557,8 +557,8 @@ QPixmap MapWidget::calculatePixmap()
 
   int greenwich = map.width()/2;
 
-  QPixmap pm(_width, _height);
-  QPainter p;
+  TQPixmap pm(_width, _height);
+  TQPainter p;
   p.begin(&pm);
 
   if (gmt_position >= greenwich)

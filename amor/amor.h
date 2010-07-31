@@ -31,8 +31,8 @@
 #include <config.h>
 #endif
 
-#include <qwidget.h>
-#include <qptrqueue.h>
+#include <tqwidget.h>
+#include <tqptrqueue.h>
 
 #include "amoranim.h"
 #include "amortips.h"
@@ -52,7 +52,7 @@ public:
 
     enum itemType { Talk , Tip };
     
-    QueueItem(itemType ty, QString te, int ti = -1);
+    QueueItem(itemType ty, TQString te, int ti = -1);
 
     itemType	type() { return iType; }
     QString	text() { return iText; };
@@ -62,7 +62,7 @@ public:
 
 private:
     itemType	iType;
-    QString 	iText;
+    TQString 	iText;
     int		iTime;
 };
 
@@ -70,16 +70,16 @@ private:
 //
 // Amor handles window manager input and animation selection and updates.
 //
-class Amor : public QObject, virtual public AmorIface
+class Amor : public TQObject, virtual public AmorIface
 {
     Q_OBJECT
 public:
     Amor();
     virtual ~Amor();
 
-    virtual void showTip(QString tip);
-    virtual void showMessage(QString message);
-    virtual void showMessage(QString message, int msec);
+    virtual void showTip(TQString tip);
+    virtual void showMessage(TQString message);
+    virtual void showMessage(TQString message, int msec);
     virtual void screenSaverStopped();
     virtual void screenSaverStarted();
 
@@ -93,14 +93,14 @@ public slots:
     void slotDesktopChange(int);
 
 protected slots:
-    void slotMouseClicked(const QPoint &pos);
+    void slotMouseClicked(const TQPoint &pos);
     void slotTimeout();
     void slotCursorTimeout();
     void slotConfigure();
     void slotConfigChanged();
     void slotOffsetChanged(int);
     void slotAbout();
-    void slotWidgetDragged( const QPoint &delta, bool release );
+    void slotWidgetDragged( const TQPoint &delta, bool release );
     void restack();
     void hideBubble(bool forceDequeue = false);
 
@@ -110,17 +110,17 @@ protected:
     enum State { Focus, Blur, Normal, Sleeping, Waking, Destroy };
 
     bool readConfig();
-    void readGroupConfig(KConfigBase &config, QPtrList<AmorAnim> &animList,
+    void readGroupConfig(KConfigBase &config, TQPtrList<AmorAnim> &animList,
                             const char *seq);
     void showBubble();
-    AmorAnim *randomAnimation(QPtrList<AmorAnim> &animList);
+    AmorAnim *randomAnimation(TQPtrList<AmorAnim> &animList);
     void selectAnimation(State state=Normal);
     void active();
 
 private:
     KWinModule       *mWin;
     WId              mTargetWin;   // The window that the animations sits on
-    QRect            mTargetRect;  // The goemetry of the target window
+    TQRect            mTargetRect;  // The goemetry of the target window
     WId              mNextTarget;  // The window that will become the target
     AmorWidget       *mAmor;       // The widget displaying the animation
     AmorThemeManager mTheme;       // Animations used by current theme
@@ -128,15 +128,15 @@ private:
     AmorAnim         *mCurrAnim;   // The currently running animation
     int              mPosition;    // The position of the animation
     State            mState;       // The current state of the animation
-    QTimer           *mTimer;      // Frame timer
-    QTimer           *mCursorTimer;// Cursor timer
-    QTimer           *mStackTimer; // Restacking timer
-    QTimer           *mBubbleTimer;// Bubble tip timer (GP: I didn't create this one, it had no use when I found it)
+    TQTimer           *mTimer;      // Frame timer
+    TQTimer           *mCursorTimer;// Cursor timer
+    TQTimer           *mStackTimer; // Restacking timer
+    TQTimer           *mBubbleTimer;// Bubble tip timer (GP: I didn't create this one, it had no use when I found it)
     AmorDialog       *mAmorDialog; // Setup dialog
     KPopupMenu       *mMenu;       // Our menu
     time_t           mActiveTime;  // The time an active event occurred
-    QPoint           mCursPos;     // The last recorded position of the pointer
-    QString          mTipText;     // Text to display in a bubble when possible
+    TQPoint           mCursPos;     // The last recorded position of the pointer
+    TQString          mTipText;     // Text to display in a bubble when possible
     AmorBubble       *mBubble;     // Text bubble
     AmorTips         mTips;        // Tips to display in the bubble
     bool	     mInDesktopBottom; // the animation is not on top of the 
@@ -145,7 +145,7 @@ private:
     AmorConfig       mConfig;      // Configuration parameters
     bool             mForceHideAmorWidget;
 
-    QPtrQueue<QueueItem> mTipsQueue; // GP: tips queue
+    TQPtrQueue<QueueItem> mTipsQueue; // GP: tips queue
 };
 
 //---------------------------------------------------------------------------

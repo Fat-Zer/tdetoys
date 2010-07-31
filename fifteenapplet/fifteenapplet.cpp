@@ -24,9 +24,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdlib.h>
 #include <time.h>
 
-#include <qlayout.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
+#include <tqlayout.h>
+#include <tqpainter.h>
+#include <tqpopupmenu.h>
 
 #include <klocale.h>
 #include <kglobal.h>
@@ -38,7 +38,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(QWidget *parent, const QString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kfifteenapplet");
         return new FifteenApplet(configFile, KPanelApplet::Normal,
@@ -46,8 +46,8 @@ extern "C"
     }
 }
 
-FifteenApplet::FifteenApplet(const QString& configFile, Type type, int actions,
-                               QWidget *parent, const char *name)
+FifteenApplet::FifteenApplet(const TQString& configFile, Type type, int actions,
+                               TQWidget *parent, const char *name)
     : KPanelApplet(configFile, type, actions, parent, name), _aboutData(0)
 {
     // setup table
@@ -55,7 +55,7 @@ FifteenApplet::FifteenApplet(const QString& configFile, Type type, int actions,
     setCustomMenu(_table->popup());
 
     // setup layout
-    QHBoxLayout *_layout = new QHBoxLayout(this);
+    TQHBoxLayout *_layout = new TQHBoxLayout(this);
     _layout->add(_table);
 
     srand(time(0));
@@ -87,12 +87,12 @@ void FifteenApplet::about()
     dialog.exec();
 }
 
-PiecesTable::PiecesTable(QWidget* parent, const char* name )
+PiecesTable::PiecesTable(TQWidget* parent, const char* name )
     : QtTableView(parent, name), _activeRow(-1), _activeCol(-1), _randomized(false)
 {
-    _menu = new QPopupMenu(this);
-    _menu->insertItem(i18n("R&andomize Pieces"), this, SLOT(randomizeMap()));
-    _menu->insertItem(i18n("&Reset Pieces"), this, SLOT(resetMap()));
+    _menu = new TQPopupMenu(this);
+    _menu->insertItem(i18n("R&andomize Pieces"), this, TQT_SLOT(randomizeMap()));
+    _menu->insertItem(i18n("&Reset Pieces"), this, TQT_SLOT(resetMap()));
     _menu->adjustSize();    // setup table view
 
     setFrameStyle(StyledPanel | Sunken);
@@ -107,7 +107,7 @@ PiecesTable::PiecesTable(QWidget* parent, const char* name )
     initColors();
 }
 
-void PiecesTable::paintCell(QPainter *p, int row, int col)
+void PiecesTable::paintCell(TQPainter *p, int row, int col)
 {
     int w = cellWidth();
     int h = cellHeight();
@@ -142,15 +142,15 @@ void PiecesTable::paintCell(QPainter *p, int row, int col)
         p->setPen(white);
     else
         p->setPen(black);
-    p->drawText(0, 0, x2, y2, AlignHCenter | AlignVCenter, QString::number(number));
+    p->drawText(0, 0, x2, y2, AlignHCenter | AlignVCenter, TQString::number(number));
 }
 
-void PiecesTable::resizeEvent(QResizeEvent *e)
+void PiecesTable::resizeEvent(TQResizeEvent *e)
 {
     QtTableView::resizeEvent(e);
 
     // set font
-    QFont f = font();
+    TQFont f = font();
     if (height() > 50)
         f.setPixelSize(8);
     else if (height() > 40)
@@ -171,7 +171,7 @@ void PiecesTable::initColors()
     _colors.resize(numRows() * numCols());
     for (int r = 0; r < numRows(); r++)
         for (int c = 0; c < numCols(); c++)
-            _colors[c + r *numCols()] = QColor(255 - 70 * c,255 - 70 * r, 150);
+            _colors[c + r *numCols()] = TQColor(255 - 70 * c,255 - 70 * r, 150);
 }
 
 void PiecesTable::initMap()
@@ -185,7 +185,7 @@ void PiecesTable::initMap()
 
 void PiecesTable::randomizeMap()
 {
-    QMemArray<int> positions;
+    TQMemArray<int> positions;
     positions.fill(0, 16);
 
     for (unsigned int i = 0; i < 16; i++) {
@@ -221,7 +221,7 @@ void PiecesTable::checkwin()
         KMessageBox::information(this, i18n("Congratulations!\nYou win the game!"), i18n("Fifteen Pieces"));
 }
 
-void PiecesTable::mousePressEvent(QMouseEvent* e)
+void PiecesTable::mousePressEvent(TQMouseEvent* e)
 {
     QtTableView::mousePressEvent(e);
 
@@ -293,7 +293,7 @@ void PiecesTable::mousePressEvent(QMouseEvent* e)
     }
 }
 
-void PiecesTable::mouseMoveEvent(QMouseEvent* e)
+void PiecesTable::mouseMoveEvent(TQMouseEvent* e)
 {
     QtTableView::mouseMoveEvent(e);
 

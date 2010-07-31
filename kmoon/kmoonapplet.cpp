@@ -23,11 +23,11 @@
 #include <assert.h>
 #include <unistd.h>
 
-#include <qbitmap.h>
-#include <qtooltip.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qlayout.h>
+#include <tqbitmap.h>
+#include <tqtooltip.h>
+#include <tqpainter.h>
+#include <tqpopupmenu.h>
+#include <tqlayout.h>
 
 #include <dcopclient.h>
 #include <kdebug.h>
@@ -53,7 +53,7 @@ const char *description = I18N_NOOP("Moon Phase Indicator for KDE");
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(QWidget *parent, const QString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kmoon");
     return new MoonPAWidget(configFile, KPanelApplet::Normal,
@@ -62,14 +62,14 @@ extern "C"
   }
 }
 
-MoonPAWidget::MoonPAWidget(const QString& configFile, Type type, int actions,
-			   QWidget *parent, const char *name)
+MoonPAWidget::MoonPAWidget(const TQString& configFile, Type type, int actions,
+			   TQWidget *parent, const char *name)
   : KPanelApplet(configFile, type, actions, parent, name)
 {
     KConfig *config = KGlobal::config();
     config->setGroup("General");
 
-    QVBoxLayout *vbox = new QVBoxLayout(this, 0,0);
+    TQVBoxLayout *vbox = new TQVBoxLayout(this, 0,0);
     moon = new MoonWidget(this);
     moon->setAngle(config->readNumEntry("Rotation", 0));
     moon->setNorthHemi(config->readBoolEntry("Northern", true));
@@ -77,12 +77,12 @@ MoonPAWidget::MoonPAWidget(const QString& configFile, Type type, int actions,
     vbox->addWidget(moon);
     startTimer(1000 * 60 * 20);
 
-    popup = new QPopupMenu();
+    popup = new TQPopupMenu();
     popup->insertItem(SmallIcon("kmoon"),
 		      i18n("&About"), this,
-		      SLOT(showAbout()));
+		      TQT_SLOT(showAbout()));
     popup->insertItem(SmallIcon("configure"), i18n("&Configure..."), this,
-		      SLOT(settings()));
+		      TQT_SLOT(settings()));
 
     // missuse timerEvent for initialising
     timerEvent(0);
@@ -103,8 +103,8 @@ void MoonPAWidget::showAbout()
                                 0, "about", true, true,
                                 KStdGuiItem::ok() );
 
-    QPixmap ret = DesktopIcon("kmoon");
-    QString text = i18n(description) + QString::fromLatin1("\n\n") +
+    TQPixmap ret = DesktopIcon("kmoon");
+    TQString text = i18n(description) + TQString::fromLatin1("\n\n") +
 		   i18n("Written by Stephan Kulow <coolo@kde.org>\n"
                             "\n"
                             "Made an applet by M G Berberich "
@@ -118,7 +118,7 @@ void MoonPAWidget::showAbout()
 
     dialog->setIcon(ret);
 
-    KMessageBox::createKMessageBox(dialog, ret, text, QStringList(), QString::null, 0, KMessageBox::Notify);
+    KMessageBox::createKMessageBox(dialog, ret, text, TQStringList(), TQString::null, 0, KMessageBox::Notify);
 }
 
 void MoonPAWidget::settings()
@@ -139,7 +139,7 @@ void MoonPAWidget::settings()
 	repaint();
 }
 
-void MoonPAWidget::timerEvent( QTimerEvent * )
+void MoonPAWidget::timerEvent( TQTimerEvent * )
 {
     time_t clock;
     time(&clock);
@@ -148,7 +148,7 @@ void MoonPAWidget::timerEvent( QTimerEvent * )
     moon->repaint();
 }
 
-void MoonPAWidget::mousePressEvent( QMouseEvent *e)
+void MoonPAWidget::mousePressEvent( TQMouseEvent *e)
 {
     if (!popup)
       return;

@@ -31,9 +31,9 @@
 #include <kdebug.h>
 
 #include <kpopupmenu.h>
-#include <qtimer.h>
-#include <qcursor.h>
-#include <qvaluelist.h>
+#include <tqtimer.h>
+#include <tqcursor.h>
+#include <tqvaluelist.h>
 
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -78,7 +78,7 @@
 // Constructor
 //
 
-QueueItem::QueueItem(itemType ty, QString te, int ti)
+QueueItem::QueueItem(itemType ty, TQString te, int ti)
 {
     // if the time field was not given, calculate one based on the type 
     // and length of the item
@@ -120,7 +120,7 @@ QueueItem::QueueItem(itemType ty, QString te, int ti)
 // AMOR
 // Constructor
 //
-Amor::Amor() : DCOPObject( "AmorIface" ), QObject()
+Amor::Amor() : DCOPObject( "AmorIface" ), TQObject()
 {
     mAmor = 0;
     mBubble = 0;
@@ -136,37 +136,37 @@ Amor::Amor() : DCOPObject( "AmorIface" ), QObject()
         mState       = Normal;
 
         mWin = new KWinModule;
-        connect(mWin, SIGNAL(activeWindowChanged(WId)),
-                this, SLOT(slotWindowActivate(WId)));
-        connect(mWin, SIGNAL(windowRemoved(WId)),
-                this, SLOT(slotWindowRemove(WId)));
-        connect(mWin, SIGNAL(stackingOrderChanged()),
-                this, SLOT(slotStackingChanged()));
-        connect(mWin, SIGNAL(windowChanged(WId, const unsigned long *)),
-                this, SLOT(slotWindowChange(WId, const unsigned long *)));
-        connect(mWin, SIGNAL(currentDesktopChanged(int)),
-                this, SLOT(slotDesktopChange(int)));
+        connect(mWin, TQT_SIGNAL(activeWindowChanged(WId)),
+                this, TQT_SLOT(slotWindowActivate(WId)));
+        connect(mWin, TQT_SIGNAL(windowRemoved(WId)),
+                this, TQT_SLOT(slotWindowRemove(WId)));
+        connect(mWin, TQT_SIGNAL(stackingOrderChanged()),
+                this, TQT_SLOT(slotStackingChanged()));
+        connect(mWin, TQT_SIGNAL(windowChanged(WId, const unsigned long *)),
+                this, TQT_SLOT(slotWindowChange(WId, const unsigned long *)));
+        connect(mWin, TQT_SIGNAL(currentDesktopChanged(int)),
+                this, TQT_SLOT(slotDesktopChange(int)));
 
         mAmor = new AmorWidget();
-        connect(mAmor, SIGNAL(mouseClicked(const QPoint &)),
-                        SLOT(slotMouseClicked(const QPoint &)));
-        connect(mAmor, SIGNAL(dragged(const QPoint &, bool)),
-                        SLOT(slotWidgetDragged(const QPoint &, bool)));
+        connect(mAmor, TQT_SIGNAL(mouseClicked(const TQPoint &)),
+                        TQT_SLOT(slotMouseClicked(const TQPoint &)));
+        connect(mAmor, TQT_SIGNAL(dragged(const TQPoint &, bool)),
+                        TQT_SLOT(slotWidgetDragged(const TQPoint &, bool)));
         mAmor->resize(mTheme.maximumSize());
 
-        mTimer = new QTimer(this);
-        connect(mTimer, SIGNAL(timeout()), SLOT(slotTimeout()));
+        mTimer = new TQTimer(this);
+        connect(mTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotTimeout()));
 
-        mStackTimer = new QTimer(this);
-        connect(mStackTimer, SIGNAL(timeout()), SLOT(restack()));
+        mStackTimer = new TQTimer(this);
+        connect(mStackTimer, TQT_SIGNAL(timeout()), TQT_SLOT(restack()));
     
-	mBubbleTimer = new QTimer(this);
-	connect(mBubbleTimer, SIGNAL(timeout()), SLOT(slotBubbleTimeout()));
+	mBubbleTimer = new TQTimer(this);
+	connect(mBubbleTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotBubbleTimeout()));
 
         time(&mActiveTime);
-        mCursPos = QCursor::pos();
-        mCursorTimer = new QTimer(this);
-        connect(mCursorTimer, SIGNAL(timeout()), SLOT(slotCursorTimeout()));
+        mCursPos = TQCursor::pos();
+        mCursorTimer = new TQTimer(this);
+        connect(mCursorTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotCursorTimeout()));
 	mCursorTimer->start( 500 );
 
         if (mWin->activeWindow())
@@ -234,7 +234,7 @@ void Amor::screenSaverStarted()
 
 //---------------------------------------------------------------------------
 //
-void Amor::showTip( QString tip )
+void Amor::showTip( TQString tip )
 {
     if (mTipsQueue.count() < 5 && !mForceHideAmorWidget) // start dropping tips if the queue is too long
         mTipsQueue.enqueue(new QueueItem(QueueItem::Tip, tip));
@@ -247,12 +247,12 @@ void Amor::showTip( QString tip )
 }
 
 
-void Amor::showMessage( QString message )
+void Amor::showMessage( TQString message )
 {
     showMessage(message, -1);
 }
 
-void Amor::showMessage( QString message , int msec )
+void Amor::showMessage( TQString message , int msec )
 {
     // FIXME: What should be done about messages and tips while the screensaver is on?
     if (mForceHideAmorWidget) return; // do not show messages sent while in the screensaver
@@ -311,12 +311,12 @@ bool Amor::readConfig()
     // Select a random theme if user requested it
     if (mConfig.mRandomTheme)
     {
-        QStringList files;
+        TQStringList files;
         
         // Store relative paths into files to avoid storing absolute pathnames.
         KGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
         int randomTheme = kapp->random() % files.count();
-        mConfig.mTheme = (QString)*files.at(randomTheme);
+        mConfig.mTheme = (TQString)*files.at(randomTheme);
     }
 	
     // read selected theme
@@ -439,14 +439,14 @@ void Amor::selectAnimation(State state)
 
 		// if the animation falls outside of the working area, 
 		// then relocate it so that is inside the desktop again
-		QRect desktopArea = mWin->workArea();
+		TQRect desktopArea = mWin->workArea();
 		mInDesktopBottom = false;
 
 		if (mTargetRect.y() - mCurrAnim->hotspot().y() + mConfig.mOffset <
 		    desktopArea.y())
 		{
 		    // relocate the animation at the bottom of the screen
-		    mTargetRect = QRect(desktopArea.x(), 
+		    mTargetRect = TQRect(desktopArea.x(), 
 				  desktopArea.y() + desktopArea.height(),
 				  desktopArea.width(), 0);
 
@@ -594,7 +594,7 @@ void Amor::restack()
 //
 // The user clicked on our animation.
 //
-void Amor::slotMouseClicked(const QPoint &pos)
+void Amor::slotMouseClicked(const TQPoint &pos)
 {
     bool restartTimer = mTimer->isActive();
 
@@ -610,10 +610,10 @@ void Amor::slotMouseClicked(const QPoint &pos)
         KPopupMenu* helpMnu = help->menu();
         mMenu = new KPopupMenu();
         mMenu->insertTitle("Amor"); // I really don't want this i18n'ed
-        mMenu->insertItem(SmallIcon("configure"), i18n("&Configure..."), this, SLOT(slotConfigure()));
+        mMenu->insertItem(SmallIcon("configure"), i18n("&Configure..."), this, TQT_SLOT(slotConfigure()));
         mMenu->insertSeparator();
         mMenu->insertItem(SmallIcon("help"), i18n("&Help"), helpMnu);
-        mMenu->insertItem(SmallIcon("exit"), i18n("&Quit"), kapp, SLOT(quit()));
+        mMenu->insertItem(SmallIcon("exit"), i18n("&Quit"), kapp, TQT_SLOT(quit()));
     }
 
     mMenu->exec(pos);
@@ -630,8 +630,8 @@ void Amor::slotMouseClicked(const QPoint &pos)
 //
 void Amor::slotCursorTimeout()
 {
-    QPoint currPos = QCursor::pos();
-    QPoint diff = currPos - mCursPos;
+    TQPoint currPos = TQCursor::pos();
+    TQPoint diff = currPos - mCursPos;
     time_t now = time(0);
 
     if (mForceHideAmorWidget) return; // we're hidden, do nothing
@@ -710,9 +710,9 @@ void Amor::slotConfigure()
     if (!mAmorDialog)
     {
         mAmorDialog = new AmorDialog();
-        connect(mAmorDialog, SIGNAL(changed()), SLOT(slotConfigChanged()));
-        connect(mAmorDialog, SIGNAL(offsetChanged(int)),
-                SLOT(slotOffsetChanged(int)));
+        connect(mAmorDialog, TQT_SIGNAL(changed()), TQT_SLOT(slotConfigChanged()));
+        connect(mAmorDialog, TQT_SIGNAL(offsetChanged(int)),
+                TQT_SLOT(slotOffsetChanged(int)));
     }
 
     mAmorDialog->show();
@@ -748,7 +748,7 @@ void Amor::slotOffsetChanged(int off)
 //
 void Amor::slotAbout()
 {
-    QString about = i18n("Amor Version %1\n\n").arg(AMOR_VERSION) +
+    TQString about = i18n("Amor Version %1\n\n").arg(AMOR_VERSION) +
                 i18n("Amusing Misuse Of Resources\n\n") +
                 i18n("Copyright (c) 1999 Martin R. Jones <mjones@kde.org>\n\n") +
 		i18n("Original Author: Martin R. Jones <mjones@kde.org>\n") +
@@ -761,7 +761,7 @@ void Amor::slotAbout()
 //
 // Widget dragged
 //
-void Amor::slotWidgetDragged( const QPoint &delta, bool release )
+void Amor::slotWidgetDragged( const TQPoint &delta, bool release )
 {
     if (mCurrAnim->frame())
     {
@@ -903,14 +903,14 @@ void Amor::slotWindowChange(WId win, const unsigned long * properties)
         kdDebug(10000) << "Target window moved or resized" << endl;
 #endif
 
-        QRect newTargetRect = KWin::windowInfo(mTargetWin).frameGeometry();
+        TQRect newTargetRect = KWin::windowInfo(mTargetWin).frameGeometry();
 
 	// if the change in the window caused the animation to fall 
 	// out of the working area of the desktop, or if the animation 
 	// didn't fall in the working area before but it does now, then
 	//  refocus on the current window so that the animation is 
 	// relocated.
-	QRect desktopArea = mWin->workArea();
+	TQRect desktopArea = mWin->workArea();
 
 	bool fitsInWorkArea = !(newTargetRect.y() - mCurrAnim->hotspot().y() + mConfig.mOffset < desktopArea.y()); 
 	if ((!fitsInWorkArea && !mInDesktopBottom) || (fitsInWorkArea && mInDesktopBottom))
@@ -1014,7 +1014,7 @@ AmorSessionWidget::AmorSessionWidget()
 {
     // the only function of this widget is to catch & forward the
     // saveYourself() signal from the session manager
-    connect(kapp, SIGNAL(saveYourself()), SLOT(wm_saveyourself()));
+    connect(kapp, TQT_SIGNAL(saveYourself()), TQT_SLOT(wm_saveyourself()));
 }
 
 void AmorSessionWidget::wm_saveyourself()

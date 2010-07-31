@@ -26,13 +26,13 @@
 */
 #include "amorbubble.h"
 #include "amorbubble.moc"
-#include <qpainter.h>
+#include <tqpainter.h>
 #include <ktextbrowser.h>
-#include <qtooltip.h>
+#include <tqtooltip.h>
 #include <kstandarddirs.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/shape.h>
-#include <qtimer.h>
+#include <tqtimer.h>
 
 #define ARROW_WIDTH     10
 #define ARROW_HEIGHT    12
@@ -45,28 +45,28 @@
 // Constructor
 //
 AmorBubble::AmorBubble()
-	: QWidget(0, 0, WStyle_Customize | WStyle_NoBorder | WX11BypassWM )
+	: TQWidget(0, 0, WStyle_Customize | WStyle_NoBorder | WX11BypassWM )
 {
     mOriginX = 0;
     mOriginY = 0;
     mBrowser = new KTextBrowser( this );
-    mBrowser->setFrameStyle( QFrame::NoFrame | QFrame::Plain );
+    mBrowser->setFrameStyle( TQFrame::NoFrame | TQFrame::Plain );
     mBrowser->setMargin( 0 );
 
-    mBrowser->setWrapPolicy(QTextEdit::AtWordOrDocumentBoundary); // too long to fit in one line?
+    mBrowser->setWrapPolicy(TQTextEdit::AtWordOrDocumentBoundary); // too long to fit in one line?
 
-    QColorGroup clgrp = mBrowser->colorGroup();
-    clgrp.setColor(QColorGroup::Text, Qt::black);
-    //Laurent QTextBrowser didn't have this function FIX me
+    TQColorGroup clgrp = mBrowser->colorGroup();
+    clgrp.setColor(TQColorGroup::Text, Qt::black);
+    //Laurent TQTextBrowser didn't have this function FIX me
     //mBrowser->setPaperColorGroup( clgrp );
-    mBrowser->setPaper( QToolTip::palette().active().brush( QColorGroup::Background ) );
-    mBrowser->setVScrollBarMode( QTextBrowser::AlwaysOff );
-    mBrowser->setHScrollBarMode( QTextBrowser::AlwaysOff );
+    mBrowser->setPaper( TQToolTip::palette().active().brush( TQColorGroup::Background ) );
+    mBrowser->setVScrollBarMode( TQTextBrowser::AlwaysOff );
+    mBrowser->setHScrollBarMode( TQTextBrowser::AlwaysOff );
     mBrowser->viewport()->installEventFilter( this );
 
     mBrowser->mimeSourceFactory()->addFilePath(KGlobal::dirs()->findResourceDir("data", "kdewizard/pics")+"kdewizard/pics/");
-    QStringList icons = KGlobal::dirs()->resourceDirs("icon");
-    QStringList::Iterator it;
+    TQStringList icons = KGlobal::dirs()->resourceDirs("icon");
+    TQStringList::Iterator it;
     for (it = icons.begin(); it != icons.end(); ++it)
 	mBrowser->mimeSourceFactory()->addFilePath(*it);
 
@@ -86,9 +86,9 @@ AmorBubble::~AmorBubble()
 // Set the message to display in the bubble.  Causes the geometry of the
 // widget to be recalculated.
 //
-void AmorBubble::setMessage(const QString& message)
+void AmorBubble::setMessage(const TQString& message)
 {
-    mMessage = QString( "<html>%1</html>" ).arg( message );
+    mMessage = TQString( "<html>%1</html>" ).arg( message );
     // hacks because heightForWidth() doesn't work.
     setGeometry( -1000, 0, 300, 1000 );
     show();
@@ -103,7 +103,7 @@ void AmorBubble::setMessage(const QString& message)
 //
 void AmorBubble::calcGeometry()
 {
-    mBound = QRect( 0, 0, 250, 0 );
+    mBound = TQRect( 0, 0, 250, 0 );
 //    mBound.setHeight( mBrowser->heightForWidth( mBound.width() ) );
     mBound.setHeight( mBrowser->contentsHeight() );
     mBound.moveBy(ARROW_WIDTH+BORDER_SIZE, BORDER_SIZE);
@@ -144,7 +144,7 @@ void AmorBubble::calcGeometry()
     // create and apply the shape mask
     mMask.resize(w, h);
     mMask.fill(color0);
-    QPainter maskPainter(&mMask);
+    TQPainter maskPainter(&mMask);
     maskPainter.setPen(color1);
     maskPainter.setBrush(color1);
     drawBubble(maskPainter);
@@ -157,9 +157,9 @@ void AmorBubble::calcGeometry()
 // Draw the bubble that text will be draw into using the current pen
 // as the outline and the current brush as the fill.
 //
-void AmorBubble::drawBubble(QPainter &p)
+void AmorBubble::drawBubble(TQPainter &p)
 {
-    QPointArray pointArray(3);
+    TQPointArray pointArray(3);
 
     int left = ARROW_WIDTH;
 
@@ -190,7 +190,7 @@ void AmorBubble::drawBubble(QPainter &p)
 //    p.drawRoundRect(left, 0, width() - ARROW_WIDTH, height(), 10, 20);
     p.drawRect(left, 0, width() - ARROW_WIDTH, height());
 
-    QPen pen(p.pen());
+    TQPen pen(p.pen());
     p.setPen(NoPen);
     p.drawPolygon(pointArray);
 
@@ -202,11 +202,11 @@ void AmorBubble::drawBubble(QPainter &p)
 //
 // Draw the message in a bubble
 //
-void AmorBubble::paintEvent(QPaintEvent *)
+void AmorBubble::paintEvent(TQPaintEvent *)
 {
-    QPainter painter(this);
+    TQPainter painter(this);
     painter.setPen(black);
-    painter.setBrush( QToolTip::palette().active().brush( QColorGroup::Background ) );
+    painter.setBrush( TQToolTip::palette().active().brush( TQColorGroup::Background ) );
     drawBubble(painter);
 }
 
@@ -214,32 +214,32 @@ void AmorBubble::paintEvent(QPaintEvent *)
 //
 // The user clicked on the widget
 //
-void AmorBubble::mouseReleaseEvent(QMouseEvent *)
+void AmorBubble::mouseReleaseEvent(TQMouseEvent *)
 {
     hide();
 }
 
 //---------------------------------------------------------------------------
 //
-bool AmorBubble::eventFilter( QObject *, QEvent *e )
+bool AmorBubble::eventFilter( TQObject *, TQEvent *e )
 {
     switch ( e->type() )
     {
 
-// GP	case QEvent::Enter:
+// GP	case TQEvent::Enter:
 // GP	    mBubbleTimer->stop();
 // GP	    break;
-// GP	case QEvent::Leave:
+// GP	case TQEvent::Leave:
 // GP	    if ( isVisible() )
 // GP		mBubbleTimer->start( 1000, true );
 // GP	    break;
-	case QEvent::Enter:
+	case TQEvent::Enter:
 	    mMouseWithin = true;
 	    break;
-	case QEvent::Leave:
+	case TQEvent::Leave:
 	    mMouseWithin = false;
 	    break;
-	case QEvent::MouseButtonRelease:
+	case TQEvent::MouseButtonRelease:
 	    hide();				// GP This is the only reason a bubble might posibly be created but hidden
 	    break;
 	default:

@@ -17,8 +17,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <qimage.h>
-#include <qheader.h>
+#include <tqimage.h>
+#include <tqheader.h>
 
 #include <dcopclient.h>
 #include <dcopref.h>
@@ -37,30 +37,30 @@
 class StationItem : public QListViewItem
 {
   public:
-    StationItem( QListView *view, const QString &name, const QString &uid )
-      : QListViewItem( view, name ), mUID( uid )
+    StationItem( TQListView *view, const TQString &name, const TQString &uid )
+      : TQListViewItem( view, name ), mUID( uid )
     {
     }
 
-    StationItem( QListViewItem *item, const QString &name, const QString &uid )
-      : QListViewItem( item, name ), mUID( uid )
+    StationItem( TQListViewItem *item, const TQString &name, const TQString &uid )
+      : TQListViewItem( item, name ), mUID( uid )
     {
     }
 
-    QString uid() const { return mUID; }
+    TQString uid() const { return mUID; }
 
   private:
-    QString mUID;
+    TQString mUID;
 };
 
-static void parseStationEntry( const QString &line, QString &name, QString &uid );
+static void parseStationEntry( const TQString &line, TQString &name, TQString &uid );
 
-ServiceConfigWidget::ServiceConfigWidget( QWidget *parent, const char *name )
+ServiceConfigWidget::ServiceConfigWidget( TQWidget *parent, const char *name )
   : wsPrefs( parent, name ), mService(0)
 {
   mService = new WeatherService_stub( "KWeatherService", "WeatherService" );
-  connect( mAllStations, SIGNAL( doubleClicked ( QListViewItem *, const QPoint &, int ) ), SLOT( addStation() ) );
-  connect( mSelectedStations, SIGNAL( doubleClicked ( QListViewItem *, const QPoint &, int ) ), SLOT( removeStation() ) );
+  connect( mAllStations, TQT_SIGNAL( doubleClicked ( TQListViewItem *, const TQPoint &, int ) ), TQT_SLOT( addStation() ) );
+  connect( mSelectedStations, TQT_SIGNAL( doubleClicked ( TQListViewItem *, const TQPoint &, int ) ), TQT_SLOT( removeStation() ) );
 
   initGUI();
   loadLocations();
@@ -125,16 +125,16 @@ void ServiceConfigWidget::scanStations()
   if ( !dcopActive() )
     return;
 
-  QStringList list = mService->listStations( );
+  TQStringList list = mService->listStations( );
 
   mSelectedStations->clear();
   for ( uint i = 0; i < list.count(); ++i ) {
-    QPixmap pm = mService->icon( list[ i ] );
-    QImage img = pm.convertToImage();
+    TQPixmap pm = mService->icon( list[ i ] );
+    TQImage img = pm.convertToImage();
     img = img.smoothScale( 22, 22 );
     pm.convertFromImage( img );
 
-    QString uid = list[ i ];
+    TQString uid = list[ i ];
     if (mStationMap[ uid ].isEmpty())
     {
       mStationMap[ uid ] = uid;
@@ -145,7 +145,7 @@ void ServiceConfigWidget::scanStations()
   }
 }
 
-void ServiceConfigWidget::selectionChanged( QListViewItem *item )
+void ServiceConfigWidget::selectionChanged( TQListViewItem *item )
 {
   mRemoveButton->setEnabled( item != 0 );
 }
@@ -166,34 +166,34 @@ void ServiceConfigWidget::loadLocations()
   KConfig config( locate( "data", "kweatherservice/weather_stations.desktop" ) );
 
   config.setGroup( "Main" );
-  QStringList regions = QStringList::split( ' ', config.readEntry( "regions" ) );
+  TQStringList regions = TQStringList::split( ' ', config.readEntry( "regions" ) );
 
-  QStringList::ConstIterator regionIt;
+  TQStringList::ConstIterator regionIt;
   for ( regionIt = regions.begin(); regionIt != regions.end(); ++regionIt ) {
     config.setGroup( *regionIt );
-    QString name = config.readEntry( "name" );
-    QStringList states = config.readListEntry( "states", ' ' );
+    TQString name = config.readEntry( "name" );
+    TQStringList states = config.readListEntry( "states", ' ' );
 
-    QListViewItem *regionItem = new QListViewItem( mAllStations, name );
+    TQListViewItem *regionItem = new TQListViewItem( mAllStations, name );
     regionItem->setSelectable( false );
 
-    QStringList::ConstIterator stateIt;
+    TQStringList::ConstIterator stateIt;
     for ( stateIt = states.begin(); stateIt != states.end(); ++stateIt ) {
       config.setGroup( *regionIt + "_" + *stateIt );
-      QString name = config.readEntry( "name" );
+      TQString name = config.readEntry( "name" );
 
-      QListViewItem *stateItem = new QListViewItem( regionItem, name );
+      TQListViewItem *stateItem = new TQListViewItem( regionItem, name );
       stateItem->setSelectable( false );
 
-      QMap<QString, QString> entries = config.entryMap( *regionIt + "_" + *stateIt );
-      QMap<QString, QString>::ConstIterator entryIt;
+      TQMap<TQString, TQString> entries = config.entryMap( *regionIt + "_" + *stateIt );
+      TQMap<TQString, TQString>::ConstIterator entryIt;
       for ( entryIt = entries.begin(); entryIt != entries.end(); ++entryIt ) {
         if ( entryIt.key() != "name" ) {
-          QString station, uid;
+          TQString station, uid;
           // get station and uid from the data
           parseStationEntry( entryIt.data(), station, uid );
           new StationItem( stateItem, station, uid );
-          mStationMap.insert( uid, QString( "%1, %2" )
+          mStationMap.insert( uid, TQString( "%1, %2" )
               .arg( station ).arg( *stateIt ) );
         }
       }
@@ -203,21 +203,21 @@ void ServiceConfigWidget::loadLocations()
 
 bool ServiceConfigWidget::dcopActive()
 {
-  QString error;
-  QCString appID;
+  TQString error;
+  TQCString appID;
   bool isGood = true;
   DCOPClient *client = kapp->dcopClient();
   if ( !client->isApplicationRegistered( "KWeatherService" ) ) {
-    if ( KApplication::startServiceByDesktopName( "kweatherservice", QStringList(), &error, &appID ) )
+    if ( KApplication::startServiceByDesktopName( "kweatherservice", TQStringList(), &error, &appID ) )
       isGood = false;
   }
 
   return isGood;
 }
 
-void parseStationEntry( const QString &line, QString &name, QString &uid )
+void parseStationEntry( const TQString &line, TQString &name, TQString &uid )
 {
-  QStringList list = QStringList::split( ' ', line );
+  TQStringList list = TQStringList::split( ' ', line );
 
   bool inName = true;
 

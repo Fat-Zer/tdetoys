@@ -19,7 +19,7 @@
 #ifndef __eyes_h__
 #define __eyes_h__
 
-#include <qpixmap.h>
+#include <tqpixmap.h>
 #include <kpanelapplet.h>
 
 class EyesApplet : public KPanelApplet
@@ -27,22 +27,22 @@ class EyesApplet : public KPanelApplet
     Q_OBJECT
 
 public:
-    EyesApplet(const QString& configFile, Type t = Normal, int actions = 0,
-               QWidget *parent = 0, const char *name = 0);
+    EyesApplet(const TQString& configFile, Type t = Normal, int actions = 0,
+               TQWidget *parent = 0, const char *name = 0);
 
     int widthForHeight(int height) const;
     int heightForWidth(int width) const;
 
 protected:
-    void timerEvent(QTimerEvent*);
-    void resizeEvent(QResizeEvent*);
-    void paintEvent(QPaintEvent*);
+    void timerEvent(TQTimerEvent*);
+    void resizeEvent(TQResizeEvent*);
+    void paintEvent(TQPaintEvent*);
 
 private:
-    void drawPupils(QPainter* p);
+    void drawPupils(TQPainter* p);
 
-    QPoint oldleft, oldright, oldMouse;
-    QPixmap _cache;
+    TQPoint oldleft, oldright, oldMouse;
+    TQPixmap _cache;
 };
 
 #endif // __eyes_h__

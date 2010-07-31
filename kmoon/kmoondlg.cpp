@@ -18,31 +18,31 @@
  *
  */
 
-#include <qslider.h>
-#include <qlayout.h>
+#include <tqslider.h>
+#include <tqlayout.h>
 #include <klocale.h>
-#include <qwhatsthis.h>
-#include <qvbox.h>
+#include <tqwhatsthis.h>
+#include <tqvbox.h>
 #include <kapplication.h>
-#include <qpushbutton.h>
+#include <tqpushbutton.h>
 
 #include "kmoondlg.h"
 #include "kmoonwidget.h"
 
-KMoonDlg::KMoonDlg(int a, bool n, bool m, QWidget *parent, const char *name)
+KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *parent, const char *name)
     : KDialogBase(parent, name, true, i18n("Change View"),
                   Ok|Cancel|Help), angle(a), north(n), mask(m)
 {
-	QWidget *page = new QWidget( this );
+	TQWidget *page = new TQWidget( this );
 	setMainWidget(page);
-	QHBoxLayout *topLayout = new QHBoxLayout( page, 0, spacingHint() );
+	TQHBoxLayout *topLayout = new TQHBoxLayout( page, 0, spacingHint() );
 
-        QVBox *vbox = new QVBox(page);
-        QHBox *hbox1 = new QHBox(vbox);
+        TQVBox *vbox = new TQVBox(page);
+        TQHBox *hbox1 = new TQHBox(vbox);
         hbox1->setSpacing(15);
 
-	QLabel *label = new QLabel( i18n("View angle:"), hbox1, "caption" );
-	QString text = i18n("You can use this to rotate the moon to the correct\n"
+	TQLabel *label = new TQLabel( i18n("View angle:"), hbox1, "caption" );
+	TQString text = i18n("You can use this to rotate the moon to the correct\n"
                             "angle for your location.\n"
 			    "\n"
                             "This angle is (almost) impossible to\n"
@@ -52,39 +52,39 @@ KMoonDlg::KMoonDlg(int a, bool n, bool m, QWidget *parent, const char *name)
                             "The default value is 0, but it is very\n"
                             "unlikely that you would see the moon\n"
                             "at this angle.");
-	QWhatsThis::add(label, text);
+	TQWhatsThis::add(label, text);
 
-	slider = new QSlider( -90, 90, 2, angle, Qt::Horizontal, hbox1, "slider" );
-	slider->setTickmarks(QSlider::Above);
+	slider = new TQSlider( -90, 90, 2, angle, Qt::Horizontal, hbox1, "slider" );
+	slider->setTickmarks(TQSlider::Above);
 	slider->setTickInterval(45);
-	slider->setEnabled(QPixmap::defaultDepth() > 8);
-	label->setEnabled(QPixmap::defaultDepth() > 8);
-	QWhatsThis::add(slider, text);
-	connect(slider, SIGNAL(valueChanged(int)), SLOT(angleChanged(int)));
+	slider->setEnabled(TQPixmap::defaultDepth() > 8);
+	label->setEnabled(TQPixmap::defaultDepth() > 8);
+	TQWhatsThis::add(slider, text);
+	connect(slider, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(angleChanged(int)));
 
-	QHBox *hbox2 = new QHBox(vbox);
+	TQHBox *hbox2 = new TQHBox(vbox);
 	hbox2->setSpacing(spacingHint());
 
-        hemitoggle = new QPushButton(hbox2);
+        hemitoggle = new TQPushButton(hbox2);
 	hemitoggle->setText(north ? i18n("Switch to Southern Hemisphere") :
 			    i18n("Switch to Northern Hemisphere"));
 
-        connect(hemitoggle, SIGNAL(clicked()), SLOT(toggleHemi()));
+        connect(hemitoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleHemi()));
 
-        masktoggle = new QPushButton(hbox2);
+        masktoggle = new TQPushButton(hbox2);
 	masktoggle->setText(mask ? i18n("Switch Masking Off") :
 			    i18n("Switch Masking On"));
 
-        connect(masktoggle, SIGNAL(clicked()), SLOT(toggleMask()));
+        connect(masktoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
         topLayout->addWidget(vbox);
 
 	moon = new MoonWidget(page, "preview");
 	moon->setMinimumSize(50, 50);
 	moon->setMaximumSize(200,200);
-	QWhatsThis::add(moon, i18n("The moon as KMoon would display it\n"
+	TQWhatsThis::add(moon, i18n("The moon as KMoon would display it\n"
 							   "following your current setting and time."));
 	topLayout->addWidget(moon);
-        connect(this, SIGNAL(helpClicked()), SLOT(help()));
+        connect(this, TQT_SIGNAL(helpClicked()), TQT_SLOT(help()));
 	// disableResize();
 }
 
@@ -94,7 +94,7 @@ void KMoonDlg::angleChanged(int value) {
 }
 
 void KMoonDlg::help() {
-    kapp->invokeHelp(QString::fromLatin1("config"));
+    kapp->invokeHelp(TQString::fromLatin1("config"));
 }
 
 void KMoonDlg::toggleHemi() {

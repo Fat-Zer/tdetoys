@@ -25,10 +25,10 @@
 /*
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
-#include <qfile.h>
-#include <qtextstream.h>
-#include <qregexp.h>
-#include <qpainter.h>
+#include <tqfile.h>
+#include <tqtextstream.h>
+#include <tqregexp.h>
+#include <tqpainter.h>
 
 
 #include <kglobal.h>
@@ -51,13 +51,13 @@ CityList::~CityList()
 
 void CityList::readCityLists()
 {
-  QStringList lists = KGlobal::dirs()->findAllResources("data", "kworldclock/*.tab");
-  for (QStringList::Iterator it = lists.begin(); it != lists.end(); ++it)
+  TQStringList lists = KGlobal::dirs()->findAllResources("data", "kworldclock/*.tab");
+  for (TQStringList::Iterator it = lists.begin(); it != lists.end(); ++it)
     readCityList(*it);
 }
 
 
-double coordinate(QString c)
+double coordinate(TQString c)
 {
   int neg;
   int d=0, m=0, s=0;
@@ -96,18 +96,18 @@ double coordinate(QString c)
 }
 
 
-void CityList::readCityList(const QString &fname)
+void CityList::readCityList(const TQString &fname)
 {
-  QFile f(fname);
+  TQFile f(fname);
 
   if (f.open(IO_ReadOnly))
     {
-      QTextStream is(&f);
+      TQTextStream is(&f);
 
-      QString line;
-      QStringList tags;
-      QRegExp coord("[+-]\\d+[+-]\\d+");
-      QRegExp name("[^\\s]+/[^\\s]+");
+      TQString line;
+      TQStringList tags;
+      TQRegExp coord("[+-]\\d+[+-]\\d+");
+      TQRegExp name("[^\\s]+/[^\\s]+");
       int pos;
       while (!is.eof())
 	{
@@ -115,7 +115,7 @@ void CityList::readCityList(const QString &fname)
 	  if (line.isEmpty() || line.left(1) == "#")
 	    continue;
 
-	  QString c, n;
+	  TQString c, n;
 	  
 	  pos = coord.search(line, 0);
 	  if (pos >= 0)
@@ -145,24 +145,24 @@ void CityList::readCityList(const QString &fname)
 }
 
 
-QPoint CityList::getPosition(double la, double lo, int w, int h, int offset)
+TQPoint CityList::getPosition(double la, double lo, int w, int h, int offset)
 {
   int x = (int)((double)w * (180.0 + lo) / 360.0);
   int y = (int)((double)h * (90.0 - la) / 180.0);
   x = (x + offset + w/2) % w;
 
-  return QPoint(x,y);
+  return TQPoint(x,y);
 }
 
 
-void CityList::paint(QPainter *p, int width, int height, int offset)
+void CityList::paint(TQPainter *p, int width, int height, int offset)
 {
   p->setPen(Qt::black);
 
-  QPtrListIterator<City> it(_cities);
+  TQPtrListIterator<City> it(_cities);
   for ( ; it.current(); ++it)
     {
-      QPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), width, height, offset);
+      TQPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), width, height, offset);
 
       if (width > 100)
 	p->drawEllipse(pos.x(), pos.y(), 3,3);
@@ -172,15 +172,15 @@ void CityList::paint(QPainter *p, int width, int height, int offset)
 }
 
 
-City *CityList::getNearestCity(int w, int h, int offset, int x, int y, QPoint &where)
+City *CityList::getNearestCity(int w, int h, int offset, int x, int y, TQPoint &where)
 {
   City *result = 0;
   double dist = 1.0e10;
   
-  QPtrListIterator<City> it(_cities);
+  TQPtrListIterator<City> it(_cities);
   for ( ; it.current(); ++it)
     {
-      QPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), w, h, offset);
+      TQPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), w, h, offset);
   
       double d = (pos.x()-x)*(pos.x()-x) + (pos.y()-y)*(pos.y()-y);
       if (d < dist)
@@ -195,11 +195,11 @@ City *CityList::getNearestCity(int w, int h, int offset, int x, int y, QPoint &w
 }
 
 
-QStringList CityList::timezones()
+TQStringList CityList::timezones()
 {
-  QStringList r;
+  TQStringList r;
 
-  QPtrListIterator<City> it(_cities);
+  TQPtrListIterator<City> it(_cities);
   for ( ; it.current(); ++it)
     r << it.current()->name();
   r.sort();

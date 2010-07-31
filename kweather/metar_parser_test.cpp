@@ -21,9 +21,9 @@
 #include <iostream>
 using namespace std;
 
-#include <qdatetime.h>
-#include <qfile.h>
-#include <qstringlist.h>
+#include <tqdatetime.h>
+#include <tqfile.h>
+#include <tqstringlist.h>
 
 #include <krfcdate.h>
 
@@ -34,7 +34,7 @@ void test1();
 void test2();
 
 void displayWeatherInfo(const struct WeatherInfo &wi);
-const char *getString(const QString &str);
+const char *getString(const TQString &str);
 
 int localUTCOffset = -300;
 
@@ -47,9 +47,9 @@ int main()
 	bool found = false;
 	
 	// try the stations.dat file in the current directory first.
-	QString path("stations.dat");
+	TQString path("stations.dat");
 	
-	if (QFile::exists(path))
+	if (TQFile::exists(path))
 	{
 		found = true;
 	}
@@ -61,10 +61,10 @@ int main()
 		// means that make install would have had to be done first before calling
 		// make check so that the file will be there.
 	
-		QString kdeDirs(getenv("KDEDIR"));
+		TQString kdeDirs(getenv("KDEDIR"));
 	
 		path = kdeDirs + "/share/apps/kweatherservice/stations.dat";
-		if (QFile::exists(path))
+		if (TQFile::exists(path))
 		{
 			found = true;
 		}
@@ -100,8 +100,8 @@ int main()
 
 void test1()
 {
-	QDate Date(2004, 6, 17);    // June 17th.
-	QTime Time(21, 7);  // hours, minutes,   seconds and ms defaults to 0
+	TQDate Date(2004, 6, 17);    // June 17th.
+	TQTime Time(21, 7);  // hours, minutes,   seconds and ms defaults to 0
 
 	// Construct a MetarParser object for our tests.
 	MetarParser parser( stationDb, KLocale::Imperial, Date, Time, localUTCOffset );
@@ -134,8 +134,8 @@ void test1()
 
 void test2()
 {
-	QDate Date(2004, 6, 18);    // June 18th.
-	QTime Time(18, 43);  // hours, minutes,   seconds and ms defaults to 0
+	TQDate Date(2004, 6, 18);    // June 18th.
+	TQTime Time(18, 43);  // hours, minutes,   seconds and ms defaults to 0
 	
 	// Construct a MetarParser object for our tests.
 	MetarParser parser( stationDb, KLocale::Imperial, Date, Time, localUTCOffset );
@@ -176,13 +176,13 @@ void displayWeatherInfo(const struct WeatherInfo &wi)
 	cout << "heavy: "      << wi.heavy << endl;
 	
 	unsigned int i = 0;
-	for ( QStringList::ConstIterator it = wi.qsCoverList.begin(); 
+	for ( TQStringList::ConstIterator it = wi.qsCoverList.begin(); 
 	      it != wi.qsCoverList.end(); 
 	      ++it, i++ ) {
 		cout << "qsCoverList[" << i << "]: " << (*it).latin1() << endl;
 	}
 	i = 0;
-	for ( QStringList::ConstIterator it = wi.qsCurrentList.begin(); 
+	for ( TQStringList::ConstIterator it = wi.qsCurrentList.begin(); 
 	      it != wi.qsCurrentList.end(); 
 	      ++it, i++ ) {
 		cout << "qsCurrentList[" << i << "]: " << (*it).latin1() << endl;
@@ -205,7 +205,7 @@ void displayWeatherInfo(const struct WeatherInfo &wi)
 
 static const char *nullString = "[null]";
 
-const char *getString(const QString &str)
+const char *getString(const TQString &str)
 {
 	if (str.isNull())
 	{

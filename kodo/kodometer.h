@@ -30,10 +30,10 @@
 
 #include <math.h>
 
-#include <qlabel.h>
-#include <qptrlist.h>
-#include <qkeycode.h>
-#include <qtooltip.h>
+#include <tqlabel.h>
+#include <tqptrlist.h>
+#include <tqkeycode.h>
+#include <tqtooltip.h>
 
 #include <kaboutdata.h>
 #include <kuniqueapplication.h>
@@ -94,15 +94,15 @@ class Kodometer : public QFrame
 	Q_OBJECT
 
 public:
-	Kodometer(QWidget* = 0, const char* = 0);
+	Kodometer(TQWidget* = 0, const char* = 0);
 	~Kodometer() {}
 	void refresh(void);
 	void readSettings(void);
 	void saveSettings(void);
 
-	void timerEvent(QTimerEvent*);
-	void mousePressEvent(QMouseEvent*);
-	bool eventFilter( QObject *, QEvent *e );
+	void timerEvent(TQTimerEvent*);
+	void mousePressEvent(TQMouseEvent*);
+	bool eventFilter( TQObject *, TQEvent *e );
 
 public slots:
 	void toggleEnabled();
@@ -117,7 +117,7 @@ protected:
 
 	double multiplier(Units);
 	int CalcDistance(void);
-	QString FormatDistance(double &dist, Units);
+	TQString FormatDistance(double &dist, Units);
 	void FindAllScreens();
 
 	KImageNumber* tripLabel;
@@ -131,7 +131,7 @@ protected:
 	int enabledID;
 
 	double speed;
-	QPtrList<double> speeds;
+	TQPtrList<double> speeds;
 	double lastDistance;
 	int distanceID;
 	int speedID;

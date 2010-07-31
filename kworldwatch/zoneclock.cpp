@@ -31,13 +31,13 @@
 #include <time.h>
 
 
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qdatetime.h>
-#include <qtimer.h>
-#include <qcombobox.h>
-#include <qlineedit.h>
-#include <qpopupmenu.h>
+#include <tqlabel.h>
+#include <tqlayout.h>
+#include <tqdatetime.h>
+#include <tqtimer.h>
+#include <tqcombobox.h>
+#include <tqlineedit.h>
+#include <tqpopupmenu.h>
 
 
 #include <kglobal.h>
@@ -51,24 +51,24 @@
 #include "zoneclock.moc"
 #include <kdebug.h>
 
-ZoneClock::ZoneClock(const QString &zone, const QString &name, QWidget *parent, const char *n)
-  : QFrame(parent, n), _zone(zone), _name(name)
+ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent, const char *n)
+  : TQFrame(parent, n), _zone(zone), _name(name)
 {
-  setFrameStyle(QFrame::Panel | QFrame::Raised);
-  QHBoxLayout *hbox = new QHBoxLayout(this, 2,2);
+  setFrameStyle(TQFrame::Panel | TQFrame::Raised);
+  TQHBoxLayout *hbox = new TQHBoxLayout(this, 2,2);
 
   _name.append(":");
-  _nameLabel = new QLabel(_name, this);
+  _nameLabel = new TQLabel(_name, this);
   hbox->addWidget(_nameLabel, 1);
   hbox->addSpacing(4);
 
-  _timeLabel = new QLabel(this);
+  _timeLabel = new TQLabel(this);
   hbox->addWidget(_timeLabel, 0, Qt::AlignRight);
 
-  _popup = new QPopupMenu(this);
-  _popup->insertItem(i18n("&Edit..."), this, SLOT(editClock()));
-  _popup->insertItem(i18n("&Add..."), this, SLOT(slotAddClock()));
-  _popup->insertItem(i18n("&Remove"), this, SLOT(slotRemoveClock()));
+  _popup = new TQPopupMenu(this);
+  _popup->insertItem(i18n("&Edit..."), this, TQT_SLOT(editClock()));
+  _popup->insertItem(i18n("&Add..."), this, TQT_SLOT(slotAddClock()));
+  _popup->insertItem(i18n("&Remove"), this, TQT_SLOT(slotRemoveClock()));
 
   _nameLabel->installEventFilter(this);
   _timeLabel->installEventFilter(this);
@@ -84,7 +84,7 @@ void ZoneClock::slotRemoveClock()
   // So instead we fire up an idle event triggering the delete
   // after the return.
 
-  QTimer::singleShot(0, this, SLOT(removeTimeout()));
+  TQTimer::singleShot(0, this, TQT_SLOT(removeTimeout()));
 }
 
 
@@ -104,8 +104,8 @@ void ZoneClock::editClock()
 {
   ClockDialog *_dlg = new ClockDialog(this, 0, true);
   CityList cities;
-  QStringList timezones = cities.timezones();
-  for (QStringList::iterator it = timezones.begin(); it != timezones.end(); ++it)
+  TQStringList timezones = cities.timezones();
+  for (TQStringList::iterator it = timezones.begin(); it != timezones.end(); ++it)
     _dlg->ClockZone->insertItem(i18n((*it).utf8()));
 
   _dlg->ClockCaption->setText(_nameLabel->text().left(_nameLabel->text().length()-1));
@@ -116,7 +116,7 @@ void ZoneClock::editClock()
         break;
       }
 
-  if (_dlg->exec() == QDialog::Accepted)
+  if (_dlg->exec() == TQDialog::Accepted)
     {
       _zone = timezones[_dlg->ClockZone->currentItem()];
       _name = _dlg->ClockCaption->text().append(":");
@@ -130,16 +130,16 @@ void ZoneClock::editClock()
 }
 
 
-bool ZoneClock::eventFilter(QObject *obj, QEvent *ev)
+bool ZoneClock::eventFilter(TQObject *obj, TQEvent *ev)
 {
-  if (ev->type() == QEvent::MouseButtonPress)
+  if (ev->type() == TQEvent::MouseButtonPress)
     {
-      QMouseEvent *e = (QMouseEvent*)ev;
-      if (e->button() == QMouseEvent::RightButton)
+      TQMouseEvent *e = (TQMouseEvent*)ev;
+      if (e->button() == TQMouseEvent::RightButton)
 	_popup->exec(e->globalPos());
     }
 
-  return QFrame::eventFilter(obj, ev);
+  return TQFrame::eventFilter(obj, ev);
 }
 
 
@@ -150,9 +150,9 @@ void ZoneClock::updateTime()
   tzset();
 
   time_t t = time(NULL);
-  QDateTime dt;
+  TQDateTime dt;
   dt.setTime_t(t);
-  _timeLabel->setText(QString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  _timeLabel->setText(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -162,14 +162,14 @@ void ZoneClock::updateTime()
 }
 
 
-ZoneClockPanel::ZoneClockPanel(QWidget *parent, const char *name)
-  : QFrame(parent, name), _dlg(0)
+ZoneClockPanel::ZoneClockPanel(TQWidget *parent, const char *name)
+  : TQFrame(parent, name), _dlg(0)
 {
   _flow = new SimpleFlow(this,1,1);
 
-  QTimer *t = new QTimer(this);
+  TQTimer *t = new TQTimer(this);
 
-  connect(t, SIGNAL(timeout()), this, SLOT(updateTimer()));
+  connect(t, TQT_SIGNAL(timeout()), this, TQT_SLOT(updateTimer()));
   t->start(500);
 
   _clocks.setAutoDelete(true);
@@ -182,14 +182,14 @@ void ZoneClockPanel::createDialog()
     {
       _dlg = new ClockDialog(this, 0, true);
       CityList cities;
-      QStringList timezones = cities.timezones();
-      for (QStringList::iterator it = timezones.begin(); it != timezones.end(); ++it)
+      TQStringList timezones = cities.timezones();
+      for (TQStringList::iterator it = timezones.begin(); it != timezones.end(); ++it)
         _dlg->ClockZone->insertItem(i18n((*it).utf8()));
     }
 }
 
 
-void ZoneClockPanel::addClock(const QString &zone, const QString &name)
+void ZoneClockPanel::addClock(const TQString &zone, const TQString &name)
 {
   // add the clocks
   ZoneClock *zc = new ZoneClock(zone, name, this);
@@ -199,9 +199,9 @@ void ZoneClockPanel::addClock(const QString &zone, const QString &name)
 
   realign();
 
-  connect(zc, SIGNAL(addClock(const QString &)), this, SLOT(addClock(const QString &)));
-  connect(zc, SIGNAL(changed()), this, SLOT(realign()));
-  connect(zc, SIGNAL(removeMe(ZoneClock *)), this, SLOT(removeClock(ZoneClock *)));
+  connect(zc, TQT_SIGNAL(addClock(const TQString &)), this, TQT_SLOT(addClock(const TQString &)));
+  connect(zc, TQT_SIGNAL(changed()), this, TQT_SLOT(realign()));
+  connect(zc, TQT_SIGNAL(removeMe(ZoneClock *)), this, TQT_SLOT(removeClock(ZoneClock *)));
 }
 
 
@@ -216,7 +216,7 @@ void ZoneClockPanel::realign()
 {
   // realign the labels
   int w = 0;
-  QPtrListIterator<ZoneClock> it(_clocks);
+  TQPtrListIterator<ZoneClock> it(_clocks);
   for ( ; it.current(); ++it)
     if (it.current()->sizeHint().width() > w)
       w = it.current()->sizeHint().width();
@@ -228,12 +228,12 @@ void ZoneClockPanel::realign()
 
 void ZoneClockPanel::updateTimer()
 {
-  QPtrListIterator<ZoneClock> it(_clocks);
+  TQPtrListIterator<ZoneClock> it(_clocks);
   for ( ; it.current(); ++it)
     it.current()->updateTime();
 }
 
-void ZoneClockPanel::addClock(const QString &zone)
+void ZoneClockPanel::addClock(const TQString &zone)
 {
   createDialog();
 
@@ -245,11 +245,11 @@ void ZoneClockPanel::addClock(const QString &zone)
         break;
       }
 
-  if (_dlg->exec() == QDialog::Accepted)
+  if (_dlg->exec() == TQDialog::Accepted)
     {
       CityList cities;
-      QStringList timezones = cities.timezones();
-      QString newzone = timezones[_dlg->ClockZone->currentItem()];
+      TQStringList timezones = cities.timezones();
+      TQString newzone = timezones[_dlg->ClockZone->currentItem()];
       addClock(newzone, _dlg->ClockCaption->text());
       update();
     }
@@ -260,14 +260,14 @@ void ZoneClockPanel::save(KConfig *config)
 {
   config->writeEntry("Clocks", _clocks.count());
 
-  QPtrListIterator<ZoneClock> it(_clocks);
+  TQPtrListIterator<ZoneClock> it(_clocks);
   int cnt=0;
   for ( ; it.current(); ++it)
     {
-      QString n = it.current()->name();
+      TQString n = it.current()->name();
       n = n.left(n.length()-1);
-      config->writeEntry(QString("Clock_%1_Name").arg(cnt), n);
-      config->writeEntry(QString("Clock_%1_Zone").arg(cnt), it.current()->zone());
+      config->writeEntry(TQString("Clock_%1_Name").arg(cnt), n);
+      config->writeEntry(TQString("Clock_%1_Zone").arg(cnt), it.current()->zone());
       cnt++;
     }
 }
@@ -281,7 +281,7 @@ void ZoneClockPanel::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addClock(config->readEntry(QString("Clock_%1_Zone").arg(i)), config->readEntry(QString("Clock_%1_Name").arg(i)));
+      addClock(config->readEntry(TQString("Clock_%1_Zone").arg(i)), config->readEntry(TQString("Clock_%1_Name").arg(i)));
     }
 }
 

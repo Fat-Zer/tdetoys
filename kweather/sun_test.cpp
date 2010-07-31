@@ -18,8 +18,8 @@
 #include <iostream>
 using namespace std;
 
-#include <qstring.h>
-#include <qdatetime.h>
+#include <tqstring.h>
+#include <tqdatetime.h>
 #include <krfcdate.h>
 
 #include "sun.h"
@@ -29,16 +29,16 @@ int main()
 {
 	bool anyFailed = false;
 	
-	QString KUGN_Latitude("42-25N");
-	QString KUGN_Longitude("087-52W");
-	QDate Date(2004, 6, 1);    // June 1st.
+	TQString KUGN_Latitude("42-25N");
+	TQString KUGN_Longitude("087-52W");
+	TQDate Date(2004, 6, 1);    // June 1st.
 	int localUTCOffset = -300;
 	
 	// Construct a sun object for our tests.
 	Sun theSun( KUGN_Latitude, KUGN_Longitude, Date, localUTCOffset );
 	
-	QTime civilStart = theSun.computeCivilTwilightStart();
-	QTime civilEnd   = theSun.computeCivilTwilightEnd();
+	TQTime civilStart = theSun.computeCivilTwilightStart();
+	TQTime civilEnd   = theSun.computeCivilTwilightEnd();
 	
 	cout << "Testing Civil Twilight Calculations...";
 	// Start should be 04:42:39    End should be 20:56:06
@@ -55,8 +55,8 @@ int main()
 	
 	cout << "Testing Rise and Set Time Calculations...";
 	
-	QTime rise = theSun.computeRiseTime();
-	QTime set  = theSun.computeSetTime();
+	TQTime rise = theSun.computeRiseTime();
+	TQTime set  = theSun.computeSetTime();
 	
 	// Rise should be 05:16:35   Set should be 20:22:10
 	if (rise.hour() == 5 && rise.minute() == 16 && rise.second() == 35 &&

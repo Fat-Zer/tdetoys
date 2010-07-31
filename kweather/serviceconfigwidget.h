@@ -30,7 +30,7 @@ class ServiceConfigWidget : public wsPrefs
   Q_OBJECT
 
   public:
-    ServiceConfigWidget( QWidget *parent, const char *name = 0 );
+    ServiceConfigWidget( TQWidget *parent, const char *name = 0 );
     virtual ~ServiceConfigWidget();
 
   signals:
@@ -42,7 +42,7 @@ class ServiceConfigWidget : public wsPrefs
     void updateStations();
     void exitWeatherService();
 
-    void selectionChanged( QListViewItem* );
+    void selectionChanged( TQListViewItem* );
     void modified();
 
   private:
@@ -51,7 +51,7 @@ class ServiceConfigWidget : public wsPrefs
     bool dcopActive();
     void scanStations();
 
-    QMap<QString, QString> mStationMap;
+    TQMap<TQString, TQString> mStationMap;
     WeatherService_stub *mService;
 };
 

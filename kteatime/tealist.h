@@ -8,7 +8,7 @@
 #ifndef TEALIST_H
 #define TEALIST_H
 
-#include <qstring.h>
+#include <tqstring.h>
 
 class QListView;
 class QListViewItem;
@@ -18,20 +18,20 @@ class TeaListItem : public QListViewItem
 {
 
 public:
-	TeaListItem(QListView *parent);
-	TeaListItem(QListView *parent, QListViewItem *after);
+	TeaListItem(TQListView *parent);
+	TeaListItem(TQListView *parent, TQListViewItem *after);
 	~TeaListItem();
 
 	int time();
-	QString name();
+	TQString name();
 	void setTime(int v);
-	void setName(const QString &n);
+	void setName(const TQString &n);
 
 private:
 	int tim;
-	QString nam;
+	TQString nam;
 };
 
 
-QString int2time(int t);
+TQString int2time(int t);
 #endif

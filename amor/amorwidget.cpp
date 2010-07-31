@@ -26,7 +26,7 @@
 */
 #include "amorwidget.h"
 #include "amorwidget.moc"
-#include <qbitmap.h>
+#include <tqbitmap.h>
 #include <X11/Xlib.h>
 #include <X11/extensions/shape.h>
 
@@ -35,7 +35,7 @@
 // Constructor
 //
 AmorWidget::AmorWidget()
-	: QWidget(0, 0, WStyle_Customize | WStyle_NoBorder | WX11BypassWM ),
+	: TQWidget(0, 0, WStyle_Customize | WStyle_NoBorder | WX11BypassWM ),
       mPixmap(0)
 {
     setBackgroundMode( NoBackground );
@@ -54,7 +54,7 @@ AmorWidget::~AmorWidget()
 //
 // Set the pixmap to display
 //
-void AmorWidget::setPixmap(const QPixmap *pixmap)
+void AmorWidget::setPixmap(const TQPixmap *pixmap)
 {
     mPixmap = pixmap;
 
@@ -75,7 +75,7 @@ void AmorWidget::setPixmap(const QPixmap *pixmap)
 //
 // Draw the pixmap
 //
-void AmorWidget::paintEvent(QPaintEvent *)
+void AmorWidget::paintEvent(TQPaintEvent *)
 {
     if (mPixmap)
         bitBlt( this, 0, 0, mPixmap );
@@ -87,7 +87,7 @@ void AmorWidget::paintEvent(QPaintEvent *)
 //
 // The user clicked on the widget
 //
-void AmorWidget::mousePressEvent(QMouseEvent *me)
+void AmorWidget::mousePressEvent(TQMouseEvent *me)
 {
     clickPos = me->globalPos();
 }
@@ -96,7 +96,7 @@ void AmorWidget::mousePressEvent(QMouseEvent *me)
 //
 // The user moved the mouse
 //
-void AmorWidget::mouseMoveEvent(QMouseEvent *me)
+void AmorWidget::mouseMoveEvent(TQMouseEvent *me)
 {
     if ( me->state() == LeftButton ) {
 	if ( !dragging && (clickPos-me->globalPos()).manhattanLength() > 3 )
@@ -112,14 +112,14 @@ void AmorWidget::mouseMoveEvent(QMouseEvent *me)
 //
 // The user clicked on the widget
 //
-void AmorWidget::mouseReleaseEvent(QMouseEvent *me)
+void AmorWidget::mouseReleaseEvent(TQMouseEvent *me)
 {
     if ( dragging )
 	emit dragged( me->globalPos() - clickPos, true );
     else if ( me->state() == RightButton )
 	emit mouseClicked(clickPos);
 
-    clickPos = QPoint();
+    clickPos = TQPoint();
     dragging = false;
 }
 

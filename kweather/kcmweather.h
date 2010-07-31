@@ -32,7 +32,7 @@ class KCMWeather : public KCModule
   Q_OBJECT
 
   public:
-    KCMWeather( QWidget *parent = 0, const char *name = 0 );
+    KCMWeather( TQWidget *parent = 0, const char *name = 0 );
     ~KCMWeather();
 
     virtual void load();
@@ -41,13 +41,13 @@ class KCMWeather : public KCModule
 
   protected:
     void fillStationList();
-    virtual void showEvent( QShowEvent * );
+    virtual void showEvent( TQShowEvent * );
 
   private slots:
     void enableLogWidgets( bool value );
     void changeViewMode( int mode );
     void reportLocationChanged();
-    void textColorChanged(const QColor &);
+    void textColorChanged(const TQColor &);
 
   private:
     prefsDialogData *mWidget;

@@ -8,8 +8,8 @@
 #ifndef TIMEEDIT_H
 #define TIMEEDIT_H
 
-#include <qspinbox.h>
-#include <qwidget.h>
+#include <tqspinbox.h>
+#include <tqwidget.h>
 
 class QBoxLayout;
 
@@ -23,7 +23,7 @@ class WrappingSpinBox : public QSpinBox
 	Q_OBJECT
 
 public:
-	WrappingSpinBox(int minValue, int maxValue, int step = 1, QWidget *parent=0, const char *name=0);
+	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *parent=0, const char *name=0);
 	~WrappingSpinBox();
 
 	void stepUp();
@@ -44,7 +44,7 @@ class TimeEdit : public QWidget
 	Q_OBJECT
 
 public:
-	TimeEdit(QWidget* parent = 0, const char* name = 0);
+	TimeEdit(TQWidget* parent = 0, const char* name = 0);
 	~TimeEdit();
 
 	void setValue(int value);
@@ -63,9 +63,9 @@ signals:
 
 
 protected:
-	QSpinBox *minuteBox;
+	TQSpinBox *minuteBox;
 	WrappingSpinBox *secondBox;
-	QBoxLayout* layout;
+	TQBoxLayout* layout;
 };
 
 #endif

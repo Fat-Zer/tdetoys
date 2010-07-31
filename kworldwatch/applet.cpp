@@ -25,7 +25,7 @@
 /*
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
-#include <qlayout.h>
+#include <tqlayout.h>
 
 
 #include <kapplication.h>
@@ -42,7 +42,7 @@
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(QWidget *parent, const QString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kworldclock");
     KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
@@ -53,14 +53,14 @@ extern "C"
 }
 
 
-KWWApplet::KWWApplet(const QString& configFile, Type type, int actions,
-		     QWidget *parent, const char *name)
+KWWApplet::KWWApplet(const TQString& configFile, Type type, int actions,
+		     TQWidget *parent, const char *name)
   : KPanelApplet(configFile, type, actions, parent, name)
 {
   // make use of the icons installed for ksaferppp
   KGlobal::iconLoader()->addAppDir("kworldwatch");
 
-  QVBoxLayout *vbox = new QVBoxLayout(this, 0,0);
+  TQVBoxLayout *vbox = new TQVBoxLayout(this, 0,0);
 
   map = new MapWidget(true, true, this);
   map->load(config());
@@ -90,11 +90,11 @@ int KWWApplet::heightForWidth(int width) const
 
 
 // catch the mouse clicks of our child widgets
-bool KWWApplet::eventFilter( QObject *o, QEvent *e )
+bool KWWApplet::eventFilter( TQObject *o, TQEvent *e )
 {
-  if ((e->type() == QEvent::MouseButtonPress) || (e->type() == QEvent::MouseButtonDblClick)) 
+  if ((e->type() == TQEvent::MouseButtonPress) || (e->type() == TQEvent::MouseButtonDblClick)) 
   {
-    mousePressEvent(static_cast<QMouseEvent*>(e));
+    mousePressEvent(static_cast<TQMouseEvent*>(e));
     return true;
   }
 
@@ -102,20 +102,20 @@ bool KWWApplet::eventFilter( QObject *o, QEvent *e )
 }
 
 
-void KWWApplet::mousePressEvent(QMouseEvent *e)
+void KWWApplet::mousePressEvent(TQMouseEvent *e)
 {
   bool clicked = false;
 
   if (KGlobalSettings::singleClick())
   {
-    clicked = e->type() == QMouseEvent::MouseButtonPress;
+    clicked = e->type() == TQMouseEvent::MouseButtonPress;
   }
   else
   {
-    clicked = e->type() == QMouseEvent::MouseButtonDblClick;
+    clicked = e->type() == TQMouseEvent::MouseButtonDblClick;
   }
 
-  if (clicked && e->button() == QMouseEvent::LeftButton) 
+  if (clicked && e->button() == TQMouseEvent::LeftButton) 
   {
     KRun::run("kworldclock", KURL::List());
   }

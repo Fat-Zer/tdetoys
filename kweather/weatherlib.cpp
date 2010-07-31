@@ -16,9 +16,9 @@ email                : geiseri@msoe.edu
 ***************************************************************************/
 
 #include "config.h"
-#include <qfile.h>
-#include <qdatetime.h>
-#include <qtextstream.h>
+#include <tqfile.h>
+#include <tqdatetime.h>
+#include <tqtextstream.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -50,7 +50,7 @@ class WeatherLib::Data
 
 		/** The current weather state outside */
 		struct WeatherInfo wi;
-		QDateTime age;
+		TQDateTime age;
 		KTempFile *target;
 		bool downloading;
 		bool updated;
@@ -65,7 +65,7 @@ WeatherLib::Data::Data()
 
 void WeatherLib::Data::clear()
 {
-	age = QDateTime::currentDateTime();
+	age = TQDateTime::currentDateTime();
 	downloading = false;
 	updated = false;
 	job = 0;
@@ -77,8 +77,8 @@ void WeatherLib::Data::clear()
 	}
 }
 
-WeatherLib::WeatherLib(StationDatabase *stationDB, QObject *parent, const char *name)
-	: QObject (parent, name)
+WeatherLib::WeatherLib(StationDatabase *stationDB, TQObject *parent, const char *name)
+	: TQObject (parent, name)
 {
 	KGlobal::locale()->insertCatalogue("kweather");
 	
@@ -106,7 +106,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 		}
 	}
 	// Find the job
-	QDictIterator<Data> it( data );
+	TQDictIterator<Data> it( data );
 	Data *d = 0L;
 	for( ; it.current(); ++it )
 	{
@@ -118,13 +118,13 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 			if( !job->error() )
 			{
 				kdDebug( 12006) << "Reading: " << d->target->name() << endl;
-				QFile file( d->target->name() );
+				TQFile file( d->target->name() );
 				file.open( IO_ReadOnly );
-				QTextStream *t = new QTextStream( &file );
-				//QTextStream *t = d->target->textStream();
+				TQTextStream *t = new TQTextStream( &file );
+				//TQTextStream *t = d->target->textStream();
 				if( t )
 				{
-					QString s = QString::null;
+					TQString s = TQString::null;
 					while ( !t->eof() )
 					{
 						s += " " + t->readLine();
@@ -135,7 +135,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 						kdDebug( 12006 ) << "Parse: " << s << endl;
 						MetarParser parser(m_StationDb, KGlobal::locale()->measureSystem());
 						d->wi = parser.processData(d->wi.reportLocation, s);
-						d->age = QDateTime::currentDateTime().addSecs(1800);
+						d->age = TQDateTime::currentDateTime().addSecs(1800);
 						emit fileUpdate(d->wi.reportLocation);
 						d->updated = true;
 					}
@@ -193,11 +193,11 @@ void WeatherLib::getData(Data *d, bool force /* try even if host was down last t
 	{
 		d->downloading = true;
 		d->updated = false;
-		QString u = "http://weather.noaa.gov/pub/data/observations/metar/stations/";
+		TQString u = "http://weather.noaa.gov/pub/data/observations/metar/stations/";
 		u += d->wi.reportLocation.upper().stripWhiteSpace();
 		u += ".TXT";
 
-		d->target = new KTempFile(QString::null, "-weather");
+		d->target = new KTempFile(TQString::null, "-weather");
 		d->target->setAutoDelete(true);
 		d->target->file();
 
@@ -206,15 +206,15 @@ void WeatherLib::getData(Data *d, bool force /* try even if host was down last t
 
 		d->job = KIO::file_copy( url, local, -1, true, false, false);
 		d->job->addMetaData("cache", "reload"); // Make sure to get fresh info
-		connect( d->job, SIGNAL( result( KIO::Job *)),
-			SLOT(slotCopyDone(KIO::Job *)));
+		connect( d->job, TQT_SIGNAL( result( KIO::Job *)),
+			TQT_SLOT(slotCopyDone(KIO::Job *)));
 		kdDebug( 12006 ) << "Copying " << url.prettyURL() << " to "
 			<< local.prettyURL() << endl;
 		emit fileUpdating(d->wi.reportLocation);
 	}
 }
 
-WeatherLib::Data* WeatherLib::findData(const QString &stationID)
+WeatherLib::Data* WeatherLib::findData(const TQString &stationID)
 {
 	Data *d = data[stationID];
 	if (!d)
@@ -230,45 +230,45 @@ WeatherLib::Data* WeatherLib::findData(const QString &stationID)
 	return d;
 }
 
-QString WeatherLib::temperature(const QString &stationID){
+TQString WeatherLib::temperature(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsTemperature;
 }
 
-QString WeatherLib::pressure(const QString &stationID){
+TQString WeatherLib::pressure(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsPressure;
 }
 
-QString WeatherLib::wind(const QString &stationID){
+TQString WeatherLib::wind(const TQString &stationID){
 	Data *d = findData(stationID);
 	return (d->wi.qsWindSpeed + " " + d->wi.qsWindDirection);
 }
 
 /**  */
-QString WeatherLib::dewPoint(const QString &stationID){
+TQString WeatherLib::dewPoint(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsDewPoint;
 }
 
-QString WeatherLib::relHumidity(const QString &stationID){
+TQString WeatherLib::relHumidity(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsRelHumidity;
 }
 
-QString WeatherLib::heatIndex(const QString &stationID){
+TQString WeatherLib::heatIndex(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsHeatIndex;
 }
 
-QString WeatherLib::windChill(const QString &stationID){
+TQString WeatherLib::windChill(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsWindChill;
 }
 
-QString WeatherLib::iconName(const QString &stationID){
+TQString WeatherLib::iconName(const TQString &stationID){
 
-	QString result("dunno");
+	TQString result("dunno");
 		
 	// isEmpty is true for null or 0 length strings
 	if ( !stationID.isEmpty() )
@@ -280,49 +280,49 @@ QString WeatherLib::iconName(const QString &stationID){
 	return result;
 }
 
-QString WeatherLib::date(const QString &stationID){
+TQString WeatherLib::date(const TQString &stationID){
 	Data *d = findData(stationID);
 
   if ( ! d->wi.qsDate.isValid() )
     return "";
   else
   {
-    QDateTime gmtDateTime(d->wi.qsDate, d->wi.qsTime);
-    QDateTime localDateTime = gmtDateTime.addSecs(KRFCDate::localUTCOffset() * 60);
+    TQDateTime gmtDateTime(d->wi.qsDate, d->wi.qsTime);
+    TQDateTime localDateTime = gmtDateTime.addSecs(KRFCDate::localUTCOffset() * 60);
     return KGlobal::locale()->formatDateTime(localDateTime, false, false);
   }
 }
 
 /** Returns the current cover */
-QStringList WeatherLib::cover(const QString &stationID){
+TQStringList WeatherLib::cover(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsCoverList;
 }
 
 /** return the visibility */
-QString WeatherLib::visibility(const QString &stationID){
+TQString WeatherLib::visibility(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsVisibility;
 }
 
 /** return the weather text */
-QStringList WeatherLib::weather(const QString &stationID){
+TQStringList WeatherLib::weather(const TQString &stationID){
 	Data *d = findData(stationID);
 	return d->wi.qsCurrentList;
 }
 
-bool WeatherLib::stationNeedsMaintenance(const QString &stationID)
+bool WeatherLib::stationNeedsMaintenance(const TQString &stationID)
 {
 	Data *d = findData(stationID);
 	return d->wi.stationNeedsMaintenance;
 }
 
-void WeatherLib::update(const QString &stationID)
+void WeatherLib::update(const TQString &stationID)
 {
 	// Only grab new data if its more than 50 minutes old
 	Data *d = findData(stationID);
 
-	QDateTime timeout = QDateTime::currentDateTime();
+	TQDateTime timeout = TQDateTime::currentDateTime();
 
 	kdDebug (12006) << "Current Time: " << KGlobal::locale()->formatDateTime(timeout, false, false) <<
 			" Update at: " << KGlobal::locale()->formatDateTime(d->age, false, false) << endl;
@@ -332,23 +332,23 @@ void WeatherLib::update(const QString &stationID)
 		emit fileUpdate(d->wi.reportLocation);
 }
 
-QStringList WeatherLib::stations()
+TQStringList WeatherLib::stations()
 {
-	QStringList l;
-	QDictIterator<Data> it( data );
+	TQStringList l;
+	TQDictIterator<Data> it( data );
 	for( ; it.current(); ++it )
 		l += it.currentKey();
 	return l;
 }
 
-void WeatherLib::forceUpdate(const QString &stationID)
+void WeatherLib::forceUpdate(const TQString &stationID)
 {
 	hostDown = false; // we want to show error message if host is still down
 	Data *d = findData(stationID);
 	getData( d );
 }
 
-void WeatherLib::remove(const QString &stationID)
+void WeatherLib::remove(const TQString &stationID)
 {
 	data.remove(stationID);
 	emit stationRemoved(stationID);

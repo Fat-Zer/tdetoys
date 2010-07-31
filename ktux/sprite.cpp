@@ -1,16 +1,16 @@
 //-----------------------------------------------------------------------------
 //
-// KTux - QCanvas based screensaver
+// KTux - TQCanvas based screensaver
 //
 // Copyright (c)  Martin R. Jones 1999
 //
 
 #include <stdlib.h>
 #include <time.h>
-#include <qlabel.h>
-#include <qmessagebox.h>
-#include <qlayout.h>
-#include <qslider.h>
+#include <tqlabel.h>
+#include <tqmessagebox.h>
+#include <tqlayout.h>
+#include <tqslider.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -35,7 +35,7 @@ extern "C"
         return new KSpriteSaver( id );
     }
 
-    KDE_EXPORT QDialog *kss_setup()
+    KDE_EXPORT TQDialog *kss_setup()
     {
         return new KSpriteSetup();
     }
@@ -43,8 +43,8 @@ extern "C"
 
 //-----------------------------------------------------------------------------
 
-KSpriteSetup::KSpriteSetup( QWidget *parent, const char *name )
-  : QDialog( parent, name, TRUE )
+KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
+  : TQDialog( parent, name, TRUE )
 {
     KGlobal::locale()->insertCatalogue("ktux");
     saver = 0;
@@ -53,22 +53,22 @@ KSpriteSetup::KSpriteSetup( QWidget *parent, const char *name )
 
     setCaption(i18n("Setup KTux") );
 
-    QVBoxLayout *tl = new QVBoxLayout(this, 10, 10);
-    QHBoxLayout *tl1 = new QHBoxLayout;
+    TQVBoxLayout *tl = new TQVBoxLayout(this, 10, 10);
+    TQHBoxLayout *tl1 = new QHBoxLayout;
     tl->addLayout(tl1);
-    QVBoxLayout *tl11 = new QVBoxLayout(5);
+    TQVBoxLayout *tl11 = new TQVBoxLayout(5);
     tl1->addLayout(tl11);
 
-    QLabel *label = new QLabel( i18n("Speed:"), this );
+    TQLabel *label = new TQLabel( i18n("Speed:"), this );
     label->setMinimumSize(label->sizeHint());
     tl11->addStretch(1);
     tl11->addWidget(label);
 
-    QSlider *sb = new QSlider(0, 100, 10, speed, QSlider::Horizontal, this );
+    TQSlider *sb = new TQSlider(0, 100, 10, speed, TQSlider::Horizontal, this );
     tl11->addWidget(sb);
-    connect( sb, SIGNAL( valueChanged( int ) ), SLOT( slotSpeed( int ) ) );
+    connect( sb, TQT_SIGNAL( valueChanged( int ) ), TQT_SLOT( slotSpeed( int ) ) );
 
-    preview = new QWidget( this );
+    preview = new TQWidget( this );
     preview->setFixedSize( 220, 170 );
     preview->setBackgroundColor( black );
     preview->show();    // otherwise saver does not get correct size
@@ -76,15 +76,15 @@ KSpriteSetup::KSpriteSetup( QWidget *parent, const char *name )
     tl1->addWidget(preview);
 
     KButtonBox *bbox = new KButtonBox(this);
-    QButton *button = bbox->addButton( i18n("About"));
-    connect( button, SIGNAL( clicked() ), SLOT(slotAbout() ) );
+    TQButton *button = bbox->addButton( i18n("About"));
+    connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT(slotAbout() ) );
     bbox->addStretch(1);
 
     button = bbox->addButton( KStdGuiItem::ok());
-    connect( button, SIGNAL( clicked() ), SLOT( slotOkPressed() ) );
+    connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT( slotOkPressed() ) );
 
     button = bbox->addButton(KStdGuiItem::cancel());
-    connect( button, SIGNAL( clicked() ), SLOT( reject() ) );
+    connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT( reject() ) );
     bbox->layout();
     tl->addWidget(bbox);
 
@@ -128,7 +128,7 @@ void KSpriteSetup::slotOkPressed()
 
 void KSpriteSetup::slotAbout()
 {
-  QMessageBox::message(i18n("About KTux"),
+  TQMessageBox::message(i18n("About KTux"),
     i18n("KTux Version 1.0\n\nWritten by Martin R. Jones 1999\nmjones@kde.org"),
     i18n("OK"));
 }
@@ -144,7 +144,7 @@ KSpriteSaver::KSpriteSaver( WId id ) : KScreenSaver( id )
     readSettings();
     blank();
 
-    connect(&mTimer, SIGNAL(timeout()), SLOT(slotTimeout()));
+    connect(&mTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotTimeout()));
     mTimer.start(120-mSpeed, true);
 }
 
@@ -169,14 +169,14 @@ void KSpriteSaver::setSpeed(int speed)
 //
 void KSpriteSaver::readSettings()
 {
-    QString str;
+    TQString str;
 
     KConfig *config = KGlobal::config();
     config->setGroup("Settings");
 
     mSpeed = config->readNumEntry("Speed", 50);
 
-    QString path = KGlobal::dirs()->findResourceDir( "sprite", "bg.png" );
+    TQString path = KGlobal::dirs()->findResourceDir( "sprite", "bg.png" );
 
     SpritePixmapManager::manager()->setPixmapDir(path);
 
@@ -184,7 +184,7 @@ void KSpriteSaver::readSettings()
 
     KSimpleConfig *mConfig = new KSimpleConfig(path, true);
     mConfig->setGroup("Config");
-    QStrList list;
+    TQStrList list;
     int groups = mConfig->readListEntry("Groups", list);
     mTimerIds.resize(groups);
     for (int i = 0; i < groups; i++)
@@ -201,16 +201,16 @@ void KSpriteSaver::readSettings()
 //-----------------------------------------------------------------------------
 void KSpriteSaver::initialise()
 {
-    mCanvas = new QCanvas();
-    QPixmap pm( locate("sprite", "bg.png") );
+    mCanvas = new TQCanvas();
+    TQPixmap pm( locate("sprite", "bg.png") );
     mCanvas->setBackgroundPixmap( pm );
     mCanvas->resize( width(), height() );
-    mView = new QCanvasView(mCanvas);
+    mView = new TQCanvasView(mCanvas);
     mView->viewport()->setBackgroundColor( black );
     mView->resize( size());
-    mView->setFrameStyle( QFrame::NoFrame );
-    mView->setVScrollBarMode( QScrollView::AlwaysOff );
-    mView->setHScrollBarMode( QScrollView::AlwaysOff );
+    mView->setFrameStyle( TQFrame::NoFrame );
+    mView->setVScrollBarMode( TQScrollView::AlwaysOff );
+    mView->setHScrollBarMode( TQScrollView::AlwaysOff );
     embed( mView );
     mView->show();
     SpriteRange::setFieldSize(mView->size());
@@ -231,7 +231,7 @@ void KSpriteSaver::slotTimeout()
 }
 
 //-----------------------------------------------------------------------------
-void KSpriteSaver::timerEvent(QTimerEvent *ev)
+void KSpriteSaver::timerEvent(TQTimerEvent *ev)
 {
     for (unsigned i = 0; i < mTimerIds.size(); i++)
     {

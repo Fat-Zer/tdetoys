@@ -26,20 +26,20 @@
 #ifndef KIMGNUM_H
 #define KIMGNUM_H
 
-#include <qframe.h>
-#include <qpixmap.h>
+#include <tqframe.h>
+#include <tqpixmap.h>
 
 class KImageNumber : public QFrame
 {
 	Q_OBJECT
 	Q_PROPERTY( double m_value READ value WRITE setValue )
 public:
-	KImageNumber(const QString& font, QWidget* parent=0, const char* name=0);
+	KImageNumber(const TQString& font, TQWidget* parent=0, const char* name=0);
 
 	virtual ~KImageNumber();
 
-	void paintEvent(QPaintEvent*);
-	virtual QSize sizeHint() const;
+	void paintEvent(TQPaintEvent*);
+	virtual TQSize sizeHint() const;
 	double value() const;
 
 public slots:
@@ -47,7 +47,7 @@ public slots:
 
 protected:
 	double m_value;
-	QPixmap* fontPix;
+	TQPixmap* fontPix;
 };
 
 #endif

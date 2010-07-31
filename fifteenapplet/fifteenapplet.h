@@ -25,7 +25,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define __fifteenapplet_h__
 
 #include "qttableview.h"
-#include <qmemarray.h>
+#include <tqmemarray.h>
 
 #include <kpanelapplet.h>
 
@@ -37,15 +37,15 @@ class PiecesTable : public QtTableView
     Q_OBJECT
 
 public:
-    PiecesTable(QWidget* parent = 0, const char* name = 0);
-    QPopupMenu* popup() { return _menu; }
+    PiecesTable(TQWidget* parent = 0, const char* name = 0);
+    TQPopupMenu* popup() { return _menu; }
 
 protected:
-    void resizeEvent(QResizeEvent*);
-    void mousePressEvent(QMouseEvent*);
-    void mouseMoveEvent(QMouseEvent*);
+    void resizeEvent(TQResizeEvent*);
+    void mousePressEvent(TQMouseEvent*);
+    void mouseMoveEvent(TQMouseEvent*);
 
-    void paintCell(QPainter *, int row, int col);
+    void paintCell(TQPainter *, int row, int col);
 
     void initMap();
     void initColors();
@@ -56,9 +56,9 @@ protected slots:
     void resetMap();
 
 private:
-    QMemArray<int>    _map;
-    QMemArray<QColor> _colors;
-    QPopupMenu    *_menu;
+    TQMemArray<int>    _map;
+    TQMemArray<TQColor> _colors;
+    TQPopupMenu    *_menu;
     int _activeRow, _activeCol;
     bool            _randomized;
 };
@@ -68,8 +68,8 @@ class FifteenApplet : public KPanelApplet
     Q_OBJECT
 
 public:
-    FifteenApplet(const QString& configFile, Type t = Stretch, int actions = 0,
-                  QWidget *parent = 0, const char *name = 0);
+    FifteenApplet(const TQString& configFile, Type t = Stretch, int actions = 0,
+                  TQWidget *parent = 0, const char *name = 0);
 
     int widthForHeight(int height) const;
     int heightForWidth(int width) const;

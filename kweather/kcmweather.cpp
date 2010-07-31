@@ -21,10 +21,10 @@
   without including the source code for Qt in the source distribution.
 */
 
-#include <qbuttongroup.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
+#include <tqbuttongroup.h>
+#include <tqcheckbox.h>
+#include <tqlabel.h>
+#include <tqlayout.h>
 
 #include <kaboutdata.h>
 #include <kapplication.h>
@@ -43,18 +43,18 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weather( QWidget *parent, const char * )
+  KDE_EXPORT KCModule *create_weather( TQWidget *parent, const char * )
   {
     return new KCMWeather( parent, "kweather" );
   }
 }
 
-KCMWeather::KCMWeather( QWidget *parent, const char *name )
+KCMWeather::KCMWeather( TQWidget *parent, const char *name )
   : KCModule( parent, name )
 {
   mWeatherService = new WeatherService_stub( "KWeatherService",
       "WeatherService" );
-  QVBoxLayout *layout = new QVBoxLayout( this );
+  TQVBoxLayout *layout = new TQVBoxLayout( this );
   mWidget = new prefsDialogData( this );
 
   mWidget->m_reportLocation->setFocus();
@@ -63,14 +63,14 @@ KCMWeather::KCMWeather( QWidget *parent, const char *name )
 
   fillStationList();
   load();
-  connect( mWidget->m_enableLog, SIGNAL( toggled( bool ) ),
-                                 SLOT( enableLogWidgets( bool ) ) );
-  connect( mWidget->m_viewMode, SIGNAL( released( int ) ),
-                                SLOT( changeViewMode( int ) ) );
-  connect( mWidget->m_reportLocation, SIGNAL( activated( const QString& ) ),
-                                      SLOT( reportLocationChanged() ) );
-  connect( mWidget->m_textColor, SIGNAL( changed(const QColor &) ),
-                                 SLOT( textColorChanged(const QColor &) ) );
+  connect( mWidget->m_enableLog, TQT_SIGNAL( toggled( bool ) ),
+                                 TQT_SLOT( enableLogWidgets( bool ) ) );
+  connect( mWidget->m_viewMode, TQT_SIGNAL( released( int ) ),
+                                TQT_SLOT( changeViewMode( int ) ) );
+  connect( mWidget->m_reportLocation, TQT_SIGNAL( activated( const TQString& ) ),
+                                      TQT_SLOT( reportLocationChanged() ) );
+  connect( mWidget->m_textColor, TQT_SIGNAL( changed(const TQColor &) ),
+                                 TQT_SLOT( textColorChanged(const TQColor &) ) );
 
   KAboutData *about = new KAboutData(
       I18N_NOOP( "kcmweather" ),
@@ -86,7 +86,7 @@ KCMWeather::~KCMWeather()
 {
   delete mWeatherService;
 }
-void KCMWeather::showEvent( QShowEvent * )
+void KCMWeather::showEvent( TQShowEvent * )
 {
   fillStationList();
 }
@@ -94,12 +94,12 @@ void KCMWeather::showEvent( QShowEvent * )
 void KCMWeather::fillStationList()
 {
   // store current selection
-  QString current = mWidget->m_reportLocation->currentText();
+  TQString current = mWidget->m_reportLocation->currentText();
 
   mWidget->m_reportLocation->clear();
 
-  QStringList stationList = mWeatherService->listStations();
-  QStringList::Iterator idx = stationList.begin();
+  TQStringList stationList = mWeatherService->listStations();
+  TQStringList::Iterator idx = stationList.begin();
 
   // get station name from station id for sorting afterwards
   for(; idx != stationList.end(); ++idx)
@@ -154,7 +154,7 @@ void KCMWeather::reportLocationChanged()
   emit changed( true );
 }
 
-void KCMWeather::textColorChanged(const QColor &)
+void KCMWeather::textColorChanged(const TQColor &)
 {
   emit changed( true );
 }
@@ -169,11 +169,11 @@ void KCMWeather::load()
   mWidget->m_enableLog->setChecked( enabled );
   enableLogWidgets( enabled );
 
-  static QColor black(Qt::black);
-  QColor textColor = config.readColorEntry("textColor", &black);
+  static TQColor black(Qt::black);
+  TQColor textColor = config.readColorEntry("textColor", &black);
   mWidget->m_textColor->setColor(textColor);
 
-  QString loc =  config.readEntry( "report_location" );
+  TQString loc =  config.readEntry( "report_location" );
 
   mWidget->m_logFile->setURL( config.readPathEntry( "log_file_name" ) );
 
@@ -196,7 +196,7 @@ void KCMWeather::save()
   config.writeEntry( "textColor", mWidget->m_textColor->color() );
 
   // Station idx to local idx; if nothing selected yet, keep it empty
-  QString loc;
+  TQString loc;
   if ( ! mWidget->m_reportLocation->currentText().isEmpty() )
     loc = mWeatherService->stationCode( mWidget->m_reportLocation->currentText() );
   config.writeEntry( "report_location", loc);

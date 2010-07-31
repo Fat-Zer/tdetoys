@@ -19,7 +19,7 @@
 #define REPORTVIEW_H
 
 #include <kdialogbase.h>
-#include <qstringlist.h>
+#include <tqstringlist.h>
 
 
 class KHTMLPart;
@@ -33,7 +33,7 @@ class reportView : public KDialogBase {
     Q_OBJECT
 
 public:
-    reportView(const QString &reportLocation);
+    reportView(const TQString &reportLocation);
     ~reportView();
 
     void render();
@@ -41,7 +41,7 @@ public:
 private:
     WeatherService_stub *m_weatherService;
     KHTMLPart *m_reportView;
-    QString m_locationCode;
+    TQString m_locationCode;
 };
 
 #endif

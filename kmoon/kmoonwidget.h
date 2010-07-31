@@ -21,8 +21,8 @@
 #ifndef KMOON
 #define KMOON
 
-#include <qwidget.h>
-#include <qimage.h>
+#include <tqwidget.h>
+#include <tqimage.h>
 #include <sys/types.h>
 #include <time.h>
 #include <ksystemtray.h>
@@ -33,7 +33,7 @@ class MoonWidget : public QWidget
     Q_OBJECT
 
 public:
-    MoonWidget(QWidget *parent = 0, const char *name = 0);
+    MoonWidget(TQWidget *parent = 0, const char *name = 0);
     ~MoonWidget();
 
     void calcStatus( time_t time );
@@ -54,14 +54,14 @@ protected:
     int _mask, old_mask;
     bool old_north, _north;
 
-    QPixmap pixmap;
-    QString tooltip;
+    TQPixmap pixmap;
+    TQString tooltip;
 
-    void paintEvent( QPaintEvent *e);
-    void resizeEvent( QResizeEvent *e);
+    void paintEvent( TQPaintEvent *e);
+    void resizeEvent( TQResizeEvent *e);
 
 private:
-    QImage loadMoon(int index);
+    TQImage loadMoon(int index);
     void renderGraphic();
 };
 

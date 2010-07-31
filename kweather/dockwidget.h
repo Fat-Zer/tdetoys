@@ -18,9 +18,9 @@
 #ifndef DOCKWIDGET_H
 #define DOCKWIDGET_H
 
-#include <qfont.h>
-#include <qpixmap.h>
-#include <qwidget.h>
+#include <tqfont.h>
+#include <tqpixmap.h>
+#include <tqwidget.h>
 
 #include <dcopref.h>
 
@@ -33,16 +33,16 @@ class dockwidget : public QWidget
     Q_OBJECT
 
 public:
-    dockwidget(const QString &location, QWidget *parent=0, const char *name=0);
+    dockwidget(const TQString &location, TQWidget *parent=0, const char *name=0);
     ~dockwidget();
 
     enum {ShowIconOnly=1, ShowTempOnly=2, ShowAll=3 };
 
-    void setLocationCode(const QString &locationCode);
+    void setLocationCode(const TQString &locationCode);
     void setViewMode(int);
     void setOrientation(Orientation o) { m_orientation = o; }
     /** resize the view **/
-    void resizeView(const QSize &size);
+    void resizeView(const TQSize &size);
     int widthForHeight(int h);
     int heightForWidth(int w);
 
@@ -57,13 +57,13 @@ private:
     void updateFont();
 
     int m_mode;
-    QString m_locationCode;
-    QFont m_font;
-    QPixmap m_icon;
+    TQString m_locationCode;
+    TQFont m_font;
+    TQPixmap m_icon;
     WeatherButton *m_button;
-    QLabel *m_lblTemp;
-    QLabel *m_lblWind;
-    QLabel *m_lblPres;
+    TQLabel *m_lblTemp;
+    TQLabel *m_lblWind;
+    TQLabel *m_lblPres;
     Orientation m_orientation;
 
     WeatherService_stub *m_weatherService;

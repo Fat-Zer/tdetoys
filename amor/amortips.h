@@ -31,7 +31,7 @@
 #include <config.h>
 #endif
 
-#include <qstrlist.h>
+#include <tqstrlist.h>
 class QFile;
 
 //---------------------------------------------------------------------------
@@ -43,17 +43,17 @@ class AmorTips
 public:
     AmorTips();
 
-    bool setFile(const QString& file);
+    bool setFile(const TQString& file);
     void reset();
-    QString tip();
+    TQString tip();
 
 protected:
     bool readKTips();
-    bool read(const QString& file);
-    bool readTip(QFile &file);
+    bool read(const TQString& file);
+    bool readTip(TQFile &file);
 
 protected:
-    QStringList mTips;
+    TQStringList mTips;
 };
 
 #endif // AMORTIPS_H

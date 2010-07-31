@@ -23,30 +23,30 @@
 #include <khtmlview.h>
 #include <kglobalsettings.h>
 
-#include <qvbox.h>
-#include <qpixmap.h>
-#include <qapplication.h>
+#include <tqvbox.h>
+#include <tqpixmap.h>
+#include <tqapplication.h>
 
 #include "reportview.h"
 #include "weatherservice_stub.h"
 
-reportView::reportView(const QString &reportLocation)
-        : KDialogBase( (QWidget *)0, "report", false, QString::null, Close ),
+reportView::reportView(const TQString &reportLocation)
+        : KDialogBase( (TQWidget *)0, "report", false, TQString::null, Close ),
 	  m_locationCode(reportLocation)
 {
-    QVBox *vbox = makeVBoxMainWidget();
+    TQVBox *vbox = makeVBoxMainWidget();
     m_reportView = new KHTMLPart(vbox, "m_reportView");
 
     KConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
-    QSize defaultSize( 450, 325 );
+    TQSize defaultSize( 450, 325 );
     resize( config.readSizeEntry( "reportview_size", &defaultSize ) );
 
     centerOnScreen( this );
 
     m_weatherService = new WeatherService_stub( "KWeatherService", "WeatherService" );
 
-    QPixmap icon = m_weatherService->icon( m_locationCode );
+    TQPixmap icon = m_weatherService->icon( m_locationCode );
     setIcon( icon );
 
     render();
@@ -55,7 +55,7 @@ reportView::reportView(const QString &reportLocation)
 reportView::~reportView(){
     delete m_weatherService;
     // we do not have to delete m_reportView because this class is
-    // the parent of the QVBox, and that is the parent of the KHTMLPart.
+    // the parent of the TQVBox, and that is the parent of the KHTMLPart.
 
     KConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
@@ -64,76 +64,76 @@ reportView::~reportView(){
 
 /** Render the document */
 void reportView::render(){
-    QFont generalFont = KGlobalSettings::generalFont();
-    QString fntFamily = generalFont.family();
+    TQFont generalFont = KGlobalSettings::generalFont();
+    TQString fntFamily = generalFont.family();
     int fntSize = generalFont.pointSize();
     if (fntSize == -1)
-       fntSize = QFontInfo(generalFont).pointSize();
+       fntSize = TQFontInfo(generalFont).pointSize();
 
-    QString textColor = KGlobalSettings::textColor().name();
-    QString baseColor = KGlobalSettings::baseColor().name();
-    QColorGroup cg = palette().active();
-    QString bgColor = cg.background().name();
-    QString hlColor = cg.highlight().name();
-    QString hlTextColor = cg.highlightedText().name();
+    TQString textColor = KGlobalSettings::textColor().name();
+    TQString baseColor = KGlobalSettings::baseColor().name();
+    TQColorGroup cg = palette().active();
+    TQString bgColor = cg.background().name();
+    TQString hlColor = cg.highlight().name();
+    TQString hlTextColor = cg.highlightedText().name();
 
-    QString locationName = m_weatherService->stationName(m_locationCode);
-    QString countryName = m_weatherService->stationCountry(m_locationCode);
-    QString temp = m_weatherService->temperature(m_locationCode);
-    QString dewPoint = m_weatherService->dewPoint( m_locationCode);
-    QString relHumidity = m_weatherService->relativeHumidity(m_locationCode );
-    QString heatIndex = m_weatherService->heatIndex(m_locationCode );
-    QString windChill = m_weatherService->windChill(m_locationCode );
-    QString pressure = m_weatherService->pressure(m_locationCode );
-    QString wind = m_weatherService->wind(m_locationCode );
-    QString sunRiseTime = m_weatherService->sunRiseTime(m_locationCode );
-    QString sunSetTime = m_weatherService->sunSetTime(m_locationCode );
-    QString date = m_weatherService->date(m_locationCode );
-    QString icon = m_weatherService->iconFileName(m_locationCode );
-    QStringList cover = m_weatherService->cover(m_locationCode );
-    QStringList weather = m_weatherService->weather(m_locationCode );
+    TQString locationName = m_weatherService->stationName(m_locationCode);
+    TQString countryName = m_weatherService->stationCountry(m_locationCode);
+    TQString temp = m_weatherService->temperature(m_locationCode);
+    TQString dewPoint = m_weatherService->dewPoint( m_locationCode);
+    TQString relHumidity = m_weatherService->relativeHumidity(m_locationCode );
+    TQString heatIndex = m_weatherService->heatIndex(m_locationCode );
+    TQString windChill = m_weatherService->windChill(m_locationCode );
+    TQString pressure = m_weatherService->pressure(m_locationCode );
+    TQString wind = m_weatherService->wind(m_locationCode );
+    TQString sunRiseTime = m_weatherService->sunRiseTime(m_locationCode );
+    TQString sunSetTime = m_weatherService->sunSetTime(m_locationCode );
+    TQString date = m_weatherService->date(m_locationCode );
+    TQString icon = m_weatherService->iconFileName(m_locationCode );
+    TQStringList cover = m_weatherService->cover(m_locationCode );
+    TQStringList weather = m_weatherService->weather(m_locationCode );
 
     setCaption(i18n("Weather Report - %1").arg( locationName ) );
 
-    QString weatherText = "<ul>\n";
+    TQString weatherText = "<ul>\n";
 
     if ( m_weatherService->stationNeedsMaintenance( m_locationCode ) )
     {
         weatherText += "<li>" + i18n( "Station reports that it needs maintenance" ) + " \n";
     }
-    for (QStringList::const_iterator it = cover.begin();
+    for (TQStringList::const_iterator it = cover.begin();
             it != cover.end(); ++it)
         weatherText += "<li>" + *it + "\n";
 
-    for (QStringList::const_iterator it = weather.begin();
+    for (TQStringList::const_iterator it = weather.begin();
             it != weather.end(); ++it)
         weatherText += "<li>" + *it + "\n";
 
     weatherText += "</ul>\n";
 
-    QString contents =
+    TQString contents =
     "<html><head><style type=\"text/css\">" +
-    QString("body { font-family: \"%1\"; font-size: %2pt; color: %3; background-color: %4; }\n")
+    TQString("body { font-family: \"%1\"; font-size: %2pt; color: %3; background-color: %4; }\n")
     .arg(fntFamily).arg(fntSize).arg(textColor).arg(baseColor) +
-    QString("div.headerTitle { background-color: %1; color: %2; padding: 4px; font-size: 120%; border: solid %3 1px; }\n")
+    TQString("div.headerTitle { background-color: %1; color: %2; padding: 4px; font-size: 120%; border: solid %3 1px; }\n")
     .arg(hlColor).arg(hlTextColor).arg(textColor) +
-    QString("div.headerMsg { background-color: %1; color: %2; border-bottom: solid %3 1px; "
+    TQString("div.headerMsg { background-color: %1; color: %2; border-bottom: solid %3 1px; "
     "border-left: solid %4 1px; border-right: solid %5 1px; margin-bottom: 1em; padding: 2px; }\n")
     .arg(bgColor).arg(textColor).arg(textColor).arg(textColor).arg(textColor) +    
-    QString("</style><title></title></head><body dir=\"%1\">").arg( QApplication::reverseLayout()?"rtl":"ltr") + 
+    TQString("</style><title></title></head><body dir=\"%1\">").arg( TQApplication::reverseLayout()?"rtl":"ltr") + 
     "<div class=\"headerTitle\"><b>" + i18n( "Weather Report - %1 - %2" ).arg( locationName ).arg( countryName ) +        
     "</b></div>\n";
 
     if ( ! date.isEmpty() )
       contents += "<div class=\"headerMsg\"><b>" + i18n( "Latest data from %1" ).arg(date) + "</b></div>\n";
 
-    contents += QString(
+    contents += TQString(
     "<table><tr><td width=\"60\" style=\"text-align: center; border: dotted %1 1px;\">"
     "<img width=\"64\" height=\"64\" src=\"%2\" /></td>"
     "<td style=\"vertical-align: top\">%3</td></tr>")
     .arg(bgColor).arg(KURL(icon).url()).arg(weatherText) +
     "</table><table>" +
-    QString("<tr><th style=\"text-align: right\">" + i18n( "Temperature:" )
+    TQString("<tr><th style=\"text-align: right\">" + i18n( "Temperature:" )
     + "</th><td>%1</td>"
     "<td width=\"50\">&nbsp;</td>"
     "<th style=\"text-align: right\">" + i18n( "Dew Point:" )
@@ -149,16 +149,16 @@ void reportView::render(){
     .arg(wind) + "<td width=\"50\">&nbsp;</td>";
 
     if (!heatIndex.isEmpty())
-        contents += QString("<th style=\"text-align: right\">"
+        contents += TQString("<th style=\"text-align: right\">"
         + i18n( "Heat Index:" ) + "</th><td>%1</td>").arg(heatIndex);
     else if (!windChill.isEmpty())
-        contents += QString("<th style=\"text-align: right\">"
+        contents += TQString("<th style=\"text-align: right\">"
         + i18n( "Wind Chill:" ) + "</th><td>%1</td>").arg(windChill);
     else
         contents += "<td>&nbsp;</td><td>&nbsp;</td>";
     contents += "</tr>";
 
-    contents += QString("<tr><th style=\"text-align: right\">"
+    contents += TQString("<tr><th style=\"text-align: right\">"
     + i18n( "Sunrise:" ) + "</th><td>%1</td>" +
     "<td width=\"50\">&nbsp;</td><th style=\"text-align: right\">"
     + i18n( "Sunset:" ) + "</th><td>%2</td>")
@@ -170,7 +170,7 @@ void reportView::render(){
     m_reportView->write( contents );
     m_reportView->end();
 	
-    QScrollView *view = m_reportView->view();
+    TQScrollView *view = m_reportView->view();
     kdDebug() << "Size " << view->size().height() << "," << view->size().width() << endl;
     kdDebug() << "Size " << view->visibleHeight() << "," << view->visibleWidth() << endl;
 

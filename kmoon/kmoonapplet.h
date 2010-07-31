@@ -21,8 +21,8 @@
 #ifndef KMOONAPPLET
 #define KMOONAPPLET
 
-#include <qwidget.h>
-#include <qimage.h>
+#include <tqwidget.h>
+#include <tqimage.h>
 #include <sys/types.h>
 #include <time.h>
 #include <ksystemtray.h>
@@ -39,29 +39,29 @@ class MoonPAWidget : public KPanelApplet
     Q_OBJECT
 
 public:
-    MoonPAWidget(const QString& configFile, Type t = Normal, int actions = 0,
-		 QWidget *parent = 0, const char *name = 0);
+    MoonPAWidget(const TQString& configFile, Type t = Normal, int actions = 0,
+		 TQWidget *parent = 0, const char *name = 0);
     ~MoonPAWidget();
 
     int widthForHeight(int height) const { return height; }
     int heightForWidth(int width) const { return width; }
 
 protected:
-    QPopupMenu *popup;
+    TQPopupMenu *popup;
     MoonWidget *moon;
-    QString tooltip;
+    TQString tooltip;
 
     void about() { showAbout(); }
     void preferences() { settings(); }
 
 protected slots:
 
-    void timerEvent( QTimerEvent *e);
+    void timerEvent( TQTimerEvent *e);
     void showAbout();
     void settings();
 
 protected:
-    void mousePressEvent( QMouseEvent *e);
+    void mousePressEvent( TQMouseEvent *e);
 };
 
 #endif

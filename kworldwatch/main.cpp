@@ -28,11 +28,11 @@
 #include <stdlib.h>
 
 
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qpainter.h>
-#include <qpixmap.h>
-#include <qwidget.h>
+#include <tqlabel.h>
+#include <tqlayout.h>
+#include <tqpainter.h>
+#include <tqpixmap.h>
+#include <tqwidget.h>
 
 
 #include <kapplication.h>
@@ -48,17 +48,17 @@
 #include "zoneclock.h"
 
 
-WorldWideWatch::WorldWideWatch(bool restore, QWidget *parent, const char *name)
+WorldWideWatch::WorldWideWatch(bool restore, TQWidget *parent, const char *name)
   : KMainWindow(parent, name)
 {
   KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
 
-  QWidget *w = new QWidget(this);
+  TQWidget *w = new TQWidget(this);
   setCentralWidget(w);
 
   setPlainCaption(i18n("KDE World Clock"));
   
-  QVBoxLayout *vbox = new QVBoxLayout(w, 0,0);
+  TQVBoxLayout *vbox = new TQVBoxLayout(w, 0,0);
   
   _map = new MapWidget(false, restore, w);
   vbox->addWidget(_map,1);
@@ -66,8 +66,8 @@ WorldWideWatch::WorldWideWatch(bool restore, QWidget *parent, const char *name)
   _clocks = new ZoneClockPanel(w);
   vbox->addWidget(_clocks);
 
-  connect(_map, SIGNAL(addClockClicked(const QString &)), _clocks, SLOT(addClock(const QString &)));
-  connect(_map, SIGNAL(saveSettings()), this, SLOT(doSave()));
+  connect(_map, TQT_SIGNAL(addClockClicked(const TQString &)), _clocks, TQT_SLOT(addClock(const TQString &)));
+  connect(_map, TQT_SIGNAL(saveSettings()), this, TQT_SLOT(doSave()));
 
   if (restore)
     load(kapp->config());
@@ -103,19 +103,19 @@ void WorldWideWatch::doSave()
 void WatchApplication::dumpMap()
 {
   // guess some default parameters
-  QSize mapSize(kapp->desktop()->size());
+  TQSize mapSize(kapp->desktop()->size());
  
   KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
  
-  QCString themeName = args->getOption("theme");
-  QCString outName = args->getOption("o");
+  TQCString themeName = args->getOption("theme");
+  TQCString outName = args->getOption("o");
  
-  QCString ssize = args->getOption("size");
+  TQCString ssize = args->getOption("size");
   if (!ssize.isEmpty())
     {
       int w,h;
       if (sscanf(ssize.data(), "%dx%d", &w, &h) == 2)
-        mapSize = QSize(w,h);
+        mapSize = TQSize(w,h);
     }
  
   kdDebug() << "theme=" << themeName << " out=" << outName << " size=" << mapSize.width() << "x" << mapSize.height() << endl;
@@ -124,8 +124,8 @@ void WatchApplication::dumpMap()
   w->setTheme(themeName);
   w->setSize(mapSize.width(), mapSize.height());
 
-  QPixmap pm = w->calculatePixmap();
-  QPainter p(&pm);
+  TQPixmap pm = w->calculatePixmap();
+  TQPainter p(&pm);
   w->paintContents(&p);
   pm.save(outName, "PPM");
 
@@ -154,8 +154,8 @@ int WatchApplication::newInstance()
 
 static void listThemes()
 {
-  QPtrList<MapTheme> _themes = MapLoader::themes();
-  QPtrListIterator<MapTheme> it(_themes);
+  TQPtrList<MapTheme> _themes = MapLoader::themes();
+  TQPtrListIterator<MapTheme> it(_themes);
   for ( ; it.current(); ++it)
   {
      printf("%s\n", it.current()->tag().local8Bit().data());

@@ -29,8 +29,8 @@
 #include "amortips.h"
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <qfile.h>
-#include <qregexp.h>
+#include <tqfile.h>
+#include <tqregexp.h>
 #include <kdebug.h>
 
 //---------------------------------------------------------------------------
@@ -45,11 +45,11 @@ AmorTips::AmorTips()
 // Set the file containing tips.  This reads all tips into memory at the
 // moment - need to make more efficient.
 //
-bool AmorTips::setFile(const QString& file)
+bool AmorTips::setFile(const TQString& file)
 {
     bool rv = false;
 
-    QString path( locate("appdata", file) );
+    TQString path( locate("appdata", file) );
     if(path.length() && read(path))
         rv = true;
 
@@ -71,11 +71,11 @@ void AmorTips::reset()
 //
 // Get a tip randomly from the list
 //
-QString AmorTips::tip()
+TQString AmorTips::tip()
 {
     if (mTips.count())
     {
-        QString tip = *mTips.at(kapp->random() % mTips.count());
+        TQString tip = *mTips.at(kapp->random() % mTips.count());
 		return i18n(tip.utf8());
     }
 
@@ -88,24 +88,24 @@ QString AmorTips::tip()
 //
 bool AmorTips::readKTips()
 {
-    QString fname;
+    TQString fname;
 
-    fname = locate("data", QString("kdewizard/tips"));
+    fname = locate("data", TQString("kdewizard/tips"));
 
     if (fname.isEmpty())
 	return false;
 
-    QFile f(fname);
+    TQFile f(fname);
     if (f.open(IO_ReadOnly))
     {
 	// Reading of tips must be exactly as in KTipDatabase::loadTips for translation
-	QString content = f.readAll();
-	const QRegExp rx("\\n+");
+	TQString content = f.readAll();
+	const TQRegExp rx("\\n+");
 
 	int pos = -1;
 	while ((pos = content.find("<html>", pos + 1, false)) != -1)
 	{
-	    QString tip = content
+	    TQString tip = content
 		.mid(pos + 6, content.find("</html>", pos, false) - pos - 6)
 		.replace(rx, "\n");
 	    if (!tip.endsWith("\n"))
@@ -130,9 +130,9 @@ bool AmorTips::readKTips()
 //
 // Read all tips from the specified file.
 //
-bool AmorTips::read(const QString& path)
+bool AmorTips::read(const TQString& path)
 {
-    QFile file(path);
+    TQFile file(path);
 
     if (file.open(IO_ReadOnly))
     {
@@ -151,17 +151,17 @@ bool AmorTips::read(const QString& path)
 //
 // Read a single tip.
 //
-bool AmorTips::readTip(QFile &file)
+bool AmorTips::readTip(TQFile &file)
 {
     char buffer[1024] = "";
-    QString tip;
+    TQString tip;
 
     while (!file.atEnd() && buffer[0] != '%')
     {
         file.readLine(buffer, 1024);
         if (buffer[0] != '%')
         {
-            tip += QString::fromUtf8(buffer);
+            tip += TQString::fromUtf8(buffer);
         }
     }
 

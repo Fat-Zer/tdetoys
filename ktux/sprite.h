@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 //
-// ksprite - QCanvas based screensaver
+// ksprite - TQCanvas based screensaver
 //
 // Copyright (c)  Martin R. Jones 1996
 //
@@ -8,11 +8,11 @@
 #ifndef __SPRITE_H__
 #define __SPRITE_H__
 
-#include <qtimer.h>
-#include <qpushbutton.h>
-#include <qptrlist.h>
-#include <qstrlist.h>
-#include <qcanvas.h>
+#include <tqtimer.h>
+#include <tqpushbutton.h>
+#include <tqptrlist.h>
+#include <tqstrlist.h>
+#include <tqcanvas.h>
 #include <kscreensaver.h>
 #include "spriteanim.h"
 
@@ -35,22 +35,22 @@ protected slots:
     void slotTimeout();
 
 protected:
-    virtual void timerEvent(QTimerEvent *);
+    virtual void timerEvent(TQTimerEvent *);
 
 protected:
     QCanvas	*mCanvas;
     QCanvasView	*mView;
     QTimer	mTimer;
     int                 mSpeed;
-    QPtrList<SpriteGroup>  mGroups;
-    QMemArray<int>    mTimerIds;
+    TQPtrList<SpriteGroup>  mGroups;
+    TQMemArray<int>    mTimerIds;
 };
 
 class KSpriteSetup : public QDialog
 {
     Q_OBJECT
 public:
-    KSpriteSetup( QWidget *parent = NULL, const char *name = NULL );
+    KSpriteSetup( TQWidget *parent = NULL, const char *name = NULL );
     ~KSpriteSetup();
 
 protected:
@@ -63,7 +63,7 @@ private slots:
 
 private:
     int     speed;
-    QWidget *preview;
+    TQWidget *preview;
     KSpriteSaver *saver;
 };
 

@@ -23,20 +23,20 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include <qcheckbox.h>
-#include <qlayout.h>
-#include <qhbox.h>
-#include <qvbox.h>
-#include <qlineedit.h>
-#include <qpainter.h>
-#include <qtooltip.h>
-#include <qfile.h>
-#include <qcursor.h>
-#include <qpushbutton.h>
-#include <qgroupbox.h>
-#include <qheader.h>
-#include <qpixmap.h>
-#include <qbitmap.h>
+#include <tqcheckbox.h>
+#include <tqlayout.h>
+#include <tqhbox.h>
+#include <tqvbox.h>
+#include <tqlineedit.h>
+#include <tqpainter.h>
+#include <tqtooltip.h>
+#include <tqfile.h>
+#include <tqcursor.h>
+#include <tqpushbutton.h>
+#include <tqgroupbox.h>
+#include <tqheader.h>
+#include <tqpixmap.h>
+#include <tqbitmap.h>
 
 #include <kconfig.h>
 #include <khelpmenu.h>
@@ -64,7 +64,7 @@ const int TopLevel::DEFAULT_TEA_TIME = 3*60;
 TopLevel::TopLevel() : KSystemTray()
 {
 	setBackgroundMode(X11ParentRelative);   // what for?
-	QString n, key;
+	TQString n, key;
 	unsigned int num;
 
 	teas.clear();
@@ -76,7 +76,7 @@ TopLevel::TopLevel() : KSystemTray()
 		// assuming this is a new-style config
 		num = config->readNumEntry("Number", 0);
 		teas.resize(num);
-		QString tempstr;
+		TQString tempstr;
 		for (unsigned int index=1; index<=num; ++index) {
 			key.sprintf("Tea%d Time", index);
 			tempstr = config->readEntry(key, NULL);
@@ -118,24 +118,24 @@ TopLevel::TopLevel() : KSystemTray()
 
 
 	startAct = new KAction(i18n("&Start"), "1rightarrow", 0,
-	                       this, SLOT(start()), actionCollection(), "start");
+	                       this, TQT_SLOT(start()), actionCollection(), "start");
 	stopAct = new KAction(i18n("Sto&p"), "cancel", 0,
-	                      this, SLOT(stop()), actionCollection(), "stop");
+	                      this, TQT_SLOT(stop()), actionCollection(), "stop");
 	confAct = new KAction(i18n("&Configure..."), "configure", 0,
-	                      this, SLOT(config()), actionCollection(), "configure");
+	                      this, TQT_SLOT(config()), actionCollection(), "configure");
 	anonAct = new KAction(i18n("&Anonymous..."), 0, 0,
-	                      this, SLOT(anonymous()), actionCollection(), "anonymous");
+	                      this, TQT_SLOT(anonymous()), actionCollection(), "anonymous");
 //	KAction *quitAct = actionCollection()->action("file_quit");
 
 	// create app menu (displayed on right-click)
-	menu = new QPopupMenu();
+	menu = new TQPopupMenu();
 	menu->setCheckable(true);
-	connect(menu, SIGNAL(activated(int)), this, SLOT(teaSelected(int)));
+	connect(menu, TQT_SIGNAL(activated(int)), this, TQT_SLOT(teaSelected(int)));
 
 	// this menu will be displayed when no tea is steeping, and left mouse button is clicked
-	start_menu = new QPopupMenu();
+	start_menu = new TQPopupMenu();
 	start_menu->setCheckable(true);     // menu isn't tickable, but this gives some add. spacing
-	connect(start_menu, SIGNAL(activated(int)), this, SLOT(teaStartSelected(int)));
+	connect(start_menu, TQT_SIGNAL(activated(int)), this, TQT_SLOT(teaStartSelected(int)));
 
 	rebuildTeaMenus();      // populate tops of menus with tea-entries from config
 
@@ -152,13 +152,13 @@ TopLevel::TopLevel() : KSystemTray()
 	menu->insertSeparator();
 	confAct->plug(menu);
 	menu->insertItem(SmallIcon("help"), i18n("&Help"), helpMnu);
-	menu->insertItem(SmallIcon("exit"), i18n("Quit"), kapp, SLOT(quit()));
+	menu->insertItem(SmallIcon("exit"), i18n("Quit"), kapp, TQT_SLOT(quit()));
 //	quitAct->plug(menu);    // FIXME: this doesn't seem to work with above definition of quitAct?
 	                        //        (need special 'quit'-method?)
 
 	// this menu will be displayed when a tea is steeping, and left mouse button is clicked
-	steeping_menu = new QPopupMenu();
-//	steeping_menu->insertItem(SmallIcon("cancel"), i18n("Just &Cancel Current"), this, SLOT(stop()));
+	steeping_menu = new TQPopupMenu();
+//	steeping_menu->insertItem(SmallIcon("cancel"), i18n("Just &Cancel Current"), this, TQT_SLOT(stop()));
 	stopAct->plug(steeping_menu);   // FIXME: can provide different text for this incarnation?
 
 //	start_menu->insertSeparator();
@@ -201,7 +201,7 @@ TopLevel::~TopLevel()
 	// FIXME: must delete more (like all the QWidgets in config-window)?
 }
 
-void TopLevel::resizeEvent ( QResizeEvent * )
+void TopLevel::resizeEvent ( TQResizeEvent * )
 {
 	mugPixmap = loadSizedIcon("mug", width());
 	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
@@ -211,26 +211,26 @@ void TopLevel::resizeEvent ( QResizeEvent * )
 }
 
 /** Handle mousePressEvent */
-void TopLevel::mousePressEvent(QMouseEvent *event)
+void TopLevel::mousePressEvent(TQMouseEvent *event)
 {
 	if (event->button() == LeftButton) {
 		if (ready) {
 			stop();                         // reset tooltip and stop animation
 		} else {
 			if (running)
-				steeping_menu->popup(QCursor::pos());
+				steeping_menu->popup(TQCursor::pos());
 			else
-				start_menu->popup(QCursor::pos());
+				start_menu->popup(TQCursor::pos());
 		}
 	} else if (event->button() == RightButton)
-		menu->popup(QCursor::pos());
+		menu->popup(TQCursor::pos());
 //	else if (event->button() == MidButton)  // currently unused
 }
 
 /** Handle paintEvent (ie. animate icon) */
-void TopLevel::paintEvent(QPaintEvent *)
+void TopLevel::paintEvent(TQPaintEvent *)
 {
-	QPixmap *pm = &mugPixmap;
+	TQPixmap *pm = &mugPixmap;
 
 	if (running) {
 		if (useTrayVis)
@@ -239,7 +239,7 @@ void TopLevel::paintEvent(QPaintEvent *)
 			pm = &teaNotReadyPixmap;                         // generic "steeping" icon
 	} else {
 		// use simple two-frame "animation"
-		// FIXME: how about using a QMovie instead? (eg. MNG)
+		// FIXME: how about using a TQMovie instead? (eg. MNG)
 		if (ready) {
 			if (firstFrame)
 				pm = &teaAnim1Pixmap;
@@ -249,11 +249,11 @@ void TopLevel::paintEvent(QPaintEvent *)
 	}
 
 	// overlay pie chart onto tray icon
-	QPixmap base(*pm);                                      // make copy of base pixmap
+	TQPixmap base(*pm);                                      // make copy of base pixmap
 	if (useTrayVis && running) {
 		// extend mask
-		QBitmap mask = *(base.mask());
-		QPainter pm(&mask);
+		TQBitmap mask = *(base.mask());
+		TQPainter pm(&mask);
 		pm.setBrush(Qt::color1);                            // fill with "foreground-colour"
 		pm.setPen(Qt::NoPen);                               // no border needed/wanted
 		pm.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);       // full circle of small size
@@ -262,21 +262,21 @@ void TopLevel::paintEvent(QPaintEvent *)
 		base.setMask(mask);
 
 		// draw pie chart
-		QPainter px(&base);
-		px.setPen(QPen(Qt::black, 0));                      // black border
-		px.setBrush(QColor(192, 0, 0));                     // red fill colour for small circle
+		TQPainter px(&base);
+		px.setPen(TQPen(Qt::black, 0));                      // black border
+		px.setBrush(TQColor(192, 0, 0));                     // red fill colour for small circle
 		px.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);
 
-		px.setBrush(QColor(0, 192, 0));                     // green fill colour for pie part
+		px.setBrush(TQColor(0, 192, 0));                     // green fill colour for pie part
 		px.drawPie(0, ((float) width()/(float) 2.44444444444), ((float) width()/(float) 1.69230769231), ((float) width()/(float) 1.69230769231), 90*16, percentDone*16);
 		px.end();
 	}
 	// FIXME: over-emphasize first and last few percent? (for better visibility)
-	// FIXME: some optimizations (eg. store pre-drawn QPixmap with small circle)
+	// FIXME: some optimizations (eg. store pre-drawn TQPixmap with small circle)
 	//        (and use drawEllipse() instead of drawPie() for small circle!)
 
 	// set new tray icon
-	QPainter p(this);
+	TQPainter p(this);
 	int x = 1 + (((float) width()/(float) 1.83333333333) - pm->width()/2);
 	int y = 1 + (((float) width()/(float) 1.83333333333) - pm->height()/2);
 	p.drawPixmap(x, y, base);
@@ -284,7 +284,7 @@ void TopLevel::paintEvent(QPaintEvent *)
 }
 
 /** Check timer and initiate appropriate action if finished */
-void TopLevel::timerEvent(QTimerEvent *)
+void TopLevel::timerEvent(TQTimerEvent *)
 {
 	if (running) {
 		// a tea is steeping; must count down
@@ -302,15 +302,15 @@ void TopLevel::timerEvent(QTimerEvent *)
 					menu->setItemChecked(current_selected, true);
 			}
 
-			QString teaMessage = i18n("The %1 is now ready!").arg(current_name);
+			TQString teaMessage = i18n("The %1 is now ready!").arg(current_name);
 			// invoke action
 			if (useNotify) {
 				KNotifyClient::event(winId(), "tea", teaMessage);
 			}
 			if (useAction && (!action.isEmpty())) {
-				QString cmd = action;
+				TQString cmd = action;
 				cmd.replace("%t", current_name);
-				system(QFile::encodeName(cmd));
+				system(TQFile::encodeName(cmd));
 			}
 			if (usePopup)
 				KPassivePopup::message(i18n("The Tea Cooker"),
@@ -329,7 +329,7 @@ void TopLevel::timerEvent(QTimerEvent *)
 				}
 			}
 			// ...and Tooltip
-			QString min = int2time(seconds);
+			TQString min = int2time(seconds);
 			setToolTip(i18n("%1 left for %2").arg(min).arg(current_name));
 		}
 	} else {
@@ -342,7 +342,7 @@ void TopLevel::timerEvent(QTimerEvent *)
 }
 
 /** update ToolTip */
-void TopLevel::setToolTip(const QString &text, bool force)
+void TopLevel::setToolTip(const TQString &text, bool force)
 {
 	// don't update if text hasn't changed
 	if (lastTip == text)
@@ -352,8 +352,8 @@ void TopLevel::setToolTip(const QString &text, bool force)
 	// FIXME: this isn't too nice: currently mouse must stay outside for >1s for update to occur
 	if (force || !this->hasMouse() || (lastTip == i18n("The Tea Cooker"))) {
 		lastTip = text;
-		QToolTip::remove(this);
-		QToolTip::add(this, text);
+		TQToolTip::remove(this);
+		TQToolTip::add(this, text);
 	}
 }
 
@@ -369,9 +369,9 @@ void TopLevel::rebuildTeaMenus() {
 	// now add new tea-entries to top of menus
 	int id = 0;
 	int index = 0;
-	for (QValueVector<tea_struct>::ConstIterator it=teas.begin(); it != teas.end(); ++it) {
+	for (TQValueVector<tea_struct>::ConstIterator it=teas.begin(); it != teas.end(); ++it) {
 		// construct string with name and steeping time
-		QString str = it->name;
+		TQString str = it->name;
 		str.append(" (");
 		str.append(int2time(it->time));
 		str.append(")");
@@ -478,18 +478,18 @@ void TopLevel::anonymous()
 		anondlg = new KDialogBase(KDialogBase::Plain, i18n("Anonymous Tea"),
 		                          KDialogBase::Ok | KDialogBase::Cancel,
 		                          KDialogBase::Ok, this, "anonymous", true);
-		QWidget *page = anondlg->plainPage();
-		QBoxLayout *top_box = new QVBoxLayout(page);
-		QBoxLayout *prop_box = new QHBoxLayout(top_box);
-		QVBox *propleft = new QVBox(page);
+		TQWidget *page = anondlg->plainPage();
+		TQBoxLayout *top_box = new TQVBoxLayout(page);
+		TQBoxLayout *prop_box = new TQHBoxLayout(top_box);
+		TQVBox *propleft = new TQVBox(page);
 		prop_box->addWidget(propleft);
-		QVBox *propright = new QVBox(page);
+		TQVBox *propright = new TQVBox(page);
 		prop_box->addWidget(propright);
 
 		anon_time = new TimeEdit(propright);
 		anon_time->setFixedHeight(anon_time->sizeHint().height());
 		anon_time->setValue(DEFAULT_TEA_TIME);
-		QLabel *l = new QLabel(anon_time, i18n("Tea time:"), propleft);
+		TQLabel *l = new TQLabel(anon_time, i18n("Tea time:"), propleft);
 		l->setFixedSize(l->sizeHint());
 
 		top_box->addStretch();
@@ -501,7 +501,7 @@ void TopLevel::anonymous()
 		// (why? - better use LRU, and save that to config)
 	}
 
-	if (anondlg->exec() == QDialog::Accepted) {
+	if (anondlg->exec() == TQDialog::Accepted) {
 		shooting = true;
 		if (!listempty)
 			menu->setItemChecked(current_selected, false);  // no item is to be checked
@@ -557,7 +557,7 @@ void TopLevel::listBoxItemSelected() {
 }
 
 /* config-slot: name of a tea edited */
-void TopLevel::nameEditTextChanged(const QString& newText) {
+void TopLevel::nameEditTextChanged(const TQString& newText) {
 	/* this method also gets called when the last TeaListItem has been deleted
 	 * (to clear the name edit widget), so check for empty listbox */
 	if (listbox->currentItem() != NULL) {
@@ -618,7 +618,7 @@ void TopLevel::delButtonClicked() {
 
 /* config-slot: "up" button clicked */
 void TopLevel::upButtonClicked() {
-	QListViewItem* item = listbox->currentItem();
+	TQListViewItem* item = listbox->currentItem();
 
 	if (item && item->itemAbove())
 		item->itemAbove()->moveItem(item);
@@ -628,7 +628,7 @@ void TopLevel::upButtonClicked() {
 
 /* config-slot: "down" button clicked */
 void TopLevel::downButtonClicked() {
-	QListViewItem* item = listbox->currentItem();
+	TQListViewItem* item = listbox->currentItem();
 
 	if (item && item->itemBelow())
 		item->moveItem(item->itemBelow());
@@ -661,118 +661,118 @@ void TopLevel::config()
     confdlg = new KDialogBase(KDialogBase::Plain, i18n("Configure Tea Cooker"),
                               KDialogBase::Ok|KDialogBase::Cancel|KDialogBase::Help,
                               KDialogBase::Ok, this, "config", true);
-    QWidget *page = confdlg->plainPage();
+    TQWidget *page = confdlg->plainPage();
     // FIXME: enforce sensible initial/default size of dialog
     // FIXME: modal is ok, but can avoid always-on-top?
 
-    QBoxLayout *top_box = new QVBoxLayout(page, 0, 8);    // whole config-stuff
-    QBoxLayout *box = new QHBoxLayout(top_box);           // list + properties
+    TQBoxLayout *top_box = new TQVBoxLayout(page, 0, 8);    // whole config-stuff
+    TQBoxLayout *box = new TQHBoxLayout(top_box);           // list + properties
 
     /* left side - tea list and list-modifying buttons */
-    QBoxLayout *leftside = new QVBoxLayout(box);
-    QGroupBox *listgroup = new QGroupBox(2, Vertical, i18n("Tea List"), page);
+    TQBoxLayout *leftside = new TQVBoxLayout(box);
+    TQGroupBox *listgroup = new TQGroupBox(2, Vertical, i18n("Tea List"), page);
     leftside->addWidget(listgroup, 0, 0);
 
-    listbox = new QListView(listgroup, "listBox");
+    listbox = new TQListView(listgroup, "listBox");
     listbox->addColumn(i18n("Name"));
     listbox->header()->setClickEnabled(false, listbox->header()->count()-1);
     listbox->addColumn(i18n("Time"));
     listbox->header()->setClickEnabled(false, listbox->header()->count()-1);
     listbox->setSorting(-1);
-    connect(listbox, SIGNAL(selectionChanged()), SLOT(listBoxItemSelected()));
+    connect(listbox, TQT_SIGNAL(selectionChanged()), TQT_SLOT(listBoxItemSelected()));
 
     // now buttons for editing the tea-list
-    QWidget *listgroup_widget = new QWidget(listgroup);
-    QBoxLayout *hbox = new QHBoxLayout(listgroup_widget);
+    TQWidget *listgroup_widget = new TQWidget(listgroup);
+    TQBoxLayout *hbox = new TQHBoxLayout(listgroup_widget);
     hbox->setSpacing(4);
-    btn_new = new QPushButton(QString::null, listgroup_widget);
-    QToolTip::add(btn_new, i18n("New"));
+    btn_new = new TQPushButton(TQString::null, listgroup_widget);
+    TQToolTip::add(btn_new, i18n("New"));
     btn_new->setPixmap(SmallIcon("filenew"));
     btn_new->setMinimumSize(btn_new->sizeHint() * 1.2);
-    connect(btn_new, SIGNAL(clicked()), SLOT(newButtonClicked()));
+    connect(btn_new, TQT_SIGNAL(clicked()), TQT_SLOT(newButtonClicked()));
     hbox->addWidget(btn_new);
 
-    btn_del = new QPushButton(QString::null, listgroup_widget);
-    QToolTip::add(btn_del, i18n("Delete"));
+    btn_del = new TQPushButton(TQString::null, listgroup_widget);
+    TQToolTip::add(btn_del, i18n("Delete"));
     btn_del->setIconSet(SmallIconSet("editdelete"));
     btn_del->setMinimumSize(btn_new->sizeHint() * 1.2);
-    connect(btn_del, SIGNAL(clicked()), SLOT(delButtonClicked()));
+    connect(btn_del, TQT_SIGNAL(clicked()), TQT_SLOT(delButtonClicked()));
     hbox->addWidget(btn_del);
 
-    btn_up = new QPushButton(QString::null, listgroup_widget);
-    QToolTip::add(btn_up, i18n("Up"));
+    btn_up = new TQPushButton(TQString::null, listgroup_widget);
+    TQToolTip::add(btn_up, i18n("Up"));
     btn_up->setIconSet(SmallIconSet("up"));
     btn_up->setMinimumSize(btn_up->sizeHint() * 1.2);
-    connect(btn_up, SIGNAL(clicked()), SLOT(upButtonClicked()));
+    connect(btn_up, TQT_SIGNAL(clicked()), TQT_SLOT(upButtonClicked()));
     hbox->addWidget(btn_up);
 
-    btn_down = new QPushButton(QString::null, listgroup_widget);
-    QToolTip::add(btn_down, i18n("Down"));
+    btn_down = new TQPushButton(TQString::null, listgroup_widget);
+    TQToolTip::add(btn_down, i18n("Down"));
     btn_down->setIconSet(SmallIconSet("down"));
     btn_down->setMinimumSize(btn_down->sizeHint() * 1.2);
-    connect(btn_down, SIGNAL(clicked()), SLOT(downButtonClicked()));
+    connect(btn_down, TQT_SIGNAL(clicked()), TQT_SLOT(downButtonClicked()));
     hbox->addWidget(btn_down);
 
     hbox->addStretch(10);
 
     /* right side - tea properties */
-    QBoxLayout *rightside = new QVBoxLayout(box);
-    editgroup = new QGroupBox(2, Vertical, i18n("Tea Properties"), page);
+    TQBoxLayout *rightside = new TQVBoxLayout(box);
+    editgroup = new TQGroupBox(2, Vertical, i18n("Tea Properties"), page);
     rightside->addWidget(editgroup, 0, 0);
-    QHBox *propbox = new QHBox(editgroup);
+    TQHBox *propbox = new TQHBox(editgroup);
 
     // FIXME: - must enforce correct vertical alignment of each label-editor pair
     //          (better use one HBox for each label-editor pair?)
-    QVBox *propleft = new QVBox(propbox);
-    QVBox *propright = new QVBox(propbox);
-    nameEdit = new QLineEdit(propright);
+    TQVBox *propleft = new TQVBox(propbox);
+    TQVBox *propright = new TQVBox(propbox);
+    nameEdit = new TQLineEdit(propright);
     nameEdit->setFixedHeight(nameEdit->sizeHint().height());
-    nameEdit->setAlignment(QLineEdit::AlignLeft);
-    QLabel *l = new QLabel(nameEdit, i18n("Name:"), propleft);
+    nameEdit->setAlignment(TQLineEdit::AlignLeft);
+    TQLabel *l = new TQLabel(nameEdit, i18n("Name:"), propleft);
     l->setFixedSize(l->sizeHint());
-    connect(nameEdit, SIGNAL(textChanged(const QString&)), SLOT(nameEditTextChanged(const QString&)) );
+    connect(nameEdit, TQT_SIGNAL(textChanged(const TQString&)), TQT_SLOT(nameEditTextChanged(const TQString&)) );
 
     timeEdit = new TimeEdit(propright);
     timeEdit->setFixedHeight(timeEdit->sizeHint().height());
-    l = new QLabel(timeEdit, i18n("Tea time:"), propleft);
+    l = new TQLabel(timeEdit, i18n("Tea time:"), propleft);
     l->setFixedSize(l->sizeHint());
-    connect(timeEdit, SIGNAL(valueChanged(int)), SLOT(spinBoxValueChanged(int)));
+    connect(timeEdit, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)));
 
     /* bottom - timeout actions */
-    QGroupBox *actiongroup = new QGroupBox(4, Vertical, i18n("Action"), page);
+    TQGroupBox *actiongroup = new TQGroupBox(4, Vertical, i18n("Action"), page);
     top_box->addWidget(actiongroup, 0, 0);
 
-    QWidget *actionconf_widget = new QWidget(actiongroup);
-    QBoxLayout *actionconf_hbox = new QHBoxLayout(actionconf_widget);
-    btn_conf = new QPushButton(i18n("Configure Events..."), actionconf_widget);
+    TQWidget *actionconf_widget = new TQWidget(actiongroup);
+    TQBoxLayout *actionconf_hbox = new TQHBoxLayout(actionconf_widget);
+    btn_conf = new TQPushButton(i18n("Configure Events..."), actionconf_widget);
     actionconf_hbox->addWidget(btn_conf);
-    connect(btn_conf, SIGNAL(clicked()), SLOT(confButtonClicked()));
+    connect(btn_conf, TQT_SIGNAL(clicked()), TQT_SLOT(confButtonClicked()));
     actionconf_hbox->addStretch(10);
 
-    eventEnable = new QCheckBox(i18n("Event"), actiongroup);
-    popupEnable = new QCheckBox(i18n("Popup"), actiongroup);
+    eventEnable = new TQCheckBox(i18n("Event"), actiongroup);
+    popupEnable = new TQCheckBox(i18n("Popup"), actiongroup);
     eventEnable->setFixedHeight(eventEnable->sizeHint().height());
     popupEnable->setFixedHeight(popupEnable->sizeHint().height());
 
-    QHBox *actionbox = new QHBox(actiongroup);
-    actionEnable = new QCheckBox(actionbox);
+    TQHBox *actionbox = new TQHBox(actiongroup);
+    actionEnable = new TQCheckBox(actionbox);
 //    FIXME: add text to this line:
-//    QLabel *actionLabel = new QLabel(i18n("Execute: "), actiongroup);
-    actionEdit = new QLineEdit(actionbox);
+//    TQLabel *actionLabel = new TQLabel(i18n("Execute: "), actiongroup);
+    actionEdit = new TQLineEdit(actionbox);
     actionEdit->setFixedHeight(actionEdit->sizeHint().height());
-    QToolTip::add(actionEdit, i18n("Enter command here; '%t' will be replaced with name of steeping tea"));
-    connect(actionEnable, SIGNAL(toggled(bool)), SLOT(actionEnableToggled(bool)));
+    TQToolTip::add(actionEdit, i18n("Enter command here; '%t' will be replaced with name of steeping tea"));
+    connect(actionEnable, TQT_SIGNAL(toggled(bool)), TQT_SLOT(actionEnableToggled(bool)));
     rightside->addStretch();
 
     // single checkbox
-    visEnable = new QCheckBox(i18n("Visualize progress in icon tray"), page);
+    visEnable = new TQCheckBox(i18n("Visualize progress in icon tray"), page);
     top_box->addWidget(visEnable, 0, 0);
 
 
     // let listbox claim all remaining vertical space
     top_box->setStretchFactor(box, 10);
 
-    connect(confdlg, SIGNAL(helpClicked()), SLOT(help()));
+    connect(confdlg, TQT_SIGNAL(helpClicked()), TQT_SLOT(help()));
   }
 
   // now add all defined teas (and their times) to the listview
@@ -805,7 +805,7 @@ void TopLevel::config()
   actionEdit->setEnabled(useAction);
   visEnable->setChecked(useTrayVis);
 
-  if (confdlg->exec() == QDialog::Accepted)
+  if (confdlg->exec() == TQDialog::Accepted)
   {
     // activate new settings
     useNotify = eventEnable->isChecked();
@@ -820,7 +820,7 @@ void TopLevel::config()
     int i = 0;
     teas.clear();
     teas.resize(listbox->childCount());
-    for (QListViewItemIterator it(listbox); it.current() != 0; ++it) {
+    for (TQListViewItemIterator it(listbox); it.current() != 0; ++it) {
       teas[i].name = static_cast<TeaListItem *>(it.current())->name();
       teas[i].time = static_cast<TeaListItem *>(it.current())->time();
       if (it.current() == current_item)
@@ -849,9 +849,9 @@ void TopLevel::config()
     config->deleteGroup("Teas", true);          // deep remove of whole group
     config->setGroup("Teas");
     config->writeEntry("Number", teas.count());
-    QString key;
+    TQString key;
     int index = 1;
-    for (QValueVector<tea_struct>::ConstIterator it = teas.begin(); it != teas.end(); ++it) {
+    for (TQValueVector<tea_struct>::ConstIterator it = teas.begin(); it != teas.end(); ++it) {
       key.sprintf("Tea%d Name", index);
       config->writeEntry(key, it->name);
       key.sprintf("Tea%d Time", index);

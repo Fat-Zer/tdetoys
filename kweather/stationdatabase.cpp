@@ -12,21 +12,21 @@
 //
 #include "stationdatabase.h"
 
-#include <qstringlist.h>
-#include <qfile.h>
+#include <tqstringlist.h>
+#include <tqfile.h>
 #include <kdebug.h>
 
 class StationInfo
 {
 	public:
-		QString cityName;
-		QString country;
-		QString longitude;
-		QString latitude;
+		TQString cityName;
+		TQString country;
+		TQString longitude;
+		TQString latitude;
 		StationInfo () {}
 };
 
-StationDatabase::StationDatabase(const QString path) : mPath(path)
+StationDatabase::StationDatabase(const TQString path) : mPath(path)
 {
 }
 
@@ -35,21 +35,21 @@ StationDatabase::~StationDatabase()
 {
 }
 
-bool StationDatabase::loadStation( const QString & stationID )
+bool StationDatabase::loadStation( const TQString & stationID )
 {
-	QFile file( mPath );
+	TQFile file( mPath );
 	bool found = FALSE;
 
 	if ( !file.open( IO_ReadOnly ) )
 		return false;
 
-	QTextStream stream( &file );
-	stream.setEncoding( QTextStream::UnicodeUTF8 );
-	QString line;
+	TQTextStream stream( &file );
+	stream.setEncoding( TQTextStream::UnicodeUTF8 );
+	TQString line;
 	while ( !stream.eof() )
 	{
 		line = stream.readLine(); // line of text excluding '\n'
-		QStringList data = QStringList::split( ";", line, true );
+		TQStringList data = TQStringList::split( ";", line, true );
 
 		if ( data[ 0 ].stripWhiteSpace() == stationID )
 		{
@@ -70,11 +70,11 @@ bool StationDatabase::loadStation( const QString & stationID )
 }
 
 /*!
-    \fn StationDatabase::stationNameFromID(const QString& id)
+    \fn StationDatabase::stationNameFromID(const TQString& id)
  */
-QString StationDatabase::stationNameFromID( const QString & stationID )
+TQString StationDatabase::stationNameFromID( const TQString & stationID )
 {
-	QString result;
+	TQString result;
 	
 	if ( theDB.find( stationID ) == theDB.end() )
 	{
@@ -92,11 +92,11 @@ QString StationDatabase::stationNameFromID( const QString & stationID )
 }
 
 /*!
-    \fn StationDatabase::stationLongitudeFromID( const QString &stationID)
+    \fn StationDatabase::stationLongitudeFromID( const TQString &stationID)
  */
-QString StationDatabase::stationLongitudeFromID( const QString & stationID )
+TQString StationDatabase::stationLongitudeFromID( const TQString & stationID )
 {
-	QString result;
+	TQString result;
 	
 	if ( theDB.find( stationID ) == theDB.end() )
 	{
@@ -114,11 +114,11 @@ QString StationDatabase::stationLongitudeFromID( const QString & stationID )
 }
 
 /*!
-    \fn StationDatabase::stationLatitudeFromID(const QString &stationID)
+    \fn StationDatabase::stationLatitudeFromID(const TQString &stationID)
  */
-QString StationDatabase::stationLatitudeFromID( const QString & stationID )
+TQString StationDatabase::stationLatitudeFromID( const TQString & stationID )
 {
-	QString result;
+	TQString result;
 	
 	if ( theDB.find( stationID ) == theDB.end() )
 	{
@@ -136,11 +136,11 @@ QString StationDatabase::stationLatitudeFromID( const QString & stationID )
 }
 
 /*!
-    \fn StationDatabase::stationCountryFromID( const QString &stationID)
+    \fn StationDatabase::stationCountryFromID( const TQString &stationID)
  */
-QString StationDatabase::stationCountryFromID( const QString &stationID )
+TQString StationDatabase::stationCountryFromID( const TQString &stationID )
 {
-	QString result;
+	TQString result;
 	
 	if ( theDB.find( stationID ) == theDB.end() )
 	{
@@ -157,9 +157,9 @@ QString StationDatabase::stationCountryFromID( const QString &stationID )
 	return result;
 }
 
-QString StationDatabase::stationIDfromName( const QString &name )
+TQString StationDatabase::stationIDfromName( const TQString &name )
 {
-	QMap<QString,StationInfo>::Iterator itr = theDB.begin();
+	TQMap<TQString,StationInfo>::Iterator itr = theDB.begin();
 	for( ; itr != theDB.end(); ++itr)
 	{
 	  kdDebug() << "Checking " << itr.data().cityName << endl;

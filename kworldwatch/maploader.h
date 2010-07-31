@@ -28,9 +28,9 @@
 #ifndef MAP_LOADER_H
 #define MAP_LOADER_H
 
-#include <qpixmap.h>
-#include <qbitmap.h>
-#include <qptrlist.h>
+#include <tqpixmap.h>
+#include <tqbitmap.h>
+#include <tqptrlist.h>
 
 
 class MapTheme
@@ -38,10 +38,10 @@ class MapTheme
 public:
 
   MapTheme() : _name(""), _tag(""), _id(0) {};
-  MapTheme(const QString &name, const QString &tag) : _name(name), _tag(tag), _id(0) {};
+  MapTheme(const TQString &name, const TQString &tag) : _name(name), _tag(tag), _id(0) {};
 
-  QString tag() { return _tag; };
-  QString name() { return _name; };
+  TQString tag() { return _tag; };
+  TQString name() { return _name; };
 
   void setID(int i) { _id = i; };
   int ID() { return _id; };
@@ -49,7 +49,7 @@ public:
 
 private:
   
-  QString _name, _tag;
+  TQString _name, _tag;
   int _id;
   
 };
@@ -59,21 +59,21 @@ class MapLoader
 {
 public:
 
-  static QPtrList<MapTheme> themes();
+  static TQPtrList<MapTheme> themes();
 
-  void load(unsigned int width=400, const QString &theme = "earth", unsigned int height=0, float opacity=0.5);
+  void load(unsigned int width=400, const TQString &theme = "earth", unsigned int height=0, float opacity=0.5);
 
-  QPixmap lightMap() { return _light; };
-  QPixmap darkMap() { return _dark; };
+  TQPixmap lightMap() { return _light; };
+  TQPixmap darkMap() { return _dark; };
 
-  QBitmap darkMask(int width, int height);
+  TQBitmap darkMask(int width, int height);
 
 
 private:
 
-  QStringList maps(const QString &theme);
+  TQStringList maps(const TQString &theme);
 
-  QPixmap _light, _dark;
+  TQPixmap _light, _dark;
 
 };
 

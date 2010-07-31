@@ -42,8 +42,8 @@ static	struct conversionEntry ConversionTable[MAX_UNIT] = {
  * Note that we use installEventFilter on the two KImageNumber's
  * to make clicks on them bring up the context-menu.
  */
-Kodometer::Kodometer(QWidget* parent, const char* name)
-	: QFrame(parent, name),
+Kodometer::Kodometer(TQWidget* parent, const char* name)
+	: TQFrame(parent, name),
 	dontRefresh(false),
         speed(0.0),
 	lastDistance(0.0),
@@ -88,18 +88,18 @@ Kodometer::Kodometer(QWidget* parent, const char* name)
 
 	menu->insertTitle(kapp->miniIcon(), KGlobal::instance()->aboutData()->programName());
 
-	enabledID = menu->insertItem(i18n("&Enable"), this, SLOT(toggleEnabled()));
+	enabledID = menu->insertItem(i18n("&Enable"), this, TQT_SLOT(toggleEnabled()));
 	metricID = menu->insertItem(i18n("&Metric Display"), this,
-		SLOT(toggleUnits()));
+		TQT_SLOT(toggleUnits()));
 	autoResetID = menu->insertItem(i18n("Auto &Reset Trip"), this,
-		SLOT(toggleAutoReset()));
-	menu->insertItem(i18n("Reset &Trip"), this, SLOT(resetTrip()));
-	menu->insertItem(i18n("Reset &Odometer"), this, SLOT(resetTotal()));
+		TQT_SLOT(toggleAutoReset()));
+	menu->insertItem(i18n("Reset &Trip"), this, TQT_SLOT(resetTrip()));
+	menu->insertItem(i18n("Reset &Odometer"), this, TQT_SLOT(resetTotal()));
 	menu->insertSeparator();
 
 	menu->insertItem(SmallIconSet("help"), i18n("&Help"), helpMnu);
 
-	menu->insertItem(SmallIconSet("exit"), i18n("&Quit"), this, SLOT(quit()));
+	menu->insertItem(SmallIconSet("exit"), i18n("&Quit"), this, TQT_SLOT(quit()));
 	menu->setCheckable(true);
 
 	menu->setItemChecked(enabledID, Enabled);
@@ -169,10 +169,10 @@ void Kodometer::FindAllScreens(void)
  * Here's where we override events to the KImgNum's to display
  * the context menu
  */
-bool Kodometer::eventFilter( QObject *, QEvent *e )
+bool Kodometer::eventFilter( TQObject *, TQEvent *e )
 {
-	if ( e->type() == QEvent::MouseButtonPress ) {
-		mousePressEvent((QMouseEvent*)e);
+	if ( e->type() == TQEvent::MouseButtonPress ) {
+		mousePressEvent((TQMouseEvent*)e);
 		return true;
 	}
 	return false;
@@ -181,7 +181,7 @@ bool Kodometer::eventFilter( QObject *, QEvent *e )
 /*
  * Show the context menu
  */
-void Kodometer::mousePressEvent(QMouseEvent* e)
+void Kodometer::mousePressEvent(TQMouseEvent* e)
 {
 	//FIXME fix this!
 	//dontRefresh = true;
@@ -193,7 +193,7 @@ void Kodometer::mousePressEvent(QMouseEvent* e)
  * compare it to the last known position, and then to calculate
  * the distance moved.
  */
-void Kodometer::timerEvent(QTimerEvent* e)
+void Kodometer::timerEvent(TQTimerEvent* e)
 {
 	if (Enabled) {
 		if(e->timerId() == distanceID) {
@@ -237,17 +237,17 @@ void Kodometer::toggleUnits()
 
 	menu->setItemChecked(metricID, UseMetric);
 
-	QToolTip::remove(totalLabel);
-	QToolTip::remove(tripLabel);
+	TQToolTip::remove(totalLabel);
+	TQToolTip::remove(tripLabel);
 	if(!UseMetric) {
-		QToolTip::add(totalLabel,
+		TQToolTip::add(totalLabel,
 			i18n(ConversionTable[distanceUnit].fromUnitTagPlural));
-		QToolTip::add(tripLabel,
+		TQToolTip::add(tripLabel,
 			i18n(ConversionTable[tripDistanceUnit].fromUnitTagPlural));
 	} else {
-		QToolTip::add(totalLabel,
+		TQToolTip::add(totalLabel,
 			i18n(ConversionTable[distanceUnit].toUnitTagPlural));
-		QToolTip::add(tripLabel,
+		TQToolTip::add(tripLabel,
 			i18n(ConversionTable[tripDistanceUnit].toUnitTagPlural));
 	}
 	refresh();
@@ -284,29 +284,29 @@ void Kodometer::refresh(void)
 {
 	if(distanceUnit != lastDUnit) {
 		lastDUnit = distanceUnit;
-		QToolTip::remove(totalLabel);
+		TQToolTip::remove(totalLabel);
 		if(!UseMetric)
-			QToolTip::add(totalLabel,
+			TQToolTip::add(totalLabel,
 				i18n(ConversionTable[distanceUnit].fromUnitTagPlural));
 		else
-			QToolTip::add(totalLabel,
+			TQToolTip::add(totalLabel,
 				i18n(ConversionTable[distanceUnit].toUnitTagPlural));
 	}
 
 	if(tripDistanceUnit != lastTUnit) {
 		lastTUnit = tripDistanceUnit;
-		QToolTip::remove(tripLabel);
+		TQToolTip::remove(tripLabel);
 		if(!UseMetric)
-			QToolTip::add(tripLabel,
+			TQToolTip::add(tripLabel,
 				i18n(ConversionTable[tripDistanceUnit].fromUnitTagPlural));
 		else
-			QToolTip::add(tripLabel,
+			TQToolTip::add(tripLabel,
 				i18n(ConversionTable[tripDistanceUnit].toUnitTagPlural));
 	}
 
 	//now draw everything
-	QString distance_s;
-	QString trip_s;
+	TQString distance_s;
+	TQString trip_s;
         double distance_d = 0;
         double trip_d = 0;
 
@@ -519,9 +519,9 @@ int Kodometer::CalcDistance(void)
  * pretty OO world.
  */
 #define THERE_IS_A_NEXT (ConversionTable[unit].maxToBeforeNext != -1.0)
-QString Kodometer::FormatDistance(double &dist, Units unit)
+TQString Kodometer::FormatDistance(double &dist, Units unit)
 {
-    QString string;
+    TQString string;
     const char *tag;
     int precision;
 

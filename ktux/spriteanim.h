@@ -12,11 +12,11 @@
 #include <config.h>
 #endif 
 
-#include <qpixmap.h>
-#include <qdict.h>                                                              
-#include <qptrlist.h>
-#include <qstrlist.h>
-#include <qcanvas.h>
+#include <tqpixmap.h>
+#include <tqdict.h>                                                              
+#include <tqptrlist.h>
+#include <tqstrlist.h>
+#include <tqcanvas.h>
 #include <kconfigbase.h>
 #include <ksimpleconfig.h>                                                      
 
@@ -27,7 +27,7 @@
 class SpriteObject : public QCanvasSprite
 {
 public:
-    SpriteObject(SpritePixmapSequence *seq, QCanvas *c);
+    SpriteObject(SpritePixmapSequence *seq, TQCanvas *c);
 
     void setLifeSpan(int l) { mLifeSpan = l; }
     void age();
@@ -51,7 +51,7 @@ class SpriteDef
 public:
     SpriteDef(KConfigBase &config);
 
-    SpriteObject *create( QCanvas *c );
+    SpriteObject *create( TQCanvas *c );
 
 protected:
     void read(KConfigBase &config);
@@ -75,7 +75,7 @@ protected:
 class SpriteGroup
 {
 public:
-    SpriteGroup(QCanvas *c, KConfigBase &config);
+    SpriteGroup(TQCanvas *c, KConfigBase &config);
 
     void next();
     void refresh();
@@ -85,8 +85,8 @@ protected:
     void read(KConfigBase &config);
 
 protected:
-    QPtrList<SpriteDef>        mAvailable;
-    QPtrList<SpriteObject>     mActive;
+    TQPtrList<SpriteDef>        mAvailable;
+    TQPtrList<SpriteObject>     mActive;
     int                     mCount;
     SpriteRange             mRefresh;
     QCanvas		    *mCanvas;

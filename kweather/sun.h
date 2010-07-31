@@ -18,8 +18,8 @@
 #ifndef SUN_H
 #define SUN_H
 
-#include <qstring.h>
-#include <qdatetime.h>
+#include <tqstring.h>
+#include <tqdatetime.h>
 #include <krfcdate.h>
 
 class Sun
@@ -35,20 +35,20 @@ class Sun
 		 * to the local time zone.
 		 *
 		 */
-		Sun( const QString &latitude, 
-		     const QString &longitude,
-		     QDate date = QDate::currentDate(),
+		Sun( const TQString &latitude, 
+		     const TQString &longitude,
+		     TQDate date = TQDate::currentDate(),
 		     const int localUTCOffset = KRFCDate::localUTCOffset() );
 		
-		QTime computeRiseTime();
-		QTime computeSetTime();
-		QTime computeCivilTwilightStart();
-		QTime computeCivilTwilightEnd();
+		TQTime computeRiseTime();
+		TQTime computeSetTime();
+		TQTime computeCivilTwilightStart();
+		TQTime computeCivilTwilightEnd();
 
 	private:
-		QTime convertDoubleToLocalTime( const double time );
+		TQTime convertDoubleToLocalTime( const double time );
 
-		const QDate m_date;
+		const TQDate m_date;
 		const double m_lat;
 		const double m_lon;
 		const int m_localUTCOffset;

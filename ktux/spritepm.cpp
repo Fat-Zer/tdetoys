@@ -37,16 +37,16 @@ SpritePixmapManager::~SpritePixmapManager()
 // Returns:
 //   pointer to pixmap if loaded successfully, 0 otherwise.
 //
-const QPixmap *SpritePixmapManager::load(const QString & img)
+const TQPixmap *SpritePixmapManager::load(const TQString & img)
 {
-    QPixmap *pixmap = mPixmaps.find(img);
+    TQPixmap *pixmap = mPixmaps.find(img);
 
     if (!pixmap)
     {
         // pixmap has not yet been loaded.
         kdDebug() << "Reading pixmap: " << img << endl;
-        QString path = mPixmapDir + QString("/") + img;
-        pixmap = new QPixmap(path);
+        TQString path = mPixmapDir + TQString("/") + img;
+        pixmap = new TQPixmap(path);
 
         if (!pixmap->isNull())
         {
@@ -79,9 +79,9 @@ SpritePixmapManager *SpritePixmapManager::manager()
 
 //===========================================================================
 //
-SpritePixmapSequence::SpritePixmapSequence(QPtrList<QPixmap> pm, QPtrList<QPoint> hs,
-        QMemArray<int> d)
-    : QCanvasPixmapArray(pm, hs), mDelays(d)
+SpritePixmapSequence::SpritePixmapSequence(TQPtrList<TQPixmap> pm, TQPtrList<TQPoint> hs,
+        TQMemArray<int> d)
+    : TQCanvasPixmapArray(pm, hs), mDelays(d)
 {
 }
 
@@ -113,7 +113,7 @@ SpriteSequenceManager::~SpriteSequenceManager()
 //   pointer to sprite if loaded successfully, 0 otherwise.
 //
 SpritePixmapSequence *SpriteSequenceManager::load(KConfigBase &config,
-    const QString & name)
+    const TQString & name)
 {
     SpritePixmapSequence *sprite = mSprites.find(name);
 
@@ -135,24 +135,24 @@ SpritePixmapSequence *SpriteSequenceManager::load(KConfigBase &config,
 //
 SpritePixmapSequence *SpriteSequenceManager::read(KConfigBase &config)
 {
-    QStrList strImages;
-    QStrList strDelays;
-    QPtrList<QPixmap> pixmaps;
-    QPtrList<QPoint> hotspots;
+    TQStrList strImages;
+    TQStrList strDelays;
+    TQPtrList<TQPixmap> pixmaps;
+    TQPtrList<TQPoint> hotspots;
 
     int frames = config.readListEntry("Images", strImages);
     config.readListEntry("Delays", strDelays);
 
-    QMemArray<int> delays(frames);
+    TQMemArray<int> delays(frames);
 
     for (int i = 0; i < frames; i++)
     {
-        const QPixmap *pixmap =
+        const TQPixmap *pixmap =
                     SpritePixmapManager::manager()->load(strImages.at(i));
         if (pixmap)
         {
             pixmaps.append(pixmap);
-            hotspots.append(new QPoint(0,0));
+            hotspots.append(new TQPoint(0,0));
             delays[i] = atoi(strDelays.at(i));
         }
     }

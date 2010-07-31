@@ -27,12 +27,12 @@
 */
 #include <time.h>
 
-#include <qvaluelist.h>
-#include <qdir.h>
-#include <qimage.h>
-#include <qpainter.h>
-#include <qtl.h>
-#include <qstringlist.h>
+#include <tqvaluelist.h>
+#include <tqdir.h>
+#include <tqimage.h>
+#include <tqpainter.h>
+#include <tqtl.h>
+#include <tqstringlist.h>
 
 
 #include <kglobal.h>
@@ -45,12 +45,12 @@
 #include "maploader.h"
 
 
-QPtrList<MapTheme> MapLoader::themes()
+TQPtrList<MapTheme> MapLoader::themes()
 {
-  QPtrList<MapTheme> result;
+  TQPtrList<MapTheme> result;
 
-  QStringList files = KGlobal::dirs()->findAllResources("data", "kworldclock/maps/*/*.desktop");
-  for (QStringList::Iterator it=files.begin(); it != files.end(); ++it)
+  TQStringList files = KGlobal::dirs()->findAllResources("data", "kworldclock/maps/*/*.desktop");
+  for (TQStringList::Iterator it=files.begin(); it != files.end(); ++it)
     {
       KDesktopFile conf(*it);
       conf.setGroup("Theme");
@@ -61,20 +61,20 @@ QPtrList<MapTheme> MapLoader::themes()
 }
 
 
-QStringList MapLoader::maps(const QString &theme)
+TQStringList MapLoader::maps(const TQString &theme)
 {
-  return KGlobal::dirs()->findAllResources("data", QString("kworldclock/maps/%1/*.jpg").arg(theme));
+  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").arg(theme));
 }
 
 
-void MapLoader::load(unsigned int width, const QString &theme, unsigned int height, float opacity)
+void MapLoader::load(unsigned int width, const TQString &theme, unsigned int height, float opacity)
 {
   // find the maps available
-  QValueList<uint> sizes;
-  QStringList files = maps(theme);
+  TQValueList<uint> sizes;
+  TQStringList files = maps(theme);
   for (uint i=0; i<files.count(); ++i)
     {
-      QString f = files[i];
+      TQString f = files[i];
       int pos = f.findRev("/");
       if (pos >= 0)
         f = f.mid(pos+1);
@@ -94,14 +94,14 @@ void MapLoader::load(unsigned int width, const QString &theme, unsigned int heig
 	break;
     }
   
-  QImage image;
+  TQImage image;
   if (size == 0)
     {
-      image = QImage(locate("data", "kworldclock/maps/depths/800.jpg"));
+      image = TQImage(locate("data", "kworldclock/maps/depths/800.jpg"));
       size = 800;
     }
   else  
-    image = QImage(locate("data", QString("kworldclock/maps/%1/%2.jpg").arg(theme).arg(size)));
+    image = TQImage(locate("data", TQString("kworldclock/maps/%1/%2.jpg").arg(theme).arg(size)));
 
   if (height == 0)
     height = width/2;
@@ -117,14 +117,14 @@ void MapLoader::load(unsigned int width, const QString &theme, unsigned int heig
 }
 
 
-QBitmap MapLoader::darkMask(int width, int height)
+TQBitmap MapLoader::darkMask(int width, int height)
 {
   time_t t;
   struct tm *tmp;
   double jt, sunra, sundec, sunrv, sunlong;
   short *wtab;
 
-  QBitmap illuMask(width, height);
+  TQBitmap illuMask(width, height);
  
   // calculate the position of the sun
   t = time(NULL);
@@ -141,7 +141,7 @@ QBitmap MapLoader::darkMask(int width, int height)
  
   // draw illumination
   illuMask.fill(Qt::black);
-  QPainter p;
+  TQPainter p;
   p.begin(&illuMask);
  
   int start, stop;

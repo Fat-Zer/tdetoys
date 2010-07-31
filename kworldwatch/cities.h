@@ -29,9 +29,9 @@
 #define CITIES_H
 
 
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qptrlist.h>
+#include <tqstring.h>
+#include <tqstringlist.h>
+#include <tqptrlist.h>
 
 
 class QPainter;
@@ -41,8 +41,8 @@ class City
 {
 public:
 
-  City(const QString &n, double la, double lo) : _name(n), _latitude(la), _longitude(lo) {};
-  QString name() { return _name; };
+  City(const TQString &n, double la, double lo) : _name(n), _latitude(la), _longitude(lo) {};
+  TQString name() { return _name; };
 
   double latitude() { return _latitude; };
   double longitude() { return _longitude; };
@@ -50,7 +50,7 @@ public:
 
 private:
 
-  QString _name;
+  TQString _name;
   double _latitude, _longitude;
 
 };
@@ -62,24 +62,24 @@ public:
 
   CityList();
   ~CityList();
-  void paint(QPainter *p, int width, int height, int offset);
+  void paint(TQPainter *p, int width, int height, int offset);
   
-  City *getNearestCity(int w, int h, int offset, int x, int y, QPoint &where);
+  City *getNearestCity(int w, int h, int offset, int x, int y, TQPoint &where);
 
-  QStringList timezones();
+  TQStringList timezones();
 
   
 private:
 
   void readCityLists();
-  void readCityList(const QString &fname);
+  void readCityList(const TQString &fname);
 
-  QPoint getPosition(double la, double lo, int w, int h, int offset);
+  TQPoint getPosition(double la, double lo, int w, int h, int offset);
 
 
 private:
 
-  QPtrList<City> _cities;
+  TQPtrList<City> _cities;
 
 };
 

@@ -19,7 +19,7 @@
 
 #include "weatherbutton.h"
 
-#include <qpainter.h>
+#include <tqpainter.h>
 
 #include <kapplication.h>
 #include <kcursor.h>
@@ -29,15 +29,15 @@
 #include <kipc.h>
 #include <kstandarddirs.h>
 
-WeatherButton::WeatherButton( QWidget *parent, const char *name )
-    : QButton( parent, name ), m_highlight( false )
+WeatherButton::WeatherButton( TQWidget *parent, const char *name )
+    : TQButton( parent, name ), m_highlight( false )
 {
     setBackgroundOrigin( AncestorOrigin );
 
-    connect( kapp, SIGNAL( settingsChanged( int ) ),
-       SLOT( slotSettingsChanged( int ) ) );
-    connect( kapp, SIGNAL( iconChanged( int ) ),
-       SLOT( slotIconChanged( int ) ) );
+    connect( kapp, TQT_SIGNAL( settingsChanged( int ) ),
+       TQT_SLOT( slotSettingsChanged( int ) ) );
+    connect( kapp, TQT_SIGNAL( iconChanged( int ) ),
+       TQT_SLOT( slotIconChanged( int ) ) );
 
     kapp->addKipcEventMask( KIPC::SettingsChanged );
     kapp->addKipcEventMask( KIPC::IconChanged );
@@ -45,19 +45,19 @@ WeatherButton::WeatherButton( QWidget *parent, const char *name )
     slotSettingsChanged( KApplication::SETTINGS_MOUSE );
 }
 
-void WeatherButton::drawButton( QPainter *p )
+void WeatherButton::drawButton( TQPainter *p )
 {
     drawButtonLabel(p);
 }
 
-void WeatherButton::drawButtonLabel( QPainter *p )
+void WeatherButton::drawButtonLabel( TQPainter *p )
 {
     if (!pixmap())
     {
         return;
     }
 
-    QPixmap pix = m_highlight? m_activeIcon : m_normalIcon;
+    TQPixmap pix = m_highlight? m_activeIcon : m_normalIcon;
 
     if (isOn() || isDown())
     {
@@ -70,7 +70,7 @@ void WeatherButton::drawButtonLabel( QPainter *p )
     int ph = pix.height();
     int pw = pix.width();
     int margin = 3;
-    QPoint origin(margin / 2, margin / 2);
+    TQPoint origin(margin / 2, margin / 2);
 
     if (ph < (h - margin))
     {
@@ -86,9 +86,9 @@ void WeatherButton::drawButtonLabel( QPainter *p )
 }
 
 
-void WeatherButton::setPixmap( const QPixmap &pix )
+void WeatherButton::setPixmap( const TQPixmap &pix )
 {
-    QButton::setPixmap( pix );
+    TQButton::setPixmap( pix );
     generateIcons();
 }
 
@@ -97,8 +97,8 @@ void WeatherButton::generateIcons()
     if ( !pixmap() )
         return;
 
-    QImage image = pixmap()->convertToImage();
-    image = image.smoothScale( pixmapSize(), QImage::ScaleMin );
+    TQImage image = pixmap()->convertToImage();
+    image = image.smoothScale( pixmapSize(), TQImage::ScaleMin );
 
     KIconEffect effect;
 
@@ -127,31 +127,31 @@ void WeatherButton::slotIconChanged( int group )
     repaint( false );
 }
 
-void WeatherButton::enterEvent( QEvent *e )
+void WeatherButton::enterEvent( TQEvent *e )
 {
     m_highlight = true;
 
     repaint( false );
-    QButton::enterEvent( e );
+    TQButton::enterEvent( e );
 }
 
-void WeatherButton::leaveEvent( QEvent *e )
+void WeatherButton::leaveEvent( TQEvent *e )
 {
     m_highlight = false;
 
     repaint( false );
-    QButton::enterEvent( e );
+    TQButton::enterEvent( e );
 }
 
-void WeatherButton::resizeEvent( QResizeEvent * )
+void WeatherButton::resizeEvent( TQResizeEvent * )
 {
     generateIcons();
 }
 
-QPoint WeatherButton::pixmapOrigin() const
+TQPoint WeatherButton::pixmapOrigin() const
 {
-    QSize point = margin()/2;
-    QPoint origin( point.width(), point.height() );
+    TQSize point = margin()/2;
+    TQPoint origin( point.width(), point.height() );
 
     return origin;
 }

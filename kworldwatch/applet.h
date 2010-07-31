@@ -29,8 +29,8 @@
 #define KWW_applet_h
 
 
-#include <qstring.h>
-#include <qpixmap.h>
+#include <tqstring.h>
+#include <tqpixmap.h>
 
 
 #include <kpanelapplet.h>
@@ -45,8 +45,8 @@ class KWWApplet : public KPanelApplet
     
 public:
 
-  KWWApplet(const QString& configFile, Type t = Normal, int actions = 0,
-     QWidget *parent = 0, const char *name = 0);
+  KWWApplet(const TQString& configFile, Type t = Normal, int actions = 0,
+     TQWidget *parent = 0, const char *name = 0);
   ~KWWApplet();
 
   int widthForHeight(int height) const;
@@ -55,8 +55,8 @@ public:
 
 protected:
 
-  void mousePressEvent(QMouseEvent *ev);
-  bool eventFilter(QObject *, QEvent *);
+  void mousePressEvent(TQMouseEvent *ev);
+  bool eventFilter(TQObject *, TQEvent *);
 
 
 private:

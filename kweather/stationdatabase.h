@@ -13,8 +13,8 @@
 #ifndef STATIONDATABASE_H
 #define STATIONDATABASE_H
 
-#include <qmap.h>
-#include <qstring.h>
+#include <tqmap.h>
+#include <tqstring.h>
 
 #include <klocale.h>
 #include <kstandarddirs.h>
@@ -30,25 +30,25 @@ class StationInfo;
 class StationDatabase
 {
 public:
-    StationDatabase(const QString path = locate("data", "kweatherservice/stations.dat"));
+    StationDatabase(const TQString path = locate("data", "kweatherservice/stations.dat"));
     ~StationDatabase();
 
-    QString stationNameFromID(const QString& id);
+    TQString stationNameFromID(const TQString& id);
 
-    QString stationLongitudeFromID( const QString &stationID);
+    TQString stationLongitudeFromID( const TQString &stationID);
 
-    QString stationLatitudeFromID(const QString &stationID);
+    TQString stationLatitudeFromID(const TQString &stationID);
 
-    QString stationCountryFromID( const QString &stationID);
+    TQString stationCountryFromID( const TQString &stationID);
     
-    QString stationIDfromName( const QString &name );
+    TQString stationIDfromName( const TQString &name );
 
 private:
-    QMap<QString, StationInfo> theDB;
+    TQMap<TQString, StationInfo> theDB;
 
-    bool loadStation( const QString & stationID );
+    bool loadStation( const TQString & stationID );
 
-    const QString mPath;
+    const TQString mPath;
 };
 
 #endif

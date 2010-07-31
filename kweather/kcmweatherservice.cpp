@@ -21,7 +21,7 @@
     without including the source code for Qt in the source distribution.
 */                                                                      
 
-#include <qlayout.h>
+#include <tqlayout.h>
 
 #include <kaboutdata.h>
 #include <kdebug.h>
@@ -33,19 +33,19 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weatherservice( QWidget *parent, const char * ) {
+  KDE_EXPORT KCModule *create_weatherservice( TQWidget *parent, const char * ) {
     return new KCMWeatherService( parent, "kweather" );
   }
 }
 
-KCMWeatherService::KCMWeatherService( QWidget *parent, const char *name )
+KCMWeatherService::KCMWeatherService( TQWidget *parent, const char *name )
   : KCModule( parent, name )
 {
-  QVBoxLayout *layout = new QVBoxLayout( this );
+  TQVBoxLayout *layout = new TQVBoxLayout( this );
   mWidget = new ServiceConfigWidget( this );
 
   // not needed, as a change immediately changes the service
-  //connect(mWidget, SIGNAL(changed(bool)), this, SIGNAL(changed(bool)));
+  //connect(mWidget, TQT_SIGNAL(changed(bool)), this, TQT_SIGNAL(changed(bool)));
 
   layout->addWidget( mWidget );
   KAboutData *about = new KAboutData( "kcmweatherservice",

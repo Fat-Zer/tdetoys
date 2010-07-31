@@ -33,9 +33,9 @@
 
 #include <stdlib.h>
 #include <unistd.h>
-#include <qmemarray.h>
-#include <qdict.h>
-#include <qstringlist.h>
+#include <tqmemarray.h>
+#include <tqdict.h>
+#include <tqstringlist.h>
 #include <kconfigbase.h>
 #include <ksimpleconfig.h>
 
@@ -59,32 +59,32 @@ public:
         { return (mCurrent < mSequence.count()); }
     int totalMovement() const
         { return mTotalMovement; }
-    QSize maximumSize() const
+    TQSize maximumSize() const
         { return mMaximumSize; }
 
     int delay() const
         { return (validFrame() ? mDelay[mCurrent] : 100); }
-    QPoint hotspot() const
-        { return (validFrame() ? mHotspot[mCurrent] : QPoint(16,16)); }
+    TQPoint hotspot() const
+        { return (validFrame() ? mHotspot[mCurrent] : TQPoint(16,16)); }
     int movement() const
         { return (validFrame() ? mMovement[mCurrent] : 0); }
-    const QPixmap *frame();
+    const TQPixmap *frame();
 
 protected:
     void readConfig(KConfigBase &config);
 
 protected:
     unsigned int   mCurrent;        // current frame in sequence
-    QStringList    mSequence;       // sequence of images to display
-    QMemArray<int>    mDelay;          // delay between frames
-    QMemArray<QPoint> mHotspot;        // the hotspot in a frame
-    QMemArray<int>    mMovement;       // the distance to move between frames
+    TQStringList    mSequence;       // sequence of images to display
+    TQMemArray<int>    mDelay;          // delay between frames
+    TQMemArray<TQPoint> mHotspot;        // the hotspot in a frame
+    TQMemArray<int>    mMovement;       // the distance to move between frames
     int            mTotalMovement;  // the total distance this animation moves
-    QSize          mMaximumSize;    // the maximum size of any frame
+    TQSize          mMaximumSize;    // the maximum size of any frame
 };
 
 //---------------------------------------------------------------------------
-typedef QPtrList<AmorAnim> AmorAnimationGroup;
+typedef TQPtrList<AmorAnim> AmorAnimationGroup;
 
 //---------------------------------------------------------------------------
 //
@@ -96,20 +96,20 @@ public:
     AmorThemeManager();
     virtual ~AmorThemeManager();
 
-    bool setTheme(const QString & file);
-    bool readGroup(const QString & seq);
+    bool setTheme(const TQString & file);
+    bool readGroup(const TQString & seq);
     bool isStatic() const
 	{ return mStatic; }
 
-    AmorAnim *random(const QString & group);
+    AmorAnim *random(const TQString & group);
 
-    QSize maximumSize() const { return mMaximumSize; }
+    TQSize maximumSize() const { return mMaximumSize; }
 
 protected:
-    QString           mPath;
+    TQString           mPath;
     KSimpleConfig     *mConfig;
-    QSize             mMaximumSize; // The largest pixmap used
-    QDict<AmorAnimationGroup> mAnimations; // list of animation groups
+    TQSize             mMaximumSize; // The largest pixmap used
+    TQDict<AmorAnimationGroup> mAnimations; // list of animation groups
     bool              mStatic;	    // static image
 };
 

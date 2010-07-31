@@ -19,9 +19,9 @@
 #include <cstdlib>
 using namespace std;
 
-#include <qfile.h>
-#include <qstring.h>
-#include <qdatetime.h>
+#include <tqfile.h>
+#include <tqstring.h>
+#include <tqdatetime.h>
 #include <krfcdate.h>
 
 #include "stationdatabase.h"
@@ -33,9 +33,9 @@ int main()
 	bool found = false;
 
 	// try the stations.dat file in the current directory first.
-	QString path("stations.dat");
+	TQString path("stations.dat");
 	
-	if (QFile::exists(path))
+	if (TQFile::exists(path))
 	{
 		found = true;
 	}
@@ -47,10 +47,10 @@ int main()
 		// means that make install would have had to be done first before calling
 		// make check so that the file will be there.
 	
-		QString kdeDirs(getenv("KDEDIR"));
+		TQString kdeDirs(getenv("KDEDIR"));
 	
 		path = kdeDirs + "/share/apps/kweatherservice/stations.dat";
-		if (QFile::exists(path))
+		if (TQFile::exists(path))
 		{
 			found = true;
 		}

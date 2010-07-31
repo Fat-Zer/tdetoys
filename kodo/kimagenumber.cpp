@@ -25,11 +25,11 @@
 
 #include "kimagenumber.h"
 
-KImageNumber::KImageNumber(const QString& font, QWidget* parent,const char* name) :
-	QFrame(parent,name),
+KImageNumber::KImageNumber(const TQString& font, TQWidget* parent,const char* name) :
+	TQFrame(parent,name),
 	m_value(0)
 {
-	fontPix = new QPixmap(font);
+	fontPix = new TQPixmap(font);
 	resize(sizeHint());
 }
 
@@ -38,12 +38,12 @@ KImageNumber::~KImageNumber()
 	delete fontPix;
 }
 
-void KImageNumber::paintEvent(QPaintEvent*)
+void KImageNumber::paintEvent(TQPaintEvent*)
 {
 	int w = fontPix->width();
 	int each = w/11;
 
-	QString data;
+	TQString data;
 	data.sprintf("%06.1f", m_value);
 
 	for(unsigned int i=0; i < data.length(); i++) {
@@ -65,15 +65,15 @@ double KImageNumber::value() const
 	return m_value;
 }
 
-QSize KImageNumber::sizeHint() const
+TQSize KImageNumber::sizeHint() const
 {
 	int w = fontPix->width();
 	int each = w/11;
 
-	QString data;
+	TQString data;
 	data.sprintf("%06.1f", m_value);
 
-	return QSize(data.length()*each, fontPix->height());
+	return TQSize(data.length()*each, fontPix->height());
 }
 
 #include "kimagenumber.moc"

@@ -20,14 +20,14 @@
  */
  
  #include "sidebarwidget.h"  
- #include <qscrollview.h>
+ #include <tqscrollview.h>
    
-   sidebarwidget::sidebarwidget(QWidget* parent, const char* name) :
+   sidebarwidget::sidebarwidget(TQWidget* parent, const char* name) :
    	sidebarwidgetbase(parent,name)
    {
-   	view = new QVBox(reportGrid->viewport());
+   	view = new TQVBox(reportGrid->viewport());
 	reportGrid->addChild(view);
-	reportGrid->setResizePolicy(QScrollView::AutoOneFit);
+	reportGrid->setResizePolicy(TQScrollView::AutoOneFit);
    }
    
     sidebarwidget::~sidebarwidget()
@@ -35,12 +35,12 @@
     
     }
     
-    void sidebarwidget::addWidget(QWidget *w, const QString &s)
+    void sidebarwidget::addWidget(TQWidget *w, const TQString &s)
     {
     	w->setFixedWidth(reportGrid->visibleWidth ());
     }
     
-    QWidget *sidebarwidget::viewport()
+    TQWidget *sidebarwidget::viewport()
     {
     	return view;
     }

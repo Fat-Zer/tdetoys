@@ -29,10 +29,10 @@
 #define ZONECLOCK_H
 
 
-#include <qwidget.h>
-#include <qstring.h>
-#include <qframe.h>
-#include <qptrlist.h>
+#include <tqwidget.h>
+#include <tqstring.h>
+#include <tqframe.h>
+#include <tqptrlist.h>
 
 
 class QLabel;
@@ -49,20 +49,20 @@ class ZoneClock : public QFrame
 
 public:
 
-  ZoneClock(const QString &zone, const QString &name, QWidget *parent=0, const char *n=0);
+  ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent=0, const char *n=0);
 
 
-  QString zone() const { return _zone; };
-  void setZone(const QString &z) { _zone = z; updateTime(); };
+  TQString zone() const { return _zone; };
+  void setZone(const TQString &z) { _zone = z; updateTime(); };
 
-  QString name() const { return _name; };
-  void setName( const QString &n) { _name = n; updateTime(); };
+  TQString name() const { return _name; };
+  void setName( const TQString &n) { _name = n; updateTime(); };
 
 
 signals:
 
   void removeMe(ZoneClock *t);
-  void addClock(const QString &zone);
+  void addClock(const TQString &zone);
   void changed();
 
 
@@ -73,7 +73,7 @@ public slots:
 
 protected:
 
-  virtual bool eventFilter(QObject *, QEvent *);
+  virtual bool eventFilter(TQObject *, TQEvent *);
 
 
 private slots:
@@ -86,10 +86,10 @@ private slots:
 
 private:
 
-  QString _zone;
-  QString _name;
-  QLabel  *_timeLabel, *_nameLabel;
-  QPopupMenu *_popup;
+  TQString _zone;
+  TQString _name;
+  TQLabel  *_timeLabel, *_nameLabel;
+  TQPopupMenu *_popup;
 
 };
 
@@ -100,9 +100,9 @@ class ZoneClockPanel : public QFrame
 
 public:
 
-  ZoneClockPanel(QWidget *parent=0, const char *name=0);
+  ZoneClockPanel(TQWidget *parent=0, const char *name=0);
 
-  void addClock(const QString &zone, const QString &name);
+  void addClock(const TQString &zone, const TQString &name);
 
   void save(KConfig *config);
   void load(KConfig *config);
@@ -110,7 +110,7 @@ public:
 
 public slots:
 
-  void addClock(const QString &zone);
+  void addClock(const TQString &zone);
 
 
 private slots:
@@ -125,7 +125,7 @@ private:
   void createDialog();
 
   SimpleFlow *_flow;
-  QPtrList<ZoneClock> _clocks;
+  TQPtrList<ZoneClock> _clocks;
   ClockDialog *_dlg;
 
 };

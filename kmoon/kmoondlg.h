@@ -31,19 +31,19 @@ class KMoonDlg : public KDialogBase {
   Q_OBJECT
     
  public:
-  KMoonDlg(int angle, bool north, bool mask, QWidget *parent, const char *name);
+  KMoonDlg(int angle, bool north, bool mask, TQWidget *parent, const char *name);
   int getAngle() const { return angle; }
   bool getNorthHemi() const { return north; }
   bool getMask() const { return mask; }
   
  private:
-  QSlider *slider;
+  TQSlider *slider;
   MoonWidget *moon;
   int angle;
   bool north;
   bool mask;
-  QPushButton *hemitoggle;
-  QPushButton *masktoggle;
+  TQPushButton *hemitoggle;
+  TQPushButton *masktoggle;
   
  private slots:
   void help();

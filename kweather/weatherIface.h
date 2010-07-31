@@ -9,7 +9,7 @@ public:
 
 	k_dcop:
 	/** Cause KWeather to refrsh it's data **/
-	virtual void refresh(QString) = 0;
+	virtual void refresh(TQString) = 0;
 };
 
 #endif

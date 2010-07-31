@@ -27,10 +27,10 @@
 #ifndef AMORDIALOG_H
 #define AMORDIALOG_H
 
-#include <qdialog.h>
-#include <qlistbox.h>
-#include <qptrlist.h>
-#include <qmultilineedit.h>
+#include <tqdialog.h>
+#include <tqlistbox.h>
+#include <tqptrlist.h>
+#include <tqmultilineedit.h>
 #include "amorconfig.h"
 #include <kdialogbase.h>
 
@@ -72,13 +72,13 @@ protected slots:
 
 protected:
     void readThemes();
-    void addTheme(const QString& file);
+    void addTheme(const TQString& file);
 
 protected:
-    QListBox *mThemeListBox;
-    QMultiLineEdit *mAboutEdit;
-    QStringList mThemes;
-    QStringList mThemeAbout;
+    TQListBox *mThemeListBox;
+    TQMultiLineEdit *mAboutEdit;
+    TQStringList mThemes;
+    TQStringList mThemeAbout;
     AmorConfig mConfig;
 };
 
@@ -89,18 +89,18 @@ protected:
 class AmorListBoxItem : public QListBoxItem
 {
 public:
-    AmorListBoxItem(const QString & s, const QPixmap& p)
-        : QListBoxItem(), mPixmap(p)
+    AmorListBoxItem(const TQString & s, const TQPixmap& p)
+        : TQListBoxItem(), mPixmap(p)
         { setText(s); }
 
 protected:
-    virtual void paint(QPainter *);
-    virtual int height(const QListBox *) const;
-    virtual int width(const QListBox *) const;
-    virtual const QPixmap *pixmap() const { return &mPixmap; }
+    virtual void paint(TQPainter *);
+    virtual int height(const TQListBox *) const;
+    virtual int width(const TQListBox *) const;
+    virtual const TQPixmap *pixmap() const { return &mPixmap; }
 
 private:
-    QPixmap mPixmap;
+    TQPixmap mPixmap;
 };
 
 #endif // AMORDIALOG_H

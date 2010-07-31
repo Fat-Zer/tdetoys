@@ -31,8 +31,8 @@
 #include <config.h>
 #endif 
 
-#include <qdict.h>
-#include <qpixmap.h>
+#include <tqdict.h>
+#include <tqpixmap.h>
 
 //---------------------------------------------------------------------------
 //
@@ -44,19 +44,19 @@ public:
     AmorPixmapManager();
     virtual ~AmorPixmapManager();
 
-    void setPixmapDir(const QString &dir)
+    void setPixmapDir(const TQString &dir)
         { mPixmapDir = dir; }
     void reset()
         { mPixmapDir = "."; mPixmaps.clear(); }
-    const QPixmap *load(const QString & img);
-    const QPixmap *pixmap(const QString & img) const
+    const TQPixmap *load(const TQString & img);
+    const TQPixmap *pixmap(const TQString & img) const
         { return mPixmaps.find(img); }
 
     static AmorPixmapManager *manager();
 
 public:
-    QString        mPixmapDir;           // get pixmaps from here
-    QDict<QPixmap> mPixmaps;             // list of pixmaps
+    TQString        mPixmapDir;           // get pixmaps from here
+    TQDict<TQPixmap> mPixmaps;             // list of pixmaps
     static AmorPixmapManager *mManager; // static pointer to instance
 };
 

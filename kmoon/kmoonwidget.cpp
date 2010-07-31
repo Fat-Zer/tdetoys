@@ -23,11 +23,11 @@
 #include <assert.h>
 #include <unistd.h>
 
-#include <qbitmap.h>
-#include <qtooltip.h>
-#include <qpainter.h>
-#include <qpopupmenu.h>
-#include <qcolor.h>
+#include <tqbitmap.h>
+#include <tqtooltip.h>
+#include <tqpainter.h>
+#include <tqpopupmenu.h>
+#include <tqcolor.h>
 
 #include <dcopclient.h>
 #include <kdebug.h>
@@ -50,8 +50,8 @@
 extern double moonphasebylunation(int lun, int phi);
 extern time_t JDtoDate(double jd, struct tm *event_date);
 
-MoonWidget::MoonWidget(QWidget *parent, const char *name)
-  : QWidget(parent, name)
+MoonWidget::MoonWidget(TQWidget *parent, const char *name)
+  : TQWidget(parent, name)
 {
     struct tm * t;
     time_t clock;
@@ -92,30 +92,30 @@ void MoonWidget::calcStatus( time_t time )
 
     lun -= 2;
 
-    QDateTime ln;
+    TQDateTime ln;
     ln.setTime_t( last_new );
     kdDebug() << KGlobal::locale()->formatDateTime( ln ) << endl;
 
     time_t first_quarter = JDtoDate( moonphasebylunation( lun, 1 ), 0 );
-    QDateTime fq;
+    TQDateTime fq;
     fq.setTime_t( first_quarter );
     kdDebug() << KGlobal::locale()->formatDateTime( fq ) << endl;
 
     time_t full_moon = JDtoDate( moonphasebylunation( lun, 2 ), 0 );
-    QDateTime fm;
+    TQDateTime fm;
     fm.setTime_t( full_moon );
     kdDebug() << KGlobal::locale()->formatDateTime( fm ) << endl;
 
     time_t third_quarter = JDtoDate( moonphasebylunation( lun, 3 ), 0 );
-    QDateTime tq;
+    TQDateTime tq;
     tq.setTime_t( third_quarter );
     kdDebug() << KGlobal::locale()->formatDateTime( tq ) << endl;
 
-    QDateTime nn;
+    TQDateTime nn;
     nn.setTime_t( next_new );
     kdDebug() << KGlobal::locale()->formatDateTime( nn ) << endl;
 
-    QDateTime now;
+    TQDateTime now;
     now.setTime_t( time );
     kdDebug() << KGlobal::locale()->formatDateTime( now ) << endl;
 
@@ -220,15 +220,15 @@ void MoonWidget::calcStatus( time_t time )
     repaint();
 }
 
-QImage MoonWidget::loadMoon(int index)
+TQImage MoonWidget::loadMoon(int index)
 {
     if (index == 0) // the new moon has the wrong filename
         index = 29;
-    QString filename = QString("kmoon/pics/moon%1.png").arg(index);
-    QString path = locate("data", filename);
+    TQString filename = TQString("kmoon/pics/moon%1.png").arg(index);
+    TQString path = locate("data", filename);
     if (path.isNull())
         kdFatal() << "cound't find " << filename << ". Exiting.\n";
-    QImage image(path);
+    TQImage image(path);
     KIconEffect iconeffect;
     image=iconeffect.apply(image, KIcon::Panel, KIcon::DefaultState);
     return image;
@@ -255,12 +255,12 @@ void MoonWidget::setMask(bool value)
     repaint();
 }
 
-void MoonWidget::paintEvent(QPaintEvent *)
+void MoonWidget::paintEvent(TQPaintEvent *)
 {
     bitBlt(this, 0, 0, &pixmap, 0, 0);
 }
 
-void MoonWidget::resizeEvent(QResizeEvent *)
+void MoonWidget::resizeEvent(TQResizeEvent *)
 {
     renderGraphic();
     repaint();
@@ -275,15 +275,15 @@ void MoonWidget::renderGraphic()
   old_w = width();
   old_h = height();
   old_north = _north;
-  QImage im = loadMoon(counter);
+  TQImage im = loadMoon(counter);
   assert(!im.isNull());
   im = im.convertDepth(32, 0);
   assert(!im.isNull());
 
   int mw = QMIN(width(), height());
-  QImage dest;
+  TQImage dest;
 
-  if (QPixmap::defaultDepth() > 8) {
+  if (TQPixmap::defaultDepth() > 8) {
 
     if (fabs(_angle)!=0) { // nothing to rotate
       //We expand the image 2x before rotating, rotate it, and then average out
@@ -292,13 +292,13 @@ void MoonWidget::renderGraphic()
       if (!pixmap.convertFromImage(im.smoothScale(dmw, dmw), 0)) {
 	return;
       }
-      QWMatrix m;
+      TQWMatrix m;
       m.rotate(_angle);
-      QPixmap rotated = pixmap.xForm(m);
+      TQPixmap rotated = pixmap.xForm(m);
       
       //Copy the relevant part back to the pixmap
-      QRegion r(QRect(0, 0, dmw, dmw), QRegion::Ellipse);
-      QPainter p;
+      TQRegion r(TQRect(0, 0, dmw, dmw), TQRegion::Ellipse);
+      TQPainter p;
       p.begin(&pixmap);
       p.fillRect(0, 0, dmw, dmw, Qt::black);
       p.setClipRegion(r);
@@ -331,15 +331,15 @@ void MoonWidget::renderGraphic()
     if (_mask) {
       // generate alpha-channel
       int dmw = mw*2;
-      QBitmap dMask(dmw, dmw);
-      QRegion r(QRect(0, 0, dmw, dmw), QRegion::Ellipse);
-      QPainter p;
+      TQBitmap dMask(dmw, dmw);
+      TQRegion r(TQRect(0, 0, dmw, dmw), TQRegion::Ellipse);
+      TQPainter p;
       p.begin(&dMask);
       p.fillRect(0, 0, dmw, dmw, Qt::white);
       p.setClipRegion(r);
       p.fillRect(0, 0, dmw, dmw, Qt::black);
       p.end();
-      QImage Mask2 = dMask.convertToImage().convertDepth(32).smoothScale(mw, mw);
+      TQImage Mask2 = dMask.convertToImage().convertDepth(32).smoothScale(mw, mw);
       dest.setAlphaBuffer(true);
       for (int y = 0; y < mw; y++) {
 	QRgb *destline = (QRgb*)dest.scanLine(y);
@@ -360,9 +360,9 @@ void MoonWidget::renderGraphic()
     return;
   }
     
-  QToolTip::remove(this);
+  TQToolTip::remove(this);
 
-  QToolTip::add(this, tooltip);
+  TQToolTip::add(this, tooltip);
 }
 
 

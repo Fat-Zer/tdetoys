@@ -32,7 +32,7 @@
 #endif 
 
 #include <kapplication.h>
-#include <qwidget.h>
+#include <tqwidget.h>
 
 //---------------------------------------------------------------------------
 //
@@ -45,21 +45,21 @@ public:
 	AmorWidget();
 	virtual ~AmorWidget();
 
-    void setPixmap(const QPixmap *pixmap);
+    void setPixmap(const TQPixmap *pixmap);
 
 signals:
-    void mouseClicked(const QPoint &pos);
-    void dragged( const QPoint &delta, bool release );
+    void mouseClicked(const TQPoint &pos);
+    void dragged( const TQPoint &delta, bool release );
 
 protected:
-    void paintEvent(QPaintEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
+    void paintEvent(TQPaintEvent *);
+    void mousePressEvent(TQMouseEvent *);
+    void mouseMoveEvent(TQMouseEvent *);
+    void mouseReleaseEvent(TQMouseEvent *);
 
 protected:
-    const QPixmap *mPixmap;
-    QPoint clickPos;
+    const TQPixmap *mPixmap;
+    TQPoint clickPos;
     bool dragging;
 };
 

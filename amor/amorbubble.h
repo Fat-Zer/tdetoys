@@ -32,8 +32,8 @@
 #endif
 
 #include <kapplication.h>
-#include <qwidget.h>
-#include <qbitmap.h>
+#include <tqwidget.h>
+#include <tqbitmap.h>
 
 class QTextBrowser;
 class QTimer;
@@ -50,7 +50,7 @@ public:
 	virtual ~AmorBubble();
 
     void setOrigin(int x, int y) { mOriginX = x; mOriginY = y; }
-    void setMessage(const QString& message);
+    void setMessage(const TQString& message);
 
     bool mouseWithin() { return mMouseWithin; }    
 
@@ -59,20 +59,20 @@ protected:
     enum HorzPos { Left, Right };
 
     void calcGeometry();
-    void drawBubble(QPainter &p);
-    virtual void paintEvent(QPaintEvent *);
-    virtual void mouseReleaseEvent(QMouseEvent *);
-    virtual bool eventFilter( QObject *, QEvent * );
+    void drawBubble(TQPainter &p);
+    virtual void paintEvent(TQPaintEvent *);
+    virtual void mouseReleaseEvent(TQMouseEvent *);
+    virtual bool eventFilter( TQObject *, TQEvent * );
 
 protected:
-    QString mMessage;           // message to display
+    TQString mMessage;           // message to display
     int   mOriginX;             // X origin of bubble arrow
     int   mOriginY;             // Y origin of bubble arrow
-    QRect mBound;               // bounds of the text
-    QBitmap mMask;              // shape mask
+    TQRect mBound;               // bounds of the text
+    TQBitmap mMask;              // shape mask
     VertPos mArrowVert;         // vertical position of the arrow
     HorzPos mArrowHorz;         // horizontal position of the arrow
-    QTextBrowser *mBrowser;	// displays the message
+    TQTextBrowser *mBrowser;	// displays the message
 
     bool mMouseWithin;		// the mouse pointer is inside the bubble
 };

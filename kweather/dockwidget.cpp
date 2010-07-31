@@ -20,23 +20,23 @@
 #include "weatherbutton.h"
 #include "weatherservice_stub.h"
 
-#include <qtooltip.h>
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qtimer.h>
-#include <qobjectlist.h>
+#include <tqtooltip.h>
+#include <tqlayout.h>
+#include <tqlabel.h>
+#include <tqtimer.h>
+#include <tqobjectlist.h>
 
 #include <kdebug.h>
 #include <kglobalsettings.h>
 #include <klocale.h>
 
-dockwidget::dockwidget(const QString &location, QWidget *parent,
-        const char *name) : QWidget(parent,name), m_locationCode( location ), m_orientation( Horizontal )
+dockwidget::dockwidget(const TQString &location, TQWidget *parent,
+        const char *name) : TQWidget(parent,name), m_locationCode( location ), m_orientation( Horizontal )
 {
     m_font = KGlobalSettings::generalFont();
     setBackgroundOrigin( AncestorOrigin );
     initDock();
-    connect(m_button, SIGNAL( clicked() ), SIGNAL( buttonClicked() ));
+    connect(m_button, TQT_SIGNAL( clicked() ), TQT_SIGNAL( buttonClicked() ));
 
     m_weatherService = new WeatherService_stub( "KWeatherService", "WeatherService" );
 }
@@ -46,7 +46,7 @@ dockwidget::~dockwidget()
     delete m_weatherService;
 }
 
-void dockwidget::setLocationCode(const QString &locationCode)
+void dockwidget::setLocationCode(const TQString &locationCode)
 {
     m_locationCode = locationCode;
     showWeather();
@@ -78,11 +78,11 @@ void dockwidget::setViewMode(int _mode)
 
 void dockwidget::showWeather()
 {
-    QString tip = "<qt>";
+    TQString tip = "<qt>";
 
-    QString temp     = "?";
-    QString wind     = "?";
-    QString pressure = "?";
+    TQString temp     = "?";
+    TQString wind     = "?";
+    TQString pressure = "?";
 
     if ( !m_locationCode.isEmpty() )
     {
@@ -90,12 +90,12 @@ void dockwidget::showWeather()
         wind     = m_weatherService->wind( m_locationCode );
         pressure = m_weatherService->pressure( m_locationCode );
 
-        QString dewPoint    = m_weatherService->dewPoint( m_locationCode);
-        QString relHumidity = m_weatherService->relativeHumidity( m_locationCode );
-        QString heatIndex   = m_weatherService->heatIndex( m_locationCode );
-        QString windChill   = m_weatherService->windChill( m_locationCode );
-        QString sunRiseTime = m_weatherService->sunRiseTime( m_locationCode );
-        QString sunSetTime  = m_weatherService->sunSetTime( m_locationCode );
+        TQString dewPoint    = m_weatherService->dewPoint( m_locationCode);
+        TQString relHumidity = m_weatherService->relativeHumidity( m_locationCode );
+        TQString heatIndex   = m_weatherService->heatIndex( m_locationCode );
+        TQString windChill   = m_weatherService->windChill( m_locationCode );
+        TQString sunRiseTime = m_weatherService->sunRiseTime( m_locationCode );
+        TQString sunSetTime  = m_weatherService->sunSetTime( m_locationCode );
 
         tip += "<h3><center><nobr>" +
                m_weatherService->stationName( m_locationCode ) + " (" +
@@ -104,7 +104,7 @@ void dockwidget::showWeather()
         if ( m_weatherService->currentIconString( m_locationCode ) == "dunno" )  // no data
             tip += "<center><nobr>" + i18n("The network is currently offline...") + "</nobr></center>";
 
-        tip += QString("<br><table>"
+        tip += TQString("<br><table>"
                 "<tr><th><nobr>" + i18n( "Temperature:"   ) + "</nobr></th><td><nobr>%1</nobr></td>"
                     "<th><nobr>" + i18n( "Dew Point:"     ) + "</nobr></th><td><nobr>%2</nobr></td></nobr></tr>"
 
@@ -115,14 +115,14 @@ void dockwidget::showWeather()
                 .arg(temp).arg(dewPoint).arg(pressure).arg(relHumidity).arg(wind);
 
         if ( !heatIndex.isEmpty() )
-            tip += QString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(heatIndex);
+            tip += TQString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(heatIndex);
         else if ( !windChill.isEmpty() )
-            tip += QString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(windChill);
+            tip += TQString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(windChill);
         else
             tip += "<td>&nbsp;</td><td>&nbsp;</td>";
         tip += "</tr>";
 
-        tip += QString("<tr><th><nobr>" + i18n( "Sunrise:" ) + "</nobr></th><td><nobr>%1</nobr></td>" +
+        tip += TQString("<tr><th><nobr>" + i18n( "Sunrise:" ) + "</nobr></th><td><nobr>%1</nobr></td>" +
                            "<th><nobr>" + i18n( "Sunset:"  ) + "</nobr></th><td><nobr>%2</nobr></td>")
                  .arg(sunRiseTime).arg(sunSetTime);
 
@@ -144,10 +144,10 @@ void dockwidget::showWeather()
     tip += "</qt>";
 
     // On null or empty location code, or if the station needs maintenance, this will return the dunno icon.
-    QPixmap icon = m_weatherService->icon( m_locationCode );
+    TQPixmap icon = m_weatherService->icon( m_locationCode );
 
-    QToolTip::remove(this);
-    QToolTip::add(this, tip);
+    TQToolTip::remove(this);
+    TQToolTip::add(this, tip);
 
     kdDebug(12004) << "show weather: " << endl;
     kdDebug(12004) << "location: " << m_locationCode << endl;
@@ -167,9 +167,9 @@ void dockwidget::initDock()
 
     m_button= new WeatherButton(this,"m_button");
 
-    m_lblTemp= new QLabel(this,"lblTemp");
-    m_lblWind= new QLabel(this,"lblWind");
-    m_lblPres= new QLabel(this,"lblPres");
+    m_lblTemp= new TQLabel(this,"lblTemp");
+    m_lblWind= new TQLabel(this,"lblWind");
+    m_lblPres= new TQLabel(this,"lblPres");
 
     m_lblTemp->setBackgroundOrigin(AncestorOrigin);
     m_lblWind->setBackgroundOrigin(AncestorOrigin);
@@ -179,12 +179,12 @@ void dockwidget::initDock()
     m_lblWind->setMargin(0);
     m_lblPres->setMargin(0);
 
-    QBoxLayout *mainLayout = new QBoxLayout(this, QBoxLayout::TopToBottom);
+    TQBoxLayout *mainLayout = new TQBoxLayout(this, TQBoxLayout::TopToBottom);
     mainLayout->setSpacing(0);
     mainLayout->setMargin(0);
     mainLayout->addWidget(m_button, 0, Qt::AlignCenter);
 
-    QBoxLayout *layout = new QBoxLayout(mainLayout, QBoxLayout::TopToBottom);
+    TQBoxLayout *layout = new TQBoxLayout(mainLayout, TQBoxLayout::TopToBottom);
     layout->setSpacing(0);
     layout->setMargin(0);
     layout->addWidget(m_lblTemp);
@@ -195,11 +195,11 @@ void dockwidget::initDock()
 
     updateFont();
 
-    QTimer::singleShot( 0, this, SLOT( showWeather() ) );
+    TQTimer::singleShot( 0, this, TQT_SLOT( showWeather() ) );
 }
 
 /** resize the view **/
-void dockwidget::resizeView( const QSize &size )
+void dockwidget::resizeView( const TQSize &size )
 {
     kdDebug(12004) << "Changing to size " << size << endl;
     resize(size);
@@ -212,15 +212,15 @@ void dockwidget::resizeView( const QSize &size )
         {
             if ( h <= 128 )  // left to right layout
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::LeftToRight);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
                 m_lblTemp->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
                 m_lblWind->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
                 m_lblPres->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
             }
             else  // top to bottom
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::TopToBottom);
-                QFontMetrics fm(m_font);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
+                TQFontMetrics fm(m_font);
                 h = 128 - (3 * fm.height());  // 3 lines of text below the button
                 m_lblTemp->setAlignment(Qt::AlignCenter);
                 m_lblWind->setAlignment(Qt::AlignCenter);
@@ -232,13 +232,13 @@ void dockwidget::resizeView( const QSize &size )
         {
             if ( h <= 32 )  // left to right
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::LeftToRight);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
                 m_lblTemp->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
             }
             else  // top to bottom
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::TopToBottom);
-                QFontMetrics fm(m_font);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
+                TQFontMetrics fm(m_font);
                 h = QMIN(128, h) - fm.height();
                 m_lblTemp->setAlignment(Qt::AlignCenter);
             }
@@ -259,18 +259,18 @@ void dockwidget::resizeView( const QSize &size )
         {
             if ( w <= 128 )  // top to bottom
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::TopToBottom);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
                 m_lblTemp->setAlignment(Qt::AlignCenter);
                 m_lblWind->setAlignment(Qt::AlignCenter);
                 m_lblPres->setAlignment(Qt::AlignCenter);
 
-                QFontMetrics fm(m_font);
+                TQFontMetrics fm(m_font);
                 h = h - (3 * fm.height());  // 3 lines of text below the button
                 h = QMIN(w, h);
             }
             else  // left to right layout
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::LeftToRight);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
                 m_lblTemp->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
                 m_lblWind->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
                 m_lblPres->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
@@ -281,14 +281,14 @@ void dockwidget::resizeView( const QSize &size )
         {
             if ( w <= 128 )  // top to bottom
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::TopToBottom);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
                 m_lblTemp->setAlignment(Qt::AlignCenter);
 
                 h = w;
             }
             else  // left to right layout
             {
-                static_cast<QBoxLayout*>(layout())->setDirection(QBoxLayout::LeftToRight);
+                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
                 m_lblTemp->setAlignment(Qt::AlignAuto | Qt::AlignVCenter);
 
                 h = static_cast<int>(w * 0.33);
@@ -306,7 +306,7 @@ void dockwidget::resizeView( const QSize &size )
 int dockwidget::widthForHeight(int h)
 {
     int w;
-    QFontInfo fi(KGlobalSettings::generalFont());
+    TQFontInfo fi(KGlobalSettings::generalFont());
 
     if ( m_mode == ShowAll )
     {
@@ -315,7 +315,7 @@ int dockwidget::widthForHeight(int h)
             int pixelSize = h/3 - 3;
             pixelSize = QMIN(pixelSize, fi.pixelSize());  // don't make it too large
             m_font.setPixelSize(pixelSize);
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             w = h + QMAX(fm.width(m_lblWind->text()), fm.width(m_lblPres->text())) + 1;
         }
         else  // top to bottom
@@ -328,7 +328,7 @@ int dockwidget::widthForHeight(int h)
             {
                 m_font.setPixelSize(h/2/3);
             }
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             // size of icon
             h = 128 - (3 * fm.height());  // 3 lines of text below the button
             w = QMAX(fm.width(m_lblWind->text()), fm.width(m_lblPres->text())) + 1;
@@ -342,7 +342,7 @@ int dockwidget::widthForHeight(int h)
             int pixelSize = h - 3;
             pixelSize = QMIN(pixelSize, fi.pixelSize());  // don't make it too large
             m_font.setPixelSize(pixelSize);
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             w = h + fm.width(m_lblTemp->text()) + 1;
         }
         else  // top to bottom
@@ -355,7 +355,7 @@ int dockwidget::widthForHeight(int h)
             {
                 m_font.setPixelSize(h/2);
             }
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             // size of icon
             h = QMIN(128, h) - fm.height();
             w = fm.width(m_lblTemp->text()) + 1;
@@ -377,7 +377,7 @@ int dockwidget::heightForWidth( int w )
 
     if ( m_mode == ShowAll )
     {
-        QFontMetrics fmg(KGlobalSettings::generalFont());
+        TQFontMetrics fmg(KGlobalSettings::generalFont());
         int maxWidth = fmg.width("888 km/h NNWW");  // a good approximation
 
         if ( w <= 128 )  // top to bottom
@@ -391,7 +391,7 @@ int dockwidget::heightForWidth( int w )
                 m_font.setPixelSize(static_cast<int>(fmg.height() * double(w) / maxWidth));
             }
 
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             h = w + (3 * fm.height());  // 3 lines of text below the button
         }
         else
@@ -405,14 +405,14 @@ int dockwidget::heightForWidth( int w )
                 m_font.setPixelSize(static_cast<int>(fmg.height() * (w*0.66) / maxWidth));
             }
 
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             h = 3 * fm.height();  // 3 lines of text
 
         }
     }
     else if ( m_mode == ShowTempOnly )
     {
-        QFontMetrics fmg(KGlobalSettings::generalFont());
+        TQFontMetrics fmg(KGlobalSettings::generalFont());
         int maxWidth = fmg.width("888.88 CC");  // a good approximation
 
         if ( w <= 128 )  // top to bottom
@@ -426,7 +426,7 @@ int dockwidget::heightForWidth( int w )
                 m_font.setPixelSize(static_cast<int>(fmg.height() * double(w) / maxWidth));
             }
 
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             h = w + fm.height();  // text below the button
         }
         else
@@ -440,7 +440,7 @@ int dockwidget::heightForWidth( int w )
                 m_font.setPixelSize(static_cast<int>(fmg.height() * (w*0.66) / maxWidth));
             }
 
-            QFontMetrics fm(m_font);
+            TQFontMetrics fm(m_font);
             h = QMAX(fm.height(), static_cast<int>(w * 0.33));
         }
     }

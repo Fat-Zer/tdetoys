@@ -29,9 +29,9 @@
 #include <ksettings/dispatcher.h>
 #include <dcopclient.h>
 
-#include <qfile.h>
-#include <qtimer.h>
-#include <qpalette.h>
+#include <tqfile.h>
+#include <tqtimer.h>
+#include <tqpalette.h>
 
 #include "kweather.h"
 #include "reportview.h"
@@ -40,7 +40,7 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(QWidget *parent, const QString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kweather");
         kweather *theApplet = new kweather(configFile, KPanelApplet::Normal,
@@ -49,8 +49,8 @@ extern "C"
     }
 }
 
-kweather::kweather(const QString& configFile, Type t, int actions,
-        QWidget *parent, const char *name):
+kweather::kweather(const TQString& configFile, Type t, int actions,
+        TQWidget *parent, const char *name):
         KPanelApplet(configFile, t, actions, parent, name), weatherIface(),
         mFirstRun( false ), mReport( 0 ), mClient( 0 ),
         mContextMenu( 0 ), mWeatherService( 0 ), settingsDialog( 0 ), mTextColor(Qt::black)
@@ -58,18 +58,18 @@ kweather::kweather(const QString& configFile, Type t, int actions,
     kdDebug(12004) << "Constructor " << endl;
     setObjId("weatherIface");
     
-    setBackgroundOrigin( QWidget::AncestorOrigin );
+    setBackgroundOrigin( TQWidget::AncestorOrigin );
     loadPrefs();
     initContextMenu();
     initDCOP();
     
     dockWidget = new dockwidget(reportLocation, this, "dockwidget");
-    connect(dockWidget, SIGNAL(buttonClicked()), SLOT(doReport()));
+    connect(dockWidget, TQT_SIGNAL(buttonClicked()), TQT_SLOT(doReport()));
     dockWidget->setViewMode(mViewMode);
     setLabelColor();
     
-    timeOut = new QTimer(this, "timeOut" );
-    connect(timeOut, SIGNAL(timeout()), SLOT(timeout()));
+    timeOut = new TQTimer(this, "timeOut" );
+    connect(timeOut, TQT_SIGNAL(timeout()), TQT_SLOT(timeout()));
     timeOut->start(10*60*1000);
     
     if(mFirstRun)
@@ -88,13 +88,13 @@ void kweather::initContextMenu()
     mContextMenu = new KPopupMenu(this);
     mContextMenu->insertTitle(i18n("KWeather - %1").arg( reportLocation ), -1, 0);
     mContextMenu->insertItem(SmallIcon("viewmag"), i18n("Show &Report"),
-        this, SLOT(doReport()), 0, -1, 1);
+        this, TQT_SLOT(doReport()), 0, -1, 1);
     mContextMenu->insertItem(SmallIcon("reload"), i18n("&Update Now"),
-        this, SLOT(slotUpdateNow()), 0, -1, 2);
+        this, TQT_SLOT(slotUpdateNow()), 0, -1, 2);
     mContextMenu->insertSeparator();
-    mContextMenu->insertItem(SmallIcon("kweather"), i18n("&About KWeather"), this, SLOT(about()));
+    mContextMenu->insertItem(SmallIcon("kweather"), i18n("&About KWeather"), this, TQT_SLOT(about()));
     mContextMenu->insertItem(SmallIcon("configure"),
-        i18n("&Configure KWeather..."), this, SLOT(preferences()));
+        i18n("&Configure KWeather..."), this, TQT_SLOT(preferences()));
     setCustomMenu(mContextMenu);
 }
 
@@ -116,8 +116,8 @@ void kweather::initDCOP()
     
     mWeatherService = new WeatherService_stub( "KWeatherService", "WeatherService" );
     
-    if (!connectDCOPSignal(0, 0, "fileUpdate(QString)",
-        "refresh(QString)",false))
+    if (!connectDCOPSignal(0, 0, "fileUpdate(TQString)",
+        "refresh(TQString)",false))
         kdDebug(12004) << "Could not attach dcop signal..." << endl;
     else
         kdDebug(12004) << "attached dcop signals..." << endl;
@@ -158,7 +158,7 @@ void kweather::preferences()
     if ( settingsDialog == 0 )
     {
       settingsDialog = new KCMultiDialog( this );
-      connect( settingsDialog, SIGNAL( configCommitted() ), SLOT( slotPrefsAccepted() ) );
+      connect( settingsDialog, TQT_SIGNAL( configCommitted() ), TQT_SLOT( slotPrefsAccepted() ) );
 
       settingsDialog->addModule( "kcmweather.desktop" );
       settingsDialog->addModule( "kcmweatherservice.desktop" );
@@ -171,7 +171,7 @@ void kweather::preferences()
 /** The help handler */
 void kweather::help()
 {
-    kapp->invokeHelp(QString::null, QString::fromLatin1("kweather"));
+    kapp->invokeHelp(TQString::null, TQString::fromLatin1("kweather"));
 }
 
 /** Display the current weather report. */
@@ -189,7 +189,7 @@ void kweather::doReport()
     {
         mReport = new reportView(reportLocation);
     
-        connect( mReport, SIGNAL( finished() ), SLOT( slotReportFinished() ) );
+        connect( mReport, TQT_SIGNAL( finished() ), TQT_SLOT( slotReportFinished() ) );
     }
     
     mReport->show();
@@ -216,7 +216,7 @@ void kweather::loadPrefs(){
     reportLocation = kcConfig->readEntry("report_location");
     mViewMode = kcConfig->readNumEntry("smallview_mode", dockwidget::ShowAll);
 
-    static QColor black(Qt::black);
+    static TQColor black(Qt::black);
     mTextColor = kcConfig->readColorEntry("textColor", &black);
 }
 
@@ -246,17 +246,17 @@ void kweather::writeLogEntry()
     if (logOn && !fileName.isEmpty())
     {
         kdDebug(12004)<< "Try log file:" << fileName << endl;
-        QFile logFile(fileName);
-        QTextStream logFileStream(&logFile);
+        TQFile logFile(fileName);
+        TQTextStream logFileStream(&logFile);
         if (logFile.open(IO_Append | IO_ReadWrite))
         {
-            QString temperature = mWeatherService->temperature(reportLocation );
-            QString wind        = mWeatherService->wind(reportLocation );
-            QString pressure    = mWeatherService->pressure(reportLocation );
-            QString date        = mWeatherService->date(reportLocation );
-            QStringList weather = mWeatherService->weather(reportLocation );
-            QStringList cover   = mWeatherService->cover(reportLocation );
-            QString visibility  = mWeatherService->visibility(reportLocation );
+            TQString temperature = mWeatherService->temperature(reportLocation );
+            TQString wind        = mWeatherService->wind(reportLocation );
+            TQString pressure    = mWeatherService->pressure(reportLocation );
+            TQString date        = mWeatherService->date(reportLocation );
+            TQStringList weather = mWeatherService->weather(reportLocation );
+            TQStringList cover   = mWeatherService->cover(reportLocation );
+            TQString visibility  = mWeatherService->visibility(reportLocation );
             logFileStream << date << ",";
             logFileStream << wind << ",";
             logFileStream << temperature << ",";
@@ -312,7 +312,7 @@ int kweather::heightForWidth(int w) const
     return h;
 }
 
-void kweather::refresh(QString stationID)
+void kweather::refresh(TQString stationID)
 {
     kdDebug(12004) << "refresh " << stationID << endl;
     if( stationID == reportLocation)
@@ -335,14 +335,14 @@ void kweather::slotPrefsAccepted()
 
     if (logOn && !fileName.isEmpty())
     {
-        QFile logFile(fileName);
+        TQFile logFile(fileName);
         // Open the file, create it if not already exists
         if (logFile.open(IO_ReadWrite))
         {
             if (logFile.size() == 0)
             {
                 // Empty file, put the header
-                QTextStream logFileStream(&logFile);
+                TQTextStream logFileStream(&logFile);
                 logFileStream << "Date,Wind Speed & Direction,Temperature,Pressure,Cover,Visibility,Current Weather" << endl;
             }
             logFile.close();
@@ -361,7 +361,7 @@ void kweather::slotPrefsAccepted()
     timeout();
 }
 
-void kweather::mousePressEvent(QMouseEvent *e)
+void kweather::mousePressEvent(TQMouseEvent *e)
 {
     if ( e->button() != RightButton )
     {
@@ -382,14 +382,14 @@ void kweather::slotUpdateNow()
 
 bool kweather::attach()
 {
-    QString error;
+    TQString error;
     kdDebug(12004) << "Looking for dcop service..." << endl;
     if (!mClient->isApplicationRegistered("KWeatherService"))
     {
         kdDebug(12004) << "Could not find service so I am starting it..."
             << endl;
         if (!KApplication::startServiceByDesktopName("kweatherservice",
-            QStringList(), &error))
+            TQStringList(), &error))
         {
             kdDebug(12004) << "Starting KWeatherService failed with message: "
                 << error << endl;
@@ -406,7 +406,7 @@ bool kweather::attach()
     return true;
 }
 
-void kweather::resizeEvent(QResizeEvent *e)
+void kweather::resizeEvent(TQResizeEvent *e)
 {
     kdDebug(12004) << "KWeather Resize event " << e->size() << endl;
     dockWidget->resizeView(e->size());
@@ -417,7 +417,7 @@ void kweather::setLabelColor()
     setPaletteForegroundColor(mTextColor);
 }
 
-void kweather::paletteChange(const QPalette &)
+void kweather::paletteChange(const TQPalette &)
 {
     setLabelColor();
 }

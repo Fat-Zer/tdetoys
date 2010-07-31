@@ -14,8 +14,8 @@
 //
 // SpriteObject stores the animations that create an object
 //
-SpriteObject::SpriteObject(SpritePixmapSequence *seq, QCanvas *c )
-    : QCanvasSprite(seq, c),
+SpriteObject::SpriteObject(SpritePixmapSequence *seq, TQCanvas *c )
+    : TQCanvasSprite(seq, c),
       mCycle(0),
       mLifeSpan(-1),
       mSeq(seq)
@@ -39,7 +39,7 @@ void SpriteObject::age()
 
 void SpriteObject::setBounds( int x1, int y1, int x2, int y2 )
 {
-    mBound = QRect( x1, y1, x2-x1, y2-y1 );
+    mBound = TQRect( x1, y1, x2-x1, y2-y1 );
 }
 
 bool SpriteObject::outOfBounds() const
@@ -58,7 +58,7 @@ SpriteDef::SpriteDef(KConfigBase &config)
 }
 
 //---------------------------------------------------------------------------
-SpriteObject *SpriteDef::create( QCanvas *c )
+SpriteObject *SpriteDef::create( TQCanvas *c )
 {
     SpriteObject *sprite = 0;
     if (mSeq)
@@ -92,7 +92,7 @@ void SpriteDef::read(KConfigBase &config)
     mEndY.set(config.readEntry("EndY", "10000"));
     mLifeSpan = config.readNumEntry("LifeSpan", -1);
     mZ = config.readNumEntry("Z", 1);
-    QString animation = config.readEntry("Animation", "");
+    TQString animation = config.readEntry("Animation", "");
     mSeq = SpriteSequenceManager::manager()->load(config, animation);
     kdDebug() << "Set Z = " << mZ << endl;
 }
@@ -101,7 +101,7 @@ void SpriteDef::read(KConfigBase &config)
 //
 // SpriteGroup
 //
-SpriteGroup::SpriteGroup(QCanvas *c, KConfigBase &config)
+SpriteGroup::SpriteGroup(TQCanvas *c, KConfigBase &config)
     : mCanvas(c)
 {
     mAvailable.setAutoDelete(true);
@@ -112,7 +112,7 @@ SpriteGroup::SpriteGroup(QCanvas *c, KConfigBase &config)
 //---------------------------------------------------------------------------
 void SpriteGroup::next()
 {
-    QPtrListIterator<SpriteObject> it(mActive);
+    TQPtrListIterator<SpriteObject> it(mActive);
 
     for (; it.current(); ++it)
     {
@@ -148,7 +148,7 @@ void SpriteGroup::read(KConfigBase &config)
 
     mRefresh.set(config.readEntry("Refresh", "1000"));
 
-    QStrList anims;
+    TQStrList anims;
     config.readListEntry("Animations", anims);
 
     for (anims.first(); anims.current(); anims.next())

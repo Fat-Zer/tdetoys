@@ -54,8 +54,8 @@ static inline double acosd(double x) { return RADEG * acos(x); }
 static inline double atan2d(double y, double x) { return RADEG * atan2(y, x); }
 
 /* Other local functions */
-static double latitudeToDouble( const QString &latitude );
-static double longitudeToDouble( const QString &longitude );
+static double latitudeToDouble( const TQString &latitude );
+static double longitudeToDouble( const TQString &longitude );
 static int __sunriset__( int year, int month, int day, double lon, double lat,
 			 double altit, int upper_limb, double &trise, double &tset );
 static void sunpos( double d, double &lon, double &r );
@@ -87,7 +87,7 @@ static inline int civil_twilight(int year, int month, int day, double lon, doubl
 }
 
 
-Sun::Sun(const QString &latitude, const QString &longitude, QDate date, const int localUTCOffset) :
+Sun::Sun(const TQString &latitude, const TQString &longitude, TQDate date, const int localUTCOffset) :
 	m_date(date), 
 	m_lat(latitudeToDouble(latitude)), m_lon(longitudeToDouble(longitude)),
 	m_localUTCOffset(localUTCOffset)
@@ -95,14 +95,14 @@ Sun::Sun(const QString &latitude, const QString &longitude, QDate date, const in
 }
 
 
-QTime Sun::computeRiseTime()
+TQTime Sun::computeRiseTime()
 {
 	double riseTime;
 	double setTime;
 
 	sun_rise_set( m_date.year(), m_date.month(), m_date.day(), m_lon, m_lat, riseTime, setTime );
 
-	QTime  result = convertDoubleToLocalTime( riseTime );
+	TQTime  result = convertDoubleToLocalTime( riseTime );
 
 	if ( ! result.isValid() )
 		result.setHMS( 6, 0, 0 );
@@ -111,14 +111,14 @@ QTime Sun::computeRiseTime()
 }
 
 
-QTime Sun::computeSetTime()
+TQTime Sun::computeSetTime()
 {
 	double riseTime;
 	double setTime;
 
 	sun_rise_set( m_date.year(), m_date.month(), m_date.day(), m_lon, m_lat, riseTime, setTime );
 
-	QTime  result = convertDoubleToLocalTime( setTime );
+	TQTime  result = convertDoubleToLocalTime( setTime );
 
 	if ( ! result.isValid() )
 		result.setHMS( 19, 0, 0 );
@@ -127,14 +127,14 @@ QTime Sun::computeSetTime()
 }
 
 
-QTime Sun::computeCivilTwilightStart()
+TQTime Sun::computeCivilTwilightStart()
 {
 	double start;
 	double end;
 
 	civil_twilight( m_date.year(), m_date.month(), m_date.day(), m_lon, m_lat, start, end );
 
-	QTime  result = convertDoubleToLocalTime( start );
+	TQTime  result = convertDoubleToLocalTime( start );
 
 	if ( ! result.isValid() )
 		result.setHMS( 6, 0, 0 );
@@ -143,14 +143,14 @@ QTime Sun::computeCivilTwilightStart()
 }
 
 
-QTime Sun::computeCivilTwilightEnd()
+TQTime Sun::computeCivilTwilightEnd()
 {
 	double start;
 	double end;
 
 	civil_twilight( m_date.year(), m_date.month(), m_date.day(), m_lon, m_lat, start, end );
 
-	QTime  result = convertDoubleToLocalTime( end );
+	TQTime  result = convertDoubleToLocalTime( end );
 
 	if ( ! result.isValid() )
 		result.setHMS( 19, 0, 0 );
@@ -167,7 +167,7 @@ QTime Sun::computeCivilTwilightEnd()
  *
  * Does not currently handle seconds.
  */
-static double latitudeToDouble( const QString &latitude )
+static double latitudeToDouble( const TQString &latitude )
 {
 	double result;
 	
@@ -183,7 +183,7 @@ static double latitudeToDouble( const QString &latitude )
 }
 
 
-static double longitudeToDouble( const QString &longitude )
+static double longitudeToDouble( const TQString &longitude )
 {
 	double result;
 	
@@ -199,9 +199,9 @@ static double longitudeToDouble( const QString &longitude )
 }
 
 
-QTime Sun::convertDoubleToLocalTime( const double time )
+TQTime Sun::convertDoubleToLocalTime( const double time )
 {
-	QTime result;
+	TQTime result;
 	
 	// Example:  say time is 17.7543  Then hours = 17 and minutes = 0.7543 * 60 = 45.258
         // We need to convert the time to CORRECT local hours

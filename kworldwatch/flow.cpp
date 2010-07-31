@@ -15,15 +15,15 @@
 class SimpleFlowIterator :public QGLayoutIterator
 {
 public:
-    SimpleFlowIterator( QPtrList<QLayoutItem> *l ) :idx(0), list(l)  {}
+    SimpleFlowIterator( TQPtrList<TQLayoutItem> *l ) :idx(0), list(l)  {}
     uint count() const;
-    QLayoutItem *current();
-    QLayoutItem *next();
-    QLayoutItem *takeCurrent();
+    TQLayoutItem *current();
+    TQLayoutItem *next();
+    TQLayoutItem *takeCurrent();
 
 private:
     int idx;
-    QPtrList<QLayoutItem> *list;
+    TQPtrList<TQLayoutItem> *list;
 
 };
 
@@ -32,17 +32,17 @@ uint SimpleFlowIterator::count() const
     return list->count();
 }
 
-QLayoutItem *SimpleFlowIterator::current()
+TQLayoutItem *SimpleFlowIterator::current()
 {
     return idx < int(count()) ? list->at(idx) : 0;
 }
 
-QLayoutItem *SimpleFlowIterator::next()
+TQLayoutItem *SimpleFlowIterator::next()
 {
     idx++; return current();
 }
 
-QLayoutItem *SimpleFlowIterator::takeCurrent()
+TQLayoutItem *SimpleFlowIterator::takeCurrent()
 {
     return idx < int(count()) ? list->take( idx ) : 0;
 }
@@ -58,7 +58,7 @@ int SimpleFlow::heightForWidth( int w ) const
     if ( cached_width != w ) {
 	//Not all C++ compilers support "mutable" yet:
 	SimpleFlow * mthis = (SimpleFlow*)this;
-	int h = mthis->doLayout( QRect(0,0,w,0), TRUE );
+	int h = mthis->doLayout( TQRect(0,0,w,0), TRUE );
 	mthis->cached_hfw = h;
 	mthis->cached_width = w;
 	return h;
@@ -66,7 +66,7 @@ int SimpleFlow::heightForWidth( int w ) const
     return cached_hfw;
 }
 
-void SimpleFlow::addItem( QLayoutItem *item)
+void SimpleFlow::addItem( TQLayoutItem *item)
 {
     list.append( item );
 }
@@ -76,34 +76,34 @@ bool SimpleFlow::hasHeightForWidth() const
     return TRUE;
 }
 
-QSize SimpleFlow::sizeHint() const
+TQSize SimpleFlow::sizeHint() const
 {
     return minimumSize();
 }
 
-QSizePolicy::ExpandData SimpleFlow::expanding() const
+TQSizePolicy::ExpandData SimpleFlow::expanding() const
 {
-    return QSizePolicy::NoDirection;
+    return TQSizePolicy::NoDirection;
 }
 
-QLayoutIterator SimpleFlow::iterator()
+TQLayoutIterator SimpleFlow::iterator()
 {
-    return QLayoutIterator( new SimpleFlowIterator( &list ) );
+    return TQLayoutIterator( new SimpleFlowIterator( &list ) );
 }
 
-void SimpleFlow::setGeometry( const QRect &r )
+void SimpleFlow::setGeometry( const TQRect &r )
 {
-    QLayout::setGeometry( r );
+    TQLayout::setGeometry( r );
     doLayout( r );
 }
 
-int SimpleFlow::doLayout( const QRect &r, bool testonly )
+int SimpleFlow::doLayout( const TQRect &r, bool testonly )
 {
     int x = r.x();
     int y = r.y();
     int h = 0;		//height of this line so far.
-    QPtrListIterator<QLayoutItem> it(list);
-    QLayoutItem *o;
+    TQPtrListIterator<TQLayoutItem> it(list);
+    TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
 	int nextX = x + o->sizeHint().width() + spacing();
@@ -114,18 +114,18 @@ int SimpleFlow::doLayout( const QRect &r, bool testonly )
 	    h = 0;
 	}
 	if ( !testonly )
-	    o->setGeometry( QRect( QPoint( x, y ), o->sizeHint() ) );
+	    o->setGeometry( TQRect( TQPoint( x, y ), o->sizeHint() ) );
 	x = nextX;
 	h = QMAX( h,  o->sizeHint().height() );
     }
     return y + h - r.y();
 }
 
-QSize SimpleFlow::minimumSize() const
+TQSize SimpleFlow::minimumSize() const
 {
-    QSize s(0,0);
-    QPtrListIterator<QLayoutItem> it(list);
-    QLayoutItem *o;
+    TQSize s(0,0);
+    TQPtrListIterator<TQLayoutItem> it(list);
+    TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
 	s = s.expandedTo( o->minimumSize() );

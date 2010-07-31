@@ -31,25 +31,25 @@
 #include "stationdatabase.h"
 #include "sun.h"
 
-WeatherService::WeatherService(QObject *parent, const char *name) : QObject (parent, name),  DCOPObject("WeatherService")
+WeatherService::WeatherService(TQObject *parent, const char *name) : TQObject (parent, name),  DCOPObject("WeatherService")
 {
 	kdDebug(12006) << "Starting new service... " << endl;
 
 	stationDB = new StationDatabase();
 
 	m_weatherLib = new WeatherLib(stationDB, this, "WeatherLib");
-	connect(m_weatherLib, SIGNAL(fileUpdating( const QString&)),
-			SLOT(updating( const QString&)));
-	connect(m_weatherLib, SIGNAL(fileUpdate( const QString&)),
-			SLOT(updated( const QString&)));
-	connect(m_weatherLib, SIGNAL(stationRemoved(const QString&)),
-			SLOT(slotStationRemoved(const QString&)));
+	connect(m_weatherLib, TQT_SIGNAL(fileUpdating( const TQString&)),
+			TQT_SLOT(updating( const TQString&)));
+	connect(m_weatherLib, TQT_SIGNAL(fileUpdate( const TQString&)),
+			TQT_SLOT(updated( const TQString&)));
+	connect(m_weatherLib, TQT_SIGNAL(stationRemoved(const TQString&)),
+			TQT_SLOT(slotStationRemoved(const TQString&)));
 
 	KConfig *conf = kapp->config();
 
 	conf->setGroup("WEATHERSTATIONS");
-	QStringList stations =conf->readListEntry("stations");
-        QStringList::Iterator it = stations.begin();
+	TQStringList stations =conf->readListEntry("stations");
+        TQStringList::Iterator it = stations.begin();
 	for ( ; it != stations.end(); ++it )
 		m_weatherLib->update(*it);
 }
@@ -63,7 +63,7 @@ WeatherService::~WeatherService()
 	delete stationDB;
 }
 
-void WeatherService::updated(const QString &stationID)
+void WeatherService::updated(const TQString &stationID)
 {
 	kdDebug(12006) << "Sending update for " << stationID << endl;
 	emit fileUpdate( stationID );
@@ -72,129 +72,129 @@ void WeatherService::updated(const QString &stationID)
 void WeatherService::updateAll()
 {
 	kdDebug(12006) << "Sending for all" << endl;
-	QStringList stations =  m_weatherLib->stations();
-	QStringList::ConstIterator end(stations.end());
-	for  ( QStringList::ConstIterator it = stations.begin(); it != end; ++it ) {
+	TQStringList stations =  m_weatherLib->stations();
+	TQStringList::ConstIterator end(stations.end());
+	for  ( TQStringList::ConstIterator it = stations.begin(); it != end; ++it ) {
 		update(*it);
     	}
 
 }
 
-void WeatherService::updating(const QString &stationID)
+void WeatherService::updating(const TQString &stationID)
 {
 	kdDebug(12006) << "Sending updating for " << stationID << endl;
 	emit fileUpdating( stationID );
 }
 
-void WeatherService::slotStationRemoved(const QString &stationID)
+void WeatherService::slotStationRemoved(const TQString &stationID)
 {
   kdDebug(12006) << "Sending stationRemoved for " << stationID << endl;
   emit stationRemoved( stationID );
 }
 
-QString WeatherService::temperature(const QString &stationID)
+TQString WeatherService::temperature(const TQString &stationID)
 {
 	kdDebug (12006) << "Returning " << stationID << endl;
 	return m_weatherLib->temperature(stationID);
 }
 
-QString WeatherService::dewPoint(const QString &stationID)
+TQString WeatherService::dewPoint(const TQString &stationID)
 {
 	return m_weatherLib->dewPoint(stationID);
 }
 
-QString WeatherService::relativeHumidity(const QString &stationID)
+TQString WeatherService::relativeHumidity(const TQString &stationID)
 {
 	return m_weatherLib->relHumidity(stationID);
 }
 
-QString WeatherService::heatIndex(const QString &stationID)
+TQString WeatherService::heatIndex(const TQString &stationID)
 {
 	return m_weatherLib->heatIndex(stationID);
 }
 
-QString WeatherService::windChill(const QString &stationID)
+TQString WeatherService::windChill(const TQString &stationID)
 {
 	return m_weatherLib->windChill(stationID);
 }
 
-QString WeatherService::wind(const QString &stationID)
+TQString WeatherService::wind(const TQString &stationID)
 {
 	return m_weatherLib->wind(stationID);
 }
 
-QString WeatherService::pressure(const QString &stationID)
+TQString WeatherService::pressure(const TQString &stationID)
 {
 	return m_weatherLib->pressure(stationID);
 }
 
-QPixmap WeatherService::currentIcon(const QString &stationID)
+TQPixmap WeatherService::currentIcon(const TQString &stationID)
 {
     return icon( stationID );
 }
 
-QPixmap WeatherService::icon(const QString &stationID)
+TQPixmap WeatherService::icon(const TQString &stationID)
 {
 	kdDebug(12006) << "Get the current weather icon.." << endl;
-	QString icon  = iconFileName(stationID);
-	QPixmap theIcon = QPixmap(icon);
+	TQString icon  = iconFileName(stationID);
+	TQPixmap theIcon = TQPixmap(icon);
 	return theIcon;
 }
 
-QString WeatherService::currentIconString(const QString &stationID)
+TQString WeatherService::currentIconString(const TQString &stationID)
 {
 	return m_weatherLib->iconName(stationID);
 }
 
-QString WeatherService::iconFileName(const QString &stationID)
+TQString WeatherService::iconFileName(const TQString &stationID)
 {
-	QString icon  = m_weatherLib->iconName(stationID);
+	TQString icon  = m_weatherLib->iconName(stationID);
 	icon = locate( "data", "kweather/" + icon + ".png" );
 	return icon;
 }
 
-QString WeatherService::date(const QString &stationID)
+TQString WeatherService::date(const TQString &stationID)
 {
 	return m_weatherLib->date(stationID);
 }
 
-QString WeatherService::visibility(const QString &stationID)
+TQString WeatherService::visibility(const TQString &stationID)
 {
 	return m_weatherLib->visibility(stationID);
 }
 
-QStringList WeatherService::cover(const QString &stationID)
+TQStringList WeatherService::cover(const TQString &stationID)
 {
 	return m_weatherLib->cover(stationID);
 }
 
-QStringList WeatherService::weather(const QString &stationID)
+TQStringList WeatherService::weather(const TQString &stationID)
 {
 	return m_weatherLib->weather(stationID);
 }
 
-bool WeatherService::stationNeedsMaintenance(const QString &stationID)
+bool WeatherService::stationNeedsMaintenance(const TQString &stationID)
 {
 	return m_weatherLib->stationNeedsMaintenance(stationID);
 }
 
-void WeatherService::update(const QString &stationID)
+void WeatherService::update(const TQString &stationID)
 {
 	m_weatherLib->update(stationID);
 }
 
-void WeatherService::forceUpdate(const QString &stationID)
+void WeatherService::forceUpdate(const TQString &stationID)
 {
 	m_weatherLib->forceUpdate(stationID);
 }
 
-void WeatherService::removeStation(const QString &stationID)
+void WeatherService::removeStation(const TQString &stationID)
 {
 	m_weatherLib->remove(stationID);
 	saveSettings();
 }
 
-void WeatherService::addStation(const QString &stationID)
+void WeatherService::addStation(const TQString &stationID)
 {
 	m_weatherLib->update(stationID);
 	saveSettings();
@@ -206,7 +206,7 @@ void WeatherService::exit()
 	kapp->quit();
 }
 
-QStringList WeatherService::listStations()
+TQStringList WeatherService::listStations()
 {
 	return m_weatherLib->stations();
 }
@@ -219,17 +219,17 @@ void WeatherService::saveSettings()
 	conf->sync();
 }
 
-QString WeatherService::stationName(const QString &stationID)
+TQString WeatherService::stationName(const TQString &stationID)
 {
 	if ( stationDB )
 	{
-		QString upperStationID = stationID.upper();
+		TQString upperStationID = stationID.upper();
 		return stationDB->stationNameFromID(upperStationID);
 	}
 	else
 		return stationID;
 }
-QString WeatherService::stationCode( const QString &stationName )
+TQString WeatherService::stationCode( const TQString &stationName )
 {
 	if ( stationDB )
 	{
@@ -239,51 +239,51 @@ QString WeatherService::stationCode( const QString &stationName )
 		return stationName;
 }
 
-QString WeatherService::stationCountry(const QString &stationID)
+TQString WeatherService::stationCountry(const TQString &stationID)
 {
 
 	if ( stationDB )
 	{
-		QString upperStationID = stationID.upper();
+		TQString upperStationID = stationID.upper();
 		return stationDB->stationCountryFromID(upperStationID);
 	}
 	else
 		return stationID;
 }
-QString WeatherService::longitude(const QString &stationID)
+TQString WeatherService::longitude(const TQString &stationID)
 {
 	if ( stationDB )
 	{
-		QString upperStationID = stationID.upper();
+		TQString upperStationID = stationID.upper();
 		return stationDB->stationLongitudeFromID(upperStationID);
 	}
 	else
 		return "None";
 }
-QString WeatherService::latitude(const QString &stationID)
+TQString WeatherService::latitude(const TQString &stationID)
 {
 	if ( stationDB )
 	{
-		QString upperStationID = stationID.upper();
+		TQString upperStationID = stationID.upper();
 		return stationDB->stationLatitudeFromID(upperStationID);
 	}
 	else
 		return "None";
 }
 
-QStringList WeatherService::findStations(float /*lon*/, float /*lat*/)
+TQStringList WeatherService::findStations(float /*lon*/, float /*lat*/)
 {
-	QStringList stationList;
+	TQStringList stationList;
 	stationList << "KMKE" << "KPNE" << "KTPW";
 	return stationList;
 }
 
-QString WeatherService::getTime(const QString &stationID, TimeType timeType)
+TQString WeatherService::getTime(const TQString &stationID, TimeType timeType)
 {
-	QString upperStationID = stationID.upper();
+	TQString upperStationID = stationID.upper();
 
-	QString latitude  = stationDB->stationLatitudeFromID(upperStationID);
-	QString longitude = stationDB->stationLongitudeFromID(upperStationID);
+	TQString latitude  = stationDB->stationLatitudeFromID(upperStationID);
+	TQString longitude = stationDB->stationLongitudeFromID(upperStationID);
 
 	if ( latitude.compare(  i18n("Unknown Station" ) ) == 0  ||
 	     longitude.compare( i18n("Unknown Station" ) ) == 0 )
@@ -294,7 +294,7 @@ QString WeatherService::getTime(const QString &stationID, TimeType timeType)
 	{
 		Sun theSun( latitude, longitude );
 		
-		QTime time;
+		TQTime time;
 		switch ( timeType )
 		{
 			case RISE:
@@ -318,22 +318,22 @@ QString WeatherService::getTime(const QString &stationID, TimeType timeType)
 	}
 }
 
-QString WeatherService::sunRiseTime(const QString &stationID)
+TQString WeatherService::sunRiseTime(const TQString &stationID)
 {
 	return getTime(stationID, RISE);
 }
 
-QString WeatherService::sunSetTime(const QString &stationID)
+TQString WeatherService::sunSetTime(const TQString &stationID)
 {
 	return getTime(stationID, SET);
 }
 
-QString WeatherService::civilTwilightStart(const QString &stationID)
+TQString WeatherService::civilTwilightStart(const TQString &stationID)
 {
 	return getTime(stationID, CIVIL_START);
 }
 
-QString WeatherService::civilTwilightEnd(const QString &stationID)
+TQString WeatherService::civilTwilightEnd(const TQString &stationID)
 {
 	return getTime(stationID, CIVIL_END);
 }

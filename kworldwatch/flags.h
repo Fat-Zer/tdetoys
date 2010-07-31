@@ -29,13 +29,13 @@
 #define FLAGS_H
 
 
-#include <qstring.h>
-#include <qcolor.h>
-#include <qptrlist.h>
-#include <qpoint.h>
-#include <qpainter.h>
-#include <qpixmap.h>
-#include <qbitmap.h>
+#include <tqstring.h>
+#include <tqcolor.h>
+#include <tqptrlist.h>
+#include <tqpoint.h>
+#include <tqpainter.h>
+#include <tqpixmap.h>
+#include <tqbitmap.h>
 
 
 #include <kconfig.h>
@@ -45,25 +45,25 @@ class Flag
 {
 public:
   
-  Flag(double lo, double la, const QColor &col)
+  Flag(double lo, double la, const TQColor &col)
     : _lo(lo), _la(la), _col(col) {};
 
   double longitude() const { return _lo; };
   double latitude() const { return _la; };
 
-  QColor color() const { return _col; };
+  TQColor color() const { return _col; };
 
-  QString annotation() const { return _ann; };
-  void setAnnotation(const QString &ann) { _ann = ann; };
+  TQString annotation() const { return _ann; };
+  void setAnnotation(const TQString &ann) { _ann = ann; };
 
 
 private:
 
   double _lo, _la;
 
-  QColor _col;
+  TQColor _col;
 
-  QString _ann;
+  TQString _ann;
 
 };
 
@@ -74,11 +74,11 @@ public:
 
   FlagList();
 
-  void paint(QPainter *p, int w, int h, int offset);
+  void paint(TQPainter *p, int w, int h, int offset);
 
   void addFlag(Flag *f);
 
-  void removeNearestFlag(const QPoint &target, int w, int h, int offset);
+  void removeNearestFlag(const TQPoint &target, int w, int h, int offset);
   void removeAllFlags();
 
   void save(KConfig *config);
@@ -87,12 +87,12 @@ public:
 
 private:
  
-  QPoint getPosition(double la, double lo, int w, int h, int offset); 
+  TQPoint getPosition(double la, double lo, int w, int h, int offset); 
 
-  QPtrList<Flag> _flags;
+  TQPtrList<Flag> _flags;
 
-  QPixmap _flagPixmap;
-  QBitmap _flagMask;
+  TQPixmap _flagPixmap;
+  TQBitmap _flagMask;
 
 };
 

@@ -22,35 +22,35 @@ email                : jratke@comcast.net
 #include <klocale.h>
 #include <krfcdate.h>
 
-#include <qdatetime.h>
-#include <qregexp.h>
-#include <qstringlist.h>
+#include <tqdatetime.h>
+#include <tqregexp.h>
+#include <tqstringlist.h>
 
 class StationDatabase;
 
 struct WeatherInfo
 {
 	/** The current weather state outside */
-	QString theWeather;
+	TQString theWeather;
 	int clouds;
 	float windMPH;
 	float tempC;
 	float dewC;
 	bool heavy;
-	QStringList qsCoverList;
-	QStringList qsCurrentList;
-	QDate qsDate;
-	QString qsPressure;
-	QString qsTemperature;
-	QString qsDewPoint;
-	QString qsRelHumidity;
-	QTime qsTime;
-	QString qsVisibility;
-	QString qsWindSpeed;
-	QString qsWindChill;
-	QString qsHeatIndex;
-	QString qsWindDirection;
-	QString reportLocation;
+	TQStringList qsCoverList;
+	TQStringList qsCurrentList;
+	TQDate qsDate;
+	TQString qsPressure;
+	TQString qsTemperature;
+	TQString qsDewPoint;
+	TQString qsRelHumidity;
+	TQTime qsTime;
+	TQString qsVisibility;
+	TQString qsWindSpeed;
+	TQString qsWindChill;
+	TQString qsHeatIndex;
+	TQString qsWindDirection;
+	TQString reportLocation;
 	bool stationNeedsMaintenance;
 };
 
@@ -60,8 +60,8 @@ class MetarParser
 	public:
 		MetarParser(StationDatabase *stationDB,
 			    KLocale::MeasureSystem units = KLocale::Imperial,
-			    QDate date = QDate::currentDate(),
-			    QTime time = QTime::currentTime(), 
+			    TQDate date = TQDate::currentDate(),
+			    TQTime time = TQTime::currentTime(), 
 			    unsigned int localUTCOffset = KRFCDate::localUTCOffset());
 
 		/* 
@@ -73,26 +73,26 @@ class MetarParser
 		 * latitude and longitude to calculate the sunrise and sunset time to see if 
 		 * the day or night icon should be used.
 		 */
-		struct WeatherInfo processData(const QString &stationID, const QString &metar);
+		struct WeatherInfo processData(const TQString &stationID, const TQString &metar);
 
 	private:
-		bool parseCover(const QString &s);
-		bool parseCurrent(const QString &s);
-		bool parseTemperature(const QString &s);
-		bool parseTemperatureTenths(const QString &s);
+		bool parseCover(const TQString &s);
+		bool parseCurrent(const TQString &s);
+		bool parseTemperature(const TQString &s);
+		bool parseTemperatureTenths(const TQString &s);
 		void calcTemperatureVariables();
-		void removeTrailingDotZero(QString &string);
-		bool parseDate(const QString &s);
-		bool parseTime(const QString &s);
-		bool parseVisibility(QStringList::ConstIterator it);
-		bool parsePressure( const QString &s );
-		QString parseWindDirection(const unsigned int direction);
-		bool parseWindSpeed(const QString &s);
-		bool parseStationNeedsMaintenance(const QString &s);
+		void removeTrailingDotZero(TQString &string);
+		bool parseDate(const TQString &s);
+		bool parseTime(const TQString &s);
+		bool parseVisibility(TQStringList::ConstIterator it);
+		bool parsePressure( const TQString &s );
+		TQString parseWindDirection(const unsigned int direction);
+		bool parseWindSpeed(const TQString &s);
+		bool parseStationNeedsMaintenance(const TQString &s);
 		void calcCurrentIcon();
 		void calcWindChill();
-		bool isNight(const QString &stationID) const;
-		QString iconName( const QString &icon ) const;
+		bool isNight(const TQString &stationID) const;
+		TQString iconName( const TQString &icon ) const;
 
 		/*
 		 * Reset the internal WeatherInfo struct of the class so that
@@ -102,22 +102,22 @@ class MetarParser
 
 		StationDatabase* const m_stationDb;
 		const KLocale::MeasureSystem m_units;
-		const QDate m_date;
-		const QTime m_time;
+		const TQDate m_date;
+		const TQTime m_time;
 		const unsigned int m_localUTCOffset;
 		
 		struct WeatherInfo weatherInfo;
 		
-		QRegExp CoverRegExp;
-		QRegExp CurrentRegExp;
-		QRegExp WindRegExp;
-		QRegExp VisRegExp;
-		QRegExp VisFracRegExp;
-		QRegExp TempRegExp;
-		QRegExp TimeRegExp;
-		QRegExp DateRegExp;
-		QRegExp PressRegExp;
-		QRegExp TempTenRegExp;
+		TQRegExp CoverRegExp;
+		TQRegExp CurrentRegExp;
+		TQRegExp WindRegExp;
+		TQRegExp VisRegExp;
+		TQRegExp VisFracRegExp;
+		TQRegExp TempRegExp;
+		TQRegExp TimeRegExp;
+		TQRegExp DateRegExp;
+		TQRegExp PressRegExp;
+		TQRegExp TempTenRegExp;
 };
 
 #endif

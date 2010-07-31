@@ -31,7 +31,7 @@
 #include <config.h>
 #endif 
 
-#include <qstring.h>
+#include <tqstring.h>
 
 //---------------------------------------------------------------------------
 //
@@ -45,7 +45,7 @@ public:
     void read();
     void write();
 
-    QString  mTheme;
+    TQString  mTheme;
     bool     mOnTop;
     int      mOffset;
     bool     mTips;

@@ -26,10 +26,10 @@
 #include <kparts/part.h>
 #include <kparts/factory.h>
 #include <kparts/browserextension.h>
-#include <qdict.h>
+#include <tqdict.h>
 #include <dcopobject.h>
-#include <qlayout.h>
-#include <qtimer.h>
+#include <tqlayout.h>
+#include <tqtimer.h>
 
 class dockwidget;
 class sidebarwidget;
@@ -39,16 +39,16 @@ class KonqSidebarWeather: public KonqSidebarPlugin, virtual public DCOPObject
     Q_OBJECT
     K_DCOP
 public:
-    KonqSidebarWeather(KInstance* inst, QObject* parent, QWidget* widgetParent,
-                        QString& desktopName_, const char* name = 0);
+    KonqSidebarWeather(KInstance* inst, TQObject* parent, TQWidget* widgetParent,
+                        TQString& desktopName_, const char* name = 0);
 
     ~KonqSidebarWeather();
-    virtual void* provides(const QString&);
-    void emitStatusBarText(const QString&);
-    virtual QWidget *getWidget();
+    virtual void* provides(const TQString&);
+    void emitStatusBarText(const TQString&);
+    virtual TQWidget *getWidget();
 
     k_dcop:
-    virtual void refresh(QString);
+    virtual void refresh(TQString);
         
 protected:
     virtual void handleURL(const KURL &url);
@@ -59,9 +59,9 @@ private slots:
 	void update();
 	
 private:
-    QDict <dockwidget> m_widgets;
+    TQDict <dockwidget> m_widgets;
     sidebarwidget *m_container;
-    QTimer *timeOut;
+    TQTimer *timeOut;
 };
 
 #endif

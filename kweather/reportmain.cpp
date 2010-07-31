@@ -41,18 +41,18 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 
     DCOPClient *client = app.dcopClient();
     client->attach();
-    QString error;
+    TQString error;
     if (!client->isApplicationRegistered("KWeatherService"))
     {
         if (KApplication::startServiceByDesktopName("kweatherservice",
-            QStringList(), &error))
+            TQStringList(), &error))
         {
             kdDebug() << "Starting kweatherservice failed: " << error << endl;
             return -2;
         }
     }
 
-    QString reportLocation = args->arg( 0 );
+    TQString reportLocation = args->arg( 0 );
     reportView *report = new reportView(reportLocation);
     args->clear();
     report->exec();

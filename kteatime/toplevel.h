@@ -24,16 +24,16 @@
 #define TOPLEVEL_H
 
 #include <kapplication.h>
-#include <qpopupmenu.h>
-#include <qtimer.h>
-#include <qlineedit.h>
-#include <qvaluevector.h>
-#include <qlistview.h>
-#include <qpushbutton.h>
-#include <qgroupbox.h>
+#include <tqpopupmenu.h>
+#include <tqtimer.h>
+#include <tqlineedit.h>
+#include <tqvaluevector.h>
+#include <tqlistview.h>
+#include <tqpushbutton.h>
+#include <tqgroupbox.h>
 #include <knuminput.h>
 #include <ksystemtray.h>
-#include <qpixmap.h>
+#include <tqpixmap.h>
 
 class KAction;
 class KDialogBase;
@@ -51,10 +51,10 @@ public:
 
 protected:
 
-	void paintEvent(QPaintEvent *);
-	void mousePressEvent(QMouseEvent *);
-	void timerEvent(QTimerEvent *);
-	void resizeEvent(QResizeEvent *);
+	void paintEvent(TQPaintEvent *);
+	void mousePressEvent(TQMouseEvent *);
+	void timerEvent(TQTimerEvent *);
+	void resizeEvent(TQResizeEvent *);
 
 private slots:
 
@@ -65,11 +65,11 @@ private slots:
 	void config();
 	void help();
 	void anonymous();
-	void setToolTip(const QString &text, bool force=false);
+	void setToolTip(const TQString &text, bool force=false);
 	void rebuildTeaMenus();
 
 	void listBoxItemSelected();
-	void nameEditTextChanged(const QString& newText);
+	void nameEditTextChanged(const TQString& newText);
 	void spinBoxValueChanged(int v);
 	void newButtonClicked();
 	void delButtonClicked();
@@ -87,10 +87,10 @@ private:
 	static const int DEFAULT_TEA_TIME;
 
 	struct tea_struct {
-		QString name;
+		TQString name;
 		int time;
 	};
-	QValueVector<tea_struct> teas;      // list of tea-names and times
+	TQValueVector<tea_struct> teas;      // list of tea-names and times
 
 	bool running, ready, firstFrame, listempty;
 	int seconds;                        // variable for counting down seconds
@@ -98,28 +98,28 @@ private:
 	int percentDone;                    // ok, this isn't really "per 100", but "per 360"
 
 	unsigned current_selected;          // index of currently +selected+ tea in menu
-	QListViewItem *current_item;        // ptr to currently +selected+ tea in ListView
-	QString current_name;               // name of currently +running+ tea (if any)
+	TQListViewItem *current_item;        // ptr to currently +selected+ tea in ListView
+	TQString current_name;               // name of currently +running+ tea (if any)
 	bool shooting;                      // anonymous tea currently steeping?
 
 	bool useNotify, usePopup, useAction;
-	QString action;
+	TQString action;
 	bool useTrayVis;                    // visualize progress in tray icon
 
-	QPixmap mugPixmap, teaNotReadyPixmap, teaAnim1Pixmap, teaAnim2Pixmap;
+	TQPixmap mugPixmap, teaNotReadyPixmap, teaAnim1Pixmap, teaAnim2Pixmap;
 
 	KAction *startAct, *stopAct, *confAct, *anonAct;
-	QPopupMenu *menu, *steeping_menu, *start_menu;
-	QListView *listbox;
-	QLineEdit *nameEdit, *actionEdit;
+	TQPopupMenu *menu, *steeping_menu, *start_menu;
+	TQListView *listbox;
+	TQLineEdit *nameEdit, *actionEdit;
 	TimeEdit *timeEdit;
-	QGroupBox *editgroup;
-	QPushButton *btn_new, *btn_del, *btn_up, *btn_down, *btn_conf;
+	TQGroupBox *editgroup;
+	TQPushButton *btn_new, *btn_del, *btn_up, *btn_down, *btn_conf;
 
-	QString lastTip;
+	TQString lastTip;
 	KDialogBase *anondlg, *confdlg;
 	TimeEdit *anon_time;
-	QCheckBox *eventEnable, *popupEnable, *actionEnable, *visEnable;
+	TQCheckBox *eventEnable, *popupEnable, *actionEnable, *visEnable;
 };
 
 #endif

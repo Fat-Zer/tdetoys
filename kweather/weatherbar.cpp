@@ -23,11 +23,11 @@
 #include "dockwidget.h"
 #include "sidebarwidget.h"
 
-#include <qlabel.h>
-#include <qfont.h>
-#include <qlayout.h>
-#include <qscrollview.h>
-#include <qgroupbox.h>
+#include <tqlabel.h>
+#include <tqfont.h>
+#include <tqlayout.h>
+#include <tqscrollview.h>
+#include <tqgroupbox.h>
 #include <klocale.h>
 #include <kdebug.h>
 #include <kconfig.h>
@@ -36,9 +36,9 @@
 #include <dcopref.h>
 
 
-KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, QObject* parent,
-                                         QWidget* widgetParent,
-                                         QString& desktopName, const char* name)
+KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, TQObject* parent,
+                                         TQWidget* widgetParent,
+                                         TQString& desktopName, const char* name)
 
     : KonqSidebarPlugin(inst, parent, widgetParent, desktopName, name),
     DCOPObject(name)
@@ -51,8 +51,8 @@ KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, QObject* parent,
 	kdDebug() << "Get weatherstation list... " << endl;
 
 	if (!connectDCOPSignal(0,0,
-		"fileUpdate(QString)",
-		"refresh(QString)",false))
+		"fileUpdate(TQString)",
+		"refresh(TQString)",false))
 		kdDebug() << "Could not attach signal..." << endl;
 	else
 		kdDebug() << "attached dcop signals..." << endl;
@@ -60,7 +60,7 @@ KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, QObject* parent,
 	DCOPRef dcopCall( "KWeatherService", "WeatherService" );
 	DCOPReply reply = dcopCall.call("listStations()", true );
 	if ( reply.isValid() ) {
-		QStringList replyList = reply;
+		TQStringList replyList = reply;
 		for(int i = 0; i < replyList.size(); i++)
 		{
 			dockwidget *d = new dockwidget(m_container->viewport(), replyList[i].latin1());
@@ -68,13 +68,13 @@ KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, QObject* parent,
 			d->resizeView(80,48);
 			d->show();
 			m_widgets.insert(replyList[i], d);
-			dcopCall.send("update(QString)", replyList[i]);
+			dcopCall.send("update(TQString)", replyList[i]);
 		}
 	}
 
-	timeOut = new QTimer(this, "timeOut" );
+	timeOut = new TQTimer(this, "timeOut" );
 	timeOut->changeInterval(15*60000);
-	connect(timeOut, SIGNAL(timeout()), this, SLOT(update()));
+	connect(timeOut, TQT_SIGNAL(timeout()), this, TQT_SLOT(update()));
    // m_widgets.append(new dockwidget(widgetParent));
 }
 
@@ -83,30 +83,30 @@ KonqSidebarWeather::~KonqSidebarWeather()
 {
 }
 
-void* KonqSidebarWeather::provides(const QString&)
+void* KonqSidebarWeather::provides(const TQString&)
 {
     return 0;
 }
 
-void KonqSidebarWeather::emitStatusBarText(const QString& s)
+void KonqSidebarWeather::emitStatusBarText(const TQString& s)
 {
 }
 
-QWidget* KonqSidebarWeather::getWidget()
+TQWidget* KonqSidebarWeather::getWidget()
 {
 	return m_container;
 }
 
-void KonqSidebarWeather::refresh(QString stationID)
+void KonqSidebarWeather::refresh(TQString stationID)
 {
 	kdDebug() << "refresh " << stationID << endl;
 	if(m_widgets.find(stationID))
 	{
 		DCOPRef dcopCall( "KWeatherService", "WeatherService" );
-		m_widgets[stationID]->setWeatherIcon(dcopCall.call("currentIcon(QString)", stationID ,true ));
-		m_widgets[stationID]->setTemperature(dcopCall.call("temperature(QString)", stationID,true ));
-		m_widgets[stationID]->setPressure(dcopCall.call("pressure(QString)", stationID,true ));
-		m_widgets[stationID]->setWind(dcopCall.call("wind(QString)", stationID,true ));
+		m_widgets[stationID]->setWeatherIcon(dcopCall.call("currentIcon(TQString)", stationID ,true ));
+		m_widgets[stationID]->setTemperature(dcopCall.call("temperature(TQString)", stationID,true ));
+		m_widgets[stationID]->setPressure(dcopCall.call("pressure(TQString)", stationID,true ));
+		m_widgets[stationID]->setWind(dcopCall.call("wind(TQString)", stationID,true ));
 		m_widgets[stationID]->showWeather();
 	}
 	else
@@ -131,7 +131,7 @@ void KonqSidebarWeather::update()
 	DCOPRef dcopCall( "KWeatherService", "WeatherService" );
 	DCOPReply reply = dcopCall.call("listStations()", true );
 	if ( reply.isValid() ) {
-		QStringList replyList = reply;
+		TQStringList replyList = reply;
 		for(int i = 0; i < replyList.size(); i++)
 		{
 			if(!m_widgets.find(replyList[i]))
@@ -141,7 +141,7 @@ void KonqSidebarWeather::update()
 				d->show();
 				m_widgets.insert(replyList[i], d);
 			}
-			dcopCall.send("update(QString)", replyList[i]);
+			dcopCall.send("update(TQString)", replyList[i]);
 		}
 	}
     	timeOut->start(15*60000);
@@ -149,14 +149,14 @@ void KonqSidebarWeather::update()
 
 extern "C"
 {
-    KDE_EXPORT void* create_weather_sidebar(KInstance* inst, QObject* par, QWidget*widp,
-                                      QString& desktopname, const char* name)
+    KDE_EXPORT void* create_weather_sidebar(KInstance* inst, TQObject* par, TQWidget*widp,
+                                      TQString& desktopname, const char* name)
     {
         return new KonqSidebarWeather(inst, par, widp, desktopname, name);
     }
 
-    KDE_EXPORT bool add_weather_sidebar(QString* fn, QString* /*param*/,
-                                  QMap<QString, QString>* map)
+    KDE_EXPORT bool add_weather_sidebar(TQString* fn, TQString* /*param*/,
+                                  TQMap<TQString, TQString>* map)
     {
                     map->insert("Type","Link");
                         map->insert("Icon","weather_sidebar");

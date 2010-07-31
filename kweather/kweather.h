@@ -35,13 +35,13 @@ class kweather : public KPanelApplet, public weatherIface
     Q_OBJECT
 
 public:
-    kweather(const QString& configFile, Type t = Normal, int actions = 0, QWidget *parent = 0, const char *name = 0);
+    kweather(const TQString& configFile, Type t = Normal, int actions = 0, TQWidget *parent = 0, const char *name = 0);
     ~kweather();
     void help();
-    void resizeEvent(QResizeEvent*);
+    void resizeEvent(TQResizeEvent*);
     int heightForWidth(int i) const;
     int widthForHeight(int i) const;
-    void refresh(QString);
+    void refresh(TQString);
     void setBackground();
     void setLabelColor();
 
@@ -50,7 +50,7 @@ public slots: // Public slots
     void about();
 
 protected:
-    void paletteChange(const QPalette &);
+    void paletteChange(const TQPalette &);
 
 protected slots:
     void doReport();
@@ -66,17 +66,17 @@ private: // Private methods
     void savePrefs();
     void showWeather();
     void writeLogEntry();
-    void mousePressEvent(QMouseEvent *e);
+    void mousePressEvent(TQMouseEvent *e);
     
     bool attach();
     
-    QString reportLocation;
-    QString fileName;
-    QString metarData;
+    TQString reportLocation;
+    TQString fileName;
+    TQString metarData;
     bool logOn;
     bool mFirstRun;
     int mViewMode;
-    QTimer *timeOut;
+    TQTimer *timeOut;
     dockwidget *dockWidget;
     reportView *mReport;
     DCOPClient *mClient;
@@ -84,7 +84,7 @@ private: // Private methods
     KPopupMenu *mContextMenu;
     WeatherService_stub *mWeatherService;
     KCMultiDialog *settingsDialog;
-    QColor mTextColor;
+    TQColor mTextColor;
 };
 
 #endif

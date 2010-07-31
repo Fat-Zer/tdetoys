@@ -24,17 +24,17 @@
 
 
 #include <sidebarwidgetbase.h>
-#include <qvbox.h>
+#include <tqvbox.h>
 
 class sidebarwidget : public sidebarwidgetbase
 {
 Q_OBJECT
 public:
-    sidebarwidget(QWidget* parent, const char* name = 0);
+    sidebarwidget(TQWidget* parent, const char* name = 0);
     virtual ~sidebarwidget();
-    void addWidget(QWidget *w, const QString &s);
-    QWidget *viewport();
-    QVBox *view;
+    void addWidget(TQWidget *w, const TQString &s);
+    TQWidget *viewport();
+    TQVBox *view;
 
 };
 

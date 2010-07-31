@@ -20,32 +20,32 @@
 #ifndef WEATHERBUTTON_H
 #define WEATHERBUTTON_H
 
-#include <qbutton.h>
-#include <qpixmap.h>
+#include <tqbutton.h>
+#include <tqpixmap.h>
 
 class WeatherButton : public QButton
 {
   Q_OBJECT
 
   public:
-    WeatherButton( QWidget *parent, const char *name );
-    void setPixmap( const QPixmap &pix );
+    WeatherButton( TQWidget *parent, const char *name );
+    void setPixmap( const TQPixmap &pix );
 
   protected:
-    void drawButton( QPainter *p );
-    void drawButtonLabel( QPainter *p );
-    QSize margin() const { return QSize( 3, 3 ); }
-    QSize pixmapSize() const { return size() - margin()*2; }
-    QPoint pixmapOrigin() const;
+    void drawButton( TQPainter *p );
+    void drawButtonLabel( TQPainter *p );
+    TQSize margin() const { return TQSize( 3, 3 ); }
+    TQSize pixmapSize() const { return size() - margin()*2; }
+    TQPoint pixmapOrigin() const;
     void generateIcons();
 
-    void enterEvent( QEvent *e );
-    void leaveEvent( QEvent *e );
-    void resizeEvent( QResizeEvent *e );
+    void enterEvent( TQEvent *e );
+    void leaveEvent( TQEvent *e );
+    void resizeEvent( TQResizeEvent *e );
 
     bool m_highlight;
-    QPixmap m_normalIcon;
-    QPixmap m_activeIcon;
+    TQPixmap m_normalIcon;
+    TQPixmap m_activeIcon;
 
   protected slots:
     void slotSettingsChanged( int category );

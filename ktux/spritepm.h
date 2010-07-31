@@ -12,9 +12,9 @@
 #include <config.h>
 #endif 
 
-#include <qdict.h>
-#include <qpixmap.h>
-#include <qcanvas.h>
+#include <tqdict.h>
+#include <tqpixmap.h>
+#include <tqcanvas.h>
 #include <kconfigbase.h>
 #include <ksimpleconfig.h>                                                      
 
@@ -28,19 +28,19 @@ public:
     SpritePixmapManager();
     virtual ~SpritePixmapManager();
 
-    void setPixmapDir(const QString &dir)
+    void setPixmapDir(const TQString &dir)
         { mPixmapDir = dir; }
     void reset()
         { mPixmapDir = "."; mPixmaps.clear(); }
-    const QPixmap *load(const QString & img);
-    const QPixmap *pixmap(const char *img) const
+    const TQPixmap *load(const TQString & img);
+    const TQPixmap *pixmap(const char *img) const
         { return mPixmaps.find(img); }
 
     static SpritePixmapManager *manager();
 
 public:
-    QString        mPixmapDir;           // get pixmaps from here
-    QDict<QPixmap> mPixmaps;             // list of pixmaps
+    TQString        mPixmapDir;           // get pixmaps from here
+    TQDict<TQPixmap> mPixmaps;             // list of pixmaps
     static SpritePixmapManager *mManager; // static pointer to instance
 };
 
@@ -49,12 +49,12 @@ public:
 class SpritePixmapSequence : public QCanvasPixmapArray
 {
 public:
-    SpritePixmapSequence(QPtrList<QPixmap> pm, QPtrList<QPoint> hs, QMemArray<int> d);
+    SpritePixmapSequence(TQPtrList<TQPixmap> pm, TQPtrList<TQPoint> hs, TQMemArray<int> d);
 
     int delay(int i) const { return mDelays[i]; }
 
 protected:
-    QMemArray<int> mDelays;
+    TQMemArray<int> mDelays;
 };
 
 //---------------------------------------------------------------------------
@@ -67,7 +67,7 @@ public:
     SpriteSequenceManager();
     ~SpriteSequenceManager();
  
-    SpritePixmapSequence *load(KConfigBase &config, const QString & name);
+    SpritePixmapSequence *load(KConfigBase &config, const TQString & name);
     SpritePixmapSequence *sprite(const char *name)
         { return mSprites.find(name); }
 
@@ -77,7 +77,7 @@ protected:
     SpritePixmapSequence *read(KConfigBase &config);
 
 protected:
-    QDict<SpritePixmapSequence> mSprites;
+    TQDict<SpritePixmapSequence> mSprites;
     static SpriteSequenceManager *mManager;
 };
 

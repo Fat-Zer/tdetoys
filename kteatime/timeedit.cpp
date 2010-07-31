@@ -7,14 +7,14 @@
  ------------------------------------------------------------- */
 
 #include <klocale.h>
-#include <qlabel.h>
-#include <qlayout.h>
+#include <tqlabel.h>
+#include <tqlayout.h>
 
 #include "timeedit.h"
 #include "timeedit.moc"
 
-WrappingSpinBox::WrappingSpinBox(int minValue, int maxValue, int step, QWidget *parent, const char *name)
-	: QSpinBox(minValue, maxValue, step, parent, name)
+WrappingSpinBox::WrappingSpinBox(int minValue, int maxValue, int step, TQWidget *parent, const char *name)
+	: TQSpinBox(minValue, maxValue, step, parent, name)
 {
 }
 
@@ -23,7 +23,7 @@ WrappingSpinBox::~WrappingSpinBox()
 }
 
 
-/** Overloaded QSpinBox method */
+/** Overloaded TQSpinBox method */
 void WrappingSpinBox::stepUp()
 {
 	bool wrap = false;
@@ -31,16 +31,16 @@ void WrappingSpinBox::stepUp()
 		wrap = true;
 	if (wrap)
 		emit wrapUp();              // must wrap first (to avoid double-step-up)
-	QSpinBox::stepUp();
+	TQSpinBox::stepUp();
 }
 
-/** Overloaded QSpinBox method */
+/** Overloaded TQSpinBox method */
 void WrappingSpinBox::stepDown()
 {
 	bool wrap = false;
 	if (value() == 0)
 		wrap = true;
-	QSpinBox::stepDown();
+	TQSpinBox::stepDown();
 	if (wrap)
 		emit wrapDown();
 }
@@ -49,20 +49,20 @@ void WrappingSpinBox::stepDown()
 // -------------------------------------------------------------------------
 
 
-TimeEdit::TimeEdit(QWidget* parent, const char* name)
-    : QWidget(parent, name)
+TimeEdit::TimeEdit(TQWidget* parent, const char* name)
+    : TQWidget(parent, name)
 {
-	layout = new QHBoxLayout(this);
-	minuteBox = new QSpinBox(0, 300, 1, this);
+	layout = new TQHBoxLayout(this);
+	minuteBox = new TQSpinBox(0, 300, 1, this);
 //	minuteBox->setFixedSize(minuteBox->sizeHint());
 
-	QLabel* min = new QLabel(i18n(" min"), this);
+	TQLabel* min = new TQLabel(i18n(" min"), this);
 	min->setFixedSize(min->sizeHint());
 	secondBox = new WrappingSpinBox(0, 59, 1, this);
 	secondBox->setWrapping(true);
 //	secondBox->setFixedSize(secondBox->sizeHint());
 
-	QLabel* sec = new QLabel(i18n(" sec"),this);
+	TQLabel* sec = new TQLabel(i18n(" sec"),this);
 	sec->setFixedSize(sec->sizeHint());
 
 	layout->addWidget(minuteBox);
@@ -71,10 +71,10 @@ TimeEdit::TimeEdit(QWidget* parent, const char* name)
 	layout->addWidget(secondBox);
 	layout->addWidget(sec);
 
-	connect(minuteBox, SIGNAL(valueChanged(int)), SLOT(spinBoxValueChanged(int)) );
-	connect(secondBox, SIGNAL(valueChanged(int)), SLOT(spinBoxValueChanged(int)) );
-	connect(secondBox, SIGNAL(wrapUp()), SLOT(wrappedUp()));
-	connect(secondBox, SIGNAL(wrapDown()), SLOT(wrappedDown()));
+	connect(minuteBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );
+	connect(secondBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );
+	connect(secondBox, TQT_SIGNAL(wrapUp()), TQT_SLOT(wrappedUp()));
+	connect(secondBox, TQT_SIGNAL(wrapDown()), TQT_SLOT(wrappedDown()));
 }
 
 TimeEdit::~TimeEdit()
@@ -139,7 +139,7 @@ void TimeEdit::spinBoxValueChanged(int)
 	emit valueChanged(value());
 }
 
-/** SLOT (overloading QSpinBox): set focus */
+/** TQT_SLOT (overloading TQSpinBox): set focus */
 void TimeEdit::setFocus()
 {
 	minuteBox->setFocus();

@@ -20,7 +20,7 @@ email                : jratke@comcast.net
 
 #include "config.h"
 
-#include <qdatetime.h>
+#include <tqdatetime.h>
 #include <kdebug.h>
 #include <math.h>
 
@@ -34,27 +34,27 @@ email                : jratke@comcast.net
 
 MetarParser::MetarParser(StationDatabase *stationDB,
 			 KLocale::MeasureSystem units,
-			 QDate date,
-			 QTime time,
+			 TQDate date,
+			 TQTime time,
 			 unsigned int localUTCOffset) : 
 	m_stationDb(stationDB), m_units(units), m_date(date), m_time(time), m_localUTCOffset(localUTCOffset)
 {
-	CoverRegExp    = QRegExp("^(FEW|SCT|BKN|OVC|SKC|CLR|CAVOK)([0-9]{3})?(?:TCU|CB)?$");
-	CurrentRegExp  = QRegExp("^(\\+|-|VC)?([A-Z]{2,4})$");
-	WindRegExp     = QRegExp("^([0-9]{3}|VRB)([0-9]{2,3})(?:G([0-9]{2,3}))?(KT|KMH|MPS)$");
-	VisRegExp      = QRegExp("^([0-9]{1,2})SM$");
-	VisFracRegExp  = QRegExp("^1/(2|4)SM$");
-	TempRegExp     = QRegExp("^(M)?([0-9]{2})/(?:(M)?([0-9]{2}))?$");
-	TimeRegExp     = QRegExp("^([0-9]{2}:[0-9]{2})$");
-	DateRegExp     = QRegExp("^([0-9]{4}/[0-9]{2}/[0-9]{2})$");
-	PressRegExp    = QRegExp("^([AQ])([0-9]{4})$");
-	TempTenRegExp  = QRegExp("^T([01][0-9]{3})([01][0-9]{3})$");
+	CoverRegExp    = TQRegExp("^(FEW|SCT|BKN|OVC|SKC|CLR|CAVOK)([0-9]{3})?(?:TCU|CB)?$");
+	CurrentRegExp  = TQRegExp("^(\\+|-|VC)?([A-Z]{2,4})$");
+	WindRegExp     = TQRegExp("^([0-9]{3}|VRB)([0-9]{2,3})(?:G([0-9]{2,3}))?(KT|KMH|MPS)$");
+	VisRegExp      = TQRegExp("^([0-9]{1,2})SM$");
+	VisFracRegExp  = TQRegExp("^1/(2|4)SM$");
+	TempRegExp     = TQRegExp("^(M)?([0-9]{2})/(?:(M)?([0-9]{2}))?$");
+	TimeRegExp     = TQRegExp("^([0-9]{2}:[0-9]{2})$");
+	DateRegExp     = TQRegExp("^([0-9]{4}/[0-9]{2}/[0-9]{2})$");
+	PressRegExp    = TQRegExp("^([AQ])([0-9]{4})$");
+	TempTenRegExp  = TQRegExp("^T([01][0-9]{3})([01][0-9]{3})$");
 }
 
 void MetarParser::reset()
 {
 	// Initialize the WeatherInfo structure
-	weatherInfo.theWeather = QString::null;
+	weatherInfo.theWeather = TQString::null;
 	weatherInfo.clouds = 0;
 	weatherInfo.windMPH = 0;
 	weatherInfo.tempC = 0;
@@ -64,19 +64,19 @@ void MetarParser::reset()
 	weatherInfo.qsCurrentList.clear();
 	weatherInfo.qsDate = m_date;
 	weatherInfo.qsTime = m_time;
-	weatherInfo.qsPressure = QString::null;
-	weatherInfo.qsTemperature = QString::null;
-	weatherInfo.qsDewPoint = QString::null;
-	weatherInfo.qsRelHumidity = QString::null;
-	weatherInfo.qsVisibility = QString::null;
-	weatherInfo.qsWindSpeed = QString::null;
-	weatherInfo.qsWindChill = QString::null;
-	weatherInfo.qsHeatIndex = QString::null;
-	weatherInfo.qsWindDirection = QString::null;
+	weatherInfo.qsPressure = TQString::null;
+	weatherInfo.qsTemperature = TQString::null;
+	weatherInfo.qsDewPoint = TQString::null;
+	weatherInfo.qsRelHumidity = TQString::null;
+	weatherInfo.qsVisibility = TQString::null;
+	weatherInfo.qsWindSpeed = TQString::null;
+	weatherInfo.qsWindChill = TQString::null;
+	weatherInfo.qsHeatIndex = TQString::null;
+	weatherInfo.qsWindDirection = TQString::null;
 	weatherInfo.stationNeedsMaintenance = false;
 }
 
-struct WeatherInfo MetarParser::processData(const QString &stationID, const QString &metar)
+struct WeatherInfo MetarParser::processData(const TQString &stationID, const TQString &metar)
 {
 	reset();
 	
@@ -85,11 +85,11 @@ struct WeatherInfo MetarParser::processData(const QString &stationID, const QStr
 	kdDebug(12006) << "Processing data: " << metar << endl;
 
 	// Split at whitespace into tokens
-	QStringList dataList = QStringList::split(QRegExp("\\s+"), metar);
+	TQStringList dataList = TQStringList::split(TQRegExp("\\s+"), metar);
 	bool found = false;
 	bool beforeRemark = true;
 
-	for (QStringList::ConstIterator it = dataList.begin();
+	for (TQStringList::ConstIterator it = dataList.begin();
 	     it != dataList.end(); ++it)
 	{
 		// Don't try to parse the ICAO location code
@@ -143,17 +143,17 @@ struct WeatherInfo MetarParser::processData(const QString &stationID, const QStr
 }
 
 /** Parse the current cover type */
-bool MetarParser::parseCover(const QString &s)
+bool MetarParser::parseCover(const TQString &s)
 {
 	if (CoverRegExp.search(s) > -1)
 	{
 		kdDebug(12006) << "Cover: " << CoverRegExp.capturedTexts().join("-")
 				<< endl;
 
-		QString sCode = CoverRegExp.cap(1);
+		TQString sCode = CoverRegExp.cap(1);
 		float height = CoverRegExp.cap(2).toFloat();  // initially in 100's of feet
-		QString sClouds;
-		QString skycondition;
+		TQString sClouds;
+		TQString skycondition;
 
 		height *= 100;
 		if (m_units == KLocale::Metric)
@@ -203,13 +203,13 @@ bool MetarParser::parseCover(const QString &s)
 }
 
 /** Parse the current weather conditions */
-bool MetarParser::parseCurrent(const QString &s)
+bool MetarParser::parseCurrent(const TQString &s)
 {
 	if (CurrentRegExp.search(s) > -1)
 	{
-		QString sIntensity = CurrentRegExp.cap(1);
-		QString sCode = CurrentRegExp.cap(2);
-		QString intensity, descriptor, phenomena, currentWeather;
+		TQString sIntensity = CurrentRegExp.cap(1);
+		TQString sCode = CurrentRegExp.cap(2);
+		TQString intensity, descriptor, phenomena, currentWeather;
 
 		kdDebug(12006) << "Current: " << CurrentRegExp.capturedTexts().join("-") << endl;
 
@@ -354,7 +354,7 @@ bool MetarParser::parseCurrent(const QString &s)
 }
 
 /** Parse out the current temperature */
-bool MetarParser::parseTemperature(const QString &s)
+bool MetarParser::parseTemperature(const TQString &s)
 {
 	if (TempRegExp.search(s) > -1)
 	{
@@ -375,7 +375,7 @@ bool MetarParser::parseTemperature(const QString &s)
 	return false;
 }
 
-bool MetarParser::parseTemperatureTenths(const QString &s)
+bool MetarParser::parseTemperatureTenths(const TQString &s)
 {
 	if (TempTenRegExp.search(s) > -1)
 	{
@@ -432,7 +432,7 @@ void MetarParser::calcTemperatureVariables()
 			fHeatIndex = 0;
 	}
 
-	QString unit;
+	TQString unit;
 	if (m_units == KLocale::Metric)
 	{
 		unit = i18n("°C");
@@ -460,7 +460,7 @@ void MetarParser::calcTemperatureVariables()
 		weatherInfo.qsHeatIndex += unit;
 }
 
-void MetarParser::removeTrailingDotZero(QString &string)
+void MetarParser::removeTrailingDotZero(TQString &string)
 {
 	if ( string.right( 2 ) == ".0" )
 	{
@@ -469,20 +469,20 @@ void MetarParser::removeTrailingDotZero(QString &string)
 }
 
 /** Parse out the current date. */
-bool MetarParser::parseDate(const QString &s)
+bool MetarParser::parseDate(const TQString &s)
 {
 	if (DateRegExp.search(s) > -1)
 	{
 		kdDebug(12006) << "Date: " << DateRegExp.capturedTexts().join("-")
 				<< endl;
-		QString dateString = DateRegExp.cap(1);
-		QString day, month, year;
+		TQString dateString = DateRegExp.cap(1);
+		TQString day, month, year;
 
 		day = dateString.mid(8,2);
 		month = dateString.mid(5,2);
 		year = dateString.mid(0,4);
 
-		QDate theDate(year.toInt(), month.toInt(), day.toInt());
+		TQDate theDate(year.toInt(), month.toInt(), day.toInt());
 
 
 		weatherInfo.qsDate = theDate;
@@ -492,19 +492,19 @@ bool MetarParser::parseDate(const QString &s)
 }
 
 /** Parse out the current time. */
-bool MetarParser::parseTime(const QString &s)
+bool MetarParser::parseTime(const TQString &s)
 {
 	if (TimeRegExp.search(s) > -1)
 	{
 		kdDebug(12006) << "Time: " << TimeRegExp.capturedTexts().join("-")
 				<< endl;
 
-		QString hour, minute, dateString;
+		TQString hour, minute, dateString;
 
 		dateString = TimeRegExp.cap(1);
 		hour = dateString.mid(0,2);
 		minute = dateString.mid(3,2);
-		QTime theTime(hour.toInt(), minute.toInt());
+		TQTime theTime(hour.toInt(), minute.toInt());
 
 		weatherInfo.qsTime = theTime;
 		return true;
@@ -513,7 +513,7 @@ bool MetarParser::parseTime(const QString &s)
 }
 
 /** Parse out the current visibility */
-bool MetarParser::parseVisibility(QStringList::ConstIterator it)
+bool MetarParser::parseVisibility(TQStringList::ConstIterator it)
 {
 	float fVisibility = 0;
 	
@@ -557,11 +557,11 @@ bool MetarParser::parseVisibility(QStringList::ConstIterator it)
 }
 
 /** Parse out the current pressure. */
-bool MetarParser::parsePressure( const QString &s)
+bool MetarParser::parsePressure( const TQString &s)
 {
 	if (PressRegExp.search(s) > -1)
 	{
-		QString type = PressRegExp.cap(1);
+		TQString type = PressRegExp.cap(1);
 		float fPressure = PressRegExp.cap(2).toFloat();
 
 		kdDebug(12006) << "Pressure: " << PressRegExp.capturedTexts().join("-")
@@ -591,7 +591,7 @@ bool MetarParser::parsePressure( const QString &s)
 struct wind_info
 {
 	unsigned int   number;
-	QString        name;
+	TQString        name;
 };
 
 static const struct wind_info wind_direction[] = 
@@ -617,7 +617,7 @@ static const struct wind_info wind_direction[] =
 };
 
 
-QString MetarParser::parseWindDirection(const unsigned int direction)
+TQString MetarParser::parseWindDirection(const unsigned int direction)
 {
 	unsigned int i = 0;
 	
@@ -634,14 +634,14 @@ QString MetarParser::parseWindDirection(const unsigned int direction)
 }
 
 /** Parse the wind speed */
-bool MetarParser::parseWindSpeed(const QString &s)
+bool MetarParser::parseWindSpeed(const TQString &s)
 {
 	if (WindRegExp.search(s) > -1)
 	{
 		unsigned int direction = WindRegExp.cap(1).toInt();
 		float windSpeed = WindRegExp.cap(2).toFloat();
 		float gustSpeed = WindRegExp.cap(3).toFloat();
-		QString sWindUnit = WindRegExp.cap(4);
+		TQString sWindUnit = WindRegExp.cap(4);
 
 		kdDebug(12006) << "Wind: " << WindRegExp.capturedTexts().join("-")
 				<< endl;
@@ -705,7 +705,7 @@ bool MetarParser::parseWindSpeed(const QString &s)
 	return false;
 }
 
-bool MetarParser::parseStationNeedsMaintenance(const QString &s)
+bool MetarParser::parseStationNeedsMaintenance(const TQString &s)
 {
 	if (s == "$")
 	{
@@ -815,11 +815,11 @@ void MetarParser::calcWindChill()
 	}
 }
 
-bool MetarParser::isNight(const QString &stationID) const
+bool MetarParser::isNight(const TQString &stationID) const
 {
-	QString upperStationID = stationID.upper();
-	QString latitude  = m_stationDb->stationLatitudeFromID(upperStationID);
-	QString longitude = m_stationDb->stationLongitudeFromID(upperStationID);
+	TQString upperStationID = stationID.upper();
+	TQString latitude  = m_stationDb->stationLatitudeFromID(upperStationID);
+	TQString longitude = m_stationDb->stationLongitudeFromID(upperStationID);
 
 	if ( latitude.compare(  i18n("Unknown Station" ) ) == 0  ||
 	     longitude.compare( i18n("Unknown Station" ) ) == 0 )
@@ -830,10 +830,10 @@ bool MetarParser::isNight(const QString &stationID) const
 	{
 		Sun theSun( latitude, longitude , m_date, m_localUTCOffset );
 		
-		QTime currently = m_time;
+		TQTime currently = m_time;
 
-		QTime civilStart = theSun.computeCivilTwilightStart();
-		QTime civilEnd   = theSun.computeCivilTwilightEnd();
+		TQTime civilStart = theSun.computeCivilTwilightStart();
+		TQTime civilEnd   = theSun.computeCivilTwilightEnd();
 
 		kdDebug (12006) << "station, current, lat, lon, start, end, offset: " << 
 				upperStationID << " " << currently << " " << latitude << " " << 
@@ -859,9 +859,9 @@ bool MetarParser::isNight(const QString &stationID) const
 	}
 }
 
-QString MetarParser::iconName( const QString &icon ) const
+TQString MetarParser::iconName( const TQString &icon ) const
 {
-	QString _iconName = icon;
+	TQString _iconName = icon;
 
 	if ( isNight( weatherInfo.reportLocation ) )
 		_iconName += "_night";

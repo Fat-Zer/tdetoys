@@ -32,12 +32,12 @@
 #include <time.h>
 
 
-#include <qwidget.h>
-#include <qpixmap.h>
-#include <qstringlist.h>
-#include <qlabel.h>
-#include <qpoint.h>
-#include <qtimer.h>
+#include <tqwidget.h>
+#include <tqpixmap.h>
+#include <tqstringlist.h>
+#include <tqlabel.h>
+#include <tqpoint.h>
+#include <tqtimer.h>
 
 
 class QPopupMenu;
@@ -59,10 +59,10 @@ class MapWidget : public QWidget
 
 public:
 
-  MapWidget(bool applet=false, bool restore=false, QWidget *parent=0, const char *name=0);
+  MapWidget(bool applet=false, bool restore=false, TQWidget *parent=0, const char *name=0);
   ~MapWidget();
 
-  void setTheme(const QString &theme);
+  void setTheme(const TQString &theme);
   void setTime(struct tm *time);
   void setIllumination(bool i);
   void setCities(bool c);
@@ -74,15 +74,15 @@ public:
 
   void updateBackground();
 
-  QPixmap getPixmap();
-  QPopupMenu* contextMenu() const { return _popup; }
+  TQPixmap getPixmap();
+  TQPopupMenu* contextMenu() const { return _popup; }
 
-  void paintContents(QPainter *p);
-  QPixmap calculatePixmap();
+  void paintContents(TQPainter *p);
+  TQPixmap calculatePixmap();
 
 signals:
 
-  void addClockClicked(const QString &zone);
+  void addClockClicked(const TQString &zone);
   void saveSettings();
 
 
@@ -107,12 +107,12 @@ public slots:
 
 protected:
 
-  void resizeEvent(QResizeEvent *ev);
-  void paintEvent(QPaintEvent *ev);
-  void mousePressEvent(QMouseEvent *ev);
-  void mouseMoveEvent(QMouseEvent *ev);
-  void enterEvent(QEvent *ev);
-  void leaveEvent(QEvent *ev);
+  void resizeEvent(TQResizeEvent *ev);
+  void paintEvent(TQPaintEvent *ev);
+  void mousePressEvent(TQMouseEvent *ev);
+  void mouseMoveEvent(TQMouseEvent *ev);
+  void enterEvent(TQEvent *ev);
+  void leaveEvent(TQEvent *ev);
 
 
 private slots:
@@ -125,34 +125,34 @@ private slots:
 private:
 
   void updateMap();
-  QString cityTime(const QString &city);
-  void showIndicator(const QPoint &pos);
+  TQString cityTime(const TQString &city);
+  void showIndicator(const TQPoint &pos);
 
   MapLoader _loader;
 
-  QString _theme;
+  TQString _theme;
 
-  QPixmap _pixmap;
+  TQPixmap _pixmap;
 
   int gmt_position;
 
   time_t sec;
 
-  QPopupMenu *_popup, *_themePopup, *_flagPopup;
-  QPtrList<MapTheme> _themes;
+  TQPopupMenu *_popup, *_themePopup, *_flagPopup;
+  TQPtrList<MapTheme> _themes;
 
   bool _illumination, _cities, _flags;
   int _illuminationID, _citiesID, _flagsID;
 
   CityList *_cityList;
-  QLabel *_cityIndicator;
-  QString _currentCity;
+  TQLabel *_cityIndicator;
+  TQString _currentCity;
 
   FlagList *_flagList;
-  QPoint _flagPos;
+  TQPoint _flagPos;
 
   bool _applet;
-  QTimer m_timer;
+  TQTimer m_timer;
   
   int _width, _height;
 };

@@ -38,8 +38,8 @@ FlagList::FlagList()
 {
   _flags.setAutoDelete(true);
 
-  _flagPixmap = QPixmap(locate("data", "kworldclock/pics/flag.png"));
-  _flagMask = QPixmap(locate("data", "kworldclock/pics/flag-mask.xpm"), 0, QPixmap::ThresholdDither);
+  _flagPixmap = TQPixmap(locate("data", "kworldclock/pics/flag.png"));
+  _flagMask = TQPixmap(locate("data", "kworldclock/pics/flag-mask.xpm"), 0, TQPixmap::ThresholdDither);
   _flagMask.setMask(_flagMask.createHeuristicMask());
 }
 
@@ -50,31 +50,31 @@ void FlagList::addFlag(Flag *f)
 }
 
 
-QPoint FlagList::getPosition(double la, double lo, int w, int h, int offset)
+TQPoint FlagList::getPosition(double la, double lo, int w, int h, int offset)
 {
   int x = (int)((double)w * (180.0 + lo) / 360.0);
   int y = (int)((double)h * (90.0 - la) / 180.0);
   x = (x + offset + w/2) % w;
  
-  return QPoint(x,y);
+  return TQPoint(x,y);
 }
  
  
-void FlagList::paint(QPainter *p, int width, int height, int offset)
+void FlagList::paint(TQPainter *p, int width, int height, int offset)
 {
   p->setPen(Qt::black);
  
-  QPtrListIterator<Flag> it(_flags);
+  TQPtrListIterator<Flag> it(_flags);
   for ( ; it.current(); ++it)
     {
-      QPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), width, height, offset);
+      TQPoint pos = getPosition(it.current()->latitude(), it.current()->longitude(), width, height, offset);
 
       p->setPen(it.current()->color());
       p->setBrush(it.current()->color());
 
       if (width > 100)
 	{
-          pos -= QPoint(5,15);
+          pos -= TQPoint(5,15);
 
 	  p->drawPixmap(pos,_flagMask);
 	  p->drawPixmap(pos,_flagPixmap);
@@ -85,14 +85,14 @@ void FlagList::paint(QPainter *p, int width, int height, int offset)
 }                                                                         
 
 
-void FlagList::removeNearestFlag(const QPoint &target, int w, int h, int offset)
+void FlagList::removeNearestFlag(const TQPoint &target, int w, int h, int offset)
 {
   Flag *flag = 0;
 
-  QPoint diff;
+  TQPoint diff;
 
   int dist = INT_MAX;
-  QPtrListIterator<Flag> it(_flags);
+  TQPtrListIterator<Flag> it(_flags);
   for ( ; it.current(); ++it)
     {
       diff = getPosition(it.current()->latitude(), it.current()->longitude(), w, h, offset);
@@ -117,13 +117,13 @@ void FlagList::save(KConfig *config)
 {
   config->writeEntry("Flags", _flags.count());
   
-  QPtrListIterator<Flag> it(_flags);
+  TQPtrListIterator<Flag> it(_flags);
   int cnt=0;
   for ( ; it.current(); ++it)
     {
-      config->writeEntry(QString("Flag_%1_Color").arg(cnt), it.current()->color());
-      config->writeEntry(QString("Flag_%1_Latitude").arg(cnt), it.current()->latitude());
-      config->writeEntry(QString("Flag_%1_Longitude").arg(cnt), it.current()->longitude());
+      config->writeEntry(TQString("Flag_%1_Color").arg(cnt), it.current()->color());
+      config->writeEntry(TQString("Flag_%1_Latitude").arg(cnt), it.current()->latitude());
+      config->writeEntry(TQString("Flag_%1_Longitude").arg(cnt), it.current()->longitude());
       cnt++;
     }
 }
@@ -136,9 +136,9 @@ void FlagList::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addFlag(new Flag(config->readDoubleNumEntry(QString("Flag_%1_Longitude").arg(i)),
-		       config->readDoubleNumEntry(QString("Flag_%1_Latitude").arg(i)),
-		       config->readColorEntry(QString("Flag_%1_Color").arg(i))));
+      addFlag(new Flag(config->readDoubleNumEntry(TQString("Flag_%1_Longitude").arg(i)),
+		       config->readDoubleNumEntry(TQString("Flag_%1_Latitude").arg(i)),
+		       config->readColorEntry(TQString("Flag_%1_Color").arg(i))));
     }
 }
 

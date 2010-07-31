@@ -8,9 +8,9 @@
 #include <kapplication.h>
 #include "spritemisc.h"
 
-QSize SpriteRange::mFieldSize;
+TQSize SpriteRange::mFieldSize;
 
-SpriteRange::SpriteRange(const QString &str)
+SpriteRange::SpriteRange(const TQString &str)
 {
     set(str);
 }
@@ -27,7 +27,7 @@ int SpriteRange::random() const
     return val;
 }
 
-void SpriteRange::set(const QString &str)
+void SpriteRange::set(const TQString &str)
 {
     int r = str.find("..");
 
@@ -42,12 +42,12 @@ void SpriteRange::set(const QString &str)
     }
 }
 
-void SpriteRange::setFieldSize(const QSize &size)
+void SpriteRange::setFieldSize(const TQSize &size)
 {
     mFieldSize = size;
 }
 
-int SpriteRange::parse(const QString &str)
+int SpriteRange::parse(const TQString &str)
 {
     int val = 0;
 
