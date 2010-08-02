@@ -37,7 +37,7 @@
 
 class KAction;
 class KDialogBase;
-class QCheckBox;
+class TQCheckBox;
 class TimeEdit;
 
 class TopLevel : public KSystemTray

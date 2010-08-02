@@ -35,8 +35,8 @@
 #include <tqwidget.h>
 #include <tqbitmap.h>
 
-class QTextBrowser;
-class QTimer;
+class TQTextBrowser;
+class TQTimer;
 
 //---------------------------------------------------------------------------
 //

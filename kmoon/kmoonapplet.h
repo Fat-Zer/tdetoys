@@ -30,7 +30,7 @@
 
 // #include "kmoonwidget.h"
 
-class QPopupMenu;
+class TQPopupMenu;
 
 class MoonWidget;
 

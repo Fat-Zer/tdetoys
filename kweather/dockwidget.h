@@ -24,7 +24,7 @@
 
 #include <dcopref.h>
 
-class QLabel;
+class TQLabel;
 class WeatherService_stub;
 class WeatherButton;
 

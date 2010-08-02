@@ -26,7 +26,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <ksystemtray.h>
-class QPopupMenu;
+class TQPopupMenu;
 
 class MoonWidget : public QWidget
 {

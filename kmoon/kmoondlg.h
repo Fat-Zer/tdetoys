@@ -23,9 +23,9 @@
 
 #include <kdialogbase.h>
 
-class QSlider;
+class TQSlider;
 class MoonWidget;
-class QPushButton;
+class TQPushButton;
 
 class KMoonDlg : public KDialogBase {
   Q_OBJECT

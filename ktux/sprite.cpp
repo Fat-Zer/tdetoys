@@ -54,7 +54,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
     setCaption(i18n("Setup KTux") );
 
     TQVBoxLayout *tl = new TQVBoxLayout(this, 10, 10);
-    TQHBoxLayout *tl1 = new QHBoxLayout;
+    TQHBoxLayout *tl1 = new TQHBoxLayout;
     tl->addLayout(tl1);
     TQVBoxLayout *tl11 = new TQVBoxLayout(5);
     tl1->addLayout(tl11);

@@ -40,7 +40,7 @@
 #include <tqtimer.h>
 
 
-class QPopupMenu;
+class TQPopupMenu;
 
 
 #include <kconfig.h>

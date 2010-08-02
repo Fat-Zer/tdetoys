@@ -22,7 +22,7 @@
 
 #include <serviceconfigdata.h>
 
-class QListViewItem;
+class TQListViewItem;
 class WeatherService_stub;
 
 class ServiceConfigWidget : public wsPrefs

@@ -43,7 +43,7 @@ class AmorDialog;
 class AmorBubble;
 class AmorWidget;
 
-class QTimer;
+class TQTimer;
 class KWinModule;
 class KPopupMenu;
 

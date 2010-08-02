@@ -35,7 +35,7 @@
 #include <tqptrlist.h>
 
 
-class QLabel;
+class TQLabel;
 class SimpleFlow;
 class KConfig;
 

@@ -10,8 +10,8 @@
 
 #include <tqstring.h>
 
-class QListView;
-class QListViewItem;
+class TQListView;
+class TQListViewItem;
 
 
 class TeaListItem : public QListViewItem

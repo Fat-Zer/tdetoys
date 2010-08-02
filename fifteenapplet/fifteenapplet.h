@@ -29,7 +29,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include <kpanelapplet.h>
 
-class QPopupMenu;
+class TQPopupMenu;
 class KAboutData;
 
 class PiecesTable : public QtTableView

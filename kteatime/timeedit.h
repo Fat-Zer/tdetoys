@@ -11,7 +11,7 @@
 #include <tqspinbox.h>
 #include <tqwidget.h>
 
-class QBoxLayout;
+class TQBoxLayout;
 
 
 /**

@@ -34,7 +34,7 @@
 #include <tqptrlist.h>
 
 
-class QPainter;
+class TQPainter;
 
 
 class City

@@ -23,12 +23,12 @@
 
 #include "weatherIface.h"
 
-class QTimer;
+class TQTimer;
 class dockwidget;
 class reportView;
 class KPopupMenu;
 class WeatherService_stub;
-class QPalette;
+class TQPalette;
 
 class kweather : public KPanelApplet, public weatherIface
 {
