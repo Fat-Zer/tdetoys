@@ -1391,7 +1391,7 @@ void QtTableView::paintEvent( TQPaintEvent *e )
 	TQRect r = viewR;
 	r.setLeft( xPos );
 	r.setBottom( yPos<maxY?yPos:maxY );
-	if ( inherits( "TQMultiLineEdit" ) )
+	if ( inherits( TQMULTILINEEDIT_OBJECT_NAME_STRING ) )
 	    paint.fillRect( r.intersect( updateR ), g.base() );
 	else
 	    paint.eraseRect( r.intersect( updateR ) );
@@ -1399,7 +1399,7 @@ void QtTableView::paintEvent( TQPaintEvent *e )
     if ( yPos <= maxY ) {
 	TQRect r = viewR;
 	r.setTop( yPos );
-	if ( inherits( "TQMultiLineEdit" ) )
+	if ( inherits( TQMULTILINEEDIT_OBJECT_NAME_STRING ) )
 	    paint.fillRect( r.intersect( updateR ), g.base() );
 	else
 	    paint.eraseRect( r.intersect( updateR ) );
