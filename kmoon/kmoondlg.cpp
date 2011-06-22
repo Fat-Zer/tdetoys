@@ -29,9 +29,9 @@
 #include "kmoondlg.h"
 #include "kmoonwidget.h"
 
-KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *parent, const char *name)
-    : KDialogBase(parent, name, true, i18n("Change View"),
-                  Ok|Cancel|Help), angle(a), north(n), mask(m)
+KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *tqparent, const char *name)
+    : KDialogBase(tqparent, name, true, i18n("Change View"),
+                  Ok|Cancel|Help), angle(a), north(n), tqmask(m)
 {
 	TQWidget *page = new TQWidget( this );
 	setMainWidget(page);
@@ -71,11 +71,11 @@ KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *parent, const char *name)
 
         connect(hemitoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleHemi()));
 
-        masktoggle = new TQPushButton(hbox2);
-	masktoggle->setText(mask ? i18n("Switch Masking Off") :
+        tqmasktoggle = new TQPushButton(hbox2);
+	tqmasktoggle->setText(tqmask ? i18n("Switch Masking Off") :
 			    i18n("Switch Masking On"));
 
-        connect(masktoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
+        connect(tqmasktoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
         topLayout->addWidget(vbox);
 
 	moon = new MoonWidget(page, "preview");
@@ -94,7 +94,7 @@ void KMoonDlg::angleChanged(int value) {
 }
 
 void KMoonDlg::help() {
-    kapp->invokeHelp(TQString::fromLatin1("config"));
+    kapp->invokeHelp(TQString::tqfromLatin1("config"));
 }
 
 void KMoonDlg::toggleHemi() {
@@ -105,9 +105,9 @@ void KMoonDlg::toggleHemi() {
 }
 
 void KMoonDlg::toggleMask() {
-    moon->setMask(!moon->mask());
-    mask = moon->mask();
-    masktoggle->setText(mask ? i18n("Switch Masking Off") :
+    moon->setMask(!moon->tqmask());
+    tqmask = moon->tqmask();
+    tqmasktoggle->setText(tqmask ? i18n("Switch Masking Off") :
 			i18n("Switch Masking On"));
 }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>AboutDialog</class>
-<widget class="QDialog">
+<widget class="TQDialog">
     <property name="name">
         <cstring>AboutDialog</cstring>
     </property>
@@ -28,7 +28,7 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QLayoutWidget">
+        <widget class="TQLayoutWidget">
             <property name="name">
                 <cstring>Layout1</cstring>
             </property>
@@ -42,7 +42,7 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget class="QLabel">
+                <widget class="TQLabel">
                     <property name="name">
                         <cstring>PixmapLabel3</cstring>
                     </property>
@@ -61,7 +61,7 @@
                         <bool>true</bool>
                     </property>
                 </widget>
-                <widget class="QLabel">
+                <widget class="TQLabel">
                     <property name="name">
                         <cstring>TextLabel3</cstring>
                     </property>
@@ -79,7 +79,7 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QLayoutWidget">
+        <widget class="TQLayoutWidget">
             <property name="name">
                 <cstring>Layout4</cstring>
             </property>
@@ -103,14 +103,14 @@
                     <property name="sizeType">
                         <enum>Fixed</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>41</width>
                             <height>31</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QLabel">
+                <widget class="TQLabel">
                     <property name="name">
                         <cstring>TextLabel4</cstring>
                     </property>
@@ -119,7 +119,7 @@
 
 Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
                     </property>
-                    <property name="alignment">
+                    <property name="tqalignment">
                         <set>WordBreak|AlignVCenter|AlignLeft</set>
                     </property>
                     <property name="wordwrap" stdset="0">
@@ -127,7 +127,7 @@ Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
                 </widget>
             </hbox>
         </widget>
-        <widget class="QLayoutWidget">
+        <widget class="TQLayoutWidget">
             <property name="name">
                 <cstring>Layout3</cstring>
             </property>
@@ -151,14 +151,14 @@ Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QPushButton">
+                <widget class="TQPushButton">
                     <property name="name">
                         <cstring>PushButton2</cstring>
                     </property>
@@ -179,7 +179,7 @@ Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
@@ -209,9 +209,9 @@ Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
 <includes>
     <include location="global" impldecl="in declaration">kseparator.h</include>
 </includes>
-<slots>
+<Q_SLOTS>
     <slot>PushButton2_clicked()</slot>
     <slot>accept()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
+</Q_SLOTS>
+<tqlayoutdefaults spacing="6" margin="11"/>
 </UI>

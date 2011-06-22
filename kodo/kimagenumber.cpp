@@ -25,12 +25,12 @@
 
 #include "kimagenumber.h"
 
-KImageNumber::KImageNumber(const TQString& font, TQWidget* parent,const char* name) :
-	TQFrame(parent,name),
+KImageNumber::KImageNumber(const TQString& font, TQWidget* tqparent,const char* name) :
+	TQFrame(tqparent,name),
 	m_value(0)
 {
 	fontPix = new TQPixmap(font);
-	resize(sizeHint());
+	resize(tqsizeHint());
 }
 
 KImageNumber::~KImageNumber()
@@ -47,7 +47,7 @@ void KImageNumber::paintEvent(TQPaintEvent*)
 	data.sprintf("%06.1f", m_value);
 
 	for(unsigned int i=0; i < data.length(); i++) {
-		int wl = data.at(i).latin1() - '0';
+		int wl = data.tqat(i).latin1() - '0';
 		if(data.at(i) == '.')
 			wl = 10;
 		bitBlt(this, i*each, 0, fontPix, wl*each, 0, each, fontPix->height());
@@ -57,7 +57,7 @@ void KImageNumber::paintEvent(TQPaintEvent*)
 void KImageNumber::setValue(double v)
 {
 	m_value = v;
-	repaint(false);
+	tqrepaint(false);
 }
 
 double KImageNumber::value() const
@@ -65,7 +65,7 @@ double KImageNumber::value() const
 	return m_value;
 }
 
-TQSize KImageNumber::sizeHint() const
+TQSize KImageNumber::tqsizeHint() const
 {
 	int w = fontPix->width();
 	int each = w/11;

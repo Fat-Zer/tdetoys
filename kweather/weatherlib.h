@@ -29,14 +29,15 @@ namespace KIO
 
 class StationDatabase;
 
-class WeatherLib : public QObject
+class WeatherLib : public TQObject
 {
 	Q_OBJECT
+  TQ_OBJECT
 	
 	public:
 		class Data;
 
-		WeatherLib(StationDatabase *stationDB, TQObject *parent =0L, const char *name =0L);
+		WeatherLib(StationDatabase *stationDB, TQObject *tqparent =0L, const char *name =0L);
 		virtual ~WeatherLib();
 
 		TQString temperature(const TQString &stationID);

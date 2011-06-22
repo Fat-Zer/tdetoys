@@ -1,6 +1,6 @@
 /*
 **
-** Copyright (C) 1998-2001 by Matthias Hölzer-Klüpfel <hoelzer@kde.org>
+** Copyright (C) 1998-2001 by Matthias Hï¿½lzer-Klï¿½pfel <hoelzer@kde.org>
 **	Maintainence has ceased - send questions to kde-devel@kde.org.
 **
 */
@@ -42,20 +42,20 @@
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *tqparent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kworldclock");
     KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
     return new KWWApplet(configFile, KPanelApplet::Normal,
 			 0,
-			 parent, "kwwapplet");
+			 tqparent, "kwwapplet");
   }
 }
 
 
 KWWApplet::KWWApplet(const TQString& configFile, Type type, int actions,
-		     TQWidget *parent, const char *name)
-  : KPanelApplet(configFile, type, actions, parent, name)
+		     TQWidget *tqparent, const char *name)
+  : KPanelApplet(configFile, type, actions, tqparent, name)
 {
   // make use of the icons installed for ksaferppp
   KGlobal::iconLoader()->addAppDir("kworldwatch");
@@ -94,7 +94,7 @@ bool KWWApplet::eventFilter( TQObject *o, TQEvent *e )
 {
   if ((e->type() == TQEvent::MouseButtonPress) || (e->type() == TQEvent::MouseButtonDblClick)) 
   {
-    mousePressEvent(static_cast<TQMouseEvent*>(e));
+    mousePressEvent(TQT_TQMOUSEEVENT(e));
     return true;
   }
 
@@ -115,7 +115,7 @@ void KWWApplet::mousePressEvent(TQMouseEvent *e)
     clicked = e->type() == TQMouseEvent::MouseButtonDblClick;
   }
 
-  if (clicked && e->button() == TQMouseEvent::LeftButton) 
+  if (clicked && e->button() == Qt::LeftButton) 
   {
     KRun::run("kworldclock", KURL::List());
   }

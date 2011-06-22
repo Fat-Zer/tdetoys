@@ -14,12 +14,12 @@ class TQListView;
 class TQListViewItem;
 
 
-class TeaListItem : public QListViewItem
+class TeaListItem : public TQListViewItem
 {
 
 public:
-	TeaListItem(TQListView *parent);
-	TeaListItem(TQListView *parent, TQListViewItem *after);
+	TeaListItem(TQListView *tqparent);
+	TeaListItem(TQListView *tqparent, TQListViewItem *after);
 	~TeaListItem();
 
 	int time();

@@ -29,7 +29,7 @@ int SpriteRange::random() const
 
 void SpriteRange::set(const TQString &str)
 {
-    int r = str.find("..");
+    int r = str.tqfind("..");
 
     if (r > 0)
     {

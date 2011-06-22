@@ -54,7 +54,7 @@ MetarParser::MetarParser(StationDatabase *stationDB,
 void MetarParser::reset()
 {
 	// Initialize the WeatherInfo structure
-	weatherInfo.theWeather = TQString::null;
+	weatherInfo.theWeather = TQString();
 	weatherInfo.clouds = 0;
 	weatherInfo.windMPH = 0;
 	weatherInfo.tempC = 0;
@@ -64,15 +64,15 @@ void MetarParser::reset()
 	weatherInfo.qsCurrentList.clear();
 	weatherInfo.qsDate = m_date;
 	weatherInfo.qsTime = m_time;
-	weatherInfo.qsPressure = TQString::null;
-	weatherInfo.qsTemperature = TQString::null;
-	weatherInfo.qsDewPoint = TQString::null;
-	weatherInfo.qsRelHumidity = TQString::null;
-	weatherInfo.qsVisibility = TQString::null;
-	weatherInfo.qsWindSpeed = TQString::null;
-	weatherInfo.qsWindChill = TQString::null;
-	weatherInfo.qsHeatIndex = TQString::null;
-	weatherInfo.qsWindDirection = TQString::null;
+	weatherInfo.qsPressure = TQString();
+	weatherInfo.qsTemperature = TQString();
+	weatherInfo.qsDewPoint = TQString();
+	weatherInfo.qsRelHumidity = TQString();
+	weatherInfo.qsVisibility = TQString();
+	weatherInfo.qsWindSpeed = TQString();
+	weatherInfo.qsWindChill = TQString();
+	weatherInfo.qsHeatIndex = TQString();
+	weatherInfo.qsWindDirection = TQString();
 	weatherInfo.stationNeedsMaintenance = false;
 }
 
@@ -147,7 +147,7 @@ bool MetarParser::parseCover(const TQString &s)
 {
 	if (CoverRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Cover: " << CoverRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Cover: " << TQString(CoverRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		TQString sCode = CoverRegExp.cap(1);
@@ -170,22 +170,22 @@ bool MetarParser::parseCover(const TQString &s)
 
 		if (sCode == "FEW")
 		{
-			skycondition = i18n( "Few clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Few clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 2;
 		}
 		else if (sCode == "SCT")
 		{
-			skycondition = i18n( "Scattered clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Scattered clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 4;
 		}
 		else if (sCode == "BKN")
 		{
-			skycondition = i18n( "Broken clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Broken clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 8;
 		}
 		else if (sCode == "OVC")
 		{
-			skycondition = i18n( "Overcast clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Overcast clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 64;
 		}
 		else if ((sCode == "CLR") || (sCode == "SKC") || (sCode == "CAVOK"))
@@ -211,7 +211,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 		TQString sCode = CurrentRegExp.cap(2);
 		TQString intensity, descriptor, phenomena, currentWeather;
 
-		kdDebug(12006) << "Current: " << CurrentRegExp.capturedTexts().join("-") << endl;
+		kdDebug(12006) << "Current: " << TQString(CurrentRegExp.tqcapturedTexts().join("-")) << endl;
 
 		// Decode the intensity
 		if (sIntensity == "+")
@@ -226,78 +226,78 @@ bool MetarParser::parseCurrent(const TQString &s)
 		}
 
 		// Decode the descriptor
-		if (sCode.contains("MI"))
+		if (sCode.tqcontains("MI"))
 			descriptor = i18n("Shallow");
-		else if (sCode.contains("PR"))
+		else if (sCode.tqcontains("PR"))
 			descriptor = i18n("Partial");
-		else if (sCode.contains("BC"))
+		else if (sCode.tqcontains("BC"))
 			descriptor = i18n("Patches");
-		else if (sCode.contains("DR"))
+		else if (sCode.tqcontains("DR"))
 			descriptor = i18n("Low Drifting");
-		else if (sCode.contains("BL"))
+		else if (sCode.tqcontains("BL"))
 			descriptor = i18n("Blowing");
-		else if (sCode.contains("SH"))
+		else if (sCode.tqcontains("SH"))
 		{
 			descriptor = i18n("Showers");
 			weatherInfo.theWeather = "shower";
 		}
-		else if (sCode.contains("TS"))
+		else if (sCode.tqcontains("TS"))
 		{
 			descriptor = i18n("Thunder Storm");
 			weatherInfo.theWeather = "tstorm";
 		}
-		else if (sCode.contains("FZ"))
+		else if (sCode.tqcontains("FZ"))
 		{
 			descriptor = i18n("Freezing");
 		}
 
 		// Decode weather phenomena
-		if (sCode.contains("DZ"))
+		if (sCode.tqcontains("DZ"))
 		{
 			phenomena = i18n("Drizzle");
 			weatherInfo.theWeather = "light_rain";
 		}
-		else if (sCode.contains("RA"))
+		else if (sCode.tqcontains("RA"))
 		{
 			phenomena = i18n("Rain");
 			weatherInfo.theWeather = "shower";
 		}
-		else if (sCode.contains("SN"))
+		else if (sCode.tqcontains("SN"))
 		{
 			phenomena = i18n("Snow");
 			weatherInfo.theWeather = "snow";
 		}
-		else if (sCode.contains("SG"))
+		else if (sCode.tqcontains("SG"))
 		{
 			phenomena = i18n("Snow Grains");
 			weatherInfo.theWeather = "snow4";
 		}
-		else if (sCode.contains("IC"))
+		else if (sCode.tqcontains("IC"))
 		{
 			phenomena = i18n("Ice Crystals");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (sCode.contains("PE"))
+		else if (sCode.tqcontains("PE"))
 		{
 			phenomena = i18n("Ice Pellets");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (s.contains("GR"))
+		else if (s.tqcontains("GR"))
 		{
 			phenomena = i18n("Hail");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (sCode.contains("GS"))
+		else if (sCode.tqcontains("GS"))
 		{
 			phenomena = i18n("Small Hail Pellets");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (s.contains("UP"))
+		else if (s.tqcontains("UP"))
 		{
 			phenomena = i18n("Unknown Precipitation");
 			weatherInfo.theWeather = iconName("shower1");
 		}
-		else if (sCode.contains("BR"))
+		else if (sCode.tqcontains("BR"))
 		{
 			phenomena = i18n("Mist");
 			// Mist has lower priority than say rain or snow
@@ -306,7 +306,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 				weatherInfo.theWeather = "mist";
 			}
 		}
-		else if (sCode.contains("FG"))
+		else if (sCode.tqcontains("FG"))
 		{
 			phenomena = i18n("Fog");
 			// Fog has lower priority than say rain or snow
@@ -315,35 +315,35 @@ bool MetarParser::parseCurrent(const TQString &s)
 				weatherInfo.theWeather = "fog";
 			}
 		}
-		else if (sCode.contains("FU"))
+		else if (sCode.tqcontains("FU"))
 			phenomena = i18n("Smoke");
-		else if (sCode.contains("VA"))
+		else if (sCode.tqcontains("VA"))
 			phenomena = i18n("Volcanic Ash");
-		else if (sCode.contains("DU"))
+		else if (sCode.tqcontains("DU"))
 			phenomena = i18n("Widespread Dust");
-		else if (sCode.contains("SA"))
+		else if (sCode.tqcontains("SA"))
 			phenomena = i18n("Sand");
-		else if (sCode.contains("HZ"))
+		else if (sCode.tqcontains("HZ"))
 			phenomena = i18n("Haze");
-		else if (sCode.contains("PY"))
+		else if (sCode.tqcontains("PY"))
 			phenomena = i18n("Spray");
-		else if (sCode.contains("PO"))
+		else if (sCode.tqcontains("PO"))
 			phenomena = i18n("Dust/Sand Swirls");
-		else if (sCode.contains("SQ"))
+		else if (sCode.tqcontains("SQ"))
 			phenomena = i18n("Sudden Winds");
-		else if (sCode.contains("FC"))
+		else if (sCode.tqcontains("FC"))
 		{
 			if (sIntensity == "+")
 				currentWeather = i18n("Tornado");
 			else
 				phenomena = i18n("Funnel Cloud");
 		}
-		else if (sCode.contains("SS"))
+		else if (sCode.tqcontains("SS"))
 			phenomena = i18n("Sand Storm");
-		else if (sCode.contains("DS"))
+		else if (sCode.tqcontains("DS"))
 			phenomena = i18n("Dust Storm");
 		
-		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").arg(intensity).arg(descriptor).arg(phenomena);
+		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").tqarg(intensity).tqarg(descriptor).tqarg(phenomena);
 
 		if (!currentWeather.isEmpty())
 			weatherInfo.qsCurrentList << currentWeather;
@@ -358,7 +358,7 @@ bool MetarParser::parseTemperature(const TQString &s)
 {
 	if (TempRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Temp: " << TempRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Temp: " << TQString(TempRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		float fTemp = TempRegExp.cap(2).toFloat();
@@ -379,7 +379,7 @@ bool MetarParser::parseTemperatureTenths(const TQString &s)
 {
 	if (TempTenRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Temp Tenths: " << TempTenRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Temp Tenths: " << TQString(TempTenRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 		
 		float temperature = TempTenRegExp.cap( 1 ).toFloat() / 10;
@@ -473,7 +473,7 @@ bool MetarParser::parseDate(const TQString &s)
 {
 	if (DateRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Date: " << DateRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Date: " << TQString(DateRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 		TQString dateString = DateRegExp.cap(1);
 		TQString day, month, year;
@@ -496,7 +496,7 @@ bool MetarParser::parseTime(const TQString &s)
 {
 	if (TimeRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Time: " << TimeRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Time: " << TQString(TimeRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		TQString hour, minute, dateString;
@@ -521,7 +521,7 @@ bool MetarParser::parseVisibility(TQStringList::ConstIterator it)
 	{
 		fVisibility = VisRegExp.cap(1).toFloat();
 
-		kdDebug(12006) << "Visibility: " << VisRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Visibility: " << TQString(VisRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 	}
@@ -564,7 +564,7 @@ bool MetarParser::parsePressure( const TQString &s)
 		TQString type = PressRegExp.cap(1);
 		float fPressure = PressRegExp.cap(2).toFloat();
 
-		kdDebug(12006) << "Pressure: " << PressRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Pressure: " << TQString(PressRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		if (m_units == KLocale::Metric)
@@ -643,7 +643,7 @@ bool MetarParser::parseWindSpeed(const TQString &s)
 		float gustSpeed = WindRegExp.cap(3).toFloat();
 		TQString sWindUnit = WindRegExp.cap(4);
 
-		kdDebug(12006) << "Wind: " << WindRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Wind: " << WindRegExp.tqcapturedTexts().join("-")
 				<< endl;
 
 		if (m_units == KLocale::Metric)
@@ -854,7 +854,7 @@ bool MetarParser::isNight(const TQString &stationID) const
 			// Midnight Sun & Polar Night - In summer, the Sun is always 
 			// over the horizon line ... so use latitude & today date to 
 			// set isNight() value. 
-			return ((m_date.daysInYear() >= 80 || m_date.daysInYear() <= 264) && latitude.contains("S")); 
+			return ((m_date.daysInYear() >= 80 || m_date.daysInYear() <= 264) && latitude.tqcontains("S")); 
 		}
 	}
 }

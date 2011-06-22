@@ -128,9 +128,9 @@ void CityList::readCityList(const TQString &fname)
 	  if (!c.isEmpty() && !n.isEmpty())
 	    {
 	      double la, lo;
-	      pos = c.find("+", 1);
+	      pos = c.tqfind("+", 1);
 	      if (pos < 0)
-		pos = c.find("-", 1);
+		pos = c.tqfind("-", 1);
 	      if (pos > 0)
 		{
 		  la = coordinate(c.left(pos));
@@ -157,7 +157,7 @@ TQPoint CityList::getPosition(double la, double lo, int w, int h, int offset)
 
 void CityList::paint(TQPainter *p, int width, int height, int offset)
 {
-  p->setPen(Qt::black);
+  p->setPen(TQt::black);
 
   TQPtrListIterator<City> it(_cities);
   for ( ; it.current(); ++it)

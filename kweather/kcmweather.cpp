@@ -17,8 +17,8 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
   As a special exception, permission is given to link this program
-  with any edition of Qt, and distribute the resulting executable,
-  without including the source code for Qt in the source distribution.
+  with any edition of TQt, and distribute the resulting executable,
+  without including the source code for TQt in the source distribution.
 */
 
 #include <tqbuttongroup.h>
@@ -43,23 +43,23 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weather( TQWidget *parent, const char * )
+  KDE_EXPORT KCModule *create_weather( TQWidget *tqparent, const char * )
   {
-    return new KCMWeather( parent, "kweather" );
+    return new KCMWeather( tqparent, "kweather" );
   }
 }
 
-KCMWeather::KCMWeather( TQWidget *parent, const char *name )
-  : KCModule( parent, name )
+KCMWeather::KCMWeather( TQWidget *tqparent, const char *name )
+  : KCModule( tqparent, name )
 {
   mWeatherService = new WeatherService_stub( "KWeatherService",
       "WeatherService" );
-  TQVBoxLayout *layout = new TQVBoxLayout( this );
+  TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
   mWidget = new prefsDialogData( this );
 
   mWidget->m_reportLocation->setFocus();
-  layout->addWidget( mWidget );
-  layout->addStretch();
+  tqlayout->addWidget( mWidget );
+  tqlayout->addStretch();
 
   fillStationList();
   load();
@@ -169,7 +169,7 @@ void KCMWeather::load()
   mWidget->m_enableLog->setChecked( enabled );
   enableLogWidgets( enabled );
 
-  static TQColor black(Qt::black);
+  static TQColor black(TQt::black);
   TQColor textColor = config.readColorEntry("textColor", &black);
   mWidget->m_textColor->setColor(textColor);
 

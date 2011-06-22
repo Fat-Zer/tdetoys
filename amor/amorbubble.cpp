@@ -55,8 +55,8 @@ AmorBubble::AmorBubble()
 
     mBrowser->setWrapPolicy(TQTextEdit::AtWordOrDocumentBoundary); // too long to fit in one line?
 
-    TQColorGroup clgrp = mBrowser->colorGroup();
-    clgrp.setColor(TQColorGroup::Text, Qt::black);
+    TQColorGroup clgrp = mBrowser->tqcolorGroup();
+    clgrp.setColor(TQColorGroup::Text, TQt::black);
     //Laurent TQTextBrowser didn't have this function FIX me
     //mBrowser->setPaperColorGroup( clgrp );
     mBrowser->setPaper( TQToolTip::palette().active().brush( TQColorGroup::Background ) );
@@ -83,12 +83,12 @@ AmorBubble::~AmorBubble()
 
 //---------------------------------------------------------------------------
 //
-// Set the message to display in the bubble.  Causes the geometry of the
+// Set the message to display in the bubble.  Causes the tqgeometry of the
 // widget to be recalculated.
 //
 void AmorBubble::setMessage(const TQString& message)
 {
-    mMessage = TQString( "<html>%1</html>" ).arg( message );
+    mMessage = TQString( "<html>%1</html>" ).tqarg( message );
     // hacks because heightForWidth() doesn't work.
     setGeometry( -1000, 0, 300, 1000 );
     show();
@@ -99,7 +99,7 @@ void AmorBubble::setMessage(const TQString& message)
 
 //---------------------------------------------------------------------------
 //
-// Calculates the size, position and mask of the bubble
+// Calculates the size, position and tqmask of the bubble
 //
 void AmorBubble::calcGeometry()
 {
@@ -108,7 +108,7 @@ void AmorBubble::calcGeometry()
     mBound.setHeight( mBrowser->contentsHeight() );
     mBound.moveBy(ARROW_WIDTH+BORDER_SIZE, BORDER_SIZE);
 
-    // initialise the default geometry of the bubble
+    // initialise the default tqgeometry of the bubble
     int w = mBound.width() + BORDER_SIZE * 2 + ARROW_WIDTH;
     int h = mBound.height() + BORDER_SIZE * 2;
     int xpos = mOriginX + BUBBLE_OFFSET;
@@ -141,13 +141,13 @@ void AmorBubble::calcGeometry()
     setGeometry(xpos, ypos, w, h);
     mBrowser->setGeometry( mBound );
 
-    // create and apply the shape mask
+    // create and apply the tqshape tqmask
     mMask.resize(w, h);
     mMask.fill(color0);
-    TQPainter maskPainter(&mMask);
-    maskPainter.setPen(color1);
-    maskPainter.setBrush(color1);
-    drawBubble(maskPainter);
+    TQPainter tqmaskPainter(&mMask);
+    tqmaskPainter.setPen(color1);
+    tqmaskPainter.setBrush(color1);
+    drawBubble(tqmaskPainter);
     XShapeCombineMask( x11Display(), winId(), ShapeBounding, 0, 0,
                        mMask.handle(), ShapeSet );
 }
@@ -195,7 +195,7 @@ void AmorBubble::drawBubble(TQPainter &p)
     p.drawPolygon(pointArray);
 
     p.setPen(pen);
-    p.drawPolyline(pointArray, 0, 3);
+    p.tqdrawPolyline(pointArray, 0, 3);
 }
 
 //---------------------------------------------------------------------------

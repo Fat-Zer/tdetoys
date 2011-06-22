@@ -41,6 +41,7 @@
 class AmorDialog : public KDialogBase
 {
     Q_OBJECT
+  TQ_OBJECT
 
 public:
     AmorDialog();
@@ -86,7 +87,7 @@ protected:
 //
 // AmorListBoxItem implements a list box items for selection of themes
 //
-class AmorListBoxItem : public QListBoxItem
+class AmorListBoxItem : public TQListBoxItem
 {
 public:
     AmorListBoxItem(const TQString & s, const TQPixmap& p)

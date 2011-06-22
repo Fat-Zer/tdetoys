@@ -28,9 +28,10 @@ class WeatherService_stub;
 class ServiceConfigWidget : public wsPrefs
 {
   Q_OBJECT
+  TQ_OBJECT
 
   public:
-    ServiceConfigWidget( TQWidget *parent, const char *name = 0 );
+    ServiceConfigWidget( TQWidget *tqparent, const char *name = 0 );
     virtual ~ServiceConfigWidget();
 
   signals:

@@ -1,6 +1,6 @@
 <!DOCTYPE UI><UI version="3.1" stdsetdef="1">
 <class>ClockDialog</class>
-<widget class="QDialog">
+<widget class="TQDialog">
     <property name="name">
         <cstring>ClockDialog</cstring>
     </property>
@@ -28,7 +28,7 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QLayoutWidget">
+        <widget class="TQLayoutWidget">
             <property name="name">
                 <cstring>Layout5</cstring>
             </property>
@@ -42,7 +42,7 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget class="QLabel" row="0" column="0">
+                <widget class="TQLabel" row="0" column="0">
                     <property name="name">
                         <cstring>PixmapLabel1</cstring>
                     </property>
@@ -71,7 +71,7 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
@@ -88,14 +88,14 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
+                <widget class="TQLayoutWidget" row="0" column="1" rowspan="2" colspan="1">
                     <property name="name">
                         <cstring>Layout2</cstring>
                     </property>
@@ -109,12 +109,12 @@
                         <property name="spacing">
                             <number>6</number>
                         </property>
-                        <widget class="QComboBox" row="2" column="1">
+                        <widget class="TQComboBox" row="2" column="1">
                             <property name="name">
                                 <cstring>ClockZone</cstring>
                             </property>
                         </widget>
-                        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
+                        <widget class="TQLabel" row="0" column="0" rowspan="1" colspan="2">
                             <property name="name">
                                 <cstring>TextLabel2</cstring>
                             </property>
@@ -122,7 +122,7 @@
                                 <string>Please enter the settings for the clock.</string>
                             </property>
                         </widget>
-                        <widget class="QLabel" row="1" column="0">
+                        <widget class="TQLabel" row="1" column="0">
                             <property name="name">
                                 <cstring>TextLabel3</cstring>
                             </property>
@@ -133,12 +133,12 @@
                                 <cstring>ClockCaption</cstring>
                             </property>
                         </widget>
-                        <widget class="QLineEdit" row="1" column="1">
+                        <widget class="TQLineEdit" row="1" column="1">
                             <property name="name">
                                 <cstring>ClockCaption</cstring>
                             </property>
                         </widget>
-                        <widget class="QLabel" row="2" column="0">
+                        <widget class="TQLabel" row="2" column="0">
                             <property name="name">
                                 <cstring>TextLabel4</cstring>
                             </property>
@@ -153,7 +153,7 @@
                 </widget>
             </grid>
         </widget>
-        <widget class="QLayoutWidget">
+        <widget class="TQLayoutWidget">
             <property name="name">
                 <cstring>Layout1</cstring>
             </property>
@@ -177,14 +177,14 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QPushButton">
+                <widget class="TQPushButton">
                     <property name="name">
                         <cstring>PushButton1</cstring>
                     </property>
@@ -195,7 +195,7 @@
                         <bool>true</bool>
                     </property>
                 </widget>
-                <widget class="QPushButton">
+                <widget class="TQPushButton">
                     <property name="name">
                         <cstring>PushButton2</cstring>
                     </property>
@@ -213,7 +213,7 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
@@ -255,5 +255,5 @@
 <includes>
     <include location="global" impldecl="in declaration">kseparator.h</include>
 </includes>
-<layoutdefaults spacing="6" margin="11"/>
+<tqlayoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -43,13 +43,14 @@ class KConfig;
 class ClockDialog;
 
 
-class ZoneClock : public QFrame
+class ZoneClock : public TQFrame
 {
   Q_OBJECT
+  TQ_OBJECT
 
 public:
 
-  ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent=0, const char *n=0);
+  ZoneClock(const TQString &zone, const TQString &name, TQWidget *tqparent=0, const char *n=0);
 
 
   TQString zone() const { return _zone; };
@@ -94,13 +95,14 @@ private:
 };
 
 
-class ZoneClockPanel : public QFrame
+class ZoneClockPanel : public TQFrame
 {
   Q_OBJECT
+  TQ_OBJECT
 
 public:
 
-  ZoneClockPanel(TQWidget *parent=0, const char *name=0);
+  ZoneClockPanel(TQWidget *tqparent=0, const char *name=0);
 
   void addClock(const TQString &zone, const TQString &name);
 

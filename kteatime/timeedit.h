@@ -18,12 +18,13 @@ class TQBoxLayout;
  * @short   A spinbox that wraps around after reaching minValue resp. maxValue.
  * @author  Daniel Teske
  */
-class WrappingSpinBox : public QSpinBox
+class WrappingSpinBox : public TQSpinBox
 {
 	Q_OBJECT
+  TQ_OBJECT
 
 public:
-	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *parent=0, const char *name=0);
+	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *tqparent=0, const char *name=0);
 	~WrappingSpinBox();
 
 	void stepUp();
@@ -39,12 +40,13 @@ signals:
  * @short   A widget for entering a timeout in minutes and seconds.
  * @author  Daniel Teske
  */
-class TimeEdit : public QWidget
+class TimeEdit : public TQWidget
 {
 	Q_OBJECT
+  TQ_OBJECT
 
 public:
-	TimeEdit(TQWidget* parent = 0, const char* name = 0);
+	TimeEdit(TQWidget* tqparent = 0, const char* name = 0);
 	~TimeEdit();
 
 	void setValue(int value);
@@ -65,7 +67,7 @@ signals:
 protected:
 	TQSpinBox *minuteBox;
 	WrappingSpinBox *secondBox;
-	TQBoxLayout* layout;
+	TQBoxLayout* tqlayout;
 };
 
 #endif

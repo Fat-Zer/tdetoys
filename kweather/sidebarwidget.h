@@ -29,8 +29,9 @@
 class sidebarwidget : public sidebarwidgetbase
 {
 Q_OBJECT
+  TQ_OBJECT
 public:
-    sidebarwidget(TQWidget* parent, const char* name = 0);
+    sidebarwidget(TQWidget* tqparent, const char* name = 0);
     virtual ~sidebarwidget();
     void addWidget(TQWidget *w, const TQString &s);
     TQWidget *viewport();

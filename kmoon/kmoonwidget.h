@@ -28,15 +28,16 @@
 #include <ksystemtray.h>
 class TQPopupMenu;
 
-class MoonWidget : public QWidget
+class MoonWidget : public TQWidget
 {
     Q_OBJECT
+  TQ_OBJECT
 
 public:
-    MoonWidget(TQWidget *parent = 0, const char *name = 0);
+    MoonWidget(TQWidget *tqparent = 0, const char *name = 0);
     ~MoonWidget();
 
-    void calcStatus( time_t time );
+    void calctqStatus( time_t time );
 
     int angle() const { return _angle; }
     void setAngle(int angle);
@@ -44,14 +45,14 @@ public:
     bool northHemi() const { return _north; }
     void setNorthHemi(bool b);
 
-    bool mask() const { return _mask; }
+    bool tqmask() const { return _tqmask; }
     void setMask(bool b);
 
 protected:
     int old_w, old_h;
     int counter,  old_counter;
     int _angle, old_angle;
-    int _mask, old_mask;
+    int _tqmask, old_tqmask;
     bool old_north, _north;
 
     TQPixmap pixmap;

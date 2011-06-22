@@ -170,7 +170,7 @@ bool AmorThemeManager::setTheme(const TQString & file)
     else
     {
         // relative to config file.
-        mPath.truncate(mPath.findRev('/')+1);
+        mPath.truncate(mPath.tqfindRev('/')+1);
         mPath += pixmapPath;
     }
 
@@ -195,7 +195,7 @@ AmorAnim *AmorThemeManager::random(const TQString & group)
     if (mStatic)
 	grp = "Base";
 
-    AmorAnimationGroup *animGroup = mAnimations.find(grp);
+    AmorAnimationGroup *animGroup = mAnimations.tqfind(grp);
 
     if (animGroup) {
 	int idx = kapp->random()%animGroup->count();
@@ -227,7 +227,7 @@ bool AmorThemeManager::readGroup(const TQString & seq)
         mConfig->setGroup(list.at(i));
         AmorAnim *anim = new AmorAnim(*mConfig);
         animList->append(anim);
-        mMaximumSize = mMaximumSize.expandedTo(anim->maximumSize());
+        mMaximumSize = mMaximumSize.expandedTo(anim->tqmaximumSize());
     }
 
     // If no animations were available for this group, just add the base anim
@@ -238,7 +238,7 @@ bool AmorThemeManager::readGroup(const TQString & seq)
         if (anim)
         {
             animList->append(anim);
-            mMaximumSize = mMaximumSize.expandedTo(anim->maximumSize());
+            mMaximumSize = mMaximumSize.expandedTo(anim->tqmaximumSize());
             entries++;
         }
     }

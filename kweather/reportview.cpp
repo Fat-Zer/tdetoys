@@ -31,7 +31,7 @@
 #include "weatherservice_stub.h"
 
 reportView::reportView(const TQString &reportLocation)
-        : KDialogBase( (TQWidget *)0, "report", false, TQString::null, Close ),
+        : KDialogBase( (TQWidget *)0, "report", false, TQString(), Close ),
 	  m_locationCode(reportLocation)
 {
     TQVBox *vbox = makeVBoxMainWidget();
@@ -55,7 +55,7 @@ reportView::reportView(const TQString &reportLocation)
 reportView::~reportView(){
     delete m_weatherService;
     // we do not have to delete m_reportView because this class is
-    // the parent of the TQVBox, and that is the parent of the KHTMLPart.
+    // the tqparent of the TQVBox, and that is the tqparent of the KHTMLPart.
 
     KConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
@@ -72,7 +72,7 @@ void reportView::render(){
 
     TQString textColor = KGlobalSettings::textColor().name();
     TQString baseColor = KGlobalSettings::baseColor().name();
-    TQColorGroup cg = palette().active();
+    TQColorGroup cg = tqpalette().active();
     TQString bgColor = cg.background().name();
     TQString hlColor = cg.highlight().name();
     TQString hlTextColor = cg.highlightedText().name();
@@ -93,7 +93,7 @@ void reportView::render(){
     TQStringList cover = m_weatherService->cover(m_locationCode );
     TQStringList weather = m_weatherService->weather(m_locationCode );
 
-    setCaption(i18n("Weather Report - %1").arg( locationName ) );
+    setCaption(i18n("Weather Report - %1").tqarg( locationName ) );
 
     TQString weatherText = "<ul>\n";
 
@@ -114,24 +114,24 @@ void reportView::render(){
     TQString contents =
     "<html><head><style type=\"text/css\">" +
     TQString("body { font-family: \"%1\"; font-size: %2pt; color: %3; background-color: %4; }\n")
-    .arg(fntFamily).arg(fntSize).arg(textColor).arg(baseColor) +
+    .tqarg(fntFamily).tqarg(fntSize).tqarg(textColor).tqarg(baseColor) +
     TQString("div.headerTitle { background-color: %1; color: %2; padding: 4px; font-size: 120%; border: solid %3 1px; }\n")
-    .arg(hlColor).arg(hlTextColor).arg(textColor) +
+    .tqarg(hlColor).tqarg(hlTextColor).tqarg(textColor) +
     TQString("div.headerMsg { background-color: %1; color: %2; border-bottom: solid %3 1px; "
     "border-left: solid %4 1px; border-right: solid %5 1px; margin-bottom: 1em; padding: 2px; }\n")
-    .arg(bgColor).arg(textColor).arg(textColor).arg(textColor).arg(textColor) +    
-    TQString("</style><title></title></head><body dir=\"%1\">").arg( TQApplication::reverseLayout()?"rtl":"ltr") + 
-    "<div class=\"headerTitle\"><b>" + i18n( "Weather Report - %1 - %2" ).arg( locationName ).arg( countryName ) +        
+    .tqarg(bgColor).tqarg(textColor).tqarg(textColor).tqarg(textColor).tqarg(textColor) +    
+    TQString("</style><title></title></head><body dir=\"%1\">").tqarg( TQApplication::reverseLayout()?"rtl":"ltr") + 
+    "<div class=\"headerTitle\"><b>" + i18n( "Weather Report - %1 - %2" ).tqarg( locationName ).tqarg( countryName ) +        
     "</b></div>\n";
 
     if ( ! date.isEmpty() )
-      contents += "<div class=\"headerMsg\"><b>" + i18n( "Latest data from %1" ).arg(date) + "</b></div>\n";
+      contents += "<div class=\"headerMsg\"><b>" + i18n( "Latest data from %1" ).tqarg(date) + "</b></div>\n";
 
     contents += TQString(
     "<table><tr><td width=\"60\" style=\"text-align: center; border: dotted %1 1px;\">"
     "<img width=\"64\" height=\"64\" src=\"%2\" /></td>"
     "<td style=\"vertical-align: top\">%3</td></tr>")
-    .arg(bgColor).arg(KURL(icon).url()).arg(weatherText) +
+    .tqarg(bgColor).tqarg(KURL(icon).url()).tqarg(weatherText) +
     "</table><table>" +
     TQString("<tr><th style=\"text-align: right\">" + i18n( "Temperature:" )
     + "</th><td>%1</td>"
@@ -145,15 +145,15 @@ void reportView::render(){
     + "</th><td>%4</td></tr>"
     "<tr><th style=\"text-align: right\">" + i18n( "Wind Speed:" )
     + "</th><td>%5</td>")
-    .arg(temp).arg(dewPoint).arg(pressure).arg(relHumidity)
-    .arg(wind) + "<td width=\"50\">&nbsp;</td>";
+    .tqarg(temp).tqarg(dewPoint).tqarg(pressure).tqarg(relHumidity)
+    .tqarg(wind) + "<td width=\"50\">&nbsp;</td>";
 
     if (!heatIndex.isEmpty())
         contents += TQString("<th style=\"text-align: right\">"
-        + i18n( "Heat Index:" ) + "</th><td>%1</td>").arg(heatIndex);
+        + i18n( "Heat Index:" ) + "</th><td>%1</td>").tqarg(heatIndex);
     else if (!windChill.isEmpty())
         contents += TQString("<th style=\"text-align: right\">"
-        + i18n( "Wind Chill:" ) + "</th><td>%1</td>").arg(windChill);
+        + i18n( "Wind Chill:" ) + "</th><td>%1</td>").tqarg(windChill);
     else
         contents += "<td>&nbsp;</td><td>&nbsp;</td>";
     contents += "</tr>";
@@ -162,7 +162,7 @@ void reportView::render(){
     + i18n( "Sunrise:" ) + "</th><td>%1</td>" +
     "<td width=\"50\">&nbsp;</td><th style=\"text-align: right\">"
     + i18n( "Sunset:" ) + "</th><td>%2</td>")
-    .arg(sunRiseTime).arg(sunSetTime);
+    .tqarg(sunRiseTime).tqarg(sunSetTime);
 
     contents += "</tr></table></body></html>";
 

@@ -56,8 +56,8 @@
 #include "mapwidget.moc"
 
 
-MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *name)
-  : TQWidget(parent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
+MapWidget::MapWidget(bool applet, bool restore, TQWidget *tqparent, const char *name)
+  : TQWidget(tqparent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
     _applet(applet), _width(0), _height(0)
 {
   // this ugly construction is necessary so we don't load 
@@ -143,7 +143,7 @@ MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *na
   _cityIndicator->setIndent(0);
   _cityIndicator->setAutoMask(false);
   _cityIndicator->setLineWidth(1);
-  _cityIndicator->setAlignment(TQLabel::AlignAuto | TQLabel::AlignTop);
+  _cityIndicator->tqsetAlignment(TQLabel::AlignAuto | TQLabel::AlignTop);
   _cityIndicator->setAutoResize(true);
   _cityIndicator->setFrameStyle(TQFrame::Box | TQFrame::Plain);
   _cityIndicator->setPalette(TQToolTip::palette());
@@ -223,18 +223,18 @@ void MapWidget::addClock()
 
 void MapWidget::addFlag(int index)
 {
-  TQColor col = Qt::red;
+  TQColor col = TQt::red;
 
   switch (index)
     {
     case 0:
-      col = Qt::red;
+      col = TQt::red;
       break;
     case 1:
-      col = Qt::green;
+      col = TQt::green;
       break;
     case 2:
-      col = Qt::blue;
+      col = TQt::blue;
       break;
     case 3:
       if (KColorDialog::getColor(col, this) != KColorDialog::Accepted)
@@ -262,7 +262,7 @@ void MapWidget::removeFlag()
 
 void MapWidget::removeAllFlags()
 {
-  if ( KMessageBox::warningContinueCancel( this, i18n( "Do you really want to remove all flags?" ), TQString::null, KStdGuiItem::del() ) == KMessageBox::Continue )
+  if ( KMessageBox::warningContinueCancel( this, i18n( "Do you really want to remove all flags?" ), TQString(), KStdGuiItem::del() ) == KMessageBox::Continue )
     _flagList->removeAllFlags();
 
   update();
@@ -353,10 +353,10 @@ void MapWidget::timeout()
 TQString MapWidget::cityTime(const TQString &city)
 {
   TQString result = i18n(city.latin1()); // Time zone translation
-  int pos = result.find("/");
+  int pos = result.tqfind("/");
   if (pos >= 0)
     result = result.mid(pos+1);
-  result.replace(TQRegExp("_"), " ");
+  result.tqreplace(TQRegExp("_"), " ");
   result.append(": ");
 
   char *initial_TZ = getenv("TZ");
@@ -366,7 +366,7 @@ TQString MapWidget::cityTime(const TQString &city)
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  result.append(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  result.append(TQString("%1, %2").tqarg(KGlobal::locale()->formatTime(dt.time(), true)).tqarg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -407,7 +407,7 @@ void MapWidget::themeSelected(int index)
 
 void MapWidget::mousePressEvent(TQMouseEvent *ev)
 {
-  if (ev->button() == TQMouseEvent::RightButton)
+  if (ev->button() == Qt::RightButton)
     {
       _flagPos = ev->pos();
       _popup->exec(ev->globalPos()); 
@@ -563,13 +563,13 @@ TQPixmap MapWidget::calculatePixmap()
 
   if (gmt_position >= greenwich)
     {
-      p.drawPixmap(gmt_position-greenwich, 0, map, 0, 0, map.width()-gmt_position+greenwich);
-      p.drawPixmap(0,0, map, map.width()-gmt_position+greenwich, 0, gmt_position-greenwich);
+      p.tqdrawPixmap(gmt_position-greenwich, 0, map, 0, 0, map.width()-gmt_position+greenwich);
+      p.tqdrawPixmap(0,0, map, map.width()-gmt_position+greenwich, 0, gmt_position-greenwich);
     }
   else
     {
-      p.drawPixmap(0,0, map, greenwich-gmt_position, 0, map.width()+gmt_position-greenwich);
-      p.drawPixmap(map.width()+gmt_position-greenwich, 0, map, 0, 0, greenwich-gmt_position);
+      p.tqdrawPixmap(0,0, map, greenwich-gmt_position, 0, map.width()+gmt_position-greenwich);
+      p.tqdrawPixmap(map.width()+gmt_position-greenwich, 0, map, 0, 0, greenwich-gmt_position);
     }
 
   return pm;

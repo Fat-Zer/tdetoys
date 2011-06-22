@@ -7,38 +7,39 @@
 **
 ** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
 **
-** This file contains a class moved out of the Qt GUI Toolkit API. It
+** This file contains a class moved out of the TQt GUI Toolkit API. It
 ** may be used, distributed and modified without limitation.
 **
 **********************************************************************/
 
-#ifndef QTTABLEVIEW_H
-#define QTTABLEVIEW_H
+#ifndef TQTTABLEVIEW_H
+#define TQTTABLEVIEW_H
 
-#ifndef QT_H
+#ifndef TQT_H
 #include "tqframe.h"
-#endif // QT_H
+#endif // TQT_H
 
-#ifndef QT_NO_QTTABLEVIEW
+#ifndef TQT_NO_TQTTABLEVIEW
 
 class TQScrollBar;
 class QCornerSquare;
 
 
-class QtTableView : public QFrame
+class QtTableView : public TQFrame
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
     virtual void setBackgroundColor( const TQColor & );
     virtual void setPalette( const TQPalette & );
     void	show();
 
-    void	repaint( bool erase=TRUE );
-    void	repaint( int x, int y, int w, int h, bool erase=TRUE );
-    void	repaint( const TQRect &, bool erase=TRUE );
+    void	tqrepaint( bool erase=TRUE );
+    void	tqrepaint( int x, int y, int w, int h, bool erase=TRUE );
+    void	tqrepaint( const TQRect &, bool erase=TRUE );
 
 protected:
-    QtTableView( TQWidget *parent=0, const char *name=0, WFlags f=0 );
+    QtTableView( TQWidget *tqparent=0, const char *name=0, WFlags f=0 );
    ~QtTableView();
 
     int		numRows()	const;
@@ -78,8 +79,8 @@ protected:
 
     void	updateCell( int row, int column, bool erase=TRUE );
 
-    QRect	cellUpdateRect() const;
-    QRect	viewRect()	 const;
+    TQRect	cellUpdateRect() const;
+    TQRect	viewRect()	 const;
 
     int		lastRowVisible() const;
     int		lastColVisible() const;
@@ -162,14 +163,14 @@ private:
     uint	inSbUpdate		: 1;
 
     uint	tFlags;
-    QRect	cellUpdateR;
+    TQRect	cellUpdateR;
 
     TQScrollBar *vScrollBar;
     TQScrollBar *hScrollBar;
     QCornerSquare *cornerSquare;
 
 private:	// Disabled copy constructor and operator=
-#if defined(Q_DISABLE_COPY)
+#if defined(TQ_DISABLE_COPY)
     QtTableView( const QtTableView & );
     QtTableView &operator=( const QtTableView & );
 #endif
@@ -236,16 +237,16 @@ inline TQRect QtTableView::cellUpdateRect() const
 inline bool QtTableView::autoUpdate() const
 { return isUpdatesEnabled(); }
 
-inline void QtTableView::repaint( bool erase )
-{ repaint( 0, 0, width(), height(), erase ); }
+inline void QtTableView::tqrepaint( bool erase )
+{ tqrepaint( 0, 0, width(), height(), erase ); }
 
-inline void QtTableView::repaint( const TQRect &r, bool erase )
-{ repaint( r.x(), r.y(), r.width(), r.height(), erase ); }
+inline void QtTableView::tqrepaint( const TQRect &r, bool erase )
+{ tqrepaint( r.x(), r.y(), r.width(), r.height(), erase ); }
 
 inline void QtTableView::updateScrollBars()
 { updateScrollBars( 0 ); }
 
 
-#endif // QT_NO_QTTABLEVIEW
+#endif // TQT_NO_TQTTABLEVIEW
 
-#endif // QTTABLEVIEW_H
+#endif // TQTTABLEVIEW_H

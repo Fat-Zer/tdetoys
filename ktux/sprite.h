@@ -20,6 +20,7 @@
 class KSpriteSaver : public KScreenSaver
 {
 	Q_OBJECT
+  TQ_OBJECT
 public:
     KSpriteSaver( WId id );
     virtual ~KSpriteSaver();
@@ -38,19 +39,20 @@ protected:
     virtual void timerEvent(TQTimerEvent *);
 
 protected:
-    QCanvas	*mCanvas;
-    QCanvasView	*mView;
-    QTimer	mTimer;
+    TQCanvas	*mCanvas;
+    TQCanvasView	*mView;
+    TQTimer	mTimer;
     int                 mSpeed;
     TQPtrList<SpriteGroup>  mGroups;
     TQMemArray<int>    mTimerIds;
 };
 
-class KSpriteSetup : public QDialog
+class KSpriteSetup : public TQDialog
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
-    KSpriteSetup( TQWidget *parent = NULL, const char *name = NULL );
+    KSpriteSetup( TQWidget *tqparent = NULL, const char *name = NULL );
     ~KSpriteSetup();
 
 protected:

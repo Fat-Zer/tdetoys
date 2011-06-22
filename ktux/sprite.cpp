@@ -43,8 +43,8 @@ extern "C"
 
 //-----------------------------------------------------------------------------
 
-KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
-  : TQDialog( parent, name, TRUE )
+KSpriteSetup::KSpriteSetup( TQWidget *tqparent, const char *name )
+  : TQDialog( tqparent, name, TRUE )
 {
     KGlobal::locale()->insertCatalogue("ktux");
     saver = 0;
@@ -60,11 +60,11 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
     tl1->addLayout(tl11);
 
     TQLabel *label = new TQLabel( i18n("Speed:"), this );
-    label->setMinimumSize(label->sizeHint());
+    label->setMinimumSize(label->tqsizeHint());
     tl11->addStretch(1);
     tl11->addWidget(label);
 
-    TQSlider *sb = new TQSlider(0, 100, 10, speed, TQSlider::Horizontal, this );
+    TQSlider *sb = new TQSlider(0, 100, 10, speed, Qt::Horizontal, this );
     tl11->addWidget(sb);
     connect( sb, TQT_SIGNAL( valueChanged( int ) ), TQT_SLOT( slotSpeed( int ) ) );
 
@@ -85,7 +85,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
 
     button = bbox->addButton(KStdGuiItem::cancel());
     connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT( reject() ) );
-    bbox->layout();
+    bbox->tqlayout();
     tl->addWidget(bbox);
 
     tl->freeze();
@@ -203,7 +203,7 @@ void KSpriteSaver::initialise()
 {
     mCanvas = new TQCanvas();
     TQPixmap pm( locate("sprite", "bg.png") );
-    mCanvas->setBackgroundPixmap( pm );
+    mCanvas->tqsetBackgroundPixmap( pm );
     mCanvas->resize( width(), height() );
     mView = new TQCanvasView(mCanvas);
     mView->viewport()->setBackgroundColor( black );

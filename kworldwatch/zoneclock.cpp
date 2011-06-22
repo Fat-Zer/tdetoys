@@ -1,6 +1,6 @@
 /*
 **
-** Copyright (C) 1998-2001 by Matthias Hölzer-Klüpfel <hoelzer@kde.org>
+** Copyright (C) 1998-2001 by Matthias Hï¿½lzer-Klï¿½pfel <hoelzer@kde.org>
 **	Maintainence has ceased - send questions to kde-devel@kde.org.
 **
 */
@@ -51,8 +51,8 @@
 #include "zoneclock.moc"
 #include <kdebug.h>
 
-ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent, const char *n)
-  : TQFrame(parent, n), _zone(zone), _name(name)
+ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *tqparent, const char *n)
+  : TQFrame(tqparent, n), _zone(zone), _name(name)
 {
   setFrameStyle(TQFrame::Panel | TQFrame::Raised);
   TQHBoxLayout *hbox = new TQHBoxLayout(this, 2,2);
@@ -63,7 +63,7 @@ ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *paren
   hbox->addSpacing(4);
 
   _timeLabel = new TQLabel(this);
-  hbox->addWidget(_timeLabel, 0, Qt::AlignRight);
+  hbox->addWidget(_timeLabel, 0, TQt::AlignRight);
 
   _popup = new TQPopupMenu(this);
   _popup->insertItem(i18n("&Edit..."), this, TQT_SLOT(editClock()));
@@ -122,7 +122,7 @@ void ZoneClock::editClock()
       _name = _dlg->ClockCaption->text().append(":");
       _nameLabel->setText(_dlg->ClockCaption->text().append(":"));
       updateTime();
-      layout()->invalidate();
+      tqlayout()->tqinvalidate();
       emit changed();
     }
 
@@ -135,7 +135,7 @@ bool ZoneClock::eventFilter(TQObject *obj, TQEvent *ev)
   if (ev->type() == TQEvent::MouseButtonPress)
     {
       TQMouseEvent *e = (TQMouseEvent*)ev;
-      if (e->button() == TQMouseEvent::RightButton)
+      if (e->button() == Qt::RightButton)
 	_popup->exec(e->globalPos());
     }
 
@@ -152,7 +152,7 @@ void ZoneClock::updateTime()
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  _timeLabel->setText(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  _timeLabel->setText(TQString("%1, %2").tqarg(KGlobal::locale()->formatTime(dt.time(), true)).tqarg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -162,8 +162,8 @@ void ZoneClock::updateTime()
 }
 
 
-ZoneClockPanel::ZoneClockPanel(TQWidget *parent, const char *name)
-  : TQFrame(parent, name), _dlg(0)
+ZoneClockPanel::ZoneClockPanel(TQWidget *tqparent, const char *name)
+  : TQFrame(tqparent, name), _dlg(0)
 {
   _flow = new SimpleFlow(this,1,1);
 
@@ -218,8 +218,8 @@ void ZoneClockPanel::realign()
   int w = 0;
   TQPtrListIterator<ZoneClock> it(_clocks);
   for ( ; it.current(); ++it)
-    if (it.current()->sizeHint().width() > w)
-      w = it.current()->sizeHint().width();
+    if (it.current()->tqsizeHint().width() > w)
+      w = it.current()->tqsizeHint().width();
   it.toFirst();
   for ( ; it.current(); ++it)
     it.current()->setFixedWidth(w);
@@ -266,8 +266,8 @@ void ZoneClockPanel::save(KConfig *config)
     {
       TQString n = it.current()->name();
       n = n.left(n.length()-1);
-      config->writeEntry(TQString("Clock_%1_Name").arg(cnt), n);
-      config->writeEntry(TQString("Clock_%1_Zone").arg(cnt), it.current()->zone());
+      config->writeEntry(TQString("Clock_%1_Name").tqarg(cnt), n);
+      config->writeEntry(TQString("Clock_%1_Zone").tqarg(cnt), it.current()->zone());
       cnt++;
     }
 }
@@ -281,7 +281,7 @@ void ZoneClockPanel::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addClock(config->readEntry(TQString("Clock_%1_Zone").arg(i)), config->readEntry(TQString("Clock_%1_Name").arg(i)));
+      addClock(config->readEntry(TQString("Clock_%1_Zone").tqarg(i)), config->readEntry(TQString("Clock_%1_Name").tqarg(i)));
     }
 }
 

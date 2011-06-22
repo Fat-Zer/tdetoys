@@ -32,6 +32,7 @@ class StationDatabase;
 class WeatherService : public TQObject, public DCOPObject
 {
 	Q_OBJECT
+//	TQ_OBJECT
 	K_DCOP
 
 	private:
@@ -43,7 +44,7 @@ class WeatherService : public TQObject, public DCOPObject
 		void slotStationRemoved(const TQString &stationID);
 
 	public:
-		WeatherService(TQObject *parent, const char *name);
+		WeatherService(TQObject *tqparent, const char *name);
 		~WeatherService();
 
 	k_dcop_signals:

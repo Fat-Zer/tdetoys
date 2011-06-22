@@ -118,13 +118,13 @@ TopLevel::TopLevel() : KSystemTray()
 
 
 	startAct = new KAction(i18n("&Start"), "1rightarrow", 0,
-	                       this, TQT_SLOT(start()), actionCollection(), "start");
+	                       TQT_TQOBJECT(this), TQT_SLOT(start()), actionCollection(), "start");
 	stopAct = new KAction(i18n("Sto&p"), "cancel", 0,
-	                      this, TQT_SLOT(stop()), actionCollection(), "stop");
+	                      TQT_TQOBJECT(this), TQT_SLOT(stop()), actionCollection(), "stop");
 	confAct = new KAction(i18n("&Configure..."), "configure", 0,
-	                      this, TQT_SLOT(config()), actionCollection(), "configure");
+	                      TQT_TQOBJECT(this), TQT_SLOT(config()), actionCollection(), "configure");
 	anonAct = new KAction(i18n("&Anonymous..."), 0, 0,
-	                      this, TQT_SLOT(anonymous()), actionCollection(), "anonymous");
+	                      TQT_TQOBJECT(this), TQT_SLOT(anonymous()), actionCollection(), "anonymous");
 //	KAction *quitAct = actionCollection()->action("file_quit");
 
 	// create app menu (displayed on right-click)
@@ -198,7 +198,7 @@ TopLevel::~TopLevel()
 	delete menu;
 	delete steeping_menu;
 	delete start_menu;
-	// FIXME: must delete more (like all the QWidgets in config-window)?
+	// FIXME: must delete more (like all the TQWidgets in config-window)?
 }
 
 void TopLevel::resizeEvent ( TQResizeEvent * )
@@ -207,13 +207,13 @@ void TopLevel::resizeEvent ( TQResizeEvent * )
 	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
 	teaAnim1Pixmap = loadSizedIcon("tea_anim1", width());
 	teaAnim2Pixmap = loadSizedIcon("tea_anim2", width());
-	repaint();
+	tqrepaint();
 }
 
 /** Handle mousePressEvent */
 void TopLevel::mousePressEvent(TQMouseEvent *event)
 {
-	if (event->button() == LeftButton) {
+	if (event->button() == Qt::LeftButton) {
 		if (ready) {
 			stop();                         // reset tooltip and stop animation
 		} else {
@@ -222,7 +222,7 @@ void TopLevel::mousePressEvent(TQMouseEvent *event)
 			else
 				start_menu->popup(TQCursor::pos());
 		}
-	} else if (event->button() == RightButton)
+	} else if (event->button() == Qt::RightButton)
 		menu->popup(TQCursor::pos());
 //	else if (event->button() == MidButton)  // currently unused
 }
@@ -251,19 +251,19 @@ void TopLevel::paintEvent(TQPaintEvent *)
 	// overlay pie chart onto tray icon
 	TQPixmap base(*pm);                                      // make copy of base pixmap
 	if (useTrayVis && running) {
-		// extend mask
-		TQBitmap mask = *(base.mask());
-		TQPainter pm(&mask);
-		pm.setBrush(Qt::color1);                            // fill with "foreground-colour"
-		pm.setPen(Qt::NoPen);                               // no border needed/wanted
+		// extend tqmask
+		TQBitmap tqmask = *(base.tqmask());
+		TQPainter pm(&tqmask);
+		pm.setBrush(TQt::color1);                            // fill with "foreground-colour"
+		pm.setPen(TQt::NoPen);                               // no border needed/wanted
 		pm.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);       // full circle of small size
 		pm.drawPie(0, ((float) width()/(float) 2.44444444444), ((float) width()/(float) 1.69230769231), ((float) width()/(float) 1.69230769231), 90*16, percentDone*16);    // pie part of big size
 		pm.end();
-		base.setMask(mask);
+		base.setMask(tqmask);
 
 		// draw pie chart
 		TQPainter px(&base);
-		px.setPen(TQPen(Qt::black, 0));                      // black border
+		px.setPen(TQPen(TQt::black, 0));                      // black border
 		px.setBrush(TQColor(192, 0, 0));                     // red fill colour for small circle
 		px.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);
 
@@ -302,14 +302,14 @@ void TopLevel::timerEvent(TQTimerEvent *)
 					menu->setItemChecked(current_selected, true);
 			}
 
-			TQString teaMessage = i18n("The %1 is now ready!").arg(current_name);
+			TQString teaMessage = i18n("The %1 is now ready!").tqarg(current_name);
 			// invoke action
 			if (useNotify) {
 				KNotifyClient::event(winId(), "tea", teaMessage);
 			}
 			if (useAction && (!action.isEmpty())) {
 				TQString cmd = action;
-				cmd.replace("%t", current_name);
+				cmd.tqreplace("%t", current_name);
 				system(TQFile::encodeName(cmd));
 			}
 			if (usePopup)
@@ -317,7 +317,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				                       teaMessage, teaAnim1Pixmap, this, "popup", 0);
 				// FIXME: does auto-deletion work without timeout?
 			setToolTip(teaMessage);
-			repaint();
+			tqrepaint();
 		} else {
 			// timer not yet run out; just update tray-icon (if configured)...
 			if (useTrayVis) {
@@ -325,18 +325,18 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				if (pDone - percentDone > 8) {
 					// update icon not every second, but only if somewhat noticable
 					percentDone = pDone;
-					repaint();
+					tqrepaint();
 				}
 			}
 			// ...and Tooltip
 			TQString min = int2time(seconds);
-			setToolTip(i18n("%1 left for %2").arg(min).arg(current_name));
+			setToolTip(i18n("%1 left for %2").tqarg(min).tqarg(current_name));
 		}
 	} else {
 		// no tea is steeping; just animate icon
 		if (ready) {
 			firstFrame = !firstFrame;
-			repaint();
+			tqrepaint();
 		}
 	}
 }
@@ -440,21 +440,21 @@ void TopLevel::start()
 		}
 		// else both are already defined by dialog handler
 
-		killTimers();
+		TQT_TQOBJECT(this)->killTimers();
 		startTimer(1000);                               // 1000ms = 1s (sufficient resolution)
 
 		running = true;
 		ready = false;
 		enable_menuEntries();                           // disable "start", enable "stop"
 
-		repaint();
+		tqrepaint();
 	}
 }
 
 /* menu-slot: "stop" selected in menu */
 void TopLevel::stop()
 {
-	killTimers();
+	TQT_TQOBJECT(this)->killTimers();
 
 	running = false;
 	ready = false;
@@ -467,7 +467,7 @@ void TopLevel::stop()
 	}
 
 	setToolTip(i18n("The Tea Cooker"), true);
-	repaint();
+	tqrepaint();
 }
 
 /* open dialog to start an 'anonymous' tea */
@@ -487,10 +487,10 @@ void TopLevel::anonymous()
 		prop_box->addWidget(propright);
 
 		anon_time = new TimeEdit(propright);
-		anon_time->setFixedHeight(anon_time->sizeHint().height());
+		anon_time->setFixedHeight(anon_time->tqsizeHint().height());
 		anon_time->setValue(DEFAULT_TEA_TIME);
 		TQLabel *l = new TQLabel(anon_time, i18n("Tea time:"), propleft);
-		l->setFixedSize(l->sizeHint());
+		l->setFixedSize(l->tqsizeHint());
 
 		top_box->addStretch();
 
@@ -670,7 +670,7 @@ void TopLevel::config()
 
     /* left side - tea list and list-modifying buttons */
     TQBoxLayout *leftside = new TQVBoxLayout(box);
-    TQGroupBox *listgroup = new TQGroupBox(2, Vertical, i18n("Tea List"), page);
+    TQGroupBox *listgroup = new TQGroupBox(2,Qt::Vertical, i18n("Tea List"), page);
     leftside->addWidget(listgroup, 0, 0);
 
     listbox = new TQListView(listgroup, "listBox");
@@ -685,31 +685,31 @@ void TopLevel::config()
     TQWidget *listgroup_widget = new TQWidget(listgroup);
     TQBoxLayout *hbox = new TQHBoxLayout(listgroup_widget);
     hbox->setSpacing(4);
-    btn_new = new TQPushButton(TQString::null, listgroup_widget);
+    btn_new = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_new, i18n("New"));
     btn_new->setPixmap(SmallIcon("filenew"));
-    btn_new->setMinimumSize(btn_new->sizeHint() * 1.2);
+    btn_new->setMinimumSize(btn_new->tqsizeHint() * 1.2);
     connect(btn_new, TQT_SIGNAL(clicked()), TQT_SLOT(newButtonClicked()));
     hbox->addWidget(btn_new);
 
-    btn_del = new TQPushButton(TQString::null, listgroup_widget);
+    btn_del = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_del, i18n("Delete"));
     btn_del->setIconSet(SmallIconSet("editdelete"));
-    btn_del->setMinimumSize(btn_new->sizeHint() * 1.2);
+    btn_del->setMinimumSize(btn_new->tqsizeHint() * 1.2);
     connect(btn_del, TQT_SIGNAL(clicked()), TQT_SLOT(delButtonClicked()));
     hbox->addWidget(btn_del);
 
-    btn_up = new TQPushButton(TQString::null, listgroup_widget);
+    btn_up = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_up, i18n("Up"));
     btn_up->setIconSet(SmallIconSet("up"));
-    btn_up->setMinimumSize(btn_up->sizeHint() * 1.2);
+    btn_up->setMinimumSize(btn_up->tqsizeHint() * 1.2);
     connect(btn_up, TQT_SIGNAL(clicked()), TQT_SLOT(upButtonClicked()));
     hbox->addWidget(btn_up);
 
-    btn_down = new TQPushButton(TQString::null, listgroup_widget);
+    btn_down = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_down, i18n("Down"));
     btn_down->setIconSet(SmallIconSet("down"));
-    btn_down->setMinimumSize(btn_down->sizeHint() * 1.2);
+    btn_down->setMinimumSize(btn_down->tqsizeHint() * 1.2);
     connect(btn_down, TQT_SIGNAL(clicked()), TQT_SLOT(downButtonClicked()));
     hbox->addWidget(btn_down);
 
@@ -717,29 +717,29 @@ void TopLevel::config()
 
     /* right side - tea properties */
     TQBoxLayout *rightside = new TQVBoxLayout(box);
-    editgroup = new TQGroupBox(2, Vertical, i18n("Tea Properties"), page);
+    editgroup = new TQGroupBox(2,Qt::Vertical, i18n("Tea Properties"), page);
     rightside->addWidget(editgroup, 0, 0);
     TQHBox *propbox = new TQHBox(editgroup);
 
-    // FIXME: - must enforce correct vertical alignment of each label-editor pair
+    // FIXME: - must enforce correct vertical tqalignment of each label-editor pair
     //          (better use one HBox for each label-editor pair?)
     TQVBox *propleft = new TQVBox(propbox);
     TQVBox *propright = new TQVBox(propbox);
     nameEdit = new TQLineEdit(propright);
-    nameEdit->setFixedHeight(nameEdit->sizeHint().height());
-    nameEdit->setAlignment(TQLineEdit::AlignLeft);
+    nameEdit->setFixedHeight(nameEdit->tqsizeHint().height());
+    nameEdit->tqsetAlignment(TQLineEdit::AlignLeft);
     TQLabel *l = new TQLabel(nameEdit, i18n("Name:"), propleft);
-    l->setFixedSize(l->sizeHint());
+    l->setFixedSize(l->tqsizeHint());
     connect(nameEdit, TQT_SIGNAL(textChanged(const TQString&)), TQT_SLOT(nameEditTextChanged(const TQString&)) );
 
     timeEdit = new TimeEdit(propright);
-    timeEdit->setFixedHeight(timeEdit->sizeHint().height());
+    timeEdit->setFixedHeight(timeEdit->tqsizeHint().height());
     l = new TQLabel(timeEdit, i18n("Tea time:"), propleft);
-    l->setFixedSize(l->sizeHint());
+    l->setFixedSize(l->tqsizeHint());
     connect(timeEdit, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)));
 
     /* bottom - timeout actions */
-    TQGroupBox *actiongroup = new TQGroupBox(4, Vertical, i18n("Action"), page);
+    TQGroupBox *actiongroup = new TQGroupBox(4,Qt::Vertical, i18n("Action"), page);
     top_box->addWidget(actiongroup, 0, 0);
 
     TQWidget *actionconf_widget = new TQWidget(actiongroup);
@@ -751,15 +751,15 @@ void TopLevel::config()
 
     eventEnable = new TQCheckBox(i18n("Event"), actiongroup);
     popupEnable = new TQCheckBox(i18n("Popup"), actiongroup);
-    eventEnable->setFixedHeight(eventEnable->sizeHint().height());
-    popupEnable->setFixedHeight(popupEnable->sizeHint().height());
+    eventEnable->setFixedHeight(eventEnable->tqsizeHint().height());
+    popupEnable->setFixedHeight(popupEnable->tqsizeHint().height());
 
     TQHBox *actionbox = new TQHBox(actiongroup);
     actionEnable = new TQCheckBox(actionbox);
 //    FIXME: add text to this line:
 //    TQLabel *actionLabel = new TQLabel(i18n("Execute: "), actiongroup);
     actionEdit = new TQLineEdit(actionbox);
-    actionEdit->setFixedHeight(actionEdit->sizeHint().height());
+    actionEdit->setFixedHeight(actionEdit->tqsizeHint().height());
     TQToolTip::add(actionEdit, i18n("Enter command here; '%t' will be replaced with name of steeping tea"));
     connect(actionEnable, TQT_SIGNAL(toggled(bool)), TQT_SLOT(actionEnableToggled(bool)));
     rightside->addStretch();
@@ -776,7 +776,7 @@ void TopLevel::config()
   }
 
   // now add all defined teas (and their times) to the listview
-  // this is done backwards because QListViewItems are inserted at the top
+  // this is done backwards because TQListViewItems are inserted at the top
   listbox->clear();
   for (int i=teas.count()-1; i>=0; i--) {
     TeaListItem *item = new TeaListItem(listbox);
@@ -816,7 +816,7 @@ void TopLevel::config()
 
     teas.clear();
 
-    // Copy over teas and times from the QListView
+    // Copy over teas and times from the TQListView
     int i = 0;
     teas.clear();
     teas.resize(listbox->childCount());

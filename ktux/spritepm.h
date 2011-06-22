@@ -34,7 +34,7 @@ public:
         { mPixmapDir = "."; mPixmaps.clear(); }
     const TQPixmap *load(const TQString & img);
     const TQPixmap *pixmap(const char *img) const
-        { return mPixmaps.find(img); }
+        { return mPixmaps.tqfind(img); }
 
     static SpritePixmapManager *manager();
 
@@ -46,7 +46,7 @@ public:
 
 //---------------------------------------------------------------------------
 //
-class SpritePixmapSequence : public QCanvasPixmapArray
+class SpritePixmapSequence : public TQCanvasPixmapArray
 {
 public:
     SpritePixmapSequence(TQPtrList<TQPixmap> pm, TQPtrList<TQPoint> hs, TQMemArray<int> d);
@@ -69,7 +69,7 @@ public:
  
     SpritePixmapSequence *load(KConfigBase &config, const TQString & name);
     SpritePixmapSequence *sprite(const char *name)
-        { return mSprites.find(name); }
+        { return mSprites.tqfind(name); }
 
     static SpriteSequenceManager *manager();
      

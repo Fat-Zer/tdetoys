@@ -39,7 +39,7 @@ FlagList::FlagList()
   _flags.setAutoDelete(true);
 
   _flagPixmap = TQPixmap(locate("data", "kworldclock/pics/flag.png"));
-  _flagMask = TQPixmap(locate("data", "kworldclock/pics/flag-mask.xpm"), 0, TQPixmap::ThresholdDither);
+  _flagMask = TQPixmap(locate("data", "kworldclock/pics/flag-tqmask.xpm"), 0, TQPixmap::ThresholdDither);
   _flagMask.setMask(_flagMask.createHeuristicMask());
 }
 
@@ -62,7 +62,7 @@ TQPoint FlagList::getPosition(double la, double lo, int w, int h, int offset)
  
 void FlagList::paint(TQPainter *p, int width, int height, int offset)
 {
-  p->setPen(Qt::black);
+  p->setPen(TQt::black);
  
   TQPtrListIterator<Flag> it(_flags);
   for ( ; it.current(); ++it)
@@ -121,9 +121,9 @@ void FlagList::save(KConfig *config)
   int cnt=0;
   for ( ; it.current(); ++it)
     {
-      config->writeEntry(TQString("Flag_%1_Color").arg(cnt), it.current()->color());
-      config->writeEntry(TQString("Flag_%1_Latitude").arg(cnt), it.current()->latitude());
-      config->writeEntry(TQString("Flag_%1_Longitude").arg(cnt), it.current()->longitude());
+      config->writeEntry(TQString("Flag_%1_Color").tqarg(cnt), it.current()->color());
+      config->writeEntry(TQString("Flag_%1_Latitude").tqarg(cnt), it.current()->latitude());
+      config->writeEntry(TQString("Flag_%1_Longitude").tqarg(cnt), it.current()->longitude());
       cnt++;
     }
 }
@@ -136,9 +136,9 @@ void FlagList::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addFlag(new Flag(config->readDoubleNumEntry(TQString("Flag_%1_Longitude").arg(i)),
-		       config->readDoubleNumEntry(TQString("Flag_%1_Latitude").arg(i)),
-		       config->readColorEntry(TQString("Flag_%1_Color").arg(i))));
+      addFlag(new Flag(config->readDoubleNumEntry(TQString("Flag_%1_Longitude").tqarg(i)),
+		       config->readDoubleNumEntry(TQString("Flag_%1_Latitude").tqarg(i)),
+		       config->readColorEntry(TQString("Flag_%1_Color").tqarg(i))));
     }
 }
 

@@ -53,13 +53,14 @@ class FlagList;
 #include "maploader.h"
 
 
-class MapWidget : public QWidget
+class MapWidget : public TQWidget
 {
   Q_OBJECT
+  TQ_OBJECT
 
 public:
 
-  MapWidget(bool applet=false, bool restore=false, TQWidget *parent=0, const char *name=0);
+  MapWidget(bool applet=false, bool restore=false, TQWidget *tqparent=0, const char *name=0);
   ~MapWidget();
 
   void setTheme(const TQString &theme);

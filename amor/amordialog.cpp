@@ -74,7 +74,7 @@ AmorDialog::AmorDialog()
     label = new TQLabel(i18n("Offset:"), offsetBox);
 
     TQSlider *slider = new TQSlider(-40, 40, 5, mConfig.mOffset,
-                                    TQSlider::Vertical, offsetBox);
+                                    Qt::Vertical, offsetBox);
     connect(slider, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(slotOffset(int)));
 
     // Always on top
@@ -84,7 +84,7 @@ AmorDialog::AmorDialog()
 
     checkBox = new TQCheckBox(i18n("Show random tips"), mainwidget);
     connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotRandomTips(bool)));
-    checkBox->setChecked(mConfig.mTips); // always keep this one after the connect, or the QList would not be grayed when it should
+    checkBox->setChecked(mConfig.mTips); // always keep this one after the connect, or the TQList would not be grayed when it should
 
     checkBox = new TQCheckBox(i18n("Use a random character"), mainwidget);
     connect(checkBox, TQT_SIGNAL(toggled(bool)), TQT_SLOT(slotRandomTheme(bool)));
@@ -275,7 +275,7 @@ void AmorListBoxItem::paint( TQPainter *p )
 
 int AmorListBoxItem::height(const TQListBox *lb ) const
 {
-    return QMAX( mPixmap.height(), lb->fontMetrics().lineSpacing() + 1 );
+    return TQMAX( mPixmap.height(), lb->fontMetrics().lineSpacing() + 1 );
 }
 
 int AmorListBoxItem::width(const TQListBox *lb ) const

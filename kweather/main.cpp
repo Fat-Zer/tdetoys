@@ -29,7 +29,7 @@ int main (int argc, char *argv[])
 	// This app is started automatically, no need for session management
 	app.disableSessionManagement();
 	kdDebug() << "starting dcopservice " << endl;
-	new WeatherService(&app, "WeatherService");
+	new WeatherService(TQT_TQOBJECT(&app), "WeatherService");
 	return app.exec();
 
 }

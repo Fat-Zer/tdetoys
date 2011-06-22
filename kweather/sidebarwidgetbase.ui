@@ -1,7 +1,7 @@
 <!DOCTYPE UI><UI version="3.1" stdsetdef="1">
 <class>sidebarwidgetbase</class>
 <author>ian reinhart geiser &lt;geiseri@kde.org&gt;</author>
-<widget class="QWidget">
+<widget class="TQWidget">
     <property name="name">
         <cstring>Form1</cstring>
     </property>
@@ -17,7 +17,7 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QGroupBox" row="1" column="0">
+        <widget class="TQGroupBox" row="1" column="0">
             <property name="name">
                 <cstring>GroupBox2</cstring>
             </property>
@@ -28,7 +28,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QLayoutWidget" row="0" column="0">
+                <widget class="TQLayoutWidget" row="0" column="0">
                     <property name="name">
                         <cstring>Layout1</cstring>
                     </property>
@@ -61,7 +61,7 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property name="sizeHint">
+                    <property name="tqsizeHint">
                         <size>
                             <width>20</width>
                             <height>20</height>
@@ -70,7 +70,7 @@
                 </spacer>
             </grid>
         </widget>
-        <widget class="QGroupBox" row="0" column="0">
+        <widget class="TQGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>reportGroup</cstring>
             </property>
@@ -81,7 +81,7 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QScrollView" row="0" column="0">
+                <widget class="TQScrollView" row="0" column="0">
                     <property name="name">
                         <cstring>reportGrid</cstring>
                     </property>
@@ -108,5 +108,5 @@
         <pixmap>image0</pixmap>
     </customwidget>
 </customwidgets>
-<layoutdefaults spacing="5" margin="5"/>
+<tqlayoutdefaults spacing="5" margin="5"/>
 </UI>

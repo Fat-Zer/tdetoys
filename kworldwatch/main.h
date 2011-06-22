@@ -40,10 +40,11 @@ class ZoneClockPanel;
 class WorldWideWatch : public KMainWindow
 {
   Q_OBJECT
+  TQ_OBJECT
 
 public:
 
-  WorldWideWatch(bool restore=false, TQWidget *parent=0, const char *name=0);
+  WorldWideWatch(bool restore=false, TQWidget *tqparent=0, const char *name=0);
 
   void save(KConfig *config);
   void load(KConfig *load);
@@ -71,6 +72,7 @@ private:
 class WatchApplication : public KUniqueApplication
 {
   Q_OBJECT
+  TQ_OBJECT
 
 public:
 

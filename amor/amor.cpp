@@ -152,7 +152,7 @@ Amor::Amor() : DCOPObject( "AmorIface" ), TQObject()
                         TQT_SLOT(slotMouseClicked(const TQPoint &)));
         connect(mAmor, TQT_SIGNAL(dragged(const TQPoint &, bool)),
                         TQT_SLOT(slotWidgetDragged(const TQPoint &, bool)));
-        mAmor->resize(mTheme.maximumSize());
+        mAmor->resize(mTheme.tqmaximumSize());
 
         mTimer = new TQTimer(this);
         connect(mTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotTimeout()));
@@ -288,7 +288,7 @@ void Amor::reset()
     mPosition   = mCurrAnim->hotspot().x();
     mState      = Normal;
 
-    mAmor->resize(mTheme.maximumSize()); 
+    mAmor->resize(mTheme.tqmaximumSize()); 
     mCurrAnim->reset();
 
     mTimer->start(0, true);
@@ -562,14 +562,14 @@ void Amor::restack()
 #endif
 
     Window sibling = mTargetWin;
-    Window dw, parent = None, *wins;
+    Window dw, tqparent = None, *wins;
 
     do {
         unsigned int nwins = 0;
 
-        // We must use the target window's parent as our sibling.
-        // Is there a faster way to get parent window than XQueryTree?
-        if (XQueryTree(qt_xdisplay(), sibling, &dw, &parent, &wins, &nwins))
+        // We must use the target window's tqparent as our sibling.
+        // Is there a faster way to get tqparent window than XQueryTree?
+        if (XQueryTree(qt_xdisplay(), sibling, &dw, &tqparent, &wins, &nwins))
         {
             if (nwins)
             {
@@ -577,9 +577,9 @@ void Amor::restack()
             }
         }
 
-        if (parent != None && parent != dw )
-            sibling = parent;
-    } while ( parent != None && parent != dw );
+        if (tqparent != None && tqparent != dw )
+            sibling = tqparent;
+    } while ( tqparent != None && tqparent != dw );
 
     // Set animation's stacking order to be above the window manager's
     // decoration of target window.
@@ -748,7 +748,7 @@ void Amor::slotOffsetChanged(int off)
 //
 void Amor::slotAbout()
 {
-    TQString about = i18n("Amor Version %1\n\n").arg(AMOR_VERSION) +
+    TQString about = i18n("Amor Version %1\n\n").tqarg(AMOR_VERSION) +
                 i18n("Amusing Misuse Of Resources\n\n") +
                 i18n("Copyright (c) 1999 Martin R. Jones <mjones@kde.org>\n\n") +
 		i18n("Original Author: Martin R. Jones <mjones@kde.org>\n") +

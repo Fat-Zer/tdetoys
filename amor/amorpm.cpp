@@ -56,7 +56,7 @@ AmorPixmapManager::~AmorPixmapManager()
 //
 const TQPixmap *AmorPixmapManager::load(const TQString & img)
 {
-    TQPixmap *pixmap = mPixmaps.find(img);
+    TQPixmap *pixmap = mPixmaps.tqfind(img);
 
     if (!pixmap)
     {

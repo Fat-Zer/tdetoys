@@ -42,8 +42,8 @@ static	struct conversionEntry ConversionTable[MAX_UNIT] = {
  * Note that we use installEventFilter on the two KImageNumber's
  * to make clicks on them bring up the context-menu.
  */
-Kodometer::Kodometer(TQWidget* parent, const char* name)
-	: TQFrame(parent, name),
+Kodometer::Kodometer(TQWidget* tqparent, const char* name)
+	: TQFrame(tqparent, name),
 	dontRefresh(false),
         speed(0.0),
 	lastDistance(0.0),
@@ -121,7 +121,7 @@ Kodometer::Kodometer(TQWidget* parent, const char* name)
 }
 
 /*
- * Now I'm not really sure what this does.  I assume its here to find
+ * Now I'm not really sure what this does.  I assume its here to tqfind
  * all the displays on your system, and measure them.  During the mouse
  * tracking phase, we use the information stored here to determine how
  * far the mouse moved on a given screen.
@@ -156,9 +156,9 @@ void Kodometer::FindAllScreens(void)
 		vPixelsPerMM = (double)Dh / (double)DhMM;
 		hPixelsPerMM = (double)Dw / (double)DwMM;
 		screenInfo[i].PixelsPerMM = (vPixelsPerMM + hPixelsPerMM) / 2.0;
-//		kdDebug() << "    Vertical pixels/mm  are " << vPixelsPerMM <<
+//		kdDebug() << "   Qt::Vertical pixels/mm  are " << vPixelsPerMM <<
 //			"mm" << endl;
-//		kdDebug() << "    Horizontal pixels/mm are " << hPixelsPerMM <<
+//		kdDebug() << "   Qt::Horizontal pixels/mm are " << hPixelsPerMM <<
 //			"mm" << endl;
 //		kdDebug() << "    Average pixels/mm are " <<
 //			screenInfo[i].PixelsPerMM << "mm" << endl;
@@ -389,12 +389,12 @@ int Kodometer::CalcDistance(void)
 			case K_Left:
 			case K_Top:
 				finalScreen = 0;
-				j = QMAX(pointerScreen,lastPointerScreen) - 1;
+				j = TQMAX(pointerScreen,lastPointerScreen) - 1;
 				increment = -1;
 				break;
 			case K_Right:
 			case K_Bottom:
-				finalScreen = QMAX(pointerScreen,lastPointerScreen) - 1;
+				finalScreen = TQMAX(pointerScreen,lastPointerScreen) - 1;
 				j = 0;
 				increment = 1;
 				break;

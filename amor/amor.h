@@ -55,7 +55,7 @@ public:
     QueueItem(itemType ty, TQString te, int ti = -1);
 
     itemType	type() { return iType; }
-    QString	text() { return iText; };
+    TQString	text() { return iText; };
     int		time() { return iTime; };
 
     void	setTime(int newTime) { if (iTime > 0) iTime = newTime; };
@@ -73,6 +73,7 @@ private:
 class Amor : public TQObject, virtual public AmorIface
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
     Amor();
     virtual ~Amor();
@@ -150,9 +151,10 @@ private:
 
 //---------------------------------------------------------------------------
 
-class AmorSessionWidget : public QWidget
+class AmorSessionWidget : public TQWidget
 {
     Q_OBJECT
+  TQ_OBJECT
 public:
     AmorSessionWidget();
     ~AmorSessionWidget() {};

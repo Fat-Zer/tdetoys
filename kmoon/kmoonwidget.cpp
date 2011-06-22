@@ -50,8 +50,8 @@
 extern double moonphasebylunation(int lun, int phi);
 extern time_t JDtoDate(double jd, struct tm *event_date);
 
-MoonWidget::MoonWidget(TQWidget *parent, const char *name)
-  : TQWidget(parent, name)
+MoonWidget::MoonWidget(TQWidget *tqparent, const char *name)
+  : TQWidget(tqparent, name)
 {
     struct tm * t;
     time_t clock;
@@ -61,23 +61,23 @@ MoonWidget::MoonWidget(TQWidget *parent, const char *name)
     config->setGroup("General");
     _angle = config->readNumEntry("Rotation", 0);
     _north = config->readBoolEntry("Northern", true);
-    _mask = config->readBoolEntry("Mask", true);
+    _tqmask = config->readBoolEntry("Mask", true);
     old_angle = old_w = old_h = old_counter = -1;
     old_north = false;
-    old_mask = false;
+    old_tqmask = false;
     startTimer(1000 * 60 * 20);
 
     time(&clock);
     t = gmtime(&clock);
     // kdDebug() << "time " << t->tm_isdst << " " << timezone << " " << daylight << endl ;
-    calcStatus(mktime(t));
+    calctqStatus(mktime(t));
 }
 
 MoonWidget::~MoonWidget()
 {
 }
 
-void MoonWidget::calcStatus( time_t time )
+void MoonWidget::calctqStatus( time_t time )
 {
     uint lun = 0;
     time_t last_new = 0;
@@ -217,17 +217,17 @@ void MoonWidget::calcStatus( time_t time )
     }
     
     renderGraphic();
-    repaint();
+    tqrepaint();
 }
 
 TQImage MoonWidget::loadMoon(int index)
 {
     if (index == 0) // the new moon has the wrong filename
         index = 29;
-    TQString filename = TQString("kmoon/pics/moon%1.png").arg(index);
+    TQString filename = TQString("kmoon/pics/moon%1.png").tqarg(index);
     TQString path = locate("data", filename);
     if (path.isNull())
-        kdFatal() << "cound't find " << filename << ". Exiting.\n";
+        kdFatal() << "cound't tqfind " << filename << ". Exiting.\n";
     TQImage image(path);
     KIconEffect iconeffect;
     image=iconeffect.apply(image, KIcon::Panel, KIcon::DefaultState);
@@ -238,21 +238,21 @@ void MoonWidget::setAngle(int value)
 {
     _angle = value;
     renderGraphic();
-    repaint();
+    tqrepaint();
 }
 
 void MoonWidget::setNorthHemi(bool n)
 {
     _north = n;
     renderGraphic();
-    repaint();
+    tqrepaint();
 }
 
 void MoonWidget::setMask(bool value)
 {
-    _mask = value;
+    _tqmask = value;
     renderGraphic();
-    repaint();
+    tqrepaint();
 }
 
 void MoonWidget::paintEvent(TQPaintEvent *)
@@ -263,7 +263,7 @@ void MoonWidget::paintEvent(TQPaintEvent *)
 void MoonWidget::resizeEvent(TQResizeEvent *)
 {
     renderGraphic();
-    repaint();
+    tqrepaint();
 }
 
 void MoonWidget::renderGraphic()
@@ -280,7 +280,7 @@ void MoonWidget::renderGraphic()
   im = im.convertDepth(32, 0);
   assert(!im.isNull());
 
-  int mw = QMIN(width(), height());
+  int mw = TQMIN(width(), height());
   TQImage dest;
 
   if (TQPixmap::defaultDepth() > 8) {
@@ -300,7 +300,7 @@ void MoonWidget::renderGraphic()
       TQRegion r(TQRect(0, 0, dmw, dmw), TQRegion::Ellipse);
       TQPainter p;
       p.begin(&pixmap);
-      p.fillRect(0, 0, dmw, dmw, Qt::black);
+      p.fillRect(0, 0, dmw, dmw, TQt::black);
       p.setClipRegion(r);
       p.drawPixmap(0, 0, rotated, (rotated.width() - dmw) / 2, 
 		   (rotated.height() - dmw) / 2,
@@ -311,41 +311,41 @@ void MoonWidget::renderGraphic()
       im = pixmap.convertToImage();
       dest = im.copy(0, 0, mw, mw);
       for (int y = 0; y < mw; y++) {
-	QRgb *destline = (QRgb*)dest.scanLine(y);
-	QRgb *sourceline1 = (QRgb*)im.scanLine(2*y);
-	QRgb *sourceline2 = (QRgb*)im.scanLine(2*y + 1);
+	TQRgb *destline = (TQRgb*)dest.scanLine(y);
+	TQRgb *sourceline1 = (TQRgb*)im.scanLine(2*y);
+	TQRgb *sourceline2 = (TQRgb*)im.scanLine(2*y + 1);
 	for (int x = 0; x < mw; x++) {
-	  int r = qRed(sourceline1[2*x]) + qRed(sourceline1[2*x+1]);
-	  r = r + qRed(sourceline2[2*x]) + qRed(sourceline2[2*x+1]);
-	  int g = qGreen(sourceline1[2*x]) + qGreen(sourceline1[2*x+1]);
-	  g = g + qGreen(sourceline2[2*x]) + qGreen(sourceline2[2*x+1]);
-	  int b = qBlue(sourceline1[2*x]) + qBlue(sourceline1[2*x+1]);
-	  b = b + qBlue(sourceline2[2*x]) + qBlue(sourceline2[2*x+1]);
-	  destline[x] = qRgb(qRound(r / 4), qRound(g / 4),
-			     qRound(b / 4));
+	  int r = tqRed(sourceline1[2*x]) + tqRed(sourceline1[2*x+1]);
+	  r = r + tqRed(sourceline2[2*x]) + tqRed(sourceline2[2*x+1]);
+	  int g = tqGreen(sourceline1[2*x]) + tqGreen(sourceline1[2*x+1]);
+	  g = g + tqGreen(sourceline2[2*x]) + tqGreen(sourceline2[2*x+1]);
+	  int b = tqBlue(sourceline1[2*x]) + tqBlue(sourceline1[2*x+1]);
+	  b = b + tqBlue(sourceline2[2*x]) + tqBlue(sourceline2[2*x+1]);
+	  destline[x] = tqRgb(tqRound(r / 4), tqRound(g / 4),
+			     tqRound(b / 4));
 	}
       }
     } else {
       dest = im.smoothScale(mw, mw).convertDepth(32);
     }
-    if (_mask) {
+    if (_tqmask) {
       // generate alpha-channel
       int dmw = mw*2;
       TQBitmap dMask(dmw, dmw);
       TQRegion r(TQRect(0, 0, dmw, dmw), TQRegion::Ellipse);
       TQPainter p;
       p.begin(&dMask);
-      p.fillRect(0, 0, dmw, dmw, Qt::white);
+      p.fillRect(0, 0, dmw, dmw, TQt::white);
       p.setClipRegion(r);
-      p.fillRect(0, 0, dmw, dmw, Qt::black);
+      p.fillRect(0, 0, dmw, dmw, TQt::black);
       p.end();
-      TQImage Mask2 = dMask.convertToImage().convertDepth(32).smoothScale(mw, mw);
+      TQImage Mask2 = TQImage(dMask.convertToImage()).convertDepth(32).smoothScale(mw, mw);
       dest.setAlphaBuffer(true);
       for (int y = 0; y < mw; y++) {
-	QRgb *destline = (QRgb*)dest.scanLine(y);
-	QRgb *sourceline = (QRgb*)Mask2.scanLine(y);
+	TQRgb *destline = (TQRgb*)dest.scanLine(y);
+	TQRgb *sourceline = (TQRgb*)Mask2.scanLine(y);
 	for (int x = 0; x < mw; x++) {
-	  destline[x] = (destline[x] & RGB_MASK)|(qRed(sourceline[x]) << 24);
+	  destline[x] = (destline[x] & TQRGB_MASK)|(tqRed(sourceline[x]) << 24);
 	}
       }
     }

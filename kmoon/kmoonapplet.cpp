@@ -53,18 +53,18 @@ const char *description = I18N_NOOP("Moon Phase Indicator for KDE");
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *tqparent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kmoon");
     return new MoonPAWidget(configFile, KPanelApplet::Normal,
 			    KPanelApplet::About|KPanelApplet::Preferences,
-			    parent, "kmoonapplet");
+			    tqparent, "kmoonapplet");
   }
 }
 
 MoonPAWidget::MoonPAWidget(const TQString& configFile, Type type, int actions,
-			   TQWidget *parent, const char *name)
-  : KPanelApplet(configFile, type, actions, parent, name)
+			   TQWidget *tqparent, const char *name)
+  : KPanelApplet(configFile, type, actions, tqparent, name)
 {
     KConfig *config = KGlobal::config();
     config->setGroup("General");
@@ -104,7 +104,7 @@ void MoonPAWidget::showAbout()
                                 KStdGuiItem::ok() );
 
     TQPixmap ret = DesktopIcon("kmoon");
-    TQString text = i18n(description) + TQString::fromLatin1("\n\n") +
+    TQString text = i18n(description) + TQString::tqfromLatin1("\n\n") +
 		   i18n("Written by Stephan Kulow <coolo@kde.org>\n"
                             "\n"
                             "Made an applet by M G Berberich "
@@ -118,12 +118,12 @@ void MoonPAWidget::showAbout()
 
     dialog->setIcon(ret);
 
-    KMessageBox::createKMessageBox(dialog, ret, text, TQStringList(), TQString::null, 0, KMessageBox::Notify);
+    KMessageBox::createKMessageBox(dialog, ret, text, TQStringList(), TQString(), 0, KMessageBox::Notify);
 }
 
 void MoonPAWidget::settings()
 {
-	KMoonDlg dlg(moon->angle(), moon->northHemi(), moon->mask(),
+	KMoonDlg dlg(moon->angle(), moon->northHemi(), moon->tqmask(),
 		     this, "moondlg");
 	if (dlg.exec() == KMoonDlg::Accepted) {
 		moon->setAngle(dlg.getAngle());
@@ -133,10 +133,10 @@ void MoonPAWidget::settings()
 		config->setGroup("General");
 		config->writeEntry("Rotation", moon->angle());
                 config->writeEntry("Northern", moon->northHemi());
-                config->writeEntry("Mask", moon->mask());
+                config->writeEntry("Mask", moon->tqmask());
                 config->sync();
 	}
-	repaint();
+	tqrepaint();
 }
 
 void MoonPAWidget::timerEvent( TQTimerEvent * )
@@ -144,8 +144,8 @@ void MoonPAWidget::timerEvent( TQTimerEvent * )
     time_t clock;
     time(&clock);
     struct tm *t = localtime(&clock);
-    moon->calcStatus(mktime(t));
-    moon->repaint();
+    moon->calctqStatus(mktime(t));
+    moon->tqrepaint();
 }
 
 void MoonPAWidget::mousePressEvent( TQMouseEvent *e)
@@ -153,11 +153,11 @@ void MoonPAWidget::mousePressEvent( TQMouseEvent *e)
     if (!popup)
       return;
 
-    if (e->button() == RightButton) {
+    if (e->button() == Qt::RightButton) {
       popup->popup(mapToGlobal(e->pos()));
       popup->exec();
     }
-    if (e->button() == LeftButton) {
+    if (e->button() == Qt::LeftButton) {
       showAbout();
     }
 }

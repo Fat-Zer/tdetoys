@@ -38,23 +38,23 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kfifteenapplet");
         return new FifteenApplet(configFile, KPanelApplet::Normal,
-                                 KPanelApplet::About, parent, "kfifteenapplet");
+                                 KPanelApplet::About, tqparent, "kfifteenapplet");
     }
 }
 
 FifteenApplet::FifteenApplet(const TQString& configFile, Type type, int actions,
-                               TQWidget *parent, const char *name)
-    : KPanelApplet(configFile, type, actions, parent, name), _aboutData(0)
+                               TQWidget *tqparent, const char *name)
+    : KPanelApplet(configFile, type, actions, tqparent, name), _aboutData(0)
 {
     // setup table
     _table = new PiecesTable(this);
     setCustomMenu(_table->popup());
 
-    // setup layout
+    // setup tqlayout
     TQHBoxLayout *_layout = new TQHBoxLayout(this);
     _layout->add(_table);
 
@@ -87,8 +87,8 @@ void FifteenApplet::about()
     dialog.exec();
 }
 
-PiecesTable::PiecesTable(TQWidget* parent, const char* name )
-    : QtTableView(parent, name), _activeRow(-1), _activeCol(-1), _randomized(false)
+PiecesTable::PiecesTable(TQWidget* tqparent, const char* name )
+    : QtTableView(tqparent, name), _activeRow(-1), _activeCol(-1), _randomized(false)
 {
     _menu = new TQPopupMenu(this);
     _menu->insertItem(i18n("R&andomize Pieces"), this, TQT_SLOT(randomizeMap()));
@@ -120,7 +120,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw cell background
     if(number == 16)
-        p->setBrush(colorGroup().background());
+        p->setBrush(tqcolorGroup().background());
     else
         p->setBrush(_colors[number-1]);
     p->setPen(NoPen);
@@ -128,7 +128,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw borders
     if (height() > 40) {
-        p->setPen(colorGroup().text());
+        p->setPen(tqcolorGroup().text());
         if(col < numCols()-1)
             p->drawLine(x2, 0, x2, y2); // right border line
 
@@ -198,14 +198,14 @@ void PiecesTable::randomizeMap()
             }
         }
     }
-    repaint();
+    tqrepaint();
     _randomized = true;
 }
 
 void PiecesTable::resetMap()
 {
     initMap();
-    repaint();
+    tqrepaint();
 }
 
 void PiecesTable::checkwin()
@@ -225,7 +225,7 @@ void PiecesTable::mousePressEvent(TQMouseEvent* e)
 {
     QtTableView::mousePressEvent(e);
 
-    if (e->button() == RightButton) {
+    if (e->button() == Qt::RightButton) {
         // execute RMB popup and check result
         _menu->exec(mapToGlobal(e->pos()));
         e->accept();
@@ -235,7 +235,7 @@ void PiecesTable::mousePressEvent(TQMouseEvent* e)
         // GAME LOGIC
 
         // find the free position
-        int pos = _map.find(15);
+        int pos = _map.tqfind(15);
         if(pos < 0) return;
 
         int frow = pos / numCols();

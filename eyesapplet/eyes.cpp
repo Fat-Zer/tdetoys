@@ -33,17 +33,17 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("keyesapplet");
-        EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, parent, "keyesapplet");
+        EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, tqparent, "keyesapplet");
         return applet;
     }
 }
 
 EyesApplet::EyesApplet(const TQString& configFile, Type t, int actions,
-                       TQWidget *parent, const char *name)
-  : KPanelApplet( configFile, t, actions, parent, name )
+                       TQWidget *tqparent, const char *name)
+  : KPanelApplet( configFile, t, actions, tqparent, name )
 {
     setWFlags(WNoAutoErase);
     setBackgroundOrigin(AncestorOrigin);
@@ -55,11 +55,11 @@ EyesApplet::EyesApplet(const TQString& configFile, Type t, int actions,
 
 int EyesApplet::widthForHeight(int h) const
 {
-    return static_cast<int>(1.4 * h); // rectangular shape.
+    return static_cast<int>(1.4 * h); // rectangular tqshape.
 }
 int EyesApplet::heightForWidth(int w) const
 {
-    return static_cast<int>(w / 1.4); // rectangular shape.
+    return static_cast<int>(w / 1.4); // rectangular tqshape.
 }
 
 void EyesApplet::resizeEvent( TQResizeEvent*e )
@@ -133,7 +133,7 @@ void EyesApplet::drawPupils(TQPainter* p)
 
     oldMouse = mapFromGlobal(TQCursor::pos());
     mouse =  oldMouse * AAFACTOR;
-    int tmp = QMIN(h, w)/6;
+    int tmp = TQMIN(h, w)/6;
 
     // left pupil
     vect.setX(mouse.x() - h / 4);
@@ -152,7 +152,7 @@ void EyesApplet::drawPupils(TQPainter* p)
 
     if(pos != oldleft) {
 
-        int sizeEye=QMIN(h,w)/6;
+        int sizeEye=TQMIN(h,w)/6;
 
 //         // draw over old pos
 // 	p->setPen(TQPen(NoPen));
@@ -185,7 +185,7 @@ void EyesApplet::drawPupils(TQPainter* p)
 
     if(pos != oldright) {
 
-        int sizeEye=QMIN(h,w)/6;
+        int sizeEye=TQMIN(h,w)/6;
 
 //         // draw over old pos
 // 	p->setPen(TQPen(NoPen));

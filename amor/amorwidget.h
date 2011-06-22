@@ -36,11 +36,12 @@
 
 //---------------------------------------------------------------------------
 //
-// AmorWidget displays a shaped pixmap
+// AmorWidget displays a tqshaped pixmap
 //
-class AmorWidget : public QWidget
+class AmorWidget : public TQWidget
 {
 	Q_OBJECT
+  TQ_OBJECT
 public:
 	AmorWidget();
 	virtual ~AmorWidget();

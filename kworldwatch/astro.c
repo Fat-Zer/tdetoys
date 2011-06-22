@@ -7,7 +7,7 @@
 long jdate(struct tm *);
 double jtime(struct tm *);
 double kepler(double m, double ecc);
-void sunpos(double jd, int apparent, double *ra, double *dec, double *rv, double *slong);
+void sunpos(double jd, int aptqparent, double *ra, double *dec, double *rv, double *slong);
 double gmst(double jd);
 
 /*  JDATE  --  Convert internal GMT date and time to Julian day
@@ -65,19 +65,19 @@ double m, ecc;
 
 /*  SUNPOS  --	Calculate position of the Sun.	JD is the Julian  date
 		of  the  instant for which the position is desired and
-		APPARENT should be nonzero if  the  apparent  position
+		APPARENT should be nonzero if  the  aptqparent  position
 		(corrected  for  nutation  and aberration) is desired.
                 The Sun's co-ordinates are returned  in  RA  and  DEC,
 		both  specified  in degrees (divide RA by 15 to obtain
 		hours).  The radius vector to the Sun in  astronomical
                 units  is returned in RV and the Sun's longitude (true
-		or apparent, as desired) is  returned  as  degrees  in
+		or aptqparent, as desired) is  returned  as  degrees  in
 		SLONG.	*/
 
 void
-sunpos(jd, apparent, ra, dec, rv, slong)
+sunpos(jd, aptqparent, ra, dec, rv, slong)
 double jd;
-int apparent;
+int aptqparent;
 double *ra, *dec, *rv, *slong;
 {
 	double t, t2, t3, l, m, e, ea, v, theta, omega,
@@ -119,9 +119,9 @@ double *ra, *dec, *rv, *slong;
 
 	eps = 23.452294 - 0.0130125 * t - 0.00000164 * t2 + 0.000000503 * t3;
 
-        /* Corrections for Sun's apparent longitude, if desired. */
+        /* Corrections for Sun's aptqparent longitude, if desired. */
 
-	if (apparent) {
+	if (aptqparent) {
 	   omega = fixangle(259.18 - 1934.142 * t);
 	   theta = theta - 0.00569 - 0.00479 * sin(dtr(omega));
 	   eps += 0.00256 * cos(dtr(omega));

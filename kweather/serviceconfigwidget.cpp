@@ -34,7 +34,7 @@
 #include "serviceconfigwidget.h"
 #include "weatherservice_stub.h"
 
-class StationItem : public QListViewItem
+class StationItem : public TQListViewItem
 {
   public:
     StationItem( TQListView *view, const TQString &name, const TQString &uid )
@@ -55,8 +55,8 @@ class StationItem : public QListViewItem
 
 static void parseStationEntry( const TQString &line, TQString &name, TQString &uid );
 
-ServiceConfigWidget::ServiceConfigWidget( TQWidget *parent, const char *name )
-  : wsPrefs( parent, name ), mService(0)
+ServiceConfigWidget::ServiceConfigWidget( TQWidget *tqparent, const char *name )
+  : wsPrefs( tqparent, name ), mService(0)
 {
   mService = new WeatherService_stub( "KWeatherService", "WeatherService" );
   connect( mAllStations, TQT_SIGNAL( doubleClicked ( TQListViewItem *, const TQPoint &, int ) ), TQT_SLOT( addStation() ) );
@@ -194,7 +194,7 @@ void ServiceConfigWidget::loadLocations()
           parseStationEntry( entryIt.data(), station, uid );
           new StationItem( stateItem, station, uid );
           mStationMap.insert( uid, TQString( "%1, %2" )
-              .arg( station ).arg( *stateIt ) );
+              .tqarg( station ).tqarg( *stateIt ) );
         }
       }
     }
@@ -224,7 +224,7 @@ void parseStationEntry( const TQString &line, TQString &name, TQString &uid )
   for ( uint i = 0; i < list.count(); ++i ) {
     if ( inName ) {
       if ( list[ i ].endsWith( "\\" ) ) {
-        name.append( list[ i ].replace( "\\", " " ) );
+        name.append( list[ i ].tqreplace( "\\", " " ) );
       } else {
         name.append( list[ i ] );
         inName = false;

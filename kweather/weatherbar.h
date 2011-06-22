@@ -19,8 +19,8 @@
  *  $Id$
  */
 
-#ifndef __KONQSIDEBARWEATHER_H__
-#define __KONQSIDEBARWEATHER_H__
+#ifndef __KONTQSIDEBARWEATHER_H__
+#define __KONTQSIDEBARWEATHER_H__
 
 #include <konqsidebarplugin.h>
 #include <kparts/part.h>
@@ -37,9 +37,10 @@ class sidebarwidget;
 class KonqSidebarWeather: public KonqSidebarPlugin, virtual public DCOPObject
 {
     Q_OBJECT
+  TQ_OBJECT
     K_DCOP
 public:
-    KonqSidebarWeather(KInstance* inst, TQObject* parent, TQWidget* widgetParent,
+    KonqSidebarWeather(KInstance* inst, TQObject* tqparent, TQWidget* widgetParent,
                         TQString& desktopName_, const char* name = 0);
 
     ~KonqSidebarWeather();

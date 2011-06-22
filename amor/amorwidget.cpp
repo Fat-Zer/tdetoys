@@ -60,11 +60,11 @@ void AmorWidget::setPixmap(const TQPixmap *pixmap)
 
     if (mPixmap)
     {
-        if (mPixmap->mask())
+        if (mPixmap->tqmask())
         {
             XShapeCombineMask( x11Display(), winId(), ShapeBounding, 0, 0,
-                                mPixmap->mask()->handle(), ShapeSet );
-            repaint(false);
+                                mPixmap->tqmask()->handle(), ShapeSet );
+            tqrepaint(false);
         }
     
 	update();
@@ -98,7 +98,7 @@ void AmorWidget::mousePressEvent(TQMouseEvent *me)
 //
 void AmorWidget::mouseMoveEvent(TQMouseEvent *me)
 {
-    if ( me->state() == LeftButton ) {
+    if ( me->state() == Qt::LeftButton ) {
 	if ( !dragging && (clickPos-me->globalPos()).manhattanLength() > 3 )
 	    dragging = true;
 	if ( dragging ) {
@@ -116,7 +116,7 @@ void AmorWidget::mouseReleaseEvent(TQMouseEvent *me)
 {
     if ( dragging )
 	emit dragged( me->globalPos() - clickPos, true );
-    else if ( me->state() == RightButton )
+    else if ( me->state() == Qt::RightButton )
 	emit mouseClicked(clickPos);
 
     clickPos = TQPoint();

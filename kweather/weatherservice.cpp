@@ -31,7 +31,7 @@
 #include "stationdatabase.h"
 #include "sun.h"
 
-WeatherService::WeatherService(TQObject *parent, const char *name) : TQObject (parent, name),  DCOPObject("WeatherService")
+WeatherService::WeatherService(TQObject *tqparent, const char *name) : TQObject (tqparent, name),  DCOPObject("WeatherService")
 {
 	kdDebug(12006) << "Starting new service... " << endl;
 

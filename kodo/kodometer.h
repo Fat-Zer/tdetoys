@@ -89,9 +89,10 @@ typedef struct conversionEntry {
     int printPrecision;
 } conversionEntry;
 
-class Kodometer : public QFrame
+class Kodometer : public TQFrame
 {
 	Q_OBJECT
+  TQ_OBJECT
 
 public:
 	Kodometer(TQWidget* = 0, const char* = 0);

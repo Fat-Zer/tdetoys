@@ -29,8 +29,8 @@
 #include <kipc.h>
 #include <kstandarddirs.h>
 
-WeatherButton::WeatherButton( TQWidget *parent, const char *name )
-    : TQButton( parent, name ), m_highlight( false )
+WeatherButton::WeatherButton( TQWidget *tqparent, const char *name )
+    : TQButton( tqparent, name ), m_highlight( false )
 {
     setBackgroundOrigin( AncestorOrigin );
 
@@ -98,7 +98,7 @@ void WeatherButton::generateIcons()
         return;
 
     TQImage image = pixmap()->convertToImage();
-    image = image.smoothScale( pixmapSize(), TQImage::ScaleMin );
+    image = image.smoothScale( pixmapSize(), TQ_ScaleMin );
 
     KIconEffect effect;
 
@@ -124,14 +124,14 @@ void WeatherButton::slotIconChanged( int group )
         return;
 
     generateIcons();
-    repaint( false );
+    tqrepaint( false );
 }
 
 void WeatherButton::enterEvent( TQEvent *e )
 {
     m_highlight = true;
 
-    repaint( false );
+    tqrepaint( false );
     TQButton::enterEvent( e );
 }
 
@@ -139,7 +139,7 @@ void WeatherButton::leaveEvent( TQEvent *e )
 {
     m_highlight = false;
 
-    repaint( false );
+    tqrepaint( false );
     TQButton::enterEvent( e );
 }
 

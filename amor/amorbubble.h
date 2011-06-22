@@ -40,11 +40,12 @@ class TQTimer;
 
 //---------------------------------------------------------------------------
 //
-// AmorBubble displays a message in a shaped window
+// AmorBubble displays a message in a tqshaped window
 //
-class AmorBubble : public QWidget
+class AmorBubble : public TQWidget
 {
 	Q_OBJECT
+  TQ_OBJECT
 public:
 	AmorBubble();
 	virtual ~AmorBubble();
@@ -69,7 +70,7 @@ protected:
     int   mOriginX;             // X origin of bubble arrow
     int   mOriginY;             // Y origin of bubble arrow
     TQRect mBound;               // bounds of the text
-    TQBitmap mMask;              // shape mask
+    TQBitmap mMask;              // tqshape tqmask
     VertPos mArrowVert;         // vertical position of the arrow
     HorzPos mArrowHorz;         // horizontal position of the arrow
     TQTextBrowser *mBrowser;	// displays the message

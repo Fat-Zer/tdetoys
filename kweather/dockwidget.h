@@ -28,19 +28,20 @@ class TQLabel;
 class WeatherService_stub;
 class WeatherButton;
 
-class dockwidget : public QWidget
+class dockwidget : public TQWidget
 {
     Q_OBJECT
+  TQ_OBJECT
 
 public:
-    dockwidget(const TQString &location, TQWidget *parent=0, const char *name=0);
+    dockwidget(const TQString &location, TQWidget *tqparent=0, const char *name=0);
     ~dockwidget();
 
     enum {ShowIconOnly=1, ShowTempOnly=2, ShowAll=3 };
 
     void setLocationCode(const TQString &locationCode);
     void setViewMode(int);
-    void setOrientation(Orientation o) { m_orientation = o; }
+    void setOrientation(Qt::Orientation o) { m_orientation = o; }
     /** resize the view **/
     void resizeView(const TQSize &size);
     int widthForHeight(int h);
@@ -64,7 +65,7 @@ private:
     TQLabel *m_lblTemp;
     TQLabel *m_lblWind;
     TQLabel *m_lblPres;
-    Orientation m_orientation;
+    Qt::Orientation m_orientation;
 
     WeatherService_stub *m_weatherService;
 };

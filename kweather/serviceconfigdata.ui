@@ -1,7 +1,7 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>wsPrefs</class>
 <author>Ian Reinhart Geiser &lt;geiseri@kde.org&gt;</author>
-<widget class="QWidget">
+<widget class="TQWidget">
     <property name="name">
         <cstring>wsPrefs</cstring>
     </property>
@@ -28,7 +28,7 @@
                 <string>A&amp;dd</string>
             </property>
         </widget>
-        <widget class="QLabel" row="0" column="2">
+        <widget class="TQLabel" row="0" column="2">
             <property name="name">
                 <cstring>textLabel2</cstring>
             </property>
@@ -39,7 +39,7 @@
                 <cstring>mSelectedStations</cstring>
             </property>
         </widget>
-        <widget class="QLabel" row="0" column="0">
+        <widget class="TQLabel" row="0" column="0">
             <property name="name">
                 <cstring>textLabel1</cstring>
             </property>
@@ -60,7 +60,7 @@
             <property name="sizeType">
                 <enum>Expanding</enum>
             </property>
-            <property name="sizeHint">
+            <property name="tqsizeHint">
                 <size>
                     <width>20</width>
                     <height>86</height>
@@ -121,7 +121,7 @@
             <property name="sizeType">
                 <enum>Expanding</enum>
             </property>
-            <property name="sizeHint">
+            <property name="tqsizeHint">
                 <size>
                     <width>20</width>
                     <height>85</height>
@@ -167,9 +167,9 @@
                 <bool>false</bool>
             </property>
         </widget>
-        <widget class="QLayoutWidget" row="5" column="0" rowspan="1" colspan="3">
+        <widget class="TQLayoutWidget" row="5" column="0" rowspan="1" colspan="3">
             <property name="name">
-                <cstring>layout1</cstring>
+                <cstring>tqlayout1</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -224,9 +224,9 @@
     </connection>
     <connection>
         <sender>mSelectedStations</sender>
-        <signal>selectionChanged(QListViewItem*)</signal>
+        <signal>selectionChanged(TQListViewItem*)</signal>
         <receiver>wsPrefs</receiver>
-        <slot>selectionChanged(QListViewItem*)</slot>
+        <slot>selectionChanged(TQListViewItem*)</slot>
     </connection>
 </connections>
 <tabstops>
@@ -242,15 +242,15 @@
     <include location="global" impldecl="in implementation">kdialog.h</include>
     <include location="global" impldecl="in implementation">knuminput.h</include>
 </includes>
-<slots>
+<Q_SLOTS>
     <slot>exitWeatherService()</slot>
     <slot>removeStation()</slot>
     <slot>updateStations()</slot>
     <slot>addStation()</slot>
-    <slot>selectionChanged( QListViewItem* )</slot>
-</slots>
-<layoutdefaults spacing="3" margin="6"/>
-<layoutfunctions spacing="KDialog::spacingHint" margin="KDialog::marginHint"/>
+    <slot>selectionChanged( TQListViewItem* )</slot>
+</Q_SLOTS>
+<tqlayoutdefaults spacing="3" margin="6"/>
+<tqlayoutfunctions spacing="KDialog::spacingHint" margin="KDialog::marginHint"/>
 <includehints>
     <includehint>klistview.h</includehint>
     <includehint>klistview.h</includehint>

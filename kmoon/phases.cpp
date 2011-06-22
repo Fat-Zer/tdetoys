@@ -166,9 +166,9 @@ double torad(double x)
 **              since the New Moon of 2000 January 6.
 **
 **    int phi:  another phase parameter, selecting the phase of the
-**              moon.  0 = New, 1 = First Qtr, 2 = Full, 3 = Last Qtr
+**              moon.  0 = New, 1 = First TQtr, 2 = Full, 3 = Last TQtr
 **
-** Return:  Apparent JD of the needed phase
+** Return:  Aptqparent JD of the needed phase
 */
 
 #include <stdio.h>

@@ -22,8 +22,8 @@
  #include "sidebarwidget.h"  
  #include <tqscrollview.h>
    
-   sidebarwidget::sidebarwidget(TQWidget* parent, const char* name) :
-   	sidebarwidgetbase(parent,name)
+   sidebarwidget::sidebarwidget(TQWidget* tqparent, const char* name) :
+   	sidebarwidgetbase(tqparent,name)
    {
    	view = new TQVBox(reportGrid->viewport());
 	reportGrid->addChild(view);

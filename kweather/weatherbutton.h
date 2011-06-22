@@ -23,12 +23,13 @@
 #include <tqbutton.h>
 #include <tqpixmap.h>
 
-class WeatherButton : public QButton
+class WeatherButton : public TQButton
 {
   Q_OBJECT
+  TQ_OBJECT
 
   public:
-    WeatherButton( TQWidget *parent, const char *name );
+    WeatherButton( TQWidget *tqparent, const char *name );
     void setPixmap( const TQPixmap &pix );
 
   protected:

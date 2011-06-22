@@ -17,8 +17,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.           
                                                                         
     As a special exception, permission is given to link this program    
-    with any edition of Qt, and distribute the resulting executable,    
-    without including the source code for Qt in the source distribution.
+    with any edition of TQt, and distribute the resulting executable,    
+    without including the source code for TQt in the source distribution.
 */                                                                      
 
 #include <tqlayout.h>
@@ -33,21 +33,21 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weatherservice( TQWidget *parent, const char * ) {
-    return new KCMWeatherService( parent, "kweather" );
+  KDE_EXPORT KCModule *create_weatherservice( TQWidget *tqparent, const char * ) {
+    return new KCMWeatherService( tqparent, "kweather" );
   }
 }
 
-KCMWeatherService::KCMWeatherService( TQWidget *parent, const char *name )
-  : KCModule( parent, name )
+KCMWeatherService::KCMWeatherService( TQWidget *tqparent, const char *name )
+  : KCModule( tqparent, name )
 {
-  TQVBoxLayout *layout = new TQVBoxLayout( this );
+  TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
   mWidget = new ServiceConfigWidget( this );
 
   // not needed, as a change immediately changes the service
   //connect(mWidget, TQT_SIGNAL(changed(bool)), this, TQT_SIGNAL(changed(bool)));
 
-  layout->addWidget( mWidget );
+  tqlayout->addWidget( mWidget );
   KAboutData *about = new KAboutData( "kcmweatherservice",
                                       I18N_NOOP( "KWeather Configure Dialog" ),
                                       0, 0, KAboutData::License_GPL,

@@ -25,10 +25,11 @@
 class EyesApplet : public KPanelApplet
 {
     Q_OBJECT
+  TQ_OBJECT
 
 public:
     EyesApplet(const TQString& configFile, Type t = Normal, int actions = 0,
-               TQWidget *parent = 0, const char *name = 0);
+               TQWidget *tqparent = 0, const char *name = 0);
 
     int widthForHeight(int height) const;
     int heightForWidth(int width) const;

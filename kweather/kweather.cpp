@@ -40,20 +40,20 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kweather");
         kweather *theApplet = new kweather(configFile, KPanelApplet::Normal,
-                0, parent, "kweather");
+                0, tqparent, "kweather");
         return theApplet;
     }
 }
 
 kweather::kweather(const TQString& configFile, Type t, int actions,
-        TQWidget *parent, const char *name):
-        KPanelApplet(configFile, t, actions, parent, name), weatherIface(),
+        TQWidget *tqparent, const char *name):
+        KPanelApplet(configFile, t, actions, tqparent, name), weatherIface(),
         mFirstRun( false ), mReport( 0 ), mClient( 0 ),
-        mContextMenu( 0 ), mWeatherService( 0 ), settingsDialog( 0 ), mTextColor(Qt::black)
+        mContextMenu( 0 ), mWeatherService( 0 ), settingsDialog( 0 ), mTextColor(TQt::black)
 {
     kdDebug(12004) << "Constructor " << endl;
     setObjId("weatherIface");
@@ -86,7 +86,7 @@ kweather::~kweather()
 void kweather::initContextMenu()
 {
     mContextMenu = new KPopupMenu(this);
-    mContextMenu->insertTitle(i18n("KWeather - %1").arg( reportLocation ), -1, 0);
+    mContextMenu->insertTitle(i18n("KWeather - %1").tqarg( reportLocation ), -1, 0);
     mContextMenu->insertItem(SmallIcon("viewmag"), i18n("Show &Report"),
         this, TQT_SLOT(doReport()), 0, -1, 1);
     mContextMenu->insertItem(SmallIcon("reload"), i18n("&Update Now"),
@@ -171,7 +171,7 @@ void kweather::preferences()
 /** The help handler */
 void kweather::help()
 {
-    kapp->invokeHelp(TQString::null, TQString::fromLatin1("kweather"));
+    kapp->invokeHelp(TQString(), TQString::tqfromLatin1("kweather"));
 }
 
 /** Display the current weather report. */
@@ -216,7 +216,7 @@ void kweather::loadPrefs(){
     reportLocation = kcConfig->readEntry("report_location");
     mViewMode = kcConfig->readNumEntry("smallview_mode", dockwidget::ShowAll);
 
-    static TQColor black(Qt::black);
+    static TQColor black(TQt::black);
     mTextColor = kcConfig->readColorEntry("textColor", &black);
 }
 
@@ -299,7 +299,7 @@ void kweather::timeout()
 int kweather::widthForHeight(int h) const
 {
     //kdDebug(12004) << "widthForHeight " << h << endl;
-    dockWidget->setOrientation(Horizontal);
+    dockWidget->setOrientation(Qt::Horizontal);
     int w = dockWidget->widthForHeight(h);
     return w;
 }
@@ -307,7 +307,7 @@ int kweather::widthForHeight(int h) const
 int kweather::heightForWidth(int w) const
 {
     kdDebug(12004) << "heightForWidth " << w<< endl;
-    dockWidget->setOrientation(Vertical);
+    dockWidget->setOrientation(Qt::Vertical);
     int h = dockWidget->heightForWidth( w );
     return h;
 }
@@ -363,7 +363,7 @@ void kweather::slotPrefsAccepted()
 
 void kweather::mousePressEvent(TQMouseEvent *e)
 {
-    if ( e->button() != RightButton )
+    if ( e->button() != Qt::RightButton )
     {
         KPanelApplet::mousePressEvent( e );
         return;

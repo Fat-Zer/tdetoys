@@ -50,7 +50,7 @@ public:
         { mPixmapDir = "."; mPixmaps.clear(); }
     const TQPixmap *load(const TQString & img);
     const TQPixmap *pixmap(const TQString & img) const
-        { return mPixmaps.find(img); }
+        { return mPixmaps.tqfind(img); }
 
     static AmorPixmapManager *manager();
 

@@ -24,7 +24,7 @@
 //
 // SpriteObject stores the animations that create an object
 //
-class SpriteObject : public QCanvasSprite
+class SpriteObject : public TQCanvasSprite
 {
 public:
     SpriteObject(SpritePixmapSequence *seq, TQCanvas *c);
@@ -39,7 +39,7 @@ protected:
     int                     mCycle;
     int                     mLifeSpan;
     SpritePixmapSequence    *mSeq;
-    QRect		    mBound;
+    TQRect		    mBound;
 };
 
 //---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ protected:
     TQPtrList<SpriteObject>     mActive;
     int                     mCount;
     SpriteRange             mRefresh;
-    QCanvas		    *mCanvas;
+    TQCanvas		    *mCanvas;
 };
 
 #endif // SPRITEANIM_H

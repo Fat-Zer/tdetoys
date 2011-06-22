@@ -17,8 +17,8 @@
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.           
                                                                         
     As a special exception, permission is given to link this program    
-    with any edition of Qt, and distribute the resulting executable,    
-    without including the source code for Qt in the source distribution.
+    with any edition of TQt, and distribute the resulting executable,    
+    without including the source code for TQt in the source distribution.
 */                                                                      
 
 #ifndef KCMWEATHERSERVICE_H
@@ -31,9 +31,10 @@ class ServiceConfigWidget;
 class KCMWeatherService : public KCModule
 {
   Q_OBJECT
+  TQ_OBJECT
 
   public:
-    KCMWeatherService( TQWidget *parent = 0, const char *name = 0 );
+    KCMWeatherService( TQWidget *tqparent = 0, const char *name = 0 );
 
     virtual void load();
     virtual void save();

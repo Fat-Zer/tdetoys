@@ -63,7 +63,7 @@ TQPtrList<MapTheme> MapLoader::themes()
 
 TQStringList MapLoader::maps(const TQString &theme)
 {
-  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").arg(theme));
+  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").tqarg(theme));
 }
 
 
@@ -75,10 +75,10 @@ void MapLoader::load(unsigned int width, const TQString &theme, unsigned int hei
   for (uint i=0; i<files.count(); ++i)
     {
       TQString f = files[i];
-      int pos = f.findRev("/");
+      int pos = f.tqfindRev("/");
       if (pos >= 0)
         f = f.mid(pos+1);
-      pos = f.findRev(".");
+      pos = f.tqfindRev(".");
       if (pos >= 0)
         f = f.left(pos);
       sizes.append(f.toInt());
@@ -101,7 +101,7 @@ void MapLoader::load(unsigned int width, const TQString &theme, unsigned int hei
       size = 800;
     }
   else  
-    image = TQImage(locate("data", TQString("kworldclock/maps/%1/%2.jpg").arg(theme).arg(size)));
+    image = TQImage(locate("data", TQString("kworldclock/maps/%1/%2.jpg").tqarg(theme).tqarg(size)));
 
   if (height == 0)
     height = width/2;
@@ -113,7 +113,7 @@ void MapLoader::load(unsigned int width, const TQString &theme, unsigned int hei
   _light.convertFromImage(image);
 
   // calculate dark map
-  _dark.convertFromImage(KImageEffect::blend(Qt::black, image, opacity));
+  _dark.convertFromImage(KImageEffect::blend(TQt::black, image, opacity));
 }
 
 
@@ -140,7 +140,7 @@ TQBitmap MapLoader::darkMask(int width, int height)
   projillum(wtab,width,height,sundec);
  
   // draw illumination
-  illuMask.fill(Qt::black);
+  illuMask.fill(TQt::black);
   TQPainter p;
   p.begin(&illuMask);
  
