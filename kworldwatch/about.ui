@@ -213,5 +213,5 @@ Copyright: (c) 2000 Matthias Hoelzer-Kluepfel</string>
     <slot>PushButton2_clicked()</slot>
     <slot>accept()</slot>
 </Q_SLOTS>
-<tqlayoutdefaults spacing="6" margin="11"/>
+<layoutdefaults spacing="6" margin="11"/>
 </UI>

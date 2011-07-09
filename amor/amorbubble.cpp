@@ -144,10 +144,10 @@ void AmorBubble::calcGeometry()
     // create and apply the tqshape tqmask
     mMask.resize(w, h);
     mMask.fill(color0);
-    TQPainter tqmaskPainter(&mMask);
-    tqmaskPainter.setPen(color1);
-    tqmaskPainter.setBrush(color1);
-    drawBubble(tqmaskPainter);
+    TQPainter maskPainter(&mMask);
+    maskPainter.setPen(color1);
+    maskPainter.setBrush(color1);
+    drawBubble(maskPainter);
     XShapeCombineMask( x11Display(), winId(), ShapeBounding, 0, 0,
                        mMask.handle(), ShapeSet );
 }

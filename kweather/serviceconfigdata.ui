@@ -249,8 +249,8 @@
     <slot>addStation()</slot>
     <slot>selectionChanged( TQListViewItem* )</slot>
 </Q_SLOTS>
-<tqlayoutdefaults spacing="3" margin="6"/>
-<tqlayoutfunctions spacing="KDialog::spacingHint" margin="KDialog::marginHint"/>
+<layoutdefaults spacing="3" margin="6"/>
+<layoutfunctions spacing="KDialog::spacingHint" margin="KDialog::marginHint"/>
 <includehints>
     <includehint>klistview.h</includehint>
     <includehint>klistview.h</includehint>

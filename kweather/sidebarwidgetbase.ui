@@ -108,5 +108,5 @@
         <pixmap>image0</pixmap>
     </customwidget>
 </customwidgets>
-<tqlayoutdefaults spacing="5" margin="5"/>
+<layoutdefaults spacing="5" margin="5"/>
 </UI>
