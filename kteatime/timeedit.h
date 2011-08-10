@@ -24,7 +24,7 @@ class WrappingSpinBox : public TQSpinBox
   TQ_OBJECT
 
 public:
-	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *tqparent=0, const char *name=0);
+	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *parent=0, const char *name=0);
 	~WrappingSpinBox();
 
 	void stepUp();
@@ -46,7 +46,7 @@ class TimeEdit : public TQWidget
   TQ_OBJECT
 
 public:
-	TimeEdit(TQWidget* tqparent = 0, const char* name = 0);
+	TimeEdit(TQWidget* parent = 0, const char* name = 0);
 	~TimeEdit();
 
 	void setValue(int value);

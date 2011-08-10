@@ -40,18 +40,18 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kweather");
         kweather *theApplet = new kweather(configFile, KPanelApplet::Normal,
-                0, tqparent, "kweather");
+                0, parent, "kweather");
         return theApplet;
     }
 }
 
 kweather::kweather(const TQString& configFile, Type t, int actions,
-        TQWidget *tqparent, const char *name):
-        KPanelApplet(configFile, t, actions, tqparent, name), weatherIface(),
+        TQWidget *parent, const char *name):
+        KPanelApplet(configFile, t, actions, parent, name), weatherIface(),
         mFirstRun( false ), mReport( 0 ), mClient( 0 ),
         mContextMenu( 0 ), mWeatherService( 0 ), settingsDialog( 0 ), mTextColor(TQt::black)
 {

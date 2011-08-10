@@ -70,7 +70,7 @@ protected:
     int   mOriginX;             // X origin of bubble arrow
     int   mOriginY;             // Y origin of bubble arrow
     TQRect mBound;               // bounds of the text
-    TQBitmap mMask;              // tqshape tqmask
+    TQBitmap mMask;              // tqshape mask
     VertPos mArrowVert;         // vertical position of the arrow
     HorzPos mArrowHorz;         // horizontal position of the arrow
     TQTextBrowser *mBrowser;	// displays the message

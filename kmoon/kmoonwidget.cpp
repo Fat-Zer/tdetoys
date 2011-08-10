@@ -50,8 +50,8 @@
 extern double moonphasebylunation(int lun, int phi);
 extern time_t JDtoDate(double jd, struct tm *event_date);
 
-MoonWidget::MoonWidget(TQWidget *tqparent, const char *name)
-  : TQWidget(tqparent, name)
+MoonWidget::MoonWidget(TQWidget *parent, const char *name)
+  : TQWidget(parent, name)
 {
     struct tm * t;
     time_t clock;
@@ -61,10 +61,10 @@ MoonWidget::MoonWidget(TQWidget *tqparent, const char *name)
     config->setGroup("General");
     _angle = config->readNumEntry("Rotation", 0);
     _north = config->readBoolEntry("Northern", true);
-    _tqmask = config->readBoolEntry("Mask", true);
+    _mask = config->readBoolEntry("Mask", true);
     old_angle = old_w = old_h = old_counter = -1;
     old_north = false;
-    old_tqmask = false;
+    old_mask = false;
     startTimer(1000 * 60 * 20);
 
     time(&clock);
@@ -250,7 +250,7 @@ void MoonWidget::setNorthHemi(bool n)
 
 void MoonWidget::setMask(bool value)
 {
-    _tqmask = value;
+    _mask = value;
     renderGraphic();
     tqrepaint();
 }
@@ -328,7 +328,7 @@ void MoonWidget::renderGraphic()
     } else {
       dest = im.smoothScale(mw, mw).convertDepth(32);
     }
-    if (_tqmask) {
+    if (_mask) {
       // generate alpha-channel
       int dmw = mw*2;
       TQBitmap dMask(dmw, dmw);

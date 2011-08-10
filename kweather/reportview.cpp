@@ -55,7 +55,7 @@ reportView::reportView(const TQString &reportLocation)
 reportView::~reportView(){
     delete m_weatherService;
     // we do not have to delete m_reportView because this class is
-    // the tqparent of the TQVBox, and that is the tqparent of the KHTMLPart.
+    // the parent of the TQVBox, and that is the parent of the KHTMLPart.
 
     KConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );

@@ -25,14 +25,14 @@ TQString int2time(int time)
 }
 
 
-TeaListItem::TeaListItem(TQListView * tqparent)
-    :TQListViewItem(tqparent)
+TeaListItem::TeaListItem(TQListView * parent)
+    :TQListViewItem(parent)
 {
 
 }
 
-TeaListItem::TeaListItem(TQListView * tqparent, TQListViewItem *after)
-    :TQListViewItem(tqparent, after)
+TeaListItem::TeaListItem(TQListView * parent, TQListViewItem *after)
+    :TQListViewItem(parent, after)
 {
 
 }

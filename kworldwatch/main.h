@@ -44,7 +44,7 @@ class WorldWideWatch : public KMainWindow
 
 public:
 
-  WorldWideWatch(bool restore=false, TQWidget *tqparent=0, const char *name=0);
+  WorldWideWatch(bool restore=false, TQWidget *parent=0, const char *name=0);
 
   void save(KConfig *config);
   void load(KConfig *load);

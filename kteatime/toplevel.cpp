@@ -251,15 +251,15 @@ void TopLevel::paintEvent(TQPaintEvent *)
 	// overlay pie chart onto tray icon
 	TQPixmap base(*pm);                                      // make copy of base pixmap
 	if (useTrayVis && running) {
-		// extend tqmask
-		TQBitmap tqmask = *(base.tqmask());
-		TQPainter pm(&tqmask);
+		// extend mask
+		TQBitmap mask = *(base.mask());
+		TQPainter pm(&mask);
 		pm.setBrush(TQt::color1);                            // fill with "foreground-colour"
 		pm.setPen(TQt::NoPen);                               // no border needed/wanted
 		pm.drawPie(0+1, ((float) width()/(float) 2.44444444444)+1, (width()/2), (width()/2), 90*16, -360*16);       // full circle of small size
 		pm.drawPie(0, ((float) width()/(float) 2.44444444444), ((float) width()/(float) 1.69230769231), ((float) width()/(float) 1.69230769231), 90*16, percentDone*16);    // pie part of big size
 		pm.end();
-		base.setMask(tqmask);
+		base.setMask(mask);
 
 		// draw pie chart
 		TQPainter px(&base);

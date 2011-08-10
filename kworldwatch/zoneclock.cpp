@@ -51,8 +51,8 @@
 #include "zoneclock.moc"
 #include <kdebug.h>
 
-ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *tqparent, const char *n)
-  : TQFrame(tqparent, n), _zone(zone), _name(name)
+ZoneClock::ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent, const char *n)
+  : TQFrame(parent, n), _zone(zone), _name(name)
 {
   setFrameStyle(TQFrame::Panel | TQFrame::Raised);
   TQHBoxLayout *hbox = new TQHBoxLayout(this, 2,2);
@@ -162,8 +162,8 @@ void ZoneClock::updateTime()
 }
 
 
-ZoneClockPanel::ZoneClockPanel(TQWidget *tqparent, const char *name)
-  : TQFrame(tqparent, name), _dlg(0)
+ZoneClockPanel::ZoneClockPanel(TQWidget *parent, const char *name)
+  : TQFrame(parent, name), _dlg(0)
 {
   _flow = new SimpleFlow(this,1,1);
 

@@ -31,7 +31,7 @@ class ServiceConfigWidget : public wsPrefs
   TQ_OBJECT
 
   public:
-    ServiceConfigWidget( TQWidget *tqparent, const char *name = 0 );
+    ServiceConfigWidget( TQWidget *parent, const char *name = 0 );
     virtual ~ServiceConfigWidget();
 
   signals:

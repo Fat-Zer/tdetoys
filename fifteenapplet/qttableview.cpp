@@ -45,8 +45,8 @@ public:
     void paintEvent( TQPaintEvent * );
 };
 
-QCornerSquare::QCornerSquare( TQWidget *tqparent, const char *name )
-	: TQWidget( tqparent, name )
+QCornerSquare::QCornerSquare( TQWidget *parent, const char *name )
+	: TQWidget( parent, name )
 {
 }
 
@@ -125,7 +125,7 @@ void QCornerSquare::paintEvent( TQPaintEvent * )
 
 
 /*!
-  Constructs a table view.  The \a tqparent, \a name and \f arguments
+  Constructs a table view.  The \a parent, \a name and \f arguments
   are passed to the TQFrame constructor.
 
   The \link setTableFlags() table flags\endlink are all cleared (set to 0).
@@ -144,8 +144,8 @@ void QCornerSquare::paintEvent( TQPaintEvent * )
 
 */
 
-QtTableView::QtTableView( TQWidget *tqparent, const char *name, WFlags f )
-    : TQFrame( tqparent, name, f )
+QtTableView::QtTableView( TQWidget *parent, const char *name, WFlags f )
+    : TQFrame( parent, name, f )
 {
     nRows		 = nCols      = 0;	// zero rows/cols
     xCellOffs		 = yCellOffs  = 0;	// zero offset

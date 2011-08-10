@@ -32,17 +32,17 @@ class KMoonDlg : public KDialogBase {
   TQ_OBJECT
     
  public:
-  KMoonDlg(int angle, bool north, bool tqmask, TQWidget *tqparent, const char *name);
+  KMoonDlg(int angle, bool north, bool mask, TQWidget *parent, const char *name);
   int getAngle() const { return angle; }
   bool getNorthHemi() const { return north; }
-  bool getMask() const { return tqmask; }
+  bool getMask() const { return mask; }
   
  private:
   TQSlider *slider;
   MoonWidget *moon;
   int angle;
   bool north;
-  bool tqmask;
+  bool mask;
   TQPushButton *hemitoggle;
   TQPushButton *masktoggle;
   

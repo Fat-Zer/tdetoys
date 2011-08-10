@@ -55,8 +55,8 @@ class StationItem : public TQListViewItem
 
 static void parseStationEntry( const TQString &line, TQString &name, TQString &uid );
 
-ServiceConfigWidget::ServiceConfigWidget( TQWidget *tqparent, const char *name )
-  : wsPrefs( tqparent, name ), mService(0)
+ServiceConfigWidget::ServiceConfigWidget( TQWidget *parent, const char *name )
+  : wsPrefs( parent, name ), mService(0)
 {
   mService = new WeatherService_stub( "KWeatherService", "WeatherService" );
   connect( mAllStations, TQT_SIGNAL( doubleClicked ( TQListViewItem *, const TQPoint &, int ) ), TQT_SLOT( addStation() ) );

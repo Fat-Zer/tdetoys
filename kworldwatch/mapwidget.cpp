@@ -56,8 +56,8 @@
 #include "mapwidget.moc"
 
 
-MapWidget::MapWidget(bool applet, bool restore, TQWidget *tqparent, const char *name)
-  : TQWidget(tqparent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
+MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *name)
+  : TQWidget(parent, name), _loader(), _illumination(true), _cities(true), _flags(true), _cityList(0),
     _applet(applet), _width(0), _height(0)
 {
   // this ugly construction is necessary so we don't load 

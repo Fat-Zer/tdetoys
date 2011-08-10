@@ -99,7 +99,7 @@ void AmorBubble::setMessage(const TQString& message)
 
 //---------------------------------------------------------------------------
 //
-// Calculates the size, position and tqmask of the bubble
+// Calculates the size, position and mask of the bubble
 //
 void AmorBubble::calcGeometry()
 {
@@ -141,7 +141,7 @@ void AmorBubble::calcGeometry()
     setGeometry(xpos, ypos, w, h);
     mBrowser->setGeometry( mBound );
 
-    // create and apply the tqshape tqmask
+    // create and apply the tqshape mask
     mMask.resize(w, h);
     mMask.fill(color0);
     TQPainter maskPainter(&mMask);

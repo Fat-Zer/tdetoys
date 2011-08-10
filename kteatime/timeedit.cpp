@@ -13,8 +13,8 @@
 #include "timeedit.h"
 #include "timeedit.moc"
 
-WrappingSpinBox::WrappingSpinBox(int minValue, int maxValue, int step, TQWidget *tqparent, const char *name)
-	: TQSpinBox(minValue, maxValue, step, tqparent, name)
+WrappingSpinBox::WrappingSpinBox(int minValue, int maxValue, int step, TQWidget *parent, const char *name)
+	: TQSpinBox(minValue, maxValue, step, parent, name)
 {
 }
 
@@ -49,8 +49,8 @@ void WrappingSpinBox::stepDown()
 // -------------------------------------------------------------------------
 
 
-TimeEdit::TimeEdit(TQWidget* tqparent, const char* name)
-    : TQWidget(tqparent, name)
+TimeEdit::TimeEdit(TQWidget* parent, const char* name)
+    : TQWidget(parent, name)
 {
 	tqlayout = new TQHBoxLayout(this);
 	minuteBox = new TQSpinBox(0, 300, 1, this);

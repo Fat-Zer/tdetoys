@@ -53,18 +53,18 @@ const char *description = I18N_NOOP("Moon Phase Indicator for KDE");
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(TQWidget *tqparent, const TQString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kmoon");
     return new MoonPAWidget(configFile, KPanelApplet::Normal,
 			    KPanelApplet::About|KPanelApplet::Preferences,
-			    tqparent, "kmoonapplet");
+			    parent, "kmoonapplet");
   }
 }
 
 MoonPAWidget::MoonPAWidget(const TQString& configFile, Type type, int actions,
-			   TQWidget *tqparent, const char *name)
-  : KPanelApplet(configFile, type, actions, tqparent, name)
+			   TQWidget *parent, const char *name)
+  : KPanelApplet(configFile, type, actions, parent, name)
 {
     KConfig *config = KGlobal::config();
     config->setGroup("General");
@@ -123,7 +123,7 @@ void MoonPAWidget::showAbout()
 
 void MoonPAWidget::settings()
 {
-	KMoonDlg dlg(moon->angle(), moon->northHemi(), moon->tqmask(),
+	KMoonDlg dlg(moon->angle(), moon->northHemi(), moon->mask(),
 		     this, "moondlg");
 	if (dlg.exec() == KMoonDlg::Accepted) {
 		moon->setAngle(dlg.getAngle());
@@ -133,7 +133,7 @@ void MoonPAWidget::settings()
 		config->setGroup("General");
 		config->writeEntry("Rotation", moon->angle());
                 config->writeEntry("Northern", moon->northHemi());
-                config->writeEntry("Mask", moon->tqmask());
+                config->writeEntry("Mask", moon->mask());
                 config->sync();
 	}
 	tqrepaint();

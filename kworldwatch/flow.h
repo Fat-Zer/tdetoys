@@ -21,12 +21,12 @@
 class SimpleFlow : public TQLayout
 {
 public:
-    SimpleFlow( TQWidget *tqparent, int border=0, int space=-1,
+    SimpleFlow( TQWidget *parent, int border=0, int space=-1,
 		const char *name=0 )
-	: TQLayout( tqparent, border, space, name ),
+	: TQLayout( parent, border, space, name ),
 	cached_width(0), cached_hfw(0) {}
-    SimpleFlow( TQLayout* tqparent, int space=-1, const char *name=0 )
-	: TQLayout( tqparent, space, name ),
+    SimpleFlow( TQLayout* parent, int space=-1, const char *name=0 )
+	: TQLayout( parent, space, name ),
 	cached_width(0), cached_hfw(0) {}
     SimpleFlow( int space=-1, const char *name=0 )
 	: TQLayout( space, name ),

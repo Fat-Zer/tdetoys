@@ -35,7 +35,7 @@ class KImageNumber : public TQFrame
   TQ_OBJECT
 	TQ_PROPERTY( double m_value READ value WRITE setValue )
 public:
-	KImageNumber(const TQString& font, TQWidget* tqparent=0, const char* name=0);
+	KImageNumber(const TQString& font, TQWidget* parent=0, const char* name=0);
 
 	virtual ~KImageNumber();
 

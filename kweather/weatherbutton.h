@@ -29,7 +29,7 @@ class WeatherButton : public TQButton
   TQ_OBJECT
 
   public:
-    WeatherButton( TQWidget *tqparent, const char *name );
+    WeatherButton( TQWidget *parent, const char *name );
     void setPixmap( const TQPixmap &pix );
 
   protected:

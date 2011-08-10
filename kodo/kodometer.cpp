@@ -42,8 +42,8 @@ static	struct conversionEntry ConversionTable[MAX_UNIT] = {
  * Note that we use installEventFilter on the two KImageNumber's
  * to make clicks on them bring up the context-menu.
  */
-Kodometer::Kodometer(TQWidget* tqparent, const char* name)
-	: TQFrame(tqparent, name),
+Kodometer::Kodometer(TQWidget* parent, const char* name)
+	: TQFrame(parent, name),
 	dontRefresh(false),
         speed(0.0),
 	lastDistance(0.0),

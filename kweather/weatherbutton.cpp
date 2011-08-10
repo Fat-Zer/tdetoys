@@ -29,8 +29,8 @@
 #include <kipc.h>
 #include <kstandarddirs.h>
 
-WeatherButton::WeatherButton( TQWidget *tqparent, const char *name )
-    : TQButton( tqparent, name ), m_highlight( false )
+WeatherButton::WeatherButton( TQWidget *parent, const char *name )
+    : TQButton( parent, name ), m_highlight( false )
 {
     setBackgroundOrigin( AncestorOrigin );
 

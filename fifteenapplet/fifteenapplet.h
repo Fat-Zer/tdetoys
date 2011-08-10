@@ -38,7 +38,7 @@ class PiecesTable : public QtTableView
   TQ_OBJECT
 
 public:
-    PiecesTable(TQWidget* tqparent = 0, const char* name = 0);
+    PiecesTable(TQWidget* parent = 0, const char* name = 0);
     TQPopupMenu* popup() { return _menu; }
 
 protected:
@@ -71,7 +71,7 @@ class FifteenApplet : public KPanelApplet
 
 public:
     FifteenApplet(const TQString& configFile, Type t = Stretch, int actions = 0,
-                  TQWidget *tqparent = 0, const char *name = 0);
+                  TQWidget *parent = 0, const char *name = 0);
 
     int widthForHeight(int height) const;
     int heightForWidth(int width) const;

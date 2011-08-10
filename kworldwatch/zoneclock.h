@@ -50,7 +50,7 @@ class ZoneClock : public TQFrame
 
 public:
 
-  ZoneClock(const TQString &zone, const TQString &name, TQWidget *tqparent=0, const char *n=0);
+  ZoneClock(const TQString &zone, const TQString &name, TQWidget *parent=0, const char *n=0);
 
 
   TQString zone() const { return _zone; };
@@ -102,7 +102,7 @@ class ZoneClockPanel : public TQFrame
 
 public:
 
-  ZoneClockPanel(TQWidget *tqparent=0, const char *name=0);
+  ZoneClockPanel(TQWidget *parent=0, const char *name=0);
 
   void addClock(const TQString &zone, const TQString &name);
 

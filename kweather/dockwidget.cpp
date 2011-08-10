@@ -30,8 +30,8 @@
 #include <kglobalsettings.h>
 #include <klocale.h>
 
-dockwidget::dockwidget(const TQString &location, TQWidget *tqparent,
-        const char *name) : TQWidget(tqparent,name), m_locationCode( location ), m_orientation(Qt::Horizontal )
+dockwidget::dockwidget(const TQString &location, TQWidget *parent,
+        const char *name) : TQWidget(parent,name), m_locationCode( location ), m_orientation(Qt::Horizontal )
 {
     m_font = KGlobalSettings::generalFont();
     setBackgroundOrigin( AncestorOrigin );

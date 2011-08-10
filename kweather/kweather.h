@@ -36,7 +36,7 @@ class kweather : public KPanelApplet, public weatherIface
   TQ_OBJECT
 
 public:
-    kweather(const TQString& configFile, Type t = Normal, int actions = 0, TQWidget *tqparent = 0, const char *name = 0);
+    kweather(const TQString& configFile, Type t = Normal, int actions = 0, TQWidget *parent = 0, const char *name = 0);
     ~kweather();
     void help();
     void resizeEvent(TQResizeEvent*);

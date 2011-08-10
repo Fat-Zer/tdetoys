@@ -25,8 +25,8 @@
 
 #include "kimagenumber.h"
 
-KImageNumber::KImageNumber(const TQString& font, TQWidget* tqparent,const char* name) :
-	TQFrame(tqparent,name),
+KImageNumber::KImageNumber(const TQString& font, TQWidget* parent,const char* name) :
+	TQFrame(parent,name),
 	m_value(0)
 {
 	fontPix = new TQPixmap(font);

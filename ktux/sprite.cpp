@@ -43,8 +43,8 @@ extern "C"
 
 //-----------------------------------------------------------------------------
 
-KSpriteSetup::KSpriteSetup( TQWidget *tqparent, const char *name )
-  : TQDialog( tqparent, name, TRUE )
+KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
+  : TQDialog( parent, name, TRUE )
 {
     KGlobal::locale()->insertCatalogue("ktux");
     saver = 0;

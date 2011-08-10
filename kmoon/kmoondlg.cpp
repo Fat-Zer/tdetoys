@@ -29,9 +29,9 @@
 #include "kmoondlg.h"
 #include "kmoonwidget.h"
 
-KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *tqparent, const char *name)
-    : KDialogBase(tqparent, name, true, i18n("Change View"),
-                  Ok|Cancel|Help), angle(a), north(n), tqmask(m)
+KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *parent, const char *name)
+    : KDialogBase(parent, name, true, i18n("Change View"),
+                  Ok|Cancel|Help), angle(a), north(n), mask(m)
 {
 	TQWidget *page = new TQWidget( this );
 	setMainWidget(page);
@@ -72,7 +72,7 @@ KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *tqparent, const char *name)
         connect(hemitoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleHemi()));
 
         masktoggle = new TQPushButton(hbox2);
-	masktoggle->setText(tqmask ? i18n("Switch Masking Off") :
+	masktoggle->setText(mask ? i18n("Switch Masking Off") :
 			    i18n("Switch Masking On"));
 
         connect(masktoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
@@ -105,9 +105,9 @@ void KMoonDlg::toggleHemi() {
 }
 
 void KMoonDlg::toggleMask() {
-    moon->setMask(!moon->tqmask());
-    tqmask = moon->tqmask();
-    masktoggle->setText(tqmask ? i18n("Switch Masking Off") :
+    moon->setMask(!moon->mask());
+    mask = moon->mask();
+    masktoggle->setText(mask ? i18n("Switch Masking Off") :
 			i18n("Switch Masking On"));
 }
 

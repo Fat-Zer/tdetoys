@@ -36,11 +36,11 @@
 #include <dcopref.h>
 
 
-KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, TQObject* tqparent,
+KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, TQObject* parent,
                                          TQWidget* widgetParent,
                                          TQString& desktopName, const char* name)
 
-    : KonqSidebarPlugin(inst, tqparent, widgetParent, desktopName, name),
+    : KonqSidebarPlugin(inst, parent, widgetParent, desktopName, name),
     DCOPObject(name)
 {
 

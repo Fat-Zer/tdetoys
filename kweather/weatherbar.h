@@ -40,7 +40,7 @@ class KonqSidebarWeather: public KonqSidebarPlugin, virtual public DCOPObject
   TQ_OBJECT
     K_DCOP
 public:
-    KonqSidebarWeather(KInstance* inst, TQObject* tqparent, TQWidget* widgetParent,
+    KonqSidebarWeather(KInstance* inst, TQObject* parent, TQWidget* widgetParent,
                         TQString& desktopName_, const char* name = 0);
 
     ~KonqSidebarWeather();

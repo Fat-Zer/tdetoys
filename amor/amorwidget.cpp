@@ -60,10 +60,10 @@ void AmorWidget::setPixmap(const TQPixmap *pixmap)
 
     if (mPixmap)
     {
-        if (mPixmap->tqmask())
+        if (mPixmap->mask())
         {
             XShapeCombineMask( x11Display(), winId(), ShapeBounding, 0, 0,
-                                mPixmap->tqmask()->handle(), ShapeSet );
+                                mPixmap->mask()->handle(), ShapeSet );
             tqrepaint(false);
         }
     

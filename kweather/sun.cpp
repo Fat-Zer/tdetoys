@@ -282,7 +282,7 @@ static int __sunriset__( int year, int month, int day, double lon, double lat,
       double  sr;         /* Solar distance, astronomical units */
       double  sRA;        /* Sun's Right Ascension */
       double  sdec;       /* Sun's declination */
-      double  sradius;    /* Sun's aptqparent radius */
+      double  sradius;    /* Sun's apparent radius */
       double  t;          /* Diurnal arc */
       double  tsouth;     /* Time when Sun is at south */
       double  sidtime;    /* Local sidereal time */
@@ -303,7 +303,7 @@ static int __sunriset__( int year, int month, int day, double lon, double lat,
       /* Compute time when Sun is at south - in hours UT */
       tsouth = 12.0 - rev180(sidtime - sRA) / 15.0;
 
-      /* Compute the Sun's aptqparent radius, degrees */
+      /* Compute the Sun's apparent radius, degrees */
       sradius = 0.2666 / sr;
 
       /* Do correction to upper limb, if necessary */

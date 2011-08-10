@@ -48,8 +48,8 @@
 #include "zoneclock.h"
 
 
-WorldWideWatch::WorldWideWatch(bool restore, TQWidget *tqparent, const char *name)
-  : KMainWindow(tqparent, name)
+WorldWideWatch::WorldWideWatch(bool restore, TQWidget *parent, const char *name)
+  : KMainWindow(parent, name)
 {
   KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
 

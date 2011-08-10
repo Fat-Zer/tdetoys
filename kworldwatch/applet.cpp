@@ -42,20 +42,20 @@
 
 extern "C"
 {
-  KDE_EXPORT KPanelApplet *init(TQWidget *tqparent, const TQString& configFile)
+  KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
     KGlobal::locale()->insertCatalogue("kworldclock");
     KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
     return new KWWApplet(configFile, KPanelApplet::Normal,
 			 0,
-			 tqparent, "kwwapplet");
+			 parent, "kwwapplet");
   }
 }
 
 
 KWWApplet::KWWApplet(const TQString& configFile, Type type, int actions,
-		     TQWidget *tqparent, const char *name)
-  : KPanelApplet(configFile, type, actions, tqparent, name)
+		     TQWidget *parent, const char *name)
+  : KPanelApplet(configFile, type, actions, parent, name)
 {
   // make use of the icons installed for ksaferppp
   KGlobal::iconLoader()->addAppDir("kworldwatch");

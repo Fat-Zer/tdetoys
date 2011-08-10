@@ -39,7 +39,7 @@ FlagList::FlagList()
   _flags.setAutoDelete(true);
 
   _flagPixmap = TQPixmap(locate("data", "kworldclock/pics/flag.png"));
-  _flagMask = TQPixmap(locate("data", "kworldclock/pics/flag-tqmask.xpm"), 0, TQPixmap::ThresholdDither);
+  _flagMask = TQPixmap(locate("data", "kworldclock/pics/flag-mask.xpm"), 0, TQPixmap::ThresholdDither);
   _flagMask.setMask(_flagMask.createHeuristicMask());
 }
 

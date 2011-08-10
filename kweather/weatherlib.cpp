@@ -77,8 +77,8 @@ void WeatherLib::Data::clear()
 	}
 }
 
-WeatherLib::WeatherLib(StationDatabase *stationDB, TQObject *tqparent, const char *name)
-	: TQObject (tqparent, name)
+WeatherLib::WeatherLib(StationDatabase *stationDB, TQObject *parent, const char *name)
+	: TQObject (parent, name)
 {
 	KGlobal::locale()->insertCatalogue("kweather");
 	

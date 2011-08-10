@@ -43,14 +43,14 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weather( TQWidget *tqparent, const char * )
+  KDE_EXPORT KCModule *create_weather( TQWidget *parent, const char * )
   {
-    return new KCMWeather( tqparent, "kweather" );
+    return new KCMWeather( parent, "kweather" );
   }
 }
 
-KCMWeather::KCMWeather( TQWidget *tqparent, const char *name )
-  : KCModule( tqparent, name )
+KCMWeather::KCMWeather( TQWidget *parent, const char *name )
+  : KCModule( parent, name )
 {
   mWeatherService = new WeatherService_stub( "KWeatherService",
       "WeatherService" );

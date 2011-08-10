@@ -44,7 +44,7 @@ class WeatherService : public TQObject, public DCOPObject
 		void slotStationRemoved(const TQString &stationID);
 
 	public:
-		WeatherService(TQObject *tqparent, const char *name);
+		WeatherService(TQObject *parent, const char *name);
 		~WeatherService();
 
 	k_dcop_signals:

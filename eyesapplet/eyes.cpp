@@ -33,17 +33,17 @@
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("keyesapplet");
-        EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, tqparent, "keyesapplet");
+        EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, parent, "keyesapplet");
         return applet;
     }
 }
 
 EyesApplet::EyesApplet(const TQString& configFile, Type t, int actions,
-                       TQWidget *tqparent, const char *name)
-  : KPanelApplet( configFile, t, actions, tqparent, name )
+                       TQWidget *parent, const char *name)
+  : KPanelApplet( configFile, t, actions, parent, name )
 {
     setWFlags(WNoAutoErase);
     setBackgroundOrigin(AncestorOrigin);

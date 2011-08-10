@@ -562,14 +562,14 @@ void Amor::restack()
 #endif
 
     Window sibling = mTargetWin;
-    Window dw, tqparent = None, *wins;
+    Window dw, parent = None, *wins;
 
     do {
         unsigned int nwins = 0;
 
-        // We must use the target window's tqparent as our sibling.
-        // Is there a faster way to get tqparent window than XQueryTree?
-        if (XQueryTree(qt_xdisplay(), sibling, &dw, &tqparent, &wins, &nwins))
+        // We must use the target window's parent as our sibling.
+        // Is there a faster way to get parent window than XQueryTree?
+        if (XQueryTree(qt_xdisplay(), sibling, &dw, &parent, &wins, &nwins))
         {
             if (nwins)
             {
@@ -577,9 +577,9 @@ void Amor::restack()
             }
         }
 
-        if (tqparent != None && tqparent != dw )
-            sibling = tqparent;
-    } while ( tqparent != None && tqparent != dw );
+        if (parent != None && parent != dw )
+            sibling = parent;
+    } while ( parent != None && parent != dw );
 
     // Set animation's stacking order to be above the window manager's
     // decoration of target window.

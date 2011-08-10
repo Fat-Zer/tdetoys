@@ -60,7 +60,7 @@ class MapWidget : public TQWidget
 
 public:
 
-  MapWidget(bool applet=false, bool restore=false, TQWidget *tqparent=0, const char *name=0);
+  MapWidget(bool applet=false, bool restore=false, TQWidget *parent=0, const char *name=0);
   ~MapWidget();
 
   void setTheme(const TQString &theme);

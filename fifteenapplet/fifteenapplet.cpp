@@ -38,17 +38,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 extern "C"
 {
-    KDE_EXPORT KPanelApplet* init(TQWidget *tqparent, const TQString& configFile)
+    KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
         KGlobal::locale()->insertCatalogue("kfifteenapplet");
         return new FifteenApplet(configFile, KPanelApplet::Normal,
-                                 KPanelApplet::About, tqparent, "kfifteenapplet");
+                                 KPanelApplet::About, parent, "kfifteenapplet");
     }
 }
 
 FifteenApplet::FifteenApplet(const TQString& configFile, Type type, int actions,
-                               TQWidget *tqparent, const char *name)
-    : KPanelApplet(configFile, type, actions, tqparent, name), _aboutData(0)
+                               TQWidget *parent, const char *name)
+    : KPanelApplet(configFile, type, actions, parent, name), _aboutData(0)
 {
     // setup table
     _table = new PiecesTable(this);
@@ -87,8 +87,8 @@ void FifteenApplet::about()
     dialog.exec();
 }
 
-PiecesTable::PiecesTable(TQWidget* tqparent, const char* name )
-    : QtTableView(tqparent, name), _activeRow(-1), _activeCol(-1), _randomized(false)
+PiecesTable::PiecesTable(TQWidget* parent, const char* name )
+    : QtTableView(parent, name), _activeRow(-1), _activeCol(-1), _randomized(false)
 {
     _menu = new TQPopupMenu(this);
     _menu->insertItem(i18n("R&andomize Pieces"), this, TQT_SLOT(randomizeMap()));

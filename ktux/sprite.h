@@ -52,7 +52,7 @@ class KSpriteSetup : public TQDialog
     Q_OBJECT
   TQ_OBJECT
 public:
-    KSpriteSetup( TQWidget *tqparent = NULL, const char *name = NULL );
+    KSpriteSetup( TQWidget *parent = NULL, const char *name = NULL );
     ~KSpriteSetup();
 
 protected:

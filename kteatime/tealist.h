@@ -18,8 +18,8 @@ class TeaListItem : public TQListViewItem
 {
 
 public:
-	TeaListItem(TQListView *tqparent);
-	TeaListItem(TQListView *tqparent, TQListViewItem *after);
+	TeaListItem(TQListView *parent);
+	TeaListItem(TQListView *parent, TQListViewItem *after);
 	~TeaListItem();
 
 	int time();

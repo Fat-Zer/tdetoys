@@ -168,7 +168,7 @@ double torad(double x)
 **    int phi:  another phase parameter, selecting the phase of the
 **              moon.  0 = New, 1 = First TQtr, 2 = Full, 3 = Last TQtr
 **
-** Return:  Aptqparent JD of the needed phase
+** Return:  Apparent JD of the needed phase
 */
 
 #include <stdio.h>

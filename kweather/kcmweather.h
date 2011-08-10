@@ -33,7 +33,7 @@ class KCMWeather : public KCModule
   TQ_OBJECT
 
   public:
-    KCMWeather( TQWidget *tqparent = 0, const char *name = 0 );
+    KCMWeather( TQWidget *parent = 0, const char *name = 0 );
     ~KCMWeather();
 
     virtual void load();

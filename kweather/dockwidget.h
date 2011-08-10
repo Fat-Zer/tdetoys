@@ -34,7 +34,7 @@ class dockwidget : public TQWidget
   TQ_OBJECT
 
 public:
-    dockwidget(const TQString &location, TQWidget *tqparent=0, const char *name=0);
+    dockwidget(const TQString &location, TQWidget *parent=0, const char *name=0);
     ~dockwidget();
 
     enum {ShowIconOnly=1, ShowTempOnly=2, ShowAll=3 };

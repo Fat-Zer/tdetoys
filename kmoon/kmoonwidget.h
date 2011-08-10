@@ -34,7 +34,7 @@ class MoonWidget : public TQWidget
   TQ_OBJECT
 
 public:
-    MoonWidget(TQWidget *tqparent = 0, const char *name = 0);
+    MoonWidget(TQWidget *parent = 0, const char *name = 0);
     ~MoonWidget();
 
     void calctqStatus( time_t time );
@@ -45,14 +45,14 @@ public:
     bool northHemi() const { return _north; }
     void setNorthHemi(bool b);
 
-    bool tqmask() const { return _tqmask; }
+    bool mask() const { return _mask; }
     void setMask(bool b);
 
 protected:
     int old_w, old_h;
     int counter,  old_counter;
     int _angle, old_angle;
-    int _tqmask, old_tqmask;
+    int _mask, old_mask;
     bool old_north, _north;
 
     TQPixmap pixmap;
