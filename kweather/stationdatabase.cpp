@@ -76,7 +76,7 @@ TQString StationDatabase::stationNameFromID( const TQString & stationID )
 {
 	TQString result;
 	
-	if ( theDB.tqfind( stationID ) == theDB.end() )
+	if ( theDB.find( stationID ) == theDB.end() )
 	{
 		if ( loadStation( stationID ) )
 			result = theDB[ stationID ].cityName;
@@ -98,7 +98,7 @@ TQString StationDatabase::stationLongitudeFromID( const TQString & stationID )
 {
 	TQString result;
 	
-	if ( theDB.tqfind( stationID ) == theDB.end() )
+	if ( theDB.find( stationID ) == theDB.end() )
 	{
 		if ( loadStation( stationID ) )
 			result = theDB[ stationID ].longitude;
@@ -120,7 +120,7 @@ TQString StationDatabase::stationLatitudeFromID( const TQString & stationID )
 {
 	TQString result;
 	
-	if ( theDB.tqfind( stationID ) == theDB.end() )
+	if ( theDB.find( stationID ) == theDB.end() )
 	{
 		if ( loadStation( stationID ) )
 			result = theDB[ stationID ].latitude;
@@ -142,7 +142,7 @@ TQString StationDatabase::stationCountryFromID( const TQString &stationID )
 {
 	TQString result;
 	
-	if ( theDB.tqfind( stationID ) == theDB.end() )
+	if ( theDB.find( stationID ) == theDB.end() )
 	{
 		if ( loadStation( stationID ) )
 			result = theDB[ stationID ].country;

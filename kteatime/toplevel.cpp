@@ -309,7 +309,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 			}
 			if (useAction && (!action.isEmpty())) {
 				TQString cmd = action;
-				cmd.tqreplace("%t", current_name);
+				cmd.replace("%t", current_name);
 				system(TQFile::encodeName(cmd));
 			}
 			if (usePopup)

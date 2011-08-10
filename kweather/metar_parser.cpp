@@ -226,78 +226,78 @@ bool MetarParser::parseCurrent(const TQString &s)
 		}
 
 		// Decode the descriptor
-		if (sCode.tqcontains("MI"))
+		if (sCode.contains("MI"))
 			descriptor = i18n("Shallow");
-		else if (sCode.tqcontains("PR"))
+		else if (sCode.contains("PR"))
 			descriptor = i18n("Partial");
-		else if (sCode.tqcontains("BC"))
+		else if (sCode.contains("BC"))
 			descriptor = i18n("Patches");
-		else if (sCode.tqcontains("DR"))
+		else if (sCode.contains("DR"))
 			descriptor = i18n("Low Drifting");
-		else if (sCode.tqcontains("BL"))
+		else if (sCode.contains("BL"))
 			descriptor = i18n("Blowing");
-		else if (sCode.tqcontains("SH"))
+		else if (sCode.contains("SH"))
 		{
 			descriptor = i18n("Showers");
 			weatherInfo.theWeather = "shower";
 		}
-		else if (sCode.tqcontains("TS"))
+		else if (sCode.contains("TS"))
 		{
 			descriptor = i18n("Thunder Storm");
 			weatherInfo.theWeather = "tstorm";
 		}
-		else if (sCode.tqcontains("FZ"))
+		else if (sCode.contains("FZ"))
 		{
 			descriptor = i18n("Freezing");
 		}
 
 		// Decode weather phenomena
-		if (sCode.tqcontains("DZ"))
+		if (sCode.contains("DZ"))
 		{
 			phenomena = i18n("Drizzle");
 			weatherInfo.theWeather = "light_rain";
 		}
-		else if (sCode.tqcontains("RA"))
+		else if (sCode.contains("RA"))
 		{
 			phenomena = i18n("Rain");
 			weatherInfo.theWeather = "shower";
 		}
-		else if (sCode.tqcontains("SN"))
+		else if (sCode.contains("SN"))
 		{
 			phenomena = i18n("Snow");
 			weatherInfo.theWeather = "snow";
 		}
-		else if (sCode.tqcontains("SG"))
+		else if (sCode.contains("SG"))
 		{
 			phenomena = i18n("Snow Grains");
 			weatherInfo.theWeather = "snow4";
 		}
-		else if (sCode.tqcontains("IC"))
+		else if (sCode.contains("IC"))
 		{
 			phenomena = i18n("Ice Crystals");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (sCode.tqcontains("PE"))
+		else if (sCode.contains("PE"))
 		{
 			phenomena = i18n("Ice Pellets");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (s.tqcontains("GR"))
+		else if (s.contains("GR"))
 		{
 			phenomena = i18n("Hail");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (sCode.tqcontains("GS"))
+		else if (sCode.contains("GS"))
 		{
 			phenomena = i18n("Small Hail Pellets");
 			weatherInfo.theWeather = "hail";
 		}
-		else if (s.tqcontains("UP"))
+		else if (s.contains("UP"))
 		{
 			phenomena = i18n("Unknown Precipitation");
 			weatherInfo.theWeather = iconName("shower1");
 		}
-		else if (sCode.tqcontains("BR"))
+		else if (sCode.contains("BR"))
 		{
 			phenomena = i18n("Mist");
 			// Mist has lower priority than say rain or snow
@@ -306,7 +306,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 				weatherInfo.theWeather = "mist";
 			}
 		}
-		else if (sCode.tqcontains("FG"))
+		else if (sCode.contains("FG"))
 		{
 			phenomena = i18n("Fog");
 			// Fog has lower priority than say rain or snow
@@ -315,32 +315,32 @@ bool MetarParser::parseCurrent(const TQString &s)
 				weatherInfo.theWeather = "fog";
 			}
 		}
-		else if (sCode.tqcontains("FU"))
+		else if (sCode.contains("FU"))
 			phenomena = i18n("Smoke");
-		else if (sCode.tqcontains("VA"))
+		else if (sCode.contains("VA"))
 			phenomena = i18n("Volcanic Ash");
-		else if (sCode.tqcontains("DU"))
+		else if (sCode.contains("DU"))
 			phenomena = i18n("Widespread Dust");
-		else if (sCode.tqcontains("SA"))
+		else if (sCode.contains("SA"))
 			phenomena = i18n("Sand");
-		else if (sCode.tqcontains("HZ"))
+		else if (sCode.contains("HZ"))
 			phenomena = i18n("Haze");
-		else if (sCode.tqcontains("PY"))
+		else if (sCode.contains("PY"))
 			phenomena = i18n("Spray");
-		else if (sCode.tqcontains("PO"))
+		else if (sCode.contains("PO"))
 			phenomena = i18n("Dust/Sand Swirls");
-		else if (sCode.tqcontains("SQ"))
+		else if (sCode.contains("SQ"))
 			phenomena = i18n("Sudden Winds");
-		else if (sCode.tqcontains("FC"))
+		else if (sCode.contains("FC"))
 		{
 			if (sIntensity == "+")
 				currentWeather = i18n("Tornado");
 			else
 				phenomena = i18n("Funnel Cloud");
 		}
-		else if (sCode.tqcontains("SS"))
+		else if (sCode.contains("SS"))
 			phenomena = i18n("Sand Storm");
-		else if (sCode.tqcontains("DS"))
+		else if (sCode.contains("DS"))
 			phenomena = i18n("Dust Storm");
 		
 		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").tqarg(intensity).tqarg(descriptor).tqarg(phenomena);
@@ -854,7 +854,7 @@ bool MetarParser::isNight(const TQString &stationID) const
 			// Midnight Sun & Polar Night - In summer, the Sun is always 
 			// over the horizon line ... so use latitude & today date to 
 			// set isNight() value. 
-			return ((m_date.daysInYear() >= 80 || m_date.daysInYear() <= 264) && latitude.tqcontains("S")); 
+			return ((m_date.daysInYear() >= 80 || m_date.daysInYear() <= 264) && latitude.contains("S")); 
 		}
 	}
 }

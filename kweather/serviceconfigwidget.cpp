@@ -224,7 +224,7 @@ void parseStationEntry( const TQString &line, TQString &name, TQString &uid )
   for ( uint i = 0; i < list.count(); ++i ) {
     if ( inName ) {
       if ( list[ i ].endsWith( "\\" ) ) {
-        name.append( list[ i ].tqreplace( "\\", " " ) );
+        name.append( list[ i ].replace( "\\", " " ) );
       } else {
         name.append( list[ i ] );
         inName = false;

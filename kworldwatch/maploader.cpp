@@ -75,10 +75,10 @@ void MapLoader::load(unsigned int width, const TQString &theme, unsigned int hei
   for (uint i=0; i<files.count(); ++i)
     {
       TQString f = files[i];
-      int pos = f.tqfindRev("/");
+      int pos = f.findRev("/");
       if (pos >= 0)
         f = f.mid(pos+1);
-      pos = f.tqfindRev(".");
+      pos = f.findRev(".");
       if (pos >= 0)
         f = f.left(pos);
       sizes.append(f.toInt());

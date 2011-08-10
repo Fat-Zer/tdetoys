@@ -128,9 +128,9 @@ void CityList::readCityList(const TQString &fname)
 	  if (!c.isEmpty() && !n.isEmpty())
 	    {
 	      double la, lo;
-	      pos = c.tqfind("+", 1);
+	      pos = c.find("+", 1);
 	      if (pos < 0)
-		pos = c.tqfind("-", 1);
+		pos = c.find("-", 1);
 	      if (pos > 0)
 		{
 		  la = coordinate(c.left(pos));

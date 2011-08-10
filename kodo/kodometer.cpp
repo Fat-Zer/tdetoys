@@ -121,7 +121,7 @@ Kodometer::Kodometer(TQWidget* tqparent, const char* name)
 }
 
 /*
- * Now I'm not really sure what this does.  I assume its here to tqfind
+ * Now I'm not really sure what this does.  I assume its here to find
  * all the displays on your system, and measure them.  During the mouse
  * tracking phase, we use the information stored here to determine how
  * far the mouse moved on a given screen.

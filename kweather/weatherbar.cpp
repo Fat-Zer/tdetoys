@@ -100,7 +100,7 @@ TQWidget* KonqSidebarWeather::getWidget()
 void KonqSidebarWeather::refresh(TQString stationID)
 {
 	kdDebug() << "refresh " << stationID << endl;
-	if(m_widgets.tqfind(stationID))
+	if(m_widgets.find(stationID))
 	{
 		DCOPRef dcopCall( "KWeatherService", "WeatherService" );
 		m_widgets[stationID]->setWeatherIcon(dcopCall.call("currentIcon(TQString)", stationID ,true ));
@@ -134,7 +134,7 @@ void KonqSidebarWeather::update()
 		TQStringList replyList = reply;
 		for(int i = 0; i < replyList.size(); i++)
 		{
-			if(!m_widgets.tqfind(replyList[i]))
+			if(!m_widgets.find(replyList[i]))
 			{
 				dockwidget *d = new dockwidget(m_container->viewport(), replyList[i].latin1());
 				m_container->addWidget(d, replyList[i].latin1());

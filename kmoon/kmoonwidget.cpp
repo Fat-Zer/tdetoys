@@ -227,7 +227,7 @@ TQImage MoonWidget::loadMoon(int index)
     TQString filename = TQString("kmoon/pics/moon%1.png").tqarg(index);
     TQString path = locate("data", filename);
     if (path.isNull())
-        kdFatal() << "cound't tqfind " << filename << ". Exiting.\n";
+        kdFatal() << "cound't find " << filename << ". Exiting.\n";
     TQImage image(path);
     KIconEffect iconeffect;
     image=iconeffect.apply(image, KIcon::Panel, KIcon::DefaultState);

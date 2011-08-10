@@ -170,7 +170,7 @@ bool AmorThemeManager::setTheme(const TQString & file)
     else
     {
         // relative to config file.
-        mPath.truncate(mPath.tqfindRev('/')+1);
+        mPath.truncate(mPath.findRev('/')+1);
         mPath += pixmapPath;
     }
 
@@ -195,7 +195,7 @@ AmorAnim *AmorThemeManager::random(const TQString & group)
     if (mStatic)
 	grp = "Base";
 
-    AmorAnimationGroup *animGroup = mAnimations.tqfind(grp);
+    AmorAnimationGroup *animGroup = mAnimations.find(grp);
 
     if (animGroup) {
 	int idx = kapp->random()%animGroup->count();

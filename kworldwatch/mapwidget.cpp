@@ -353,10 +353,10 @@ void MapWidget::timeout()
 TQString MapWidget::cityTime(const TQString &city)
 {
   TQString result = i18n(city.latin1()); // Time zone translation
-  int pos = result.tqfind("/");
+  int pos = result.find("/");
   if (pos >= 0)
     result = result.mid(pos+1);
-  result.tqreplace(TQRegExp("_"), " ");
+  result.replace(TQRegExp("_"), " ");
   result.append(": ");
 
   char *initial_TZ = getenv("TZ");

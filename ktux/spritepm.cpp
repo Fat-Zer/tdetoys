@@ -39,7 +39,7 @@ SpritePixmapManager::~SpritePixmapManager()
 //
 const TQPixmap *SpritePixmapManager::load(const TQString & img)
 {
-    TQPixmap *pixmap = mPixmaps.tqfind(img);
+    TQPixmap *pixmap = mPixmaps.find(img);
 
     if (!pixmap)
     {
@@ -115,7 +115,7 @@ SpriteSequenceManager::~SpriteSequenceManager()
 SpritePixmapSequence *SpriteSequenceManager::load(KConfigBase &config,
     const TQString & name)
 {
-    SpritePixmapSequence *sprite = mSprites.tqfind(name);
+    SpritePixmapSequence *sprite = mSprites.find(name);
 
     if (!sprite)
     {

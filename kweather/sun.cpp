@@ -176,7 +176,7 @@ static double latitudeToDouble( const TQString &latitude )
 	
 	result = dd + (mm / 60);
 
-	if (latitude.tqcontains("S"))
+	if (latitude.contains("S"))
 		result *= -1;
 
 	return result;
@@ -192,7 +192,7 @@ static double longitudeToDouble( const TQString &longitude )
 	
 	result = ddd + (mm / 60);
 
-	if (longitude.tqcontains("W"))
+	if (longitude.contains("W"))
 		result *= -1;
 
 	return result;

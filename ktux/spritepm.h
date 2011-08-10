@@ -34,7 +34,7 @@ public:
         { mPixmapDir = "."; mPixmaps.clear(); }
     const TQPixmap *load(const TQString & img);
     const TQPixmap *pixmap(const char *img) const
-        { return mPixmaps.tqfind(img); }
+        { return mPixmaps.find(img); }
 
     static SpritePixmapManager *manager();
 
@@ -69,7 +69,7 @@ public:
  
     SpritePixmapSequence *load(KConfigBase &config, const TQString & name);
     SpritePixmapSequence *sprite(const char *name)
-        { return mSprites.tqfind(name); }
+        { return mSprites.find(name); }
 
     static SpriteSequenceManager *manager();
      

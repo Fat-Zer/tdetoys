@@ -235,7 +235,7 @@ void PiecesTable::mousePressEvent(TQMouseEvent* e)
         // GAME LOGIC
 
         // find the free position
-        int pos = _map.tqfind(15);
+        int pos = _map.find(15);
         if(pos < 0) return;
 
         int frow = pos / numCols();
