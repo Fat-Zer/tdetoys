@@ -6,7 +6,7 @@ bin_PROGRAMS = kteatime
 kteatime_SOURCES = main.cpp toplevel.cpp tealist.cpp timeedit.cpp
 
 kteatime_METASOURCES = AUTO
-kteatime_LDFLAGS = $(all_libraries) $(KDE_RPATH)
+kteatime_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 
 # LIB_KIO needed for KNotifyDialog
 kteatime_LDADD = $(LIB_KDEUI) $(LIB_KIO)

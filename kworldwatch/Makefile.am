@@ -11,7 +11,7 @@ INCLUDES = $(all_includes)
 
 kworldclock_SOURCES = main.cpp 
 kworldclock_LDADD = libww.la $(LIB_KDEUI)
-kworldclock_LDFLAGS = $(KDE_RPATH) $(all_libraries)
+kworldclock_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
 
 xdg_apps_DATA= kworldclock.desktop
 
