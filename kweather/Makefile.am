@@ -6,7 +6,7 @@ INCLUDES = $(all_includes)
 check_PROGRAMS = sun_test stationdatabase_test metar_parser_test
 bin_PROGRAMS = kweatherservice
 lib_LTLIBRARIES =
-kdeinit_LTLIBRARIES = kweatherreport.la
+tdeinit_LTLIBRARIES = kweatherreport.la
 kde_module_LTLIBRARIES = weather_panelapplet.la kcm_weather.la kcm_weatherservice.la
 
 sun_test_SOURCES = sun_test.cpp sun.cpp
@@ -15,12 +15,12 @@ sun_test_LDADD = -lqt-mt
 
 stationdatabase_test_SOURCES = stationdatabase_test.cpp stationdatabase.cpp
 stationdatabase_test_LDFLAGS = $(all_libraries)
-stationdatabase_test_LDADD = -lqt-mt -lkdecore
+stationdatabase_test_LDADD = -lqt-mt -ltdecore
 
 metar_parser_test_SOURCES = metar_parser_test.cpp metar_parser.cpp\
                             stationdatabase.cpp sun.cpp
 metar_parser_test_LDFLAGS = $(all_libraries)
-metar_parser_test_LDADD = -lqt-mt -lkdecore
+metar_parser_test_LDADD = -lqt-mt -ltdecore
 
 weather_panelapplet_la_SOURCES = reportview.cpp kweather.cpp dockwidget.cpp \
                                  weatherIface.skel weatherservice.stub \
@@ -55,7 +55,7 @@ kcm_weatherservice_la_LIBADD = $(LIB_KDEUI)
 #globaladddir   = $(kde_datadir)/konqsidebartng/add
 #globaladd_DATA = weatherbar_add.desktop
 
-kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -lkdefx $(LIB_KIO) -lktexteditor
+kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -ltdefx $(LIB_KIO) -lktexteditor
 kweatherservice_LDADD = $(LIB_KIO)
 kweatherservice_SOURCES = main.cpp metar_parser.cpp weatherlib.cpp \
                           weatherservice.cpp weatherservice.skel \
