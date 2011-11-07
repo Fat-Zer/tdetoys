@@ -37,13 +37,13 @@ station_DATA = stations.dat
 kcm_weather_la_SOURCES = kcmweather.cpp prefdialogdata.ui weatherservice.stub
 kcm_weather_la_LDFLAGS = -module $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) \
                          -avoid-version -no-undefined
-kcm_weather_la_LIBADD = $(LIB_KDEUI) $(LIB_KIO)
+kcm_weather_la_LIBADD = $(LIB_TDEUI) $(LIB_KIO)
 
 kcm_weatherservice_la_SOURCES = kcmweatherservice.cpp serviceconfigwidget.cpp \
                                 serviceconfigdata.ui weatherservice.stub
 kcm_weatherservice_la_LDFLAGS = -module $(KDE_PLUGIN) $(KDE_RPATH) $(all_libraries) \
                                 -avoid-version -no-undefined
-kcm_weatherservice_la_LIBADD = $(LIB_KDEUI)
+kcm_weatherservice_la_LIBADD = $(LIB_TDEUI)
 
 #weather_sidebar_la_SOURCES = sidebarwidgetbase.ui sidebarwidget.cpp dockwidget.cpp weatherbar.cpp weatherbar.skel
 #weather_sidebar_la_LDFLAGS = $(all_libraries) -module -no-undefined
@@ -55,7 +55,7 @@ kcm_weatherservice_la_LIBADD = $(LIB_KDEUI)
 #globaladddir   = $(kde_datadir)/konqsidebartng/add
 #globaladd_DATA = weatherbar_add.desktop
 
-kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -ltdefx $(LIB_KIO) -lktexteditor
+kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -lktexteditor
 kweatherservice_LDADD = $(LIB_KIO)
 kweatherservice_SOURCES = main.cpp metar_parser.cpp weatherlib.cpp \
                           weatherservice.cpp weatherservice.skel \

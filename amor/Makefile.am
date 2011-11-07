@@ -15,11 +15,11 @@ amor_SOURCES	= amordialog.cpp amor.cpp amorwidget.cpp main.cpp amoranim.cpp amor
 include_HEADERS = AmorIface.h
 
 # the library search path
-amor_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -ltdefx $(LIB_KIO) -lktexteditor
+amor_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -lktexteditor
 
 # the libraries to link against. Be aware of the order. First the libraries,
 # that depend on the following ones.
-amor_LDADD  = $(LIB_KDEUI)
+amor_LDADD  = $(LIB_TDEUI)
 
 # this option you can leave out. Just, if you use "make dist", you need it
 noinst_HEADERS = amor.h amorwidget.h amoranim.h amorpm.h amordialog.h\

@@ -13,7 +13,7 @@ lnk_DATA = eyesapplet.desktop
 EXTRA_DIST = $(lnk_DATA)
 
 eyes_panelapplet_la_LDFLAGS = $(KDE_PLUGIN) -module $(all_libraries)
-eyes_panelapplet_la_LIBADD = $(LIB_KDEUI)
+eyes_panelapplet_la_LIBADD = $(LIB_TDEUI)
 
 messages:
 	$(XGETTEXT) *.cpp *.h -o $(podir)/keyesapplet.pot

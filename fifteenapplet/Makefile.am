@@ -13,7 +13,7 @@ lnk_DATA = kfifteenapplet.desktop
 EXTRA_DIST = $(lnk_DATA)
 
 fifteen_panelapplet_la_LDFLAGS = $(KDE_PLUGIN) -module $(all_libraries)
-fifteen_panelapplet_la_LIBADD = $(LIB_KDEUI)
+fifteen_panelapplet_la_LIBADD = $(LIB_TDEUI)
 
 messages:
 	$(XGETTEXT) *.cpp *.h -o $(podir)/kfifteenapplet.pot

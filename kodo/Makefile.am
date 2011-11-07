@@ -7,8 +7,8 @@ kodo_SOURCES = main.cpp kodometer.cpp kimagenumber.cpp
 METASOURCES = AUTO
 
 # the library search path.
-kodo_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_KDECORE) $(LIB_KDEUI) -ltdefx $(LIB_KIO) -lktexteditor
-kodo_LDADD   = $(LIB_KDEUI)
+kodo_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -lktexteditor
+kodo_LDADD   = $(LIB_TDEUI)
 
 messages:
 	$(XGETTEXT) $(kodo_SOURCES) -o $(podir)/kodo.pot
