@@ -47,7 +47,7 @@
 #include <kpopupmenu.h>
 #include <kstandarddirs.h>
 #include <ktoolbar.h>
-#include <kwin.h>
+#include <twin.h>
 
 #include <X11/Xlib.h>
 

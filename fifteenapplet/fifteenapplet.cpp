@@ -208,7 +208,7 @@ void PiecesTable::resetMap()
     tqrepaint();
 }
 
-void PiecesTable::checkwin()
+void PiecesTable::chectwin()
 {
     if(!_randomized) return;
 
@@ -289,7 +289,7 @@ void PiecesTable::mousePressEvent(TQMouseEvent* e)
         updateCell(row, col, false);
 
         // check if the player wins with this move
-        checkwin();
+        chectwin();
     }
 }
 

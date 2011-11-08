@@ -24,7 +24,7 @@
  *
  */
 
-#include <kwin.h>
+#include <twin.h>
 #include <kstartupinfo.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>

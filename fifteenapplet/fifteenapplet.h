@@ -50,7 +50,7 @@ protected:
 
     void initMap();
     void initColors();
-    void checkwin();
+    void chectwin();
 
 protected slots:
     void randomizeMap();

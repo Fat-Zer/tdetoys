@@ -38,8 +38,8 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstartupinfo.h>
-#include <kwin.h>
-#include <kwinmodule.h>
+#include <twin.h>
+#include <twinmodule.h>
 #include <kstandarddirs.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>

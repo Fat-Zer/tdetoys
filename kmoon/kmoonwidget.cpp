@@ -32,7 +32,7 @@
 #include <dcopclient.h>
 #include <kdebug.h>
 #include <kapplication.h>
-#include <kwin.h>
+#include <twin.h>
 #include <kstartupinfo.h>
 #include <kmessagebox.h>
 #include <kaboutdata.h>

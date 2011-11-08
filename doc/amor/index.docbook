@@ -57,7 +57,7 @@ tricks.  &amor; also has many different themes which change the appearance
 and behavior of the animation.
 </para>
 
-<note><para>Since &amor; works with the &kde; window manager &kwin;, the
+<note><para>Since &amor; works with the &kde; window manager &twin;, the
 application will only work from within &kde;.  It is possible that &amor;
 would work from within another &kde;-compliant window manager, but none are
 known to work at the time of this writing.</para></note>
