@@ -43,7 +43,7 @@ depending on time, as well as offering the time in all of the major
 cities of the world. This can be run standalone, as an applet in the
 &kde; panel, or configured to draw the desktop background.</para> 
 
-<para>&kworldclock; is part of the official &kde; kdetoys
+<para>&kworldclock; is part of the official &kde; tdetoys
 package.</para>
 
 </refsect1>

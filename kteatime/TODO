@@ -5,7 +5,7 @@
   "Configure Events..." --> move to same line as "Event" and rename to "Configure..."?
   (and/or have a look at KStdAction::configureNotifications()!)
   (common is "Configure &Notifications..." btw.)
-   [which gets translated in kdelibs.ps to "&Benachrichtigungen festlegen..."]
+   [which gets translated in tdelibs.ps to "&Benachrichtigungen festlegen..."]
    [[more often, "einrichten" is used for "configure"]]
 - use "readPathEntry()" instead of "readEntry()" (expands/replaces $HOME)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY kweather  "<application>kweather</application>">
-  <!ENTITY package "kdetoys">
+  <!ENTITY package "tdetoys">
   <!ENTITY % English "INCLUDE">
   <!ENTITY % addindex "IGNORE">
 ]>
@@ -30,7 +30,7 @@
 
 <abstract>
 <para>
-KWeather is part of the kdetoys package.
+KWeather is part of the tdetoys package.
 </para>
 </abstract>
 

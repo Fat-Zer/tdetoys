@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
  <!ENTITY kappname "&kteatime;">
- <!ENTITY package "kdetoys">
+ <!ENTITY package "tdetoys">
  <!ENTITY % addindex "IGNORE">
  <!ENTITY % English "INCLUDE">
 ]>
@@ -41,7 +41,7 @@
 </abstract>
 <keywordset>
 <keyword>KDE</keyword>
-<keyword>kdetoys</keyword>
+<keyword>tdetoys</keyword>
 <keyword>kteatime</keyword>
 <keyword>tea</keyword>
 <keyword>cooker</keyword>

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY kappname "&amor;">
-  <!ENTITY package "kdetoys">
+  <!ENTITY package "tdetoys">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE">
 ]>
@@ -36,7 +36,7 @@
 
 <keywordset>
 <keyword>KDE</keyword>
-<keyword>kdetoys</keyword>
+<keyword>tdetoys</keyword>
 <keyword>amor</keyword>
 <keyword>helper</keyword>
 <keyword>assistant</keyword>

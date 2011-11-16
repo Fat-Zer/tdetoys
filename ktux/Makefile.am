@@ -27,7 +27,7 @@ noinst_HEADERS   = sprite.h spriteanim.h spritemisc.h spritepm.h
 METASOURCES = AUTO
 
 # make messages.po. Move this one to ../po/ and "make merge" in po
-# the -x is for skipping messages already translated in kdelibs
+# the -x is for skipping messages already translated in tdelibs
 messages:
 	$(XGETTEXT) *.cpp -o $(podir)/ktux.pot
 
