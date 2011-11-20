@@ -229,6 +229,9 @@
         <slot>selectionChanged(TQListViewItem*)</slot>
     </connection>
 </connections>
+<forwards>
+    <forward>class TQListViewItem;</forward>
+</forwards>
 <tabstops>
     <tabstop>mAllStations</tabstop>
     <tabstop>mSelectedStations</tabstop>
