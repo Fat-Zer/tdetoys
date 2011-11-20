@@ -66,7 +66,7 @@ int SimpleFlow::heightForWidth( int w ) const
     return cached_hfw;
 }
 
-void SimpleFlow::addItem( QLayoutItem *item)
+void SimpleFlow::addItem( TQLayoutItem *item)
 {
     list.append( TQT_TQLAYOUTITEM(item) );
 }

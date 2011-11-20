@@ -34,7 +34,7 @@ public:
 
     ~SimpleFlow();
 
-    void addItem( QLayoutItem *item);
+    void addItem( TQLayoutItem *item);
     bool hasHeightForWidth() const;
     int heightForWidth( int ) const;
     TQSize tqsizeHint() const;
