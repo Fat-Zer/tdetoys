@@ -47,7 +47,7 @@ int main()
 		// means that make install would have had to be done first before calling
 		// make check so that the file will be there.
 	
-		TQString kdeDirs(getenv("KDEDIR"));
+		TQString kdeDirs(getenv("TDEDIR"));
 	
 		path = kdeDirs + "/share/apps/kweatherservice/stations.dat";
 		if (TQFile::exists(path))
