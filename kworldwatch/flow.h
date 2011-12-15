@@ -1,7 +1,7 @@
 /****************************************************************************
 ** $Id$
 **
-** Definition of simple flow tqlayout for custom tqlayout example
+** Definition of simple flow layout for custom layout example
 **
 ** Created : 979899
 **
@@ -15,7 +15,7 @@
 #ifndef FLOW_H
 #define FLOW_H
 
-#include <tqlayout.h>
+#include <layout.h>
 #include <tqptrlist.h>
 
 class SimpleFlow : public TQLayout
@@ -37,8 +37,8 @@ public:
     void addItem( TQLayoutItem *item);
     bool hasHeightForWidth() const;
     int heightForWidth( int ) const;
-    TQSize tqsizeHint() const;
-    TQSize tqminimumSize() const;
+    TQSize sizeHint() const;
+    TQSize minimumSize() const;
     TQLayoutIterator iterator();
     TQSizePolicy::ExpandData expanding() const;
 

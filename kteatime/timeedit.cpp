@@ -8,7 +8,7 @@
 
 #include <klocale.h>
 #include <tqlabel.h>
-#include <tqlayout.h>
+#include <layout.h>
 
 #include "timeedit.h"
 #include "timeedit.moc"
@@ -52,24 +52,24 @@ void WrappingSpinBox::stepDown()
 TimeEdit::TimeEdit(TQWidget* parent, const char* name)
     : TQWidget(parent, name)
 {
-	tqlayout = new TQHBoxLayout(this);
+	layout = new TQHBoxLayout(this);
 	minuteBox = new TQSpinBox(0, 300, 1, this);
-//	minuteBox->setFixedSize(minuteBox->tqsizeHint());
+//	minuteBox->setFixedSize(minuteBox->sizeHint());
 
 	TQLabel* min = new TQLabel(i18n(" min"), this);
-	min->setFixedSize(min->tqsizeHint());
+	min->setFixedSize(min->sizeHint());
 	secondBox = new WrappingSpinBox(0, 59, 1, this);
 	secondBox->setWrapping(true);
-//	secondBox->setFixedSize(secondBox->tqsizeHint());
+//	secondBox->setFixedSize(secondBox->sizeHint());
 
 	TQLabel* sec = new TQLabel(i18n(" sec"),this);
-	sec->setFixedSize(sec->tqsizeHint());
+	sec->setFixedSize(sec->sizeHint());
 
-	tqlayout->addWidget(minuteBox);
-	tqlayout->addWidget(min);
+	layout->addWidget(minuteBox);
+	layout->addWidget(min);
 
-	tqlayout->addWidget(secondBox);
-	tqlayout->addWidget(sec);
+	layout->addWidget(secondBox);
+	layout->addWidget(sec);
 
 	connect(minuteBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );
 	connect(secondBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );

@@ -29,7 +29,7 @@
 
 
 #include <tqlabel.h>
-#include <tqlayout.h>
+#include <layout.h>
 #include <tqpainter.h>
 #include <tqpixmap.h>
 #include <tqwidget.h>

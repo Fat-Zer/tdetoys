@@ -25,7 +25,7 @@
 /*
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
-#include <tqlayout.h>
+#include <layout.h>
 
 
 #include <kapplication.h>

@@ -37,7 +37,7 @@ class Sun
 		 */
 		Sun( const TQString &latitude, 
 		     const TQString &longitude,
-		     TQDate date = TQDate::tqcurrentDate(),
+		     TQDate date = TQDate::currentDate(),
 		     const int localUTCOffset = KRFCDate::localUTCOffset() );
 		
 		TQTime computeRiseTime();

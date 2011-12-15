@@ -18,7 +18,7 @@ email                : geiseri@msoe.edu
 #include "config.h"
 #include <tqfile.h>
 #include <tqdatetime.h>
-#include <tqtextstream.h>
+#include <textstream.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <kdebug.h>
@@ -65,7 +65,7 @@ WeatherLib::Data::Data()
 
 void WeatherLib::Data::clear()
 {
-	age = TQDateTime::tqcurrentDateTime();
+	age = TQDateTime::currentDateTime();
 	downloading = false;
 	updated = false;
 	job = 0;
@@ -135,7 +135,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 						kdDebug( 12006 ) << "Parse: " << s << endl;
 						MetarParser parser(m_StationDb, KGlobal::locale()->measureSystem());
 						d->wi = parser.processData(d->wi.reportLocation, s);
-						d->age = TQDateTime::tqcurrentDateTime().addSecs(1800);
+						d->age = TQDateTime::currentDateTime().addSecs(1800);
 						emit fileUpdate(d->wi.reportLocation);
 						d->updated = true;
 					}
@@ -144,7 +144,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 						// File error
 						kdDebug( 12006 ) << "File empty error..." << endl;
 						KPassivePopup::message( i18n("KWeather Error!"),
-						i18n("The temp file %1 was empty.").tqarg(d->target->name()),  0L,"error" );
+						i18n("The temp file %1 was empty.").arg(d->target->name()),  0L,"error" );
 						d->updated = false;
 					}
 				}
@@ -153,7 +153,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 					// File error
 					kdDebug( 12006 ) << "File read error..." << endl;
 					KPassivePopup::message( i18n("KWeather Error!"),
-				i18n("Could not read the temp file %1.").tqarg(d->target->name()),  0L,"error" );
+				i18n("Could not read the temp file %1.").arg(d->target->name()),  0L,"error" );
 					d->updated = false;
 				}
 				delete d->target;
@@ -322,7 +322,7 @@ void WeatherLib::update(const TQString &stationID)
 	// Only grab new data if its more than 50 minutes old
 	Data *d = findData(stationID);
 
-	TQDateTime timeout = TQDateTime::tqcurrentDateTime();
+	TQDateTime timeout = TQDateTime::currentDateTime();
 
 	kdDebug (12006) << "Current Time: " << KGlobal::locale()->formatDateTime(timeout, false, false) <<
 			" Update at: " << KGlobal::locale()->formatDateTime(d->age, false, false) << endl;

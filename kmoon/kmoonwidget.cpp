@@ -70,14 +70,14 @@ MoonWidget::MoonWidget(TQWidget *parent, const char *name)
     time(&clock);
     t = gmtime(&clock);
     // kdDebug() << "time " << t->tm_isdst << " " << timezone << " " << daylight << endl ;
-    calctqStatus(mktime(t));
+    calcStatus(mktime(t));
 }
 
 MoonWidget::~MoonWidget()
 {
 }
 
-void MoonWidget::calctqStatus( time_t time )
+void MoonWidget::calcStatus( time_t time )
 {
     uint lun = 0;
     time_t last_new = 0;
@@ -217,14 +217,14 @@ void MoonWidget::calctqStatus( time_t time )
     }
     
     renderGraphic();
-    tqrepaint();
+    repaint();
 }
 
 TQImage MoonWidget::loadMoon(int index)
 {
     if (index == 0) // the new moon has the wrong filename
         index = 29;
-    TQString filename = TQString("kmoon/pics/moon%1.png").tqarg(index);
+    TQString filename = TQString("kmoon/pics/moon%1.png").arg(index);
     TQString path = locate("data", filename);
     if (path.isNull())
         kdFatal() << "cound't find " << filename << ". Exiting.\n";
@@ -238,21 +238,21 @@ void MoonWidget::setAngle(int value)
 {
     _angle = value;
     renderGraphic();
-    tqrepaint();
+    repaint();
 }
 
 void MoonWidget::setNorthHemi(bool n)
 {
     _north = n;
     renderGraphic();
-    tqrepaint();
+    repaint();
 }
 
 void MoonWidget::setMask(bool value)
 {
     _mask = value;
     renderGraphic();
-    tqrepaint();
+    repaint();
 }
 
 void MoonWidget::paintEvent(TQPaintEvent *)
@@ -263,7 +263,7 @@ void MoonWidget::paintEvent(TQPaintEvent *)
 void MoonWidget::resizeEvent(TQResizeEvent *)
 {
     renderGraphic();
-    tqrepaint();
+    repaint();
 }
 
 void MoonWidget::renderGraphic()

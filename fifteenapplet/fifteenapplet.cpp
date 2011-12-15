@@ -24,7 +24,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdlib.h>
 #include <time.h>
 
-#include <tqlayout.h>
+#include <layout.h>
 #include <tqpainter.h>
 #include <tqpopupmenu.h>
 
@@ -54,7 +54,7 @@ FifteenApplet::FifteenApplet(const TQString& configFile, Type type, int actions,
     _table = new PiecesTable(this);
     setCustomMenu(_table->popup());
 
-    // setup tqlayout
+    // setup layout
     TQHBoxLayout *_layout = new TQHBoxLayout(this);
     _layout->add(_table);
 
@@ -120,7 +120,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw cell background
     if(number == 16)
-        p->setBrush(tqcolorGroup().background());
+        p->setBrush(colorGroup().background());
     else
         p->setBrush(_colors[number-1]);
     p->setPen(NoPen);
@@ -128,7 +128,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw borders
     if (height() > 40) {
-        p->setPen(tqcolorGroup().text());
+        p->setPen(colorGroup().text());
         if(col < numCols()-1)
             p->drawLine(x2, 0, x2, y2); // right border line
 
@@ -198,14 +198,14 @@ void PiecesTable::randomizeMap()
             }
         }
     }
-    tqrepaint();
+    repaint();
     _randomized = true;
 }
 
 void PiecesTable::resetMap()
 {
     initMap();
-    tqrepaint();
+    repaint();
 }
 
 void PiecesTable::chectwin()

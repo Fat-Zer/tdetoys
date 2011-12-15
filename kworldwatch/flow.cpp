@@ -1,7 +1,7 @@
 /****************************************************************************
 ** $Id$
 **
-** Implementing your own tqlayout: flow example
+** Implementing your own layout: flow example
 **
 ** Copyright (C) 1996 by Trolltech AS.  All rights reserved.
 **
@@ -76,9 +76,9 @@ bool SimpleFlow::hasHeightForWidth() const
     return TRUE;
 }
 
-TQSize SimpleFlow::tqsizeHint() const
+TQSize SimpleFlow::sizeHint() const
 {
-    return tqminimumSize();
+    return minimumSize();
 }
 
 TQSizePolicy::ExpandData SimpleFlow::expanding() const
@@ -116,29 +116,29 @@ int SimpleFlow::doLayout( const TQRect &r, bool testonly )
     TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
-	int nextX = x + o->tqsizeHint().width() + spacing();
+	int nextX = x + o->sizeHint().width() + spacing();
 	if ( nextX - spacing() > r.right() && h > 0 ) {
 	    x = r.x();
 	    y = y + h + spacing();
-	    nextX = x + o->tqsizeHint().width() + spacing();
+	    nextX = x + o->sizeHint().width() + spacing();
 	    h = 0;
 	}
 	if ( !testonly )
-	    o->setGeometry( TQRect( TQPoint( x, y ), o->tqsizeHint() ) );
+	    o->setGeometry( TQRect( TQPoint( x, y ), o->sizeHint() ) );
 	x = nextX;
-	h = TQMAX( h,  o->tqsizeHint().height() );
+	h = TQMAX( h,  o->sizeHint().height() );
     }
     return y + h - r.y();
 }
 
-TQSize SimpleFlow::tqminimumSize() const
+TQSize SimpleFlow::minimumSize() const
 {
     TQSize s(0,0);
     TQPtrListIterator<TQLayoutItem> it(list);
     TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
-	s = s.expandedTo( o->tqminimumSize() );
+	s = s.expandedTo( o->minimumSize() );
     }
     return s;
 }
@@ -155,7 +155,7 @@ int SimpleFlow::count() const {
     \reimp
 */
 TQLayoutItem* SimpleFlow::itemAt(int index) const {
-	return index >= 0 && index < list.count() ? (const_cast<TQPtrList<TQLayoutItem>&>(list).tqat(index)) : 0;
+	return index >= 0 && index < list.count() ? (const_cast<TQPtrList<TQLayoutItem>&>(list).at(index)) : 0;
 }
 
 /*!
@@ -164,8 +164,8 @@ TQLayoutItem* SimpleFlow::itemAt(int index) const {
 TQLayoutItem* SimpleFlow::takeAt(int index) {
 	if (index < 0 || index >= list.count())
 		return 0;
-	TQLayoutItem *item = list.tqat(index);
-	list.remove(list.tqat(index));
+	TQLayoutItem *item = list.at(index);
+	list.remove(list.at(index));
 	delete item;
 
 	invalidate();

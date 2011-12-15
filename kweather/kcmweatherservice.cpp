@@ -21,7 +21,7 @@
     without including the source code for TQt in the source distribution.
 */                                                                      
 
-#include <tqlayout.h>
+#include <layout.h>
 
 #include <kaboutdata.h>
 #include <kdebug.h>
@@ -41,13 +41,13 @@ extern "C"
 KCMWeatherService::KCMWeatherService( TQWidget *parent, const char *name )
   : KCModule( parent, name )
 {
-  TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
+  TQVBoxLayout *layout = new TQVBoxLayout( this );
   mWidget = new ServiceConfigWidget( this );
 
   // not needed, as a change immediately changes the service
   //connect(mWidget, TQT_SIGNAL(changed(bool)), this, TQT_SIGNAL(changed(bool)));
 
-  tqlayout->addWidget( mWidget );
+  layout->addWidget( mWidget );
   KAboutData *about = new KAboutData( "kcmweatherservice",
                                       I18N_NOOP( "KWeather Configure Dialog" ),
                                       0, 0, KAboutData::License_GPL,
