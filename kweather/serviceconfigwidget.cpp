@@ -194,7 +194,7 @@ void ServiceConfigWidget::loadLocations()
           parseStationEntry( entryIt.data(), station, uid );
           new StationItem( stateItem, station, uid );
           mStationMap.insert( uid, TQString( "%1, %2" )
-              .arg( station ).arg( *stateIt ) );
+              .tqarg( station ).tqarg( *stateIt ) );
         }
       }
     }

@@ -25,7 +25,7 @@
 
 #include <tqlabel.h>
 #include <tqfont.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <tqscrollview.h>
 #include <tqgroupbox.h>
 #include <klocale.h>

@@ -28,7 +28,7 @@
 #include <kparts/browserextension.h>
 #include <tqdict.h>
 #include <dcopobject.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <tqtimer.h>
 
 class dockwidget;

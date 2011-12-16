@@ -24,7 +24,7 @@
 #include <tqbuttongroup.h>
 #include <tqcheckbox.h>
 #include <tqlabel.h>
-#include <layout.h>
+#include <tqlayout.h>
 
 #include <kaboutdata.h>
 #include <kapplication.h>
@@ -54,12 +54,12 @@ KCMWeather::KCMWeather( TQWidget *parent, const char *name )
 {
   mWeatherService = new WeatherService_stub( "KWeatherService",
       "WeatherService" );
-  TQVBoxLayout *layout = new TQVBoxLayout( this );
+  TQVBoxLayout *tqlayout = new TQVBoxLayout( this );
   mWidget = new prefsDialogData( this );
 
   mWidget->m_reportLocation->setFocus();
-  layout->addWidget( mWidget );
-  layout->addStretch();
+  tqlayout->addWidget( mWidget );
+  tqlayout->addStretch();
 
   fillStationList();
   load();

@@ -31,7 +31,7 @@
 
 #include <tqfile.h>
 #include <tqtimer.h>
-#include <palette.h>
+#include <tqpalette.h>
 
 #include "kweather.h"
 #include "reportview.h"
@@ -86,7 +86,7 @@ kweather::~kweather()
 void kweather::initContextMenu()
 {
     mContextMenu = new KPopupMenu(this);
-    mContextMenu->insertTitle(i18n("KWeather - %1").arg( reportLocation ), -1, 0);
+    mContextMenu->insertTitle(i18n("KWeather - %1").tqarg( reportLocation ), -1, 0);
     mContextMenu->insertItem(SmallIcon("viewmag"), i18n("Show &Report"),
         this, TQT_SLOT(doReport()), 0, -1, 1);
     mContextMenu->insertItem(SmallIcon("reload"), i18n("&Update Now"),
@@ -171,7 +171,7 @@ void kweather::preferences()
 /** The help handler */
 void kweather::help()
 {
-    kapp->invokeHelp(TQString(), TQString::fromLatin1("kweather"));
+    kapp->invokeHelp(TQString(), TQString::tqfromLatin1("kweather"));
 }
 
 /** Display the current weather report. */

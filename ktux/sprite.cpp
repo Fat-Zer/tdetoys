@@ -9,7 +9,7 @@
 #include <time.h>
 #include <tqlabel.h>
 #include <tqmessagebox.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <tqslider.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -60,7 +60,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
     tl1->addLayout(tl11);
 
     TQLabel *label = new TQLabel( i18n("Speed:"), this );
-    label->setMinimumSize(label->sizeHint());
+    label->setMinimumSize(label->tqsizeHint());
     tl11->addStretch(1);
     tl11->addWidget(label);
 
@@ -85,7 +85,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
 
     button = bbox->addButton(KStdGuiItem::cancel());
     connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT( reject() ) );
-    bbox->layout();
+    bbox->tqlayout();
     tl->addWidget(bbox);
 
     tl->freeze();
@@ -203,7 +203,7 @@ void KSpriteSaver::initialise()
 {
     mCanvas = new TQCanvas();
     TQPixmap pm( locate("sprite", "bg.png") );
-    mCanvas->setBackgroundPixmap( pm );
+    mCanvas->tqsetBackgroundPixmap( pm );
     mCanvas->resize( width(), height() );
     mView = new TQCanvasView(mCanvas);
     mView->viewport()->setBackgroundColor( black );

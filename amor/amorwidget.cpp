@@ -64,7 +64,7 @@ void AmorWidget::setPixmap(const TQPixmap *pixmap)
         {
             XShapeCombineMask( x11Display(), winId(), ShapeBounding, 0, 0,
                                 mPixmap->mask()->handle(), ShapeSet );
-            repaint(false);
+            tqrepaint(false);
         }
     
 	update();

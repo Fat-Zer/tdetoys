@@ -124,14 +124,14 @@ void WeatherButton::slotIconChanged( int group )
         return;
 
     generateIcons();
-    repaint( false );
+    tqrepaint( false );
 }
 
 void WeatherButton::enterEvent( TQEvent *e )
 {
     m_highlight = true;
 
-    repaint( false );
+    tqrepaint( false );
     TQButton::enterEvent( e );
 }
 
@@ -139,7 +139,7 @@ void WeatherButton::leaveEvent( TQEvent *e )
 {
     m_highlight = false;
 
-    repaint( false );
+    tqrepaint( false );
     TQButton::enterEvent( e );
 }
 

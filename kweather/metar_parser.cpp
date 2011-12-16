@@ -147,7 +147,7 @@ bool MetarParser::parseCover(const TQString &s)
 {
 	if (CoverRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Cover: " << TQString(CoverRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Cover: " << TQString(CoverRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		TQString sCode = CoverRegExp.cap(1);
@@ -170,22 +170,22 @@ bool MetarParser::parseCover(const TQString &s)
 
 		if (sCode == "FEW")
 		{
-			skycondition = i18n( "Few clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Few clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 2;
 		}
 		else if (sCode == "SCT")
 		{
-			skycondition = i18n( "Scattered clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Scattered clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 4;
 		}
 		else if (sCode == "BKN")
 		{
-			skycondition = i18n( "Broken clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Broken clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 8;
 		}
 		else if (sCode == "OVC")
 		{
-			skycondition = i18n( "Overcast clouds at %1" ).arg(sClouds);
+			skycondition = i18n( "Overcast clouds at %1" ).tqarg(sClouds);
 			weatherInfo.clouds += 64;
 		}
 		else if ((sCode == "CLR") || (sCode == "SKC") || (sCode == "CAVOK"))
@@ -211,7 +211,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 		TQString sCode = CurrentRegExp.cap(2);
 		TQString intensity, descriptor, phenomena, currentWeather;
 
-		kdDebug(12006) << "Current: " << TQString(CurrentRegExp.capturedTexts().join("-")) << endl;
+		kdDebug(12006) << "Current: " << TQString(CurrentRegExp.tqcapturedTexts().join("-")) << endl;
 
 		// Decode the intensity
 		if (sIntensity == "+")
@@ -343,7 +343,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 		else if (sCode.contains("DS"))
 			phenomena = i18n("Dust Storm");
 		
-		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").arg(intensity).arg(descriptor).arg(phenomena);
+		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").tqarg(intensity).tqarg(descriptor).tqarg(phenomena);
 
 		if (!currentWeather.isEmpty())
 			weatherInfo.qsCurrentList << currentWeather;
@@ -358,7 +358,7 @@ bool MetarParser::parseTemperature(const TQString &s)
 {
 	if (TempRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Temp: " << TQString(TempRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Temp: " << TQString(TempRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		float fTemp = TempRegExp.cap(2).toFloat();
@@ -379,7 +379,7 @@ bool MetarParser::parseTemperatureTenths(const TQString &s)
 {
 	if (TempTenRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Temp Tenths: " << TQString(TempTenRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Temp Tenths: " << TQString(TempTenRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 		
 		float temperature = TempTenRegExp.cap( 1 ).toFloat() / 10;
@@ -473,7 +473,7 @@ bool MetarParser::parseDate(const TQString &s)
 {
 	if (DateRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Date: " << TQString(DateRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Date: " << TQString(DateRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 		TQString dateString = DateRegExp.cap(1);
 		TQString day, month, year;
@@ -496,7 +496,7 @@ bool MetarParser::parseTime(const TQString &s)
 {
 	if (TimeRegExp.search(s) > -1)
 	{
-		kdDebug(12006) << "Time: " << TQString(TimeRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Time: " << TQString(TimeRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		TQString hour, minute, dateString;
@@ -521,7 +521,7 @@ bool MetarParser::parseVisibility(TQStringList::ConstIterator it)
 	{
 		fVisibility = VisRegExp.cap(1).toFloat();
 
-		kdDebug(12006) << "Visibility: " << TQString(VisRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Visibility: " << TQString(VisRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 	}
@@ -564,7 +564,7 @@ bool MetarParser::parsePressure( const TQString &s)
 		TQString type = PressRegExp.cap(1);
 		float fPressure = PressRegExp.cap(2).toFloat();
 
-		kdDebug(12006) << "Pressure: " << TQString(PressRegExp.capturedTexts().join("-"))
+		kdDebug(12006) << "Pressure: " << TQString(PressRegExp.tqcapturedTexts().join("-"))
 				<< endl;
 
 		if (m_units == KLocale::Metric)
@@ -643,7 +643,7 @@ bool MetarParser::parseWindSpeed(const TQString &s)
 		float gustSpeed = WindRegExp.cap(3).toFloat();
 		TQString sWindUnit = WindRegExp.cap(4);
 
-		kdDebug(12006) << "Wind: " << WindRegExp.capturedTexts().join("-")
+		kdDebug(12006) << "Wind: " << WindRegExp.tqcapturedTexts().join("-")
 				<< endl;
 
 		if (m_units == KLocale::Metric)

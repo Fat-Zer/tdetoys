@@ -60,7 +60,7 @@ class MetarParser
 	public:
 		MetarParser(StationDatabase *stationDB,
 			    KLocale::MeasureSystem units = KLocale::Imperial,
-			    TQDate date = TQDate::currentDate(),
+			    TQDate date = TQDate::tqcurrentDate(),
 			    TQTime time = TQTime::currentTime(), 
 			    unsigned int localUTCOffset = KRFCDate::localUTCOffset());
 

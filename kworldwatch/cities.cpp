@@ -26,7 +26,7 @@
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
 #include <tqfile.h>
-#include <textstream.h>
+#include <tqtextstream.h>
 #include <tqregexp.h>
 #include <tqpainter.h>
 

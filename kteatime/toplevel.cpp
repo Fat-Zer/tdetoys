@@ -24,7 +24,7 @@
 #include <assert.h>
 
 #include <tqcheckbox.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <tqhbox.h>
 #include <tqvbox.h>
 #include <tqlineedit.h>
@@ -207,7 +207,7 @@ void TopLevel::resizeEvent ( TQResizeEvent * )
 	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
 	teaAnim1Pixmap = loadSizedIcon("tea_anim1", width());
 	teaAnim2Pixmap = loadSizedIcon("tea_anim2", width());
-	repaint();
+	tqrepaint();
 }
 
 /** Handle mousePressEvent */
@@ -302,7 +302,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 					menu->setItemChecked(current_selected, true);
 			}
 
-			TQString teaMessage = i18n("The %1 is now ready!").arg(current_name);
+			TQString teaMessage = i18n("The %1 is now ready!").tqarg(current_name);
 			// invoke action
 			if (useNotify) {
 				KNotifyClient::event(winId(), "tea", teaMessage);
@@ -317,7 +317,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				                       teaMessage, teaAnim1Pixmap, this, "popup", 0);
 				// FIXME: does auto-deletion work without timeout?
 			setToolTip(teaMessage);
-			repaint();
+			tqrepaint();
 		} else {
 			// timer not yet run out; just update tray-icon (if configured)...
 			if (useTrayVis) {
@@ -325,18 +325,18 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				if (pDone - percentDone > 8) {
 					// update icon not every second, but only if somewhat noticable
 					percentDone = pDone;
-					repaint();
+					tqrepaint();
 				}
 			}
 			// ...and Tooltip
 			TQString min = int2time(seconds);
-			setToolTip(i18n("%1 left for %2").arg(min).arg(current_name));
+			setToolTip(i18n("%1 left for %2").tqarg(min).tqarg(current_name));
 		}
 	} else {
 		// no tea is steeping; just animate icon
 		if (ready) {
 			firstFrame = !firstFrame;
-			repaint();
+			tqrepaint();
 		}
 	}
 }
@@ -447,7 +447,7 @@ void TopLevel::start()
 		ready = false;
 		enable_menuEntries();                           // disable "start", enable "stop"
 
-		repaint();
+		tqrepaint();
 	}
 }
 
@@ -467,7 +467,7 @@ void TopLevel::stop()
 	}
 
 	setToolTip(i18n("The Tea Cooker"), true);
-	repaint();
+	tqrepaint();
 }
 
 /* open dialog to start an 'anonymous' tea */
@@ -487,10 +487,10 @@ void TopLevel::anonymous()
 		prop_box->addWidget(propright);
 
 		anon_time = new TimeEdit(propright);
-		anon_time->setFixedHeight(anon_time->sizeHint().height());
+		anon_time->setFixedHeight(anon_time->tqsizeHint().height());
 		anon_time->setValue(DEFAULT_TEA_TIME);
 		TQLabel *l = new TQLabel(anon_time, i18n("Tea time:"), propleft);
-		l->setFixedSize(l->sizeHint());
+		l->setFixedSize(l->tqsizeHint());
 
 		top_box->addStretch();
 
@@ -688,28 +688,28 @@ void TopLevel::config()
     btn_new = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_new, i18n("New"));
     btn_new->setPixmap(SmallIcon("filenew"));
-    btn_new->setMinimumSize(btn_new->sizeHint() * 1.2);
+    btn_new->setMinimumSize(btn_new->tqsizeHint() * 1.2);
     connect(btn_new, TQT_SIGNAL(clicked()), TQT_SLOT(newButtonClicked()));
     hbox->addWidget(btn_new);
 
     btn_del = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_del, i18n("Delete"));
     btn_del->setIconSet(SmallIconSet("editdelete"));
-    btn_del->setMinimumSize(btn_new->sizeHint() * 1.2);
+    btn_del->setMinimumSize(btn_new->tqsizeHint() * 1.2);
     connect(btn_del, TQT_SIGNAL(clicked()), TQT_SLOT(delButtonClicked()));
     hbox->addWidget(btn_del);
 
     btn_up = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_up, i18n("Up"));
     btn_up->setIconSet(SmallIconSet("up"));
-    btn_up->setMinimumSize(btn_up->sizeHint() * 1.2);
+    btn_up->setMinimumSize(btn_up->tqsizeHint() * 1.2);
     connect(btn_up, TQT_SIGNAL(clicked()), TQT_SLOT(upButtonClicked()));
     hbox->addWidget(btn_up);
 
     btn_down = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_down, i18n("Down"));
     btn_down->setIconSet(SmallIconSet("down"));
-    btn_down->setMinimumSize(btn_down->sizeHint() * 1.2);
+    btn_down->setMinimumSize(btn_down->tqsizeHint() * 1.2);
     connect(btn_down, TQT_SIGNAL(clicked()), TQT_SLOT(downButtonClicked()));
     hbox->addWidget(btn_down);
 
@@ -721,21 +721,21 @@ void TopLevel::config()
     rightside->addWidget(editgroup, 0, 0);
     TQHBox *propbox = new TQHBox(editgroup);
 
-    // FIXME: - must enforce correct vertical alignment of each label-editor pair
+    // FIXME: - must enforce correct vertical tqalignment of each label-editor pair
     //          (better use one HBox for each label-editor pair?)
     TQVBox *propleft = new TQVBox(propbox);
     TQVBox *propright = new TQVBox(propbox);
     nameEdit = new TQLineEdit(propright);
-    nameEdit->setFixedHeight(nameEdit->sizeHint().height());
-    nameEdit->setAlignment(TQLineEdit::AlignLeft);
+    nameEdit->setFixedHeight(nameEdit->tqsizeHint().height());
+    nameEdit->tqsetAlignment(TQLineEdit::AlignLeft);
     TQLabel *l = new TQLabel(nameEdit, i18n("Name:"), propleft);
-    l->setFixedSize(l->sizeHint());
+    l->setFixedSize(l->tqsizeHint());
     connect(nameEdit, TQT_SIGNAL(textChanged(const TQString&)), TQT_SLOT(nameEditTextChanged(const TQString&)) );
 
     timeEdit = new TimeEdit(propright);
-    timeEdit->setFixedHeight(timeEdit->sizeHint().height());
+    timeEdit->setFixedHeight(timeEdit->tqsizeHint().height());
     l = new TQLabel(timeEdit, i18n("Tea time:"), propleft);
-    l->setFixedSize(l->sizeHint());
+    l->setFixedSize(l->tqsizeHint());
     connect(timeEdit, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)));
 
     /* bottom - timeout actions */
@@ -751,15 +751,15 @@ void TopLevel::config()
 
     eventEnable = new TQCheckBox(i18n("Event"), actiongroup);
     popupEnable = new TQCheckBox(i18n("Popup"), actiongroup);
-    eventEnable->setFixedHeight(eventEnable->sizeHint().height());
-    popupEnable->setFixedHeight(popupEnable->sizeHint().height());
+    eventEnable->setFixedHeight(eventEnable->tqsizeHint().height());
+    popupEnable->setFixedHeight(popupEnable->tqsizeHint().height());
 
     TQHBox *actionbox = new TQHBox(actiongroup);
     actionEnable = new TQCheckBox(actionbox);
 //    FIXME: add text to this line:
 //    TQLabel *actionLabel = new TQLabel(i18n("Execute: "), actiongroup);
     actionEdit = new TQLineEdit(actionbox);
-    actionEdit->setFixedHeight(actionEdit->sizeHint().height());
+    actionEdit->setFixedHeight(actionEdit->tqsizeHint().height());
     TQToolTip::add(actionEdit, i18n("Enter command here; '%t' will be replaced with name of steeping tea"));
     connect(actionEnable, TQT_SIGNAL(toggled(bool)), TQT_SLOT(actionEnableToggled(bool)));
     rightside->addStretch();

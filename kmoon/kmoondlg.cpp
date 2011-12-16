@@ -19,7 +19,7 @@
  */
 
 #include <tqslider.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <klocale.h>
 #include <tqwhatsthis.h>
 #include <tqvbox.h>
@@ -94,7 +94,7 @@ void KMoonDlg::angleChanged(int value) {
 }
 
 void KMoonDlg::help() {
-    kapp->invokeHelp(TQString::fromLatin1("config"));
+    kapp->invokeHelp(TQString::tqfromLatin1("config"));
 }
 
 void KMoonDlg::toggleHemi() {

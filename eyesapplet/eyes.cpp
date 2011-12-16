@@ -55,11 +55,11 @@ EyesApplet::EyesApplet(const TQString& configFile, Type t, int actions,
 
 int EyesApplet::widthForHeight(int h) const
 {
-    return static_cast<int>(1.4 * h); // rectangular shape.
+    return static_cast<int>(1.4 * h); // rectangular tqshape.
 }
 int EyesApplet::heightForWidth(int w) const
 {
-    return static_cast<int>(w / 1.4); // rectangular shape.
+    return static_cast<int>(w / 1.4); // rectangular tqshape.
 }
 
 void EyesApplet::resizeEvent( TQResizeEvent*e )

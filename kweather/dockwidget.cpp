@@ -21,7 +21,7 @@
 #include "weatherservice_stub.h"
 
 #include <tqtooltip.h>
-#include <layout.h>
+#include <tqlayout.h>
 #include <tqlabel.h>
 #include <tqtimer.h>
 #include <tqobjectlist.h>
@@ -112,19 +112,19 @@ void dockwidget::showWeather()
                     "<th><nobr>" + i18n( "Rel. Humidity:" ) + "</nobr></th><td><nobr>%4</nobr></td></nobr></tr>"
 
                 "<tr><th><nobr>" + i18n( "Wind Speed:"    ) + "</nobr></th><td><nobr>%5</nobr></td>")
-                .arg(temp).arg(dewPoint).arg(pressure).arg(relHumidity).arg(wind);
+                .tqarg(temp).tqarg(dewPoint).tqarg(pressure).tqarg(relHumidity).tqarg(wind);
 
         if ( !heatIndex.isEmpty() )
-            tip += TQString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(heatIndex);
+            tip += TQString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").tqarg(heatIndex);
         else if ( !windChill.isEmpty() )
-            tip += TQString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(windChill);
+            tip += TQString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").tqarg(windChill);
         else
             tip += "<td>&nbsp;</td><td>&nbsp;</td>";
         tip += "</tr>";
 
         tip += TQString("<tr><th><nobr>" + i18n( "Sunrise:" ) + "</nobr></th><td><nobr>%1</nobr></td>" +
                            "<th><nobr>" + i18n( "Sunset:"  ) + "</nobr></th><td><nobr>%2</nobr></td>")
-                 .arg(sunRiseTime).arg(sunSetTime);
+                 .tqarg(sunRiseTime).tqarg(sunSetTime);
 
         tip += "</tr></table>";
 
@@ -184,12 +184,12 @@ void dockwidget::initDock()
     mainLayout->setMargin(0);
     mainLayout->addWidget(m_button, 0, TQt::AlignCenter);
 
-    TQBoxLayout *layout = new TQBoxLayout(mainLayout, TQBoxLayout::TopToBottom);
-    layout->setSpacing(0);
-    layout->setMargin(0);
-    layout->addWidget(m_lblTemp);
-    layout->addWidget(m_lblWind);
-    layout->addWidget(m_lblPres);
+    TQBoxLayout *tqlayout = new TQBoxLayout(mainLayout, TQBoxLayout::TopToBottom);
+    tqlayout->setSpacing(0);
+    tqlayout->setMargin(0);
+    tqlayout->addWidget(m_lblTemp);
+    tqlayout->addWidget(m_lblWind);
+    tqlayout->addWidget(m_lblPres);
 
     mainLayout->addSpacing(8);
 
@@ -210,21 +210,21 @@ void dockwidget::resizeView( const TQSize &size )
 
         if ( m_mode == ShowAll )
         {
-            if ( h <= 128 )  // left to right layout
+            if ( h <= 128 )  // left to right tqlayout
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
-                m_lblTemp->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
-                m_lblWind->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
-                m_lblPres->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::LeftToRight);
+                m_lblTemp->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                m_lblWind->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                m_lblPres->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
             }
             else  // top to bottom
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::TopToBottom);
                 TQFontMetrics fm(m_font);
                 h = 128 - (3 * fm.height());  // 3 lines of text below the button
-                m_lblTemp->setAlignment(TQt::AlignCenter);
-                m_lblWind->setAlignment(TQt::AlignCenter);
-                m_lblPres->setAlignment(TQt::AlignCenter);
+                m_lblTemp->tqsetAlignment(TQt::AlignCenter);
+                m_lblWind->tqsetAlignment(TQt::AlignCenter);
+                m_lblPres->tqsetAlignment(TQt::AlignCenter);
             }
             m_button->setFixedSize(h, h);
         }
@@ -232,15 +232,15 @@ void dockwidget::resizeView( const TQSize &size )
         {
             if ( h <= 32 )  // left to right
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
-                m_lblTemp->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::LeftToRight);
+                m_lblTemp->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
             }
             else  // top to bottom
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::TopToBottom);
                 TQFontMetrics fm(m_font);
                 h = TQMIN(128, h) - fm.height();
-                m_lblTemp->setAlignment(TQt::AlignCenter);
+                m_lblTemp->tqsetAlignment(TQt::AlignCenter);
             }
             m_button->setFixedSize(h, h);
         }
@@ -259,21 +259,21 @@ void dockwidget::resizeView( const TQSize &size )
         {
             if ( w <= 128 )  // top to bottom
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
-                m_lblTemp->setAlignment(TQt::AlignCenter);
-                m_lblWind->setAlignment(TQt::AlignCenter);
-                m_lblPres->setAlignment(TQt::AlignCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::TopToBottom);
+                m_lblTemp->tqsetAlignment(TQt::AlignCenter);
+                m_lblWind->tqsetAlignment(TQt::AlignCenter);
+                m_lblPres->tqsetAlignment(TQt::AlignCenter);
 
                 TQFontMetrics fm(m_font);
                 h = h - (3 * fm.height());  // 3 lines of text below the button
                 h = TQMIN(w, h);
             }
-            else  // left to right layout
+            else  // left to right tqlayout
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
-                m_lblTemp->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
-                m_lblWind->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
-                m_lblPres->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::LeftToRight);
+                m_lblTemp->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                m_lblWind->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                m_lblPres->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
             }
             m_button->setFixedSize(h, h);
         }
@@ -281,15 +281,15 @@ void dockwidget::resizeView( const TQSize &size )
         {
             if ( w <= 128 )  // top to bottom
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::TopToBottom);
-                m_lblTemp->setAlignment(TQt::AlignCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::TopToBottom);
+                m_lblTemp->tqsetAlignment(TQt::AlignCenter);
 
                 h = w;
             }
-            else  // left to right layout
+            else  // left to right tqlayout
             {
-                static_cast<TQBoxLayout*>(layout())->setDirection(TQBoxLayout::LeftToRight);
-                m_lblTemp->setAlignment(TQt::AlignAuto | TQt::AlignVCenter);
+                static_cast<TQBoxLayout*>(tqlayout())->setDirection(TQBoxLayout::LeftToRight);
+                m_lblTemp->tqsetAlignment(TQt::AlignAuto | TQt::AlignVCenter);
 
                 h = static_cast<int>(w * 0.33);
             }
@@ -310,7 +310,7 @@ int dockwidget::widthForHeight(int h)
 
     if ( m_mode == ShowAll )
     {
-        if ( h <= 128 )  // left to right layout
+        if ( h <= 128 )  // left to right tqlayout
         {
             int pixelSize = h/3 - 3;
             pixelSize = TQMIN(pixelSize, fi.pixelSize());  // don't make it too large
@@ -337,7 +337,7 @@ int dockwidget::widthForHeight(int h)
     }
     else if ( m_mode == ShowTempOnly )
     {
-        if ( h <= 32 )  // left to right layout
+        if ( h <= 32 )  // left to right tqlayout
         {
             int pixelSize = h - 3;
             pixelSize = TQMIN(pixelSize, fi.pixelSize());  // don't make it too large

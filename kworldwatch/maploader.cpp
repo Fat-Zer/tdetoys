@@ -63,7 +63,7 @@ TQPtrList<MapTheme> MapLoader::themes()
 
 TQStringList MapLoader::maps(const TQString &theme)
 {
-  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").arg(theme));
+  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").tqarg(theme));
 }
 
 
@@ -101,7 +101,7 @@ void MapLoader::load(unsigned int width, const TQString &theme, unsigned int hei
       size = 800;
     }
   else  
-    image = TQImage(locate("data", TQString("kworldclock/maps/%1/%2.jpg").arg(theme).arg(size)));
+    image = TQImage(locate("data", TQString("kworldclock/maps/%1/%2.jpg").tqarg(theme).tqarg(size)));
 
   if (height == 0)
     height = width/2;

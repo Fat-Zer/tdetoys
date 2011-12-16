@@ -32,9 +32,9 @@ public:
     virtual void setPalette( const TQPalette & );
     void	show();
 
-    void	repaint( bool erase=TRUE );
-    void	repaint( int x, int y, int w, int h, bool erase=TRUE );
-    void	repaint( const TQRect &, bool erase=TRUE );
+    void	tqrepaint( bool erase=TRUE );
+    void	tqrepaint( int x, int y, int w, int h, bool erase=TRUE );
+    void	tqrepaint( const TQRect &, bool erase=TRUE );
 
 protected:
     QtTableView( TQWidget *parent=0, const char *name=0, WFlags f=0 );
@@ -235,11 +235,11 @@ inline TQRect QtTableView::cellUpdateRect() const
 inline bool QtTableView::autoUpdate() const
 { return isUpdatesEnabled(); }
 
-inline void QtTableView::repaint( bool erase )
-{ repaint( 0, 0, width(), height(), erase ); }
+inline void QtTableView::tqrepaint( bool erase )
+{ tqrepaint( 0, 0, width(), height(), erase ); }
 
-inline void QtTableView::repaint( const TQRect &r, bool erase )
-{ repaint( r.x(), r.y(), r.width(), r.height(), erase ); }
+inline void QtTableView::tqrepaint( const TQRect &r, bool erase )
+{ tqrepaint( r.x(), r.y(), r.width(), r.height(), erase ); }
 
 inline void QtTableView::updateScrollBars()
 { updateScrollBars( 0 ); }

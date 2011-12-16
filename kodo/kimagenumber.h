@@ -40,7 +40,7 @@ public:
 	virtual ~KImageNumber();
 
 	void paintEvent(TQPaintEvent*);
-	virtual TQSize sizeHint() const;
+	virtual TQSize tqsizeHint() const;
 	double value() const;
 
 public slots:

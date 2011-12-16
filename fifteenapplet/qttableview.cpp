@@ -34,8 +34,8 @@ enum ScrollBarDirtyFlags {
 };
 
 
-#define HSBEXT horizontalScrollBar()->sizeHint().height()
-#define VSBEXT verticalScrollBar()->sizeHint().width()
+#define HSBEXT horizontalScrollBar()->tqsizeHint().height()
+#define VSBEXT verticalScrollBar()->tqsizeHint().width()
 
 
 class QCornerSquare : public TQWidget		// internal class
@@ -88,7 +88,7 @@ void QCornerSquare::paintEvent( TQPaintEvent * )
   used by functions such as setXOffset() or maxYOffset().
 
   \i The \e widget coordinates. (0,0) is the top-left corner of the widget,
-  \e including the frame.  They are used by functions such as repaint().
+  \e including the frame.  They are used by functions such as tqrepaint().
 
   \i The \e view coordinates.  (0,0) is the top-left corner of the view, \e
   excluding the frame.  This is the least-used coordinate system; it is used by
@@ -135,7 +135,7 @@ void QCornerSquare::paintEvent( TQPaintEvent * )
   The \link setCellHeight() cell height\endlink and \link setCellWidth()
   cell width\endlink are set to 0.
 
-  Frame line shapes (TQFrame::HLink and TQFrame::VLine) are disallowed;
+  Frame line tqshapes (TQFrame::HLink and TQFrame::VLine) are disallowed;
   see TQFrame::setFrameStyle().
 
   Note that the \a f argument is \e not \link setTableFlags() table
@@ -207,7 +207,7 @@ void QtTableView::show()
 
 
 /*!
-  \overload void QtTableView::repaint( bool erase )
+  \overload void QtTableView::tqrepaint( bool erase )
   Repaints the entire view.
 */
 
@@ -221,16 +221,16 @@ void QtTableView::show()
   If \a w is negative, it is replaced with <code>width() - x</code>.
   If \a h is negative, it is replaced with <code>height() - y</code>.
 
-  Doing a repaint() usually is faster than doing an update(), but
+  Doing a tqrepaint() usually is faster than doing an update(), but
   calling update() many times in a row will generate a single paint
   event.
 
   At present, QtTableView is the only widget that reimplements \link
-  TQWidget::repaint() repaint()\endlink.	 It does this because by
+  TQWidget::tqrepaint() tqrepaint()\endlink.	 It does this because by
   clearing and then repainting one cell at at time, it can make the
   screen flicker less than it would otherwise.  */
 
-void QtTableView::repaint( int x, int y, int w, int h, bool erase )
+void QtTableView::tqrepaint( int x, int y, int w, int h, bool erase )
 {
     if ( !isVisible() || testWState(WState_BlockUpdates) )
 	return;
@@ -249,7 +249,7 @@ void QtTableView::repaint( int x, int y, int w, int h, bool erase )
 }
 
 /*!
-  \overload void QtTableView::repaint( const TQRect &r, bool erase )
+  \overload void QtTableView::tqrepaint( const TQRect &r, bool erase )
   Replaints rectangle \a r. If \a erase is TRUE draws the background
   using the palette's background.
 */
@@ -288,7 +288,7 @@ void QtTableView::setNumRows( int rows )
 	nRows = rows;
 	if ( autoUpdate() && isVisible() &&
 	     ( oldLastVisible != lastRowVisible() || oldTopCell != topCell() ) )
-		repaint( oldTopCell != topCell() );
+		tqrepaint( oldTopCell != topCell() );
     } else {
 	// Be more careful - if destructing, bad things might happen.
 	nRows = rows;
@@ -328,7 +328,7 @@ void QtTableView::setNumCols( int cols )
     if ( autoUpdate() && isVisible() ) {
 	int maxCol = lastColVisible();
 	if ( maxCol >= oldCols || maxCol >= nCols )
-	    repaint();
+	    tqrepaint();
     }
     updateScrollBars( horRange );
     updateFrameSize();
@@ -591,7 +591,7 @@ void QtTableView::setCellWidth( int cellWidth )
 
     updateScrollBars( horSteps | horRange );
     if ( autoUpdate() && isVisible() )
-	repaint();
+	tqrepaint();
 
 }
 
@@ -643,7 +643,7 @@ void QtTableView::setCellHeight( int cellHeight )
 #endif
     cellH = (short)cellHeight;
     if ( autoUpdate() && isVisible() )
-	repaint();
+	tqrepaint();
     updateScrollBars( verSteps | verRange );
 }
 
@@ -817,7 +817,7 @@ void QtTableView::setTableFlags( uint f )
 	     (f & Tbl_snapToVGrid) != 0 && yCellDelta != 0 ) {
 	    snapToGrid( (f & Tbl_snapToHGrid) != 0,	// do snapping
 			(f & Tbl_snapToVGrid) != 0 );
-	    repaintMask |= Tbl_snapToGrid;	// repaint table
+	    repaintMask |= Tbl_snapToGrid;	// tqrepaint table
 	}
     }
 
@@ -825,7 +825,7 @@ void QtTableView::setTableFlags( uint f )
 	setAutoUpdate( TRUE );
 	updateScrollBars();
 	if ( isVisible() && (f & repaintMask) )
-	    repaint();
+	    tqrepaint();
     }
 
 }
@@ -881,7 +881,7 @@ void QtTableView::clearTableFlags( uint f )
 	    (f & Tbl_smoothVScrolling) != 0 && yCellDelta != 0 ) {
 	    snapToGrid( (f & Tbl_smoothHScrolling) != 0,      // do snapping
 			(f & Tbl_smoothVScrolling) != 0 );
-	    repaintMask |= Tbl_smoothScrolling;		     // repaint table
+	    repaintMask |= Tbl_smoothScrolling;		     // tqrepaint table
 	}
     }
     if ( f & Tbl_snapToHGrid ) {
@@ -894,7 +894,7 @@ void QtTableView::clearTableFlags( uint f )
 	setAutoUpdate( TRUE );
 	updateScrollBars();	     // returns immediately if nothing to do
 	if ( isVisible() && (f & repaintMask) )
-	    repaint();
+	    tqrepaint();
     }
 
 }
@@ -916,20 +916,20 @@ void QtTableView::clearTableFlags( uint f )
   automatically whenever it has changed in some way (for example, when a
   \link setTableFlags() flag\endlink is changed).
 
-  If \a enable is FALSE, the view does NOT repaint itself or update
+  If \a enable is FALSE, the view does NOT tqrepaint itself or update
   its internal state variables when it is changed.  This can be
   useful to avoid flicker during large changes and is singularly
   useless otherwise. Disable auto-update, do the changes, re-enable
-  auto-update and call repaint().
+  auto-update and call tqrepaint().
 
   \warning Do not leave the view in this state for a long time
   (i.e., between events). If, for example, the user interacts with the
   view when auto-update is off, strange things can happen.
 
-  Setting auto-update to TRUE does not repaint the view; you must call
-  repaint() to do this.
+  Setting auto-update to TRUE does not tqrepaint the view; you must call
+  tqrepaint() to do this.
 
-  \sa autoUpdate(), repaint()
+  \sa autoUpdate(), tqrepaint()
 */
 
 void QtTableView::setAutoUpdate( bool enable )
@@ -963,7 +963,7 @@ void QtTableView::updateCell( int row, int col, bool erase )
     TQRect uR = TQRect( xPos, yPos,
 		      cellW ? cellW : cellWidth(col),
 		      cellH ? cellH : cellHeight(row) );
-    repaint( uR.intersect(viewRect()), erase );
+    tqrepaint( uR.intersect(viewRect()), erase );
 }
 
 
@@ -1379,13 +1379,13 @@ void QtTableView::paintEvent( TQPaintEvent *e )
 
     // Note that this needs to be done regardless whether we do
     // eraseInPaint or not. Reason: a subclass may implement
-    // flicker-freeness and encourage the use of repaint(FALSE).
+    // flicker-freeness and encourage the use of tqrepaint(FALSE).
     // The subclass, however, cannot draw all pixels, just those
     // inside the cells. So QtTableView is reponsible for all pixels
     // outside the cells.
 
     TQRect viewR = viewRect();
-    const TQColorGroup g = colorGroup();
+    const TQColorGroup g = tqcolorGroup();
 
     if ( xPos <= maxX ) {
 	TQRect r = viewR;
@@ -1426,7 +1426,7 @@ void QtTableView::resizeEvent( TQResizeEvent * )
 
 void QtTableView::updateView()
 {
-    repaint( viewRect() );
+    tqrepaint( viewRect() );
 }
 
 /*!
@@ -1443,7 +1443,7 @@ TQScrollBar *QtTableView::verticalScrollBar() const
 #ifndef TQT_NO_CURSOR
 	sb->setCursor( arrowCursor );
 #endif
-        sb->resize( sb->sizeHint() ); // height is irrelevant
+        sb->resize( sb->tqsizeHint() ); // height is irrelevant
 	Q_CHECK_PTR(sb);
 	sb->setTracking( FALSE );
 	sb->setFocusPolicy( TQ_NoFocus );
@@ -1474,7 +1474,7 @@ TQScrollBar *QtTableView::horizontalScrollBar() const
 #ifndef TQT_NO_CURSOR
 	sb->setCursor( arrowCursor );
 #endif
-	sb->resize( sb->sizeHint() ); // width is irrelevant
+	sb->resize( sb->tqsizeHint() ); // width is irrelevant
 	sb->setFocusPolicy( TQ_NoFocus );
 	Q_CHECK_PTR(sb);
 	sb->setTracking( FALSE );
@@ -1522,7 +1522,7 @@ void QtTableView::setHorScrollBar( bool on, bool update )
 	else
 	    sbDirty = sbDirty | verMask;
 	if ( hideScrollBar && isVisible() )
-	    repaint( hScrollBar->x(), hScrollBar->y(),
+	    tqrepaint( hScrollBar->x(), hScrollBar->y(),
 		     width() - hScrollBar->x(), hScrollBar->height() );
     }
     if ( update )
@@ -1561,7 +1561,7 @@ void QtTableView::setVerScrollBar( bool on, bool update )
 	else
 	    sbDirty = sbDirty | horMask;
 	if ( hideScrollBar && isVisible() )
-	    repaint( vScrollBar->x(), vScrollBar->y(),
+	    tqrepaint( vScrollBar->x(), vScrollBar->y(),
 		     vScrollBar->width(), height() - vScrollBar->y() );
     }
     if ( update )
@@ -2006,7 +2006,7 @@ void QtTableView::updateScrollBars( uint f )
 	if ( sbDirty & horValue )
 	    hScrollBar->setValue( xOffs );
 
-			// show scrollbar only when it has a sane geometry
+			// show scrollbar only when it has a sane tqgeometry
 	if ( !hScrollBar->isVisible() )
 	    hScrollBar->show();
     }
@@ -2030,7 +2030,7 @@ void QtTableView::updateScrollBars( uint f )
 	if ( sbDirty & verValue )
 	    vScrollBar->setValue( yOffs );
 
-			// show scrollbar only when it has a sane geometry
+			// show scrollbar only when it has a sane tqgeometry
 	if ( !vScrollBar->isVisible() )
 	    vScrollBar->show();
     }
@@ -2253,7 +2253,7 @@ void QtTableView::showOrHideScrollBars()
   Call this function when the table view's total size is changed;
   typically because the result of cellHeight() or cellWidth() have changed.
 
-  This function does not repaint the widget.
+  This function does not tqrepaint the widget.
 */
 
 void QtTableView::updateTableSize()

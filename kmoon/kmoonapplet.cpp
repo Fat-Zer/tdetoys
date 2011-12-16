@@ -27,7 +27,7 @@
 #include <tqtooltip.h>
 #include <tqpainter.h>
 #include <tqpopupmenu.h>
-#include <layout.h>
+#include <tqlayout.h>
 
 #include <dcopclient.h>
 #include <kdebug.h>
@@ -104,7 +104,7 @@ void MoonPAWidget::showAbout()
                                 KStdGuiItem::ok() );
 
     TQPixmap ret = DesktopIcon("kmoon");
-    TQString text = i18n(description) + TQString::fromLatin1("\n\n") +
+    TQString text = i18n(description) + TQString::tqfromLatin1("\n\n") +
 		   i18n("Written by Stephan Kulow <coolo@kde.org>\n"
                             "\n"
                             "Made an applet by M G Berberich "
@@ -136,7 +136,7 @@ void MoonPAWidget::settings()
                 config->writeEntry("Mask", moon->mask());
                 config->sync();
 	}
-	repaint();
+	tqrepaint();
 }
 
 void MoonPAWidget::timerEvent( TQTimerEvent * )
@@ -144,8 +144,8 @@ void MoonPAWidget::timerEvent( TQTimerEvent * )
     time_t clock;
     time(&clock);
     struct tm *t = localtime(&clock);
-    moon->calcStatus(mktime(t));
-    moon->repaint();
+    moon->calctqStatus(mktime(t));
+    moon->tqrepaint();
 }
 
 void MoonPAWidget::mousePressEvent( TQMouseEvent *e)

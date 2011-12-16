@@ -67,7 +67,7 @@ signals:
 protected:
 	TQSpinBox *minuteBox;
 	WrappingSpinBox *secondBox;
-	TQBoxLayout* layout;
+	TQBoxLayout* tqlayout;
 };
 
 #endif

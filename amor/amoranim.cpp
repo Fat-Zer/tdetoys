@@ -227,7 +227,7 @@ bool AmorThemeManager::readGroup(const TQString & seq)
         mConfig->setGroup(list.at(i));
         AmorAnim *anim = new AmorAnim(*mConfig);
         animList->append(anim);
-        mMaximumSize = mMaximumSize.expandedTo(anim->maximumSize());
+        mMaximumSize = mMaximumSize.expandedTo(anim->tqmaximumSize());
     }
 
     // If no animations were available for this group, just add the base anim
@@ -238,7 +238,7 @@ bool AmorThemeManager::readGroup(const TQString & seq)
         if (anim)
         {
             animList->append(anim);
-            mMaximumSize = mMaximumSize.expandedTo(anim->maximumSize());
+            mMaximumSize = mMaximumSize.expandedTo(anim->tqmaximumSize());
             entries++;
         }
     }

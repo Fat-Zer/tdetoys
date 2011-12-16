@@ -37,7 +37,7 @@ public:
     MoonWidget(TQWidget *parent = 0, const char *name = 0);
     ~MoonWidget();
 
-    void calcStatus( time_t time );
+    void calctqStatus( time_t time );
 
     int angle() const { return _angle; }
     void setAngle(int angle);
