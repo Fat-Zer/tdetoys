@@ -152,7 +152,7 @@ Amor::Amor() : DCOPObject( "AmorIface" ), TQObject()
                         TQT_SLOT(slotMouseClicked(const TQPoint &)));
         connect(mAmor, TQT_SIGNAL(dragged(const TQPoint &, bool)),
                         TQT_SLOT(slotWidgetDragged(const TQPoint &, bool)));
-        mAmor->resize(mTheme.tqmaximumSize());
+        mAmor->resize(mTheme.maximumSize());
 
         mTimer = new TQTimer(this);
         connect(mTimer, TQT_SIGNAL(timeout()), TQT_SLOT(slotTimeout()));
@@ -288,7 +288,7 @@ void Amor::reset()
     mPosition   = mCurrAnim->hotspot().x();
     mState      = Normal;
 
-    mAmor->resize(mTheme.tqmaximumSize()); 
+    mAmor->resize(mTheme.maximumSize()); 
     mCurrAnim->reset();
 
     mTimer->start(0, true);

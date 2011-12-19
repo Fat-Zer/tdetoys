@@ -120,7 +120,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw cell background
     if(number == 16)
-        p->setBrush(tqcolorGroup().background());
+        p->setBrush(colorGroup().background());
     else
         p->setBrush(_colors[number-1]);
     p->setPen(NoPen);
@@ -128,7 +128,7 @@ void PiecesTable::paintCell(TQPainter *p, int row, int col)
 
     // draw borders
     if (height() > 40) {
-        p->setPen(tqcolorGroup().text());
+        p->setPen(colorGroup().text());
         if(col < numCols()-1)
             p->drawLine(x2, 0, x2, y2); // right border line
 

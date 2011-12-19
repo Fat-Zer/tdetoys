@@ -55,7 +55,7 @@ AmorBubble::AmorBubble()
 
     mBrowser->setWrapPolicy(TQTextEdit::AtWordOrDocumentBoundary); // too long to fit in one line?
 
-    TQColorGroup clgrp = mBrowser->tqcolorGroup();
+    TQColorGroup clgrp = mBrowser->colorGroup();
     clgrp.setColor(TQColorGroup::Text, TQt::black);
     //Laurent TQTextBrowser didn't have this function FIX me
     //mBrowser->setPaperColorGroup( clgrp );
@@ -195,7 +195,7 @@ void AmorBubble::drawBubble(TQPainter &p)
     p.drawPolygon(pointArray);
 
     p.setPen(pen);
-    p.tqdrawPolyline(pointArray, 0, 3);
+    p.drawPolyline(pointArray, 0, 3);
 }
 
 //---------------------------------------------------------------------------

@@ -54,16 +54,16 @@ TimeEdit::TimeEdit(TQWidget* parent, const char* name)
 {
 	tqlayout = new TQHBoxLayout(this);
 	minuteBox = new TQSpinBox(0, 300, 1, this);
-//	minuteBox->setFixedSize(minuteBox->tqsizeHint());
+//	minuteBox->setFixedSize(minuteBox->sizeHint());
 
 	TQLabel* min = new TQLabel(i18n(" min"), this);
-	min->setFixedSize(min->tqsizeHint());
+	min->setFixedSize(min->sizeHint());
 	secondBox = new WrappingSpinBox(0, 59, 1, this);
 	secondBox->setWrapping(true);
-//	secondBox->setFixedSize(secondBox->tqsizeHint());
+//	secondBox->setFixedSize(secondBox->sizeHint());
 
 	TQLabel* sec = new TQLabel(i18n(" sec"),this);
-	sec->setFixedSize(sec->tqsizeHint());
+	sec->setFixedSize(sec->sizeHint());
 
 	tqlayout->addWidget(minuteBox);
 	tqlayout->addWidget(min);

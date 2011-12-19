@@ -143,7 +143,7 @@ MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *na
   _cityIndicator->setIndent(0);
   _cityIndicator->setAutoMask(false);
   _cityIndicator->setLineWidth(1);
-  _cityIndicator->tqsetAlignment(TQLabel::AlignAuto | TQLabel::AlignTop);
+  _cityIndicator->setAlignment(TQLabel::AlignAuto | TQLabel::AlignTop);
   _cityIndicator->setAutoResize(true);
   _cityIndicator->setFrameStyle(TQFrame::Box | TQFrame::Plain);
   _cityIndicator->setPalette(TQToolTip::palette());
@@ -563,13 +563,13 @@ TQPixmap MapWidget::calculatePixmap()
 
   if (gmt_position >= greenwich)
     {
-      p.tqdrawPixmap(gmt_position-greenwich, 0, map, 0, 0, map.width()-gmt_position+greenwich);
-      p.tqdrawPixmap(0,0, map, map.width()-gmt_position+greenwich, 0, gmt_position-greenwich);
+      p.drawPixmap(gmt_position-greenwich, 0, map, 0, 0, map.width()-gmt_position+greenwich);
+      p.drawPixmap(0,0, map, map.width()-gmt_position+greenwich, 0, gmt_position-greenwich);
     }
   else
     {
-      p.tqdrawPixmap(0,0, map, greenwich-gmt_position, 0, map.width()+gmt_position-greenwich);
-      p.tqdrawPixmap(map.width()+gmt_position-greenwich, 0, map, 0, 0, greenwich-gmt_position);
+      p.drawPixmap(0,0, map, greenwich-gmt_position, 0, map.width()+gmt_position-greenwich);
+      p.drawPixmap(map.width()+gmt_position-greenwich, 0, map, 0, 0, greenwich-gmt_position);
     }
 
   return pm;

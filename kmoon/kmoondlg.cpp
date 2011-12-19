@@ -94,7 +94,7 @@ void KMoonDlg::angleChanged(int value) {
 }
 
 void KMoonDlg::help() {
-    kapp->invokeHelp(TQString::tqfromLatin1("config"));
+    kapp->invokeHelp(TQString::fromLatin1("config"));
 }
 
 void KMoonDlg::toggleHemi() {

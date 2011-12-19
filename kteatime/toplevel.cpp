@@ -487,10 +487,10 @@ void TopLevel::anonymous()
 		prop_box->addWidget(propright);
 
 		anon_time = new TimeEdit(propright);
-		anon_time->setFixedHeight(anon_time->tqsizeHint().height());
+		anon_time->setFixedHeight(anon_time->sizeHint().height());
 		anon_time->setValue(DEFAULT_TEA_TIME);
 		TQLabel *l = new TQLabel(anon_time, i18n("Tea time:"), propleft);
-		l->setFixedSize(l->tqsizeHint());
+		l->setFixedSize(l->sizeHint());
 
 		top_box->addStretch();
 
@@ -688,28 +688,28 @@ void TopLevel::config()
     btn_new = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_new, i18n("New"));
     btn_new->setPixmap(SmallIcon("filenew"));
-    btn_new->setMinimumSize(btn_new->tqsizeHint() * 1.2);
+    btn_new->setMinimumSize(btn_new->sizeHint() * 1.2);
     connect(btn_new, TQT_SIGNAL(clicked()), TQT_SLOT(newButtonClicked()));
     hbox->addWidget(btn_new);
 
     btn_del = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_del, i18n("Delete"));
     btn_del->setIconSet(SmallIconSet("editdelete"));
-    btn_del->setMinimumSize(btn_new->tqsizeHint() * 1.2);
+    btn_del->setMinimumSize(btn_new->sizeHint() * 1.2);
     connect(btn_del, TQT_SIGNAL(clicked()), TQT_SLOT(delButtonClicked()));
     hbox->addWidget(btn_del);
 
     btn_up = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_up, i18n("Up"));
     btn_up->setIconSet(SmallIconSet("up"));
-    btn_up->setMinimumSize(btn_up->tqsizeHint() * 1.2);
+    btn_up->setMinimumSize(btn_up->sizeHint() * 1.2);
     connect(btn_up, TQT_SIGNAL(clicked()), TQT_SLOT(upButtonClicked()));
     hbox->addWidget(btn_up);
 
     btn_down = new TQPushButton(TQString(), listgroup_widget);
     TQToolTip::add(btn_down, i18n("Down"));
     btn_down->setIconSet(SmallIconSet("down"));
-    btn_down->setMinimumSize(btn_down->tqsizeHint() * 1.2);
+    btn_down->setMinimumSize(btn_down->sizeHint() * 1.2);
     connect(btn_down, TQT_SIGNAL(clicked()), TQT_SLOT(downButtonClicked()));
     hbox->addWidget(btn_down);
 
@@ -726,16 +726,16 @@ void TopLevel::config()
     TQVBox *propleft = new TQVBox(propbox);
     TQVBox *propright = new TQVBox(propbox);
     nameEdit = new TQLineEdit(propright);
-    nameEdit->setFixedHeight(nameEdit->tqsizeHint().height());
-    nameEdit->tqsetAlignment(TQLineEdit::AlignLeft);
+    nameEdit->setFixedHeight(nameEdit->sizeHint().height());
+    nameEdit->setAlignment(TQLineEdit::AlignLeft);
     TQLabel *l = new TQLabel(nameEdit, i18n("Name:"), propleft);
-    l->setFixedSize(l->tqsizeHint());
+    l->setFixedSize(l->sizeHint());
     connect(nameEdit, TQT_SIGNAL(textChanged(const TQString&)), TQT_SLOT(nameEditTextChanged(const TQString&)) );
 
     timeEdit = new TimeEdit(propright);
-    timeEdit->setFixedHeight(timeEdit->tqsizeHint().height());
+    timeEdit->setFixedHeight(timeEdit->sizeHint().height());
     l = new TQLabel(timeEdit, i18n("Tea time:"), propleft);
-    l->setFixedSize(l->tqsizeHint());
+    l->setFixedSize(l->sizeHint());
     connect(timeEdit, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)));
 
     /* bottom - timeout actions */
@@ -751,15 +751,15 @@ void TopLevel::config()
 
     eventEnable = new TQCheckBox(i18n("Event"), actiongroup);
     popupEnable = new TQCheckBox(i18n("Popup"), actiongroup);
-    eventEnable->setFixedHeight(eventEnable->tqsizeHint().height());
-    popupEnable->setFixedHeight(popupEnable->tqsizeHint().height());
+    eventEnable->setFixedHeight(eventEnable->sizeHint().height());
+    popupEnable->setFixedHeight(popupEnable->sizeHint().height());
 
     TQHBox *actionbox = new TQHBox(actiongroup);
     actionEnable = new TQCheckBox(actionbox);
 //    FIXME: add text to this line:
 //    TQLabel *actionLabel = new TQLabel(i18n("Execute: "), actiongroup);
     actionEdit = new TQLineEdit(actionbox);
-    actionEdit->setFixedHeight(actionEdit->tqsizeHint().height());
+    actionEdit->setFixedHeight(actionEdit->sizeHint().height());
     TQToolTip::add(actionEdit, i18n("Enter command here; '%t' will be replaced with name of steeping tea"));
     connect(actionEnable, TQT_SIGNAL(toggled(bool)), TQT_SLOT(actionEnableToggled(bool)));
     rightside->addStretch();

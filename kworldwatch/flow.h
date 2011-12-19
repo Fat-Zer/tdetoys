@@ -37,8 +37,8 @@ public:
     void addItem( TQLayoutItem *item);
     bool hasHeightForWidth() const;
     int heightForWidth( int ) const;
-    TQSize tqsizeHint() const;
-    TQSize tqminimumSize() const;
+    TQSize sizeHint() const;
+    TQSize minimumSize() const;
     TQLayoutIterator iterator();
     TQSizePolicy::ExpandData expanding() const;
 

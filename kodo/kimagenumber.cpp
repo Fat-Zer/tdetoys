@@ -30,7 +30,7 @@ KImageNumber::KImageNumber(const TQString& font, TQWidget* parent,const char* na
 	m_value(0)
 {
 	fontPix = new TQPixmap(font);
-	resize(tqsizeHint());
+	resize(sizeHint());
 }
 
 KImageNumber::~KImageNumber()
@@ -65,7 +65,7 @@ double KImageNumber::value() const
 	return m_value;
 }
 
-TQSize KImageNumber::tqsizeHint() const
+TQSize KImageNumber::sizeHint() const
 {
 	int w = fontPix->width();
 	int each = w/11;

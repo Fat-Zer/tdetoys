@@ -104,7 +104,7 @@ void MoonPAWidget::showAbout()
                                 KStdGuiItem::ok() );
 
     TQPixmap ret = DesktopIcon("kmoon");
-    TQString text = i18n(description) + TQString::tqfromLatin1("\n\n") +
+    TQString text = i18n(description) + TQString::fromLatin1("\n\n") +
 		   i18n("Written by Stephan Kulow <coolo@kde.org>\n"
                             "\n"
                             "Made an applet by M G Berberich "
@@ -144,7 +144,7 @@ void MoonPAWidget::timerEvent( TQTimerEvent * )
     time_t clock;
     time(&clock);
     struct tm *t = localtime(&clock);
-    moon->calctqStatus(mktime(t));
+    moon->calcStatus(mktime(t));
     moon->tqrepaint();
 }
 

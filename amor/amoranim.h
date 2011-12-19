@@ -59,7 +59,7 @@ public:
         { return (mCurrent < mSequence.count()); }
     int totalMovement() const
         { return mTotalMovement; }
-    TQSize tqmaximumSize() const
+    TQSize maximumSize() const
         { return mMaximumSize; }
 
     int delay() const
@@ -103,7 +103,7 @@ public:
 
     AmorAnim *random(const TQString & group);
 
-    TQSize tqmaximumSize() const { return mMaximumSize; }
+    TQSize maximumSize() const { return mMaximumSize; }
 
 protected:
     TQString           mPath;

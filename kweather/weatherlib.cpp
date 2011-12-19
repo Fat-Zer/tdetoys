@@ -65,7 +65,7 @@ WeatherLib::Data::Data()
 
 void WeatherLib::Data::clear()
 {
-	age = TQDateTime::tqcurrentDateTime();
+	age = TQDateTime::currentDateTime();
 	downloading = false;
 	updated = false;
 	job = 0;
@@ -135,7 +135,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 						kdDebug( 12006 ) << "Parse: " << s << endl;
 						MetarParser parser(m_StationDb, KGlobal::locale()->measureSystem());
 						d->wi = parser.processData(d->wi.reportLocation, s);
-						d->age = TQDateTime::tqcurrentDateTime().addSecs(1800);
+						d->age = TQDateTime::currentDateTime().addSecs(1800);
 						emit fileUpdate(d->wi.reportLocation);
 						d->updated = true;
 					}
@@ -322,7 +322,7 @@ void WeatherLib::update(const TQString &stationID)
 	// Only grab new data if its more than 50 minutes old
 	Data *d = findData(stationID);
 
-	TQDateTime timeout = TQDateTime::tqcurrentDateTime();
+	TQDateTime timeout = TQDateTime::currentDateTime();
 
 	kdDebug (12006) << "Current Time: " << KGlobal::locale()->formatDateTime(timeout, false, false) <<
 			" Update at: " << KGlobal::locale()->formatDateTime(d->age, false, false) << endl;
