@@ -36,7 +36,7 @@
 
 //---------------------------------------------------------------------------
 //
-// AmorWidget displays a tqshaped pixmap
+// AmorWidget displays a shaped pixmap
 //
 class AmorWidget : public TQWidget
 {

@@ -144,7 +144,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 						// File error
 						kdDebug( 12006 ) << "File empty error..." << endl;
 						KPassivePopup::message( i18n("KWeather Error!"),
-						i18n("The temp file %1 was empty.").tqarg(d->target->name()),  0L,"error" );
+						i18n("The temp file %1 was empty.").arg(d->target->name()),  0L,"error" );
 						d->updated = false;
 					}
 				}
@@ -153,7 +153,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 					// File error
 					kdDebug( 12006 ) << "File read error..." << endl;
 					KPassivePopup::message( i18n("KWeather Error!"),
-				i18n("Could not read the temp file %1.").tqarg(d->target->name()),  0L,"error" );
+				i18n("Could not read the temp file %1.").arg(d->target->name()),  0L,"error" );
 					d->updated = false;
 				}
 				delete d->target;

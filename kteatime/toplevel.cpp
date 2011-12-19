@@ -207,7 +207,7 @@ void TopLevel::resizeEvent ( TQResizeEvent * )
 	teaNotReadyPixmap = loadSizedIcon("tea_not_ready", width());
 	teaAnim1Pixmap = loadSizedIcon("tea_anim1", width());
 	teaAnim2Pixmap = loadSizedIcon("tea_anim2", width());
-	tqrepaint();
+	repaint();
 }
 
 /** Handle mousePressEvent */
@@ -302,7 +302,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 					menu->setItemChecked(current_selected, true);
 			}
 
-			TQString teaMessage = i18n("The %1 is now ready!").tqarg(current_name);
+			TQString teaMessage = i18n("The %1 is now ready!").arg(current_name);
 			// invoke action
 			if (useNotify) {
 				KNotifyClient::event(winId(), "tea", teaMessage);
@@ -317,7 +317,7 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				                       teaMessage, teaAnim1Pixmap, this, "popup", 0);
 				// FIXME: does auto-deletion work without timeout?
 			setToolTip(teaMessage);
-			tqrepaint();
+			repaint();
 		} else {
 			// timer not yet run out; just update tray-icon (if configured)...
 			if (useTrayVis) {
@@ -325,18 +325,18 @@ void TopLevel::timerEvent(TQTimerEvent *)
 				if (pDone - percentDone > 8) {
 					// update icon not every second, but only if somewhat noticable
 					percentDone = pDone;
-					tqrepaint();
+					repaint();
 				}
 			}
 			// ...and Tooltip
 			TQString min = int2time(seconds);
-			setToolTip(i18n("%1 left for %2").tqarg(min).tqarg(current_name));
+			setToolTip(i18n("%1 left for %2").arg(min).arg(current_name));
 		}
 	} else {
 		// no tea is steeping; just animate icon
 		if (ready) {
 			firstFrame = !firstFrame;
-			tqrepaint();
+			repaint();
 		}
 	}
 }
@@ -447,7 +447,7 @@ void TopLevel::start()
 		ready = false;
 		enable_menuEntries();                           // disable "start", enable "stop"
 
-		tqrepaint();
+		repaint();
 	}
 }
 
@@ -467,7 +467,7 @@ void TopLevel::stop()
 	}
 
 	setToolTip(i18n("The Tea Cooker"), true);
-	tqrepaint();
+	repaint();
 }
 
 /* open dialog to start an 'anonymous' tea */
@@ -721,7 +721,7 @@ void TopLevel::config()
     rightside->addWidget(editgroup, 0, 0);
     TQHBox *propbox = new TQHBox(editgroup);
 
-    // FIXME: - must enforce correct vertical tqalignment of each label-editor pair
+    // FIXME: - must enforce correct vertical alignment of each label-editor pair
     //          (better use one HBox for each label-editor pair?)
     TQVBox *propleft = new TQVBox(propbox);
     TQVBox *propright = new TQVBox(propbox);

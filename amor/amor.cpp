@@ -748,7 +748,7 @@ void Amor::slotOffsetChanged(int off)
 //
 void Amor::slotAbout()
 {
-    TQString about = i18n("Amor Version %1\n\n").tqarg(AMOR_VERSION) +
+    TQString about = i18n("Amor Version %1\n\n").arg(AMOR_VERSION) +
                 i18n("Amusing Misuse Of Resources\n\n") +
                 i18n("Copyright (c) 1999 Martin R. Jones <mjones@kde.org>\n\n") +
 		i18n("Original Author: Martin R. Jones <mjones@kde.org>\n") +

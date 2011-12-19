@@ -129,7 +129,7 @@
             <property name="title">
                 <string>Panel Display Options</string>
             </property>
-            <property name="tqalignment">
+            <property name="alignment">
                 <set>AlignVCenter|AlignLeft</set>
             </property>
             <property name="exclusive">

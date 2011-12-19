@@ -83,12 +83,12 @@ AmorBubble::~AmorBubble()
 
 //---------------------------------------------------------------------------
 //
-// Set the message to display in the bubble.  Causes the tqgeometry of the
+// Set the message to display in the bubble.  Causes the geometry of the
 // widget to be recalculated.
 //
 void AmorBubble::setMessage(const TQString& message)
 {
-    mMessage = TQString( "<html>%1</html>" ).tqarg( message );
+    mMessage = TQString( "<html>%1</html>" ).arg( message );
     // hacks because heightForWidth() doesn't work.
     setGeometry( -1000, 0, 300, 1000 );
     show();
@@ -108,7 +108,7 @@ void AmorBubble::calcGeometry()
     mBound.setHeight( mBrowser->contentsHeight() );
     mBound.moveBy(ARROW_WIDTH+BORDER_SIZE, BORDER_SIZE);
 
-    // initialise the default tqgeometry of the bubble
+    // initialise the default geometry of the bubble
     int w = mBound.width() + BORDER_SIZE * 2 + ARROW_WIDTH;
     int h = mBound.height() + BORDER_SIZE * 2;
     int xpos = mOriginX + BUBBLE_OFFSET;
@@ -141,7 +141,7 @@ void AmorBubble::calcGeometry()
     setGeometry(xpos, ypos, w, h);
     mBrowser->setGeometry( mBound );
 
-    // create and apply the tqshape mask
+    // create and apply the shape mask
     mMask.resize(w, h);
     mMask.fill(color0);
     TQPainter maskPainter(&mMask);

@@ -366,7 +366,7 @@ TQString MapWidget::cityTime(const TQString &city)
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  result.append(TQString("%1, %2").tqarg(KGlobal::locale()->formatTime(dt.time(), true)).tqarg(KGlobal::locale()->formatDate(dt.date(), true)));
+  result.append(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);

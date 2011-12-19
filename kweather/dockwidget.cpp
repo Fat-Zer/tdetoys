@@ -112,19 +112,19 @@ void dockwidget::showWeather()
                     "<th><nobr>" + i18n( "Rel. Humidity:" ) + "</nobr></th><td><nobr>%4</nobr></td></nobr></tr>"
 
                 "<tr><th><nobr>" + i18n( "Wind Speed:"    ) + "</nobr></th><td><nobr>%5</nobr></td>")
-                .tqarg(temp).tqarg(dewPoint).tqarg(pressure).tqarg(relHumidity).tqarg(wind);
+                .arg(temp).arg(dewPoint).arg(pressure).arg(relHumidity).arg(wind);
 
         if ( !heatIndex.isEmpty() )
-            tip += TQString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").tqarg(heatIndex);
+            tip += TQString("<th><nobr>" + i18n( "Heat Index:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(heatIndex);
         else if ( !windChill.isEmpty() )
-            tip += TQString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").tqarg(windChill);
+            tip += TQString("<th><nobr>" + i18n( "Wind Chill:" ) + "</nobr></th><td><nobr>%1</nobr></td>").arg(windChill);
         else
             tip += "<td>&nbsp;</td><td>&nbsp;</td>";
         tip += "</tr>";
 
         tip += TQString("<tr><th><nobr>" + i18n( "Sunrise:" ) + "</nobr></th><td><nobr>%1</nobr></td>" +
                            "<th><nobr>" + i18n( "Sunset:"  ) + "</nobr></th><td><nobr>%2</nobr></td>")
-                 .tqarg(sunRiseTime).tqarg(sunSetTime);
+                 .arg(sunRiseTime).arg(sunSetTime);
 
         tip += "</tr></table>";
 

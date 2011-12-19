@@ -198,14 +198,14 @@ void PiecesTable::randomizeMap()
             }
         }
     }
-    tqrepaint();
+    repaint();
     _randomized = true;
 }
 
 void PiecesTable::resetMap()
 {
     initMap();
-    tqrepaint();
+    repaint();
 }
 
 void PiecesTable::checkwin()
