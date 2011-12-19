@@ -76,9 +76,9 @@ bool SimpleFlow::hasHeightForWidth() const
     return TRUE;
 }
 
-TQSize SimpleFlow::tqsizeHint() const
+TQSize SimpleFlow::sizeHint() const
 {
-    return tqminimumSize();
+    return minimumSize();
 }
 
 TQSizePolicy::ExpandData SimpleFlow::expanding() const
@@ -116,29 +116,29 @@ int SimpleFlow::doLayout( const TQRect &r, bool testonly )
     TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
-	int nextX = x + o->tqsizeHint().width() + spacing();
+	int nextX = x + o->sizeHint().width() + spacing();
 	if ( nextX - spacing() > r.right() && h > 0 ) {
 	    x = r.x();
 	    y = y + h + spacing();
-	    nextX = x + o->tqsizeHint().width() + spacing();
+	    nextX = x + o->sizeHint().width() + spacing();
 	    h = 0;
 	}
 	if ( !testonly )
-	    o->setGeometry( TQRect( TQPoint( x, y ), o->tqsizeHint() ) );
+	    o->setGeometry( TQRect( TQPoint( x, y ), o->sizeHint() ) );
 	x = nextX;
-	h = TQMAX( h,  o->tqsizeHint().height() );
+	h = TQMAX( h,  o->sizeHint().height() );
     }
     return y + h - r.y();
 }
 
-TQSize SimpleFlow::tqminimumSize() const
+TQSize SimpleFlow::minimumSize() const
 {
     TQSize s(0,0);
     TQPtrListIterator<TQLayoutItem> it(list);
     TQLayoutItem *o;
     while ( (o=it.current()) != 0 ) {
 	++it;
-	s = s.expandedTo( o->tqminimumSize() );
+	s = s.expandedTo( o->minimumSize() );
     }
     return s;
 }

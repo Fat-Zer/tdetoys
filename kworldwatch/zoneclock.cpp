@@ -218,8 +218,8 @@ void ZoneClockPanel::realign()
   int w = 0;
   TQPtrListIterator<ZoneClock> it(_clocks);
   for ( ; it.current(); ++it)
-    if (it.current()->tqsizeHint().width() > w)
-      w = it.current()->tqsizeHint().width();
+    if (it.current()->sizeHint().width() > w)
+      w = it.current()->sizeHint().width();
   it.toFirst();
   for ( ; it.current(); ++it)
     it.current()->setFixedWidth(w);

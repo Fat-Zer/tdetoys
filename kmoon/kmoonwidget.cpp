@@ -70,14 +70,14 @@ MoonWidget::MoonWidget(TQWidget *parent, const char *name)
     time(&clock);
     t = gmtime(&clock);
     // kdDebug() << "time " << t->tm_isdst << " " << timezone << " " << daylight << endl ;
-    calctqStatus(mktime(t));
+    calcStatus(mktime(t));
 }
 
 MoonWidget::~MoonWidget()
 {
 }
 
-void MoonWidget::calctqStatus( time_t time )
+void MoonWidget::calcStatus( time_t time )
 {
     uint lun = 0;
     time_t last_new = 0;

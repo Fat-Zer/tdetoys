@@ -171,7 +171,7 @@ void kweather::preferences()
 /** The help handler */
 void kweather::help()
 {
-    kapp->invokeHelp(TQString(), TQString::tqfromLatin1("kweather"));
+    kapp->invokeHelp(TQString(), TQString::fromLatin1("kweather"));
 }
 
 /** Display the current weather report. */

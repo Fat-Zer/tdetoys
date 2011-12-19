@@ -34,8 +34,8 @@ enum ScrollBarDirtyFlags {
 };
 
 
-#define HSBEXT horizontalScrollBar()->tqsizeHint().height()
-#define VSBEXT verticalScrollBar()->tqsizeHint().width()
+#define HSBEXT horizontalScrollBar()->sizeHint().height()
+#define VSBEXT verticalScrollBar()->sizeHint().width()
 
 
 class QCornerSquare : public TQWidget		// internal class
@@ -1385,7 +1385,7 @@ void QtTableView::paintEvent( TQPaintEvent *e )
     // outside the cells.
 
     TQRect viewR = viewRect();
-    const TQColorGroup g = tqcolorGroup();
+    const TQColorGroup g = colorGroup();
 
     if ( xPos <= maxX ) {
 	TQRect r = viewR;
@@ -1443,7 +1443,7 @@ TQScrollBar *QtTableView::verticalScrollBar() const
 #ifndef TQT_NO_CURSOR
 	sb->setCursor( arrowCursor );
 #endif
-        sb->resize( sb->tqsizeHint() ); // height is irrelevant
+        sb->resize( sb->sizeHint() ); // height is irrelevant
 	Q_CHECK_PTR(sb);
 	sb->setTracking( FALSE );
 	sb->setFocusPolicy( TQ_NoFocus );
@@ -1474,7 +1474,7 @@ TQScrollBar *QtTableView::horizontalScrollBar() const
 #ifndef TQT_NO_CURSOR
 	sb->setCursor( arrowCursor );
 #endif
-	sb->resize( sb->tqsizeHint() ); // width is irrelevant
+	sb->resize( sb->sizeHint() ); // width is irrelevant
 	sb->setFocusPolicy( TQ_NoFocus );
 	Q_CHECK_PTR(sb);
 	sb->setTracking( FALSE );

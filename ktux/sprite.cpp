@@ -60,7 +60,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
     tl1->addLayout(tl11);
 
     TQLabel *label = new TQLabel( i18n("Speed:"), this );
-    label->setMinimumSize(label->tqsizeHint());
+    label->setMinimumSize(label->sizeHint());
     tl11->addStretch(1);
     tl11->addWidget(label);
 
@@ -203,7 +203,7 @@ void KSpriteSaver::initialise()
 {
     mCanvas = new TQCanvas();
     TQPixmap pm( locate("sprite", "bg.png") );
-    mCanvas->tqsetBackgroundPixmap( pm );
+    mCanvas->setBackgroundPixmap( pm );
     mCanvas->resize( width(), height() );
     mView = new TQCanvasView(mCanvas);
     mView->viewport()->setBackgroundColor( black );
