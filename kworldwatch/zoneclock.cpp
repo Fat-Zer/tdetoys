@@ -122,7 +122,7 @@ void ZoneClock::editClock()
       _name = _dlg->ClockCaption->text().append(":");
       _nameLabel->setText(_dlg->ClockCaption->text().append(":"));
       updateTime();
-      tqlayout()->tqinvalidate();
+      tqlayout()->invalidate();
       emit changed();
     }
 
@@ -152,7 +152,7 @@ void ZoneClock::updateTime()
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  _timeLabel->setText(TQString("%1, %2").tqarg(KGlobal::locale()->formatTime(dt.time(), true)).tqarg(KGlobal::locale()->formatDate(dt.date(), true)));
+  _timeLabel->setText(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -266,8 +266,8 @@ void ZoneClockPanel::save(KConfig *config)
     {
       TQString n = it.current()->name();
       n = n.left(n.length()-1);
-      config->writeEntry(TQString("Clock_%1_Name").tqarg(cnt), n);
-      config->writeEntry(TQString("Clock_%1_Zone").tqarg(cnt), it.current()->zone());
+      config->writeEntry(TQString("Clock_%1_Name").arg(cnt), n);
+      config->writeEntry(TQString("Clock_%1_Zone").arg(cnt), it.current()->zone());
       cnt++;
     }
 }
@@ -281,7 +281,7 @@ void ZoneClockPanel::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addClock(config->readEntry(TQString("Clock_%1_Zone").tqarg(i)), config->readEntry(TQString("Clock_%1_Name").tqarg(i)));
+      addClock(config->readEntry(TQString("Clock_%1_Zone").arg(i)), config->readEntry(TQString("Clock_%1_Name").arg(i)));
     }
 }
 

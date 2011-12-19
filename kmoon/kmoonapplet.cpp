@@ -136,7 +136,7 @@ void MoonPAWidget::settings()
                 config->writeEntry("Mask", moon->mask());
                 config->sync();
 	}
-	tqrepaint();
+	repaint();
 }
 
 void MoonPAWidget::timerEvent( TQTimerEvent * )
@@ -145,7 +145,7 @@ void MoonPAWidget::timerEvent( TQTimerEvent * )
     time(&clock);
     struct tm *t = localtime(&clock);
     moon->calcStatus(mktime(t));
-    moon->tqrepaint();
+    moon->repaint();
 }
 
 void MoonPAWidget::mousePressEvent( TQMouseEvent *e)

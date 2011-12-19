@@ -155,7 +155,7 @@ int SimpleFlow::count() const {
     \reimp
 */
 TQLayoutItem* SimpleFlow::itemAt(int index) const {
-	return index >= 0 && index < list.count() ? (const_cast<TQPtrList<TQLayoutItem>&>(list).tqat(index)) : 0;
+	return index >= 0 && index < list.count() ? (const_cast<TQPtrList<TQLayoutItem>&>(list).at(index)) : 0;
 }
 
 /*!
@@ -164,8 +164,8 @@ TQLayoutItem* SimpleFlow::itemAt(int index) const {
 TQLayoutItem* SimpleFlow::takeAt(int index) {
 	if (index < 0 || index >= list.count())
 		return 0;
-	TQLayoutItem *item = list.tqat(index);
-	list.remove(list.tqat(index));
+	TQLayoutItem *item = list.at(index);
+	list.remove(list.at(index));
 	delete item;
 
 	invalidate();

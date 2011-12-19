@@ -170,22 +170,22 @@ bool MetarParser::parseCover(const TQString &s)
 
 		if (sCode == "FEW")
 		{
-			skycondition = i18n( "Few clouds at %1" ).tqarg(sClouds);
+			skycondition = i18n( "Few clouds at %1" ).arg(sClouds);
 			weatherInfo.clouds += 2;
 		}
 		else if (sCode == "SCT")
 		{
-			skycondition = i18n( "Scattered clouds at %1" ).tqarg(sClouds);
+			skycondition = i18n( "Scattered clouds at %1" ).arg(sClouds);
 			weatherInfo.clouds += 4;
 		}
 		else if (sCode == "BKN")
 		{
-			skycondition = i18n( "Broken clouds at %1" ).tqarg(sClouds);
+			skycondition = i18n( "Broken clouds at %1" ).arg(sClouds);
 			weatherInfo.clouds += 8;
 		}
 		else if (sCode == "OVC")
 		{
-			skycondition = i18n( "Overcast clouds at %1" ).tqarg(sClouds);
+			skycondition = i18n( "Overcast clouds at %1" ).arg(sClouds);
 			weatherInfo.clouds += 64;
 		}
 		else if ((sCode == "CLR") || (sCode == "SKC") || (sCode == "CAVOK"))
@@ -343,7 +343,7 @@ bool MetarParser::parseCurrent(const TQString &s)
 		else if (sCode.contains("DS"))
 			phenomena = i18n("Dust Storm");
 		
-		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").tqarg(intensity).tqarg(descriptor).tqarg(phenomena);
+		if (currentWeather.isEmpty()) currentWeather = i18n("%1 is the intensity, %2 is the descriptor and %3 is the phenomena", "%1 %2 %3").arg(intensity).arg(descriptor).arg(phenomena);
 
 		if (!currentWeather.isEmpty())
 			weatherInfo.qsCurrentList << currentWeather;

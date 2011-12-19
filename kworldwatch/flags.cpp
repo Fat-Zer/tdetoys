@@ -121,9 +121,9 @@ void FlagList::save(KConfig *config)
   int cnt=0;
   for ( ; it.current(); ++it)
     {
-      config->writeEntry(TQString("Flag_%1_Color").tqarg(cnt), it.current()->color());
-      config->writeEntry(TQString("Flag_%1_Latitude").tqarg(cnt), it.current()->latitude());
-      config->writeEntry(TQString("Flag_%1_Longitude").tqarg(cnt), it.current()->longitude());
+      config->writeEntry(TQString("Flag_%1_Color").arg(cnt), it.current()->color());
+      config->writeEntry(TQString("Flag_%1_Latitude").arg(cnt), it.current()->latitude());
+      config->writeEntry(TQString("Flag_%1_Longitude").arg(cnt), it.current()->longitude());
       cnt++;
     }
 }
@@ -136,9 +136,9 @@ void FlagList::load(KConfig *config)
 
   for (int i=0; i<num; ++i)
     {
-      addFlag(new Flag(config->readDoubleNumEntry(TQString("Flag_%1_Longitude").tqarg(i)),
-		       config->readDoubleNumEntry(TQString("Flag_%1_Latitude").tqarg(i)),
-		       config->readColorEntry(TQString("Flag_%1_Color").tqarg(i))));
+      addFlag(new Flag(config->readDoubleNumEntry(TQString("Flag_%1_Longitude").arg(i)),
+		       config->readDoubleNumEntry(TQString("Flag_%1_Latitude").arg(i)),
+		       config->readColorEntry(TQString("Flag_%1_Color").arg(i))));
     }
 }
 
