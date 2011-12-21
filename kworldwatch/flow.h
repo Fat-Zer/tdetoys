@@ -1,7 +1,7 @@
 /****************************************************************************
 ** $Id$
 **
-** Definition of simple flow tqlayout for custom tqlayout example
+** Definition of simple flow layout for custom layout example
 **
 ** Created : 979899
 **

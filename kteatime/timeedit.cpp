@@ -52,7 +52,7 @@ void WrappingSpinBox::stepDown()
 TimeEdit::TimeEdit(TQWidget* parent, const char* name)
     : TQWidget(parent, name)
 {
-	tqlayout = new TQHBoxLayout(this);
+	layout = new TQHBoxLayout(this);
 	minuteBox = new TQSpinBox(0, 300, 1, this);
 //	minuteBox->setFixedSize(minuteBox->sizeHint());
 
@@ -65,11 +65,11 @@ TimeEdit::TimeEdit(TQWidget* parent, const char* name)
 	TQLabel* sec = new TQLabel(i18n(" sec"),this);
 	sec->setFixedSize(sec->sizeHint());
 
-	tqlayout->addWidget(minuteBox);
-	tqlayout->addWidget(min);
+	layout->addWidget(minuteBox);
+	layout->addWidget(min);
 
-	tqlayout->addWidget(secondBox);
-	tqlayout->addWidget(sec);
+	layout->addWidget(secondBox);
+	layout->addWidget(sec);
 
 	connect(minuteBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );
 	connect(secondBox, TQT_SIGNAL(valueChanged(int)), TQT_SLOT(spinBoxValueChanged(int)) );

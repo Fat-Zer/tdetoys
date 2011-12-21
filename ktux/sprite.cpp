@@ -85,7 +85,7 @@ KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
 
     button = bbox->addButton(KStdGuiItem::cancel());
     connect( button, TQT_SIGNAL( clicked() ), TQT_SLOT( reject() ) );
-    bbox->tqlayout();
+    bbox->layout();
     tl->addWidget(bbox);
 
     tl->freeze();

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** $Id$
 **
-** Implementing your own tqlayout: flow example
+** Implementing your own layout: flow example
 **
 ** Copyright (C) 1996 by Trolltech AS.  All rights reserved.
 **
