@@ -72,7 +72,7 @@ void reportView::render(){
 
     TQString textColor = KGlobalSettings::textColor().name();
     TQString baseColor = KGlobalSettings::baseColor().name();
-    TQColorGroup cg = tqpalette().active();
+    TQColorGroup cg = palette().active();
     TQString bgColor = cg.background().name();
     TQString hlColor = cg.highlight().name();
     TQString hlTextColor = cg.highlightedText().name();

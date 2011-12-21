@@ -122,7 +122,7 @@ void ZoneClock::editClock()
       _name = _dlg->ClockCaption->text().append(":");
       _nameLabel->setText(_dlg->ClockCaption->text().append(":"));
       updateTime();
-      tqlayout()->invalidate();
+      layout()->invalidate();
       emit changed();
     }
 

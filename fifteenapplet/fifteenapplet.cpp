@@ -54,7 +54,7 @@ FifteenApplet::FifteenApplet(const TQString& configFile, Type type, int actions,
     _table = new PiecesTable(this);
     setCustomMenu(_table->popup());
 
-    // setup tqlayout
+    // setup layout
     TQHBoxLayout *_layout = new TQHBoxLayout(this);
     _layout->add(_table);
 
