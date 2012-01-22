@@ -522,7 +522,7 @@ loc3=Clayton KCAO NMZ007 ---
 loc4=Clovis-Cannon\\ AFB KCVS NMZ021 ---
 loc5=Corona K4CR NMZ016 ---
 loc6=Cuba\\ Awrs K4SL NMZ002 ---
-loc7=Deming KDMN NMZ031 ---
+loc7=Deming TDMN NMZ031 ---
 loc8=Farmington KFMN NMZ001 081
 loc9=Gallup KGUP NMZ008 093
 loc10=Grants KGNT NMZ008 093
@@ -823,7 +823,7 @@ loc17=Safford-Municipal\\ Airport KSAD AZZ030 ---
 loc18=Scottsdale KSDL AZZ023 ---
 loc19=Show\\ Low KSOW AZZ017 ---
 loc20=Tucson KTUS AZZ033 103
-loc21=Tucson-Davis\\ AFB KDMA AZZ033 103
+loc21=Tucson-Davis\\ AFB TDMA AZZ033 103
 loc22=Winslow KINW AZZ013 ---
 loc23=Yuma\\ MCAS KNYL AZZ025 ---
 

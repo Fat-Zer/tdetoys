@@ -2694,11 +2694,11 @@ KDLH;72;745;Duluth, Duluth International Airport;MN;United States;4;46-50-34N;09
 KDLL;--;---;Baraboo, Baraboo Wisconsin Dells Airport;WI;United States;4;43-31-19N;089-46-15W;;;298;;
 KDLN;--;---;Dillon, Dillon Airport;MT;United States;4;45-15-27N;112-33-16W;45-15-10N;112-33-10W;1597;1591;
 KDLS;--;---;The Dalles, Columbia Gorge Regional / The Dalles Municipal Airport;OR;United States;4;45-37-07N;121-10-02W;45-37-06N;121-10-17W;75;71;
-KDMA;--;---;Davis-Monthan Air Force Base;AZ;United States;4;32-10N;110-53W;;;824;;
-KDMH;--;---;Baltimore, Inner Harbor;MD;United States;4;39-17N;076-37W;;;6;;
-KDMN;--;---;Deming, Deming Municipal Airport;NM;United States;4;32-15-44N;107-43-14W;32-15-19N;107-43-21W;1315;1311;
-KDMO;--;---;Sedalia, Sedalia Memorial Airport;MO;United States;4;38-42-44N;093-10-28W;38-42-15N;093-11-00W;277;274;
-KDMX;--;---;Des Moines Nexrad;IA;United States;4;41-44N;093-43W;;;322;;
+TDMA;--;---;Davis-Monthan Air Force Base;AZ;United States;4;32-10N;110-53W;;;824;;
+TDMH;--;---;Baltimore, Inner Harbor;MD;United States;4;39-17N;076-37W;;;6;;
+TDMN;--;---;Deming, Deming Municipal Airport;NM;United States;4;32-15-44N;107-43-14W;32-15-19N;107-43-21W;1315;1311;
+TDMO;--;---;Sedalia, Sedalia Memorial Airport;MO;United States;4;38-42-44N;093-10-28W;38-42-15N;093-11-00W;277;274;
+TDMX;--;---;Des Moines Nexrad;IA;United States;4;41-44N;093-43W;;;322;;
 KDNK;--;---;Ft. Polk, Self Strip;LA;United States;4;31-10N;093-00W;;;114;;
 KDNL;--;---;Augusta, Daniel Field;GA;United States;4;33-28-01N;082-02-19W;33-27-56N;082-02-07W;128;130;
 KDNN;--;---;Dalton, Dalton Municipal Airport;GA;United States;4;34-43-18N;084-52-09W;;;216;;
