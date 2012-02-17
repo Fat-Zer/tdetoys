@@ -37,7 +37,7 @@ class MoonWidget;
 class MoonPAWidget : public KPanelApplet
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     MoonPAWidget(const TQString& configFile, Type t = Normal, int actions = 0,

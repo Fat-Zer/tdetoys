@@ -35,7 +35,7 @@ class KAboutData;
 class PiecesTable : public QtTableView
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     PiecesTable(TQWidget* parent = 0, const char* name = 0);
@@ -67,7 +67,7 @@ private:
 class FifteenApplet : public KPanelApplet
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     FifteenApplet(const TQString& configFile, Type t = Stretch, int actions = 0,

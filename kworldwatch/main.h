@@ -40,7 +40,7 @@ class ZoneClockPanel;
 class WorldWideWatch : public KMainWindow
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 
@@ -72,7 +72,7 @@ private:
 class WatchApplication : public KUniqueApplication
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 

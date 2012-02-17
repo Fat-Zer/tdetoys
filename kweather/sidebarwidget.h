@@ -29,7 +29,7 @@
 class sidebarwidget : public sidebarwidgetbase
 {
 Q_OBJECT
-  TQ_OBJECT
+  
 public:
     sidebarwidget(TQWidget* parent, const char* name = 0);
     virtual ~sidebarwidget();

@@ -20,7 +20,7 @@
 class KSpriteSaver : public KScreenSaver
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 public:
     KSpriteSaver( WId id );
     virtual ~KSpriteSaver();
@@ -50,7 +50,7 @@ protected:
 class KSpriteSetup : public TQDialog
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 public:
     KSpriteSetup( TQWidget *parent = NULL, const char *name = NULL );
     ~KSpriteSetup();

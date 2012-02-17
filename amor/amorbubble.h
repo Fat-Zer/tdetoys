@@ -45,7 +45,7 @@ class TQTimer;
 class AmorBubble : public TQWidget
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 public:
 	AmorBubble();
 	virtual ~AmorBubble();

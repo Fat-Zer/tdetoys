@@ -26,7 +26,7 @@
 class WeatherButton : public TQButton
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
   public:
     WeatherButton( TQWidget *parent, const char *name );

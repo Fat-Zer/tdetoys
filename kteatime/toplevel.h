@@ -43,7 +43,7 @@ class TimeEdit;
 class TopLevel : public KSystemTray
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 

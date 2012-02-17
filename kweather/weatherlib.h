@@ -32,7 +32,7 @@ class StationDatabase;
 class WeatherLib : public TQObject
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 	
 	public:
 		class Data;

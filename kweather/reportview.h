@@ -31,7 +31,7 @@ class WeatherService_stub;
 
 class reportView : public KDialogBase {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     reportView(const TQString &reportLocation);

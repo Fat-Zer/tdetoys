@@ -33,7 +33,7 @@ class TQPalette;
 class kweather : public KPanelApplet, public weatherIface
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     kweather(const TQString& configFile, Type t = Normal, int actions = 0, TQWidget *parent = 0, const char *name = 0);

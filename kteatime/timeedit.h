@@ -21,7 +21,7 @@ class TQBoxLayout;
 class WrappingSpinBox : public TQSpinBox
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 	WrappingSpinBox(int minValue, int maxValue, int step = 1, TQWidget *parent=0, const char *name=0);
@@ -43,7 +43,7 @@ signals:
 class TimeEdit : public TQWidget
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 	TimeEdit(TQWidget* parent = 0, const char* name = 0);

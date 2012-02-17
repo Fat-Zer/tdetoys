@@ -41,7 +41,7 @@
 class AmorWidget : public TQWidget
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 public:
 	AmorWidget();
 	virtual ~AmorWidget();

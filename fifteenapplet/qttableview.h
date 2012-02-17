@@ -26,7 +26,7 @@ class QCornerSquare;
 class QtTableView : public TQFrame
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 public:
     virtual void setBackgroundColor( const TQColor & );
     virtual void setPalette( const TQPalette & );

@@ -31,7 +31,7 @@ class ServiceConfigWidget;
 class KCMWeatherService : public KCModule
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
   public:
     KCMWeatherService( TQWidget *parent = 0, const char *name = 0 );

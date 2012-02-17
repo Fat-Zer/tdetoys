@@ -30,7 +30,7 @@ class prefsDialogData;
 class KCMWeather : public KCModule
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
   public:
     KCMWeather( TQWidget *parent = 0, const char *name = 0 );

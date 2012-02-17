@@ -56,7 +56,7 @@ class FlagList;
 class MapWidget : public TQWidget
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 

@@ -73,7 +73,7 @@ private:
 class Amor : public TQObject, virtual public AmorIface
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 public:
     Amor();
     virtual ~Amor();
@@ -154,7 +154,7 @@ private:
 class AmorSessionWidget : public TQWidget
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 public:
     AmorSessionWidget();
     ~AmorSessionWidget() {};

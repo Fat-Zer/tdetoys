@@ -46,7 +46,7 @@ class ClockDialog;
 class ZoneClock : public TQFrame
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 
@@ -98,7 +98,7 @@ private:
 class ZoneClockPanel : public TQFrame
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
 

@@ -28,7 +28,7 @@ class WeatherService_stub;
 class ServiceConfigWidget : public wsPrefs
 {
   Q_OBJECT
-  TQ_OBJECT
+  
 
   public:
     ServiceConfigWidget( TQWidget *parent, const char *name = 0 );

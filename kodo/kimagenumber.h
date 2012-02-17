@@ -32,7 +32,7 @@
 class KImageNumber : public TQFrame
 {
 	Q_OBJECT
-  TQ_OBJECT
+  
 	TQ_PROPERTY( double m_value READ value WRITE setValue )
 public:
 	KImageNumber(const TQString& font, TQWidget* parent=0, const char* name=0);

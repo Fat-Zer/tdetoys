@@ -29,7 +29,7 @@ class TQPushButton;
 
 class KMoonDlg : public KDialogBase {
   Q_OBJECT
-  TQ_OBJECT
+  
     
  public:
   KMoonDlg(int angle, bool north, bool mask, TQWidget *parent, const char *name);

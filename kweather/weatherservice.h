@@ -32,7 +32,7 @@ class StationDatabase;
 class WeatherService : public TQObject, public DCOPObject
 {
 	Q_OBJECT
-//	TQ_OBJECT
+//	
 	K_DCOP
 
 	private:

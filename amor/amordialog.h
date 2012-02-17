@@ -41,7 +41,7 @@
 class AmorDialog : public KDialogBase
 {
     Q_OBJECT
-  TQ_OBJECT
+  
 
 public:
     AmorDialog();
