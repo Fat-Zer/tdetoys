@@ -274,7 +274,7 @@ void QtTableView::setNumRows( int rows )
 {
     if ( rows < 0 ) {
 #if defined(TQT_CHECK_RANGE)
-	qWarning( "QtTableView::setNumRows: (%s) Negative argument %d.",
+	tqWarning( "QtTableView::setNumRows: (%s) Negative argument %d.",
 		 name( "unnamed" ), rows );
 #endif
 	return;
@@ -316,7 +316,7 @@ void QtTableView::setNumCols( int cols )
 {
     if ( cols < 0 ) {
 #if defined(TQT_CHECK_RANGE)
-	qWarning( "QtTableView::setNumCols: (%s) Negative argument %d.",
+	tqWarning( "QtTableView::setNumCols: (%s) Negative argument %d.",
 		 name( "unnamed" ), cols );
 #endif
 	return;
@@ -582,7 +582,7 @@ void QtTableView::setCellWidth( int cellWidth )
 	return;
 #if defined(TQT_CHECK_RANGE)
     if ( cellWidth < 0 || cellWidth > SHRT_MAX ) {
-	qWarning( "QtTableView::setCellWidth: (%s) Argument out of range (%d)",
+	tqWarning( "QtTableView::setCellWidth: (%s) Argument out of range (%d)",
 		 name( "unnamed" ), cellWidth );
 	return;
     }
@@ -636,7 +636,7 @@ void QtTableView::setCellHeight( int cellHeight )
 	return;
 #if defined(TQT_CHECK_RANGE)
     if ( cellHeight < 0 || cellHeight > SHRT_MAX ) {
-	qWarning( "QtTableView::setCellHeight: (%s) Argument out of range (%d)",
+	tqWarning( "QtTableView::setCellHeight: (%s) Argument out of range (%d)",
 		 name( "unnamed" ), cellHeight );
 	return;
     }
@@ -1580,7 +1580,7 @@ int QtTableView::findRawRow( int yPos, int *cellMaxY, int *cellMinY,
     if ( goOutsideView || yPos >= minViewY() && yPos <= maxViewY() ) {
 	if ( yPos < minViewY() ) {
 #if defined(TQT_CHECK_RANGE)
-	    qWarning( "QtTableView::findRawRow: (%s) internal error: "
+	    tqWarning( "QtTableView::findRawRow: (%s) internal error: "
 		     "yPos < minViewY() && goOutsideView "
 		     "not supported. (%d,%d)",
 		     name( "unnamed" ), yPos, yOffs );
@@ -1627,7 +1627,7 @@ int QtTableView::findRawCol( int xPos, int *cellMaxX, int *cellMinX ,
     if ( goOutsideView || xPos >= minViewX() && xPos <= maxViewX() ) {
 	if ( xPos < minViewX() ) {
 #if defined(TQT_CHECK_RANGE)
-	    qWarning( "QtTableView::findRawCol: (%s) internal error: "
+	    tqWarning( "QtTableView::findRawCol: (%s) internal error: "
 		     "xPos < minViewX() && goOutsideView "
 		     "not supported. (%d,%d)",
 		     name( "unnamed" ), xPos, xOffs );
