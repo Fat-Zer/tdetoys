@@ -569,7 +569,7 @@ void Amor::restack()
 
         // We must use the target window's parent as our sibling.
         // Is there a faster way to get parent window than XQueryTree?
-        if (XQueryTree(qt_xdisplay(), sibling, &dw, &parent, &wins, &nwins))
+        if (XQueryTree(tqt_xdisplay(), sibling, &dw, &parent, &wins, &nwins))
         {
             if (nwins)
             {
@@ -586,7 +586,7 @@ void Amor::restack()
     XWindowChanges values;
     values.sibling = sibling;
     values.stack_mode = Above;
-    XConfigureWindow(qt_xdisplay(), mAmor->winId(), CWSibling | CWStackMode,
+    XConfigureWindow(tqt_xdisplay(), mAmor->winId(), CWSibling | CWStackMode,
                      &values);
 }
 
