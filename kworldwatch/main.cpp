@@ -56,7 +56,7 @@ WorldWideWatch::WorldWideWatch(bool restore, TQWidget *parent, const char *name)
   TQWidget *w = new TQWidget(this);
   setCentralWidget(w);
 
-  setPlainCaption(i18n("KDE World Clock"));
+  setPlainCaption(i18n("TDE World Clock"));
   
   TQVBoxLayout *vbox = new TQVBoxLayout(w, 0,0);
   
@@ -175,7 +175,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char *argv[])
 {
-  KAboutData about("kworldclock", I18N_NOOP("KDE World Clock"), "1.5");
+  KAboutData about("kworldclock", I18N_NOOP("TDE World Clock"), "1.5");
   KCmdLineArgs::init(argc, argv, &about);
   KCmdLineArgs::addCmdLineOptions(options);
   KUniqueApplication::addCmdLineOptions();

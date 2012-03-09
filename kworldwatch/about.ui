@@ -13,7 +13,7 @@
         </rect>
     </property>
     <property name="caption">
-        <string>About KDE World Clock</string>
+        <string>About TDE World Clock</string>
     </property>
     <property name="icon">
         <pixmap>image0</pixmap>
@@ -74,7 +74,7 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>The KDE World Clock</string>
+                        <string>The TDE World Clock</string>
                     </property>
                 </widget>
             </hbox>
