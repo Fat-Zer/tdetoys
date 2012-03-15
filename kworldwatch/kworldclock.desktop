@@ -77,4 +77,4 @@ Icon=kworldclock
 Type=Application
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Unique
-Categories=Qt;KDE;Utility;Amusement;
+Categories=Qt;KDE;Amusement;
