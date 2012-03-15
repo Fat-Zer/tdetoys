@@ -69,4 +69,4 @@ Terminal=false
 DocPath=kteatime/index.html
 X-KDE-StartupNotify=true
 X-DCOP-ServiceType=Multi
-Categories=Qt;KDE;Utility;Amusement;
+Categories=Qt;KDE;Amusement;
