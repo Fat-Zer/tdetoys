@@ -84,7 +84,7 @@ QueueItem::QueueItem(itemType ty, TQString te, int ti)
     // and length of the item
     int effectiveLength = 0, nesting = 0;
 
-    // discard html code from the lenght count
+    // discard html code from the length count
     for (unsigned int i = 0; i < te.length(); i++)
     {
 	if (te[i] == '<')	nesting++;
