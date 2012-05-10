@@ -49,7 +49,7 @@
 #include "kmoonwidget.h"
 #include "kmoonapplet.h"
 
-const char *description = I18N_NOOP("Moon Phase Indicator for KDE");
+const char *description = I18N_NOOP("Moon Phase Indicator for TDE");
 
 extern "C"
 {

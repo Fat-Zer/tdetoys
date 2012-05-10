@@ -9,7 +9,7 @@
 int main (int argc, char *argv[])
 {
 	KLocale::setMainCatalogue("tdelibs");
-	KAboutData aboutdata("KWeatherService", I18N_NOOP("KDE"),
+	KAboutData aboutdata("KWeatherService", I18N_NOOP("TDE"),
 				"0.8", I18N_NOOP("KWeather DCOP Service"),
 				KAboutData::License_GPL, "(C) 2002, Ian Reinhart Geiser");
 	aboutdata.addAuthor("Ian Reinhart Geiser",I18N_NOOP("Developer"),"geiseri@kde.org");
