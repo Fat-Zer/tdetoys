@@ -104,4 +104,4 @@ Comment[uk]=Показує час і сонячний бік на карті с�
 Comment[wa]=Mostere l' eure eyet l' loumire do djoû so ene mape daegnrece
 Comment[zh_CN]=在世界地图上显示时间和阳光
 Comment[zh_TW]=在世界地圖上顯示時間與日光
-X-KDE-Library=ww_panelapplet
+X-TDE-Library=ww_panelapplet

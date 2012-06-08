@@ -3,12 +3,12 @@ Icon=kweather
 Type=Service
 ServiceTypes=KCModule
 
-X-KDE-ModuleType=Library
-X-KDE-Library=weatherservice
-X-KDE-FactoryName=weatherservice
-X-KDE-ParentApp=weather_panelapplet
-X-KDE-ParentComponents=weather_panelapplet,kontact_weatherplugin
-X-KDE-CfgDlgHierarchy=KontactSummary
+X-TDE-ModuleType=Library
+X-TDE-Library=weatherservice
+X-TDE-FactoryName=weatherservice
+X-TDE-ParentApp=weather_panelapplet
+X-TDE-ParentComponents=weather_panelapplet,kontact_weatherplugin
+X-TDE-CfgDlgHierarchy=KontactSummary
 
 Name=Weather Service
 Name[ar]=خدمة الأرصاد الجوية

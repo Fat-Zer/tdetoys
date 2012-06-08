@@ -117,4 +117,4 @@ Comment[zh_CN]=盯着您鼠标指针的眼睛
 Comment[zh_TW]=讓眼睛盯著滑鼠游標跑
 
 Icon=xeyes
-X-KDE-Library=eyes_panelapplet
+X-TDE-Library=eyes_panelapplet

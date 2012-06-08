@@ -162,7 +162,7 @@ extern "C"
                         map->insert("Icon","weather_sidebar");
                         map->insert("Name",i18n("Sidebar Weather Report"));
                         map->insert("Open","false");
-                          map->insert("X-KDE-KonqSidebarModule","weather_sidebar");
+                          map->insert("X-TDE-KonqSidebarModule","weather_sidebar");
                         fn->setLatin1("weatherbar%1.desktop");
                         return true;
     }

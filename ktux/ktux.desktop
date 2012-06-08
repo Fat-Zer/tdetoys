@@ -13,7 +13,7 @@ Exec=ktux %i %m -caption "%c"
 Icon=ktux
 Type=Application
 Actions=Setup;InWindow;Root;
-X-KDE-Category=Flying Things
+X-TDE-Category=Flying Things
 Terminal=false
 
 [Desktop Action Setup]

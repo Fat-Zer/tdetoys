@@ -114,5 +114,5 @@ Comment[wa]=On ptit djeu avou cwénze pîces
 Comment[zh_CN]=有十五块的小游戏
 Comment[zh_TW]=十五片的小遊戲
 Icon=fifteenpieces
-X-KDE-Library=fifteen_panelapplet
-X-KDE-UniqueApplet=false
+X-TDE-Library=fifteen_panelapplet
+X-TDE-UniqueApplet=false

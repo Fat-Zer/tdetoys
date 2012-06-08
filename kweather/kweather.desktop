@@ -109,5 +109,5 @@ Name[zh_CN]=气象报告
 Name[zh_TW]=氣象報告
 Icon=kweather
 DocPath=kweather/index.html
-X-KDE-Library=weather_panelapplet
-X-KDE-UniqueApplet=true
+X-TDE-Library=weather_panelapplet
+X-TDE-UniqueApplet=true

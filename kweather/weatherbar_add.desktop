@@ -58,4 +58,4 @@ Name[zh_CN]=气象报告边栏
 Name[zh_TW]=天氣報告工具列
 
 Open=false
-X-KDE-KonqSidebarAddModule=weather_sidebar
+X-TDE-KonqSidebarAddModule=weather_sidebar

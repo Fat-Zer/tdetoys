@@ -3,11 +3,11 @@ Icon=configure
 Type=Service
 ServiceTypes=KCModule
 
-X-KDE-ModuleType=Library
-X-KDE-Library=weather
-X-KDE-FactoryName=weather
-X-KDE-ParentApp=weather_panelapplet
-X-KDE-ParentComponents=weather_panelapplet
+X-TDE-ModuleType=Library
+X-TDE-Library=weather
+X-TDE-FactoryName=weather
+X-TDE-ParentApp=weather_panelapplet
+X-TDE-ParentComponents=weather_panelapplet
 
 Name=Display
 Name[ar]=الشاشة
