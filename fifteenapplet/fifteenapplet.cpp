@@ -32,6 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kglobal.h>
 #include <kmessagebox.h>
 #include <kaboutapplication.h>
+#include <kiconloader.h>
 
 #include "fifteenapplet.h"
 #include "fifteenapplet.moc"
@@ -84,6 +85,7 @@ void FifteenApplet::about()
     }
 
     KAboutApplication dialog(_aboutData);
+    dialog.setProgramLogo( KGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -KIcon::SizeLarge ) );
     dialog.exec();
 }
 
