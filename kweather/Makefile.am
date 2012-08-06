@@ -26,7 +26,8 @@ weather_panelapplet_la_SOURCES = reportview.cpp kweather.cpp dockwidget.cpp \
                                  weatherIface.skel weatherservice.stub \
                                  weatherbutton.cpp
 weather_panelapplet_la_LDFLAGS = $(KDE_PLUGIN) -module $(all_libraries)
-weather_panelapplet_la_LIBADD = $(LIB_KHTML)
+weather_panelapplet_la_LIBADD = $(LIB_KHTML) $(LIB_QT) -lDCOP
+
 
 appletdir = $(kde_datadir)/kicker/applets
 applet_DATA = kweather.desktop
@@ -67,7 +68,7 @@ servicedir = $(kde_servicesdir)
 kde_services_DATA = kcmweather.desktop kcmweatherservice.desktop
 
 kweatherreport_la_LDFLAGS = $(all_libraries) $(KDE_RPATH) -module -avoid-version
-kweatherreport_la_LIBADD = $(LIB_KHTML) reportview.lo
+kweatherreport_la_LIBADD = $(LIB_KHTML) reportview.lo $(LIB_QT) $(LIB_KDECORE) $(LIB_KDEUI) -lDCOP
 kweatherreport_la_SOURCES = reportmain.cpp weatherservice.stub
 
 KDE_ICON = kweather
