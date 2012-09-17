@@ -247,9 +247,9 @@
     </connection>
     <connection>
         <sender>ClockZone</sender>
-        <signal>activated(const QString&amp;)</signal>
+        <signal>activated(const TQString&amp;)</signal>
         <receiver>ClockCaption</receiver>
-        <slot>setText(const QString&amp;)</slot>
+        <slot>setText(const TQString&amp;)</slot>
     </connection>
 </connections>
 <includes>
