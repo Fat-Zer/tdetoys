@@ -23,12 +23,12 @@ set( VERSION 3.5.13.1 )
 include( FindPkgConfig )
 include( CheckIncludeFile )
 include( CheckLibraryExists )
+include( CheckCSourceCompiles )
+include( CheckCXXSourceCompiles )
 # @Add othere required cmake modules here@
 #
 # EXAMPLE:
 # include( CheckTypeSize )
-# include( CheckCSourceCompiles )
-# include( CheckCXXSourceCompiles )
 
 
 ##### include our cmake modules #################
