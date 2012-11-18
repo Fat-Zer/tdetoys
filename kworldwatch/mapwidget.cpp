@@ -25,7 +25,10 @@
 /*
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
+
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif // HAVE_CONFIG_H
 
 #include <time.h>
 #include <stdlib.h>
