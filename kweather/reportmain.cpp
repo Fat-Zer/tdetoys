@@ -27,9 +27,9 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 
     KGlobal::locale()->setMainCatalogue( "kweather" );
 
-    KCmdLineArgs::init( argc, argv, &aboutData );
-    KCmdLineArgs::addCmdLineOptions( options );
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    TDECmdLineArgs::init( argc, argv, &aboutData );
+    TDECmdLineArgs::addCmdLineOptions( options );
+    TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
 
     if ( args->count() != 1 )
     {

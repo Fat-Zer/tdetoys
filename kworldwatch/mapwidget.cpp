@@ -179,7 +179,7 @@ void MapWidget::load(KConfig *config)
 
   if ( !_applet )
   {
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
     if (args->isSet("theme"))
       setTheme(TQString::fromLocal8Bit(args->getOption("theme")));
     else

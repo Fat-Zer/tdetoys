@@ -15,8 +15,8 @@ int main (int argc, char *argv[])
 	aboutdata.addAuthor("Ian Reinhart Geiser",I18N_NOOP("Developer"),"geiseri@kde.org");
 	aboutdata.addAuthor("Nadeem Hasan",I18N_NOOP("Developer"),"nhasan@kde.org");
 
-	KCmdLineArgs::init( argc, argv, &aboutdata );
-	// KCmdLineArgs::addCmdLineOptions( options );
+	TDECmdLineArgs::init( argc, argv, &aboutdata );
+	// TDECmdLineArgs::addCmdLineOptions( options );
 	KUniqueApplication::addCmdLineOptions();
 
 	if (!KUniqueApplication::start())

@@ -105,7 +105,7 @@ void WatchApplication::dumpMap()
   // guess some default parameters
   TQSize mapSize(kapp->desktop()->size());
  
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+  TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
  
   TQCString themeName = args->getOption("theme");
   TQCString outName = args->getOption("o");
@@ -136,7 +136,7 @@ void WatchApplication::dumpMap()
 int WatchApplication::newInstance()
 {
   // dump mode, used for background drawing
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+  TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
   if (args->isSet("dump"))
     {
       dumpMap();
@@ -176,11 +176,11 @@ static KCmdLineOptions options[] =
 int main(int argc, char *argv[])
 {
   KAboutData about("kworldclock", I18N_NOOP("TDE World Clock"), "1.5");
-  KCmdLineArgs::init(argc, argv, &about);
-  KCmdLineArgs::addCmdLineOptions(options);
+  TDECmdLineArgs::init(argc, argv, &about);
+  TDECmdLineArgs::addCmdLineOptions(options);
   KUniqueApplication::addCmdLineOptions();
 
-  KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+  TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
   if (args->isSet("themes"))
   {
     KInstance app(&about);

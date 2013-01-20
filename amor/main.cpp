@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         "(c) 1999, Martin R. Jones");
     aboutData.addAuthor("Martin R. Jones",0, "mjones@kde.org");
     aboutData.addAuthor("Gerardo Puga", I18N_NOOP("Current maintainer"), "gpuga@gioia.ing.unlp.edu.ar"); 
-    KCmdLineArgs::init( argc, argv, &aboutData );
+    TDECmdLineArgs::init( argc, argv, &aboutData );
 
     if (!KUniqueApplication::start()) {
 	fprintf(stderr, "%s is already running!\n", aboutData.appName());

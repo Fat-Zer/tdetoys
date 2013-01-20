@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 	aboutData->addCredit("Gioele Barabucci",
 		I18N_NOOP("KDE 2 porting and some code cleanups"),
 		"dev@gioelebarabucci.com", "http://www.gioelebarabucci.com");
-	KCmdLineArgs::init( argc, argv, aboutData );
+	TDECmdLineArgs::init( argc, argv, aboutData );
 
 	if (!KUniqueApplication::start())
 		exit(0);
