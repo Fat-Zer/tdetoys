@@ -42,7 +42,7 @@ WeatherButton::WeatherButton( TQWidget *parent, const char *name )
     kapp->addKipcEventMask( KIPC::SettingsChanged );
     kapp->addKipcEventMask( KIPC::IconChanged );
 
-    slotSettingsChanged( KApplication::SETTINGS_MOUSE );
+    slotSettingsChanged( TDEApplication::SETTINGS_MOUSE );
 }
 
 void WeatherButton::drawButton( TQPainter *p )
@@ -108,7 +108,7 @@ void WeatherButton::generateIcons()
 
 void WeatherButton::slotSettingsChanged( int category )
 {
-    if ( category != KApplication::SETTINGS_MOUSE ) return;
+    if ( category != TDEApplication::SETTINGS_MOUSE ) return;
 
     bool changeCursor = KGlobalSettings::changeCursorOverIcon();
 

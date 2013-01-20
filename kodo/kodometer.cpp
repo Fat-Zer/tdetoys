@@ -56,7 +56,7 @@ Kodometer::Kodometer(TQWidget* parent, const char* name)
 	pollInterval(10),
 	saveFrequency(10)
 {
-	display = KApplication::kApplication()->getDisplay();
+	display = TDEApplication::kApplication()->getDisplay();
 	FindAllScreens();
 
 	root = RootWindow(display, DefaultScreen(display));

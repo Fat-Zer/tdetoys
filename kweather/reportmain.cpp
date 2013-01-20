@@ -37,14 +37,14 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
         return -1;
     }
 
-    KApplication app;
+    TDEApplication app;
 
     DCOPClient *client = app.dcopClient();
     client->attach();
     TQString error;
     if (!client->isApplicationRegistered("KWeatherService"))
     {
-        if (KApplication::startServiceByDesktopName("kweatherservice",
+        if (TDEApplication::startServiceByDesktopName("kweatherservice",
             TQStringList(), &error))
         {
             kdDebug() << "Starting kweatherservice failed: " << error << endl;

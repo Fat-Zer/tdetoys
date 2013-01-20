@@ -101,7 +101,7 @@ void kweather::initContextMenu()
 void kweather::initDCOP()
 {
     if ( !mClient )
-        mClient = KApplication::dcopClient();
+        mClient = TDEApplication::dcopClient();
     
     if(!mClient->isAttached())
         mClient->attach();
@@ -388,7 +388,7 @@ bool kweather::attach()
     {
         kdDebug(12004) << "Could not find service so I am starting it..."
             << endl;
-        if (!KApplication::startServiceByDesktopName("kweatherservice",
+        if (!TDEApplication::startServiceByDesktopName("kweatherservice",
             TQStringList(), &error))
         {
             kdDebug(12004) << "Starting KWeatherService failed with message: "

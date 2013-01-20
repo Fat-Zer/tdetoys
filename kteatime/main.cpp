@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
   aboutData.addCredit("Daniel Teske", I18N_NOOP("Many patches"), "teske@bigfoot.com");
   TDECmdLineArgs::init( argc, argv, &aboutData );
 
-  KApplication app;
+  TDEApplication app;
 
   TopLevel toplevel;
   KWin::setSystemTrayWindowFor(toplevel.winId(), 0);

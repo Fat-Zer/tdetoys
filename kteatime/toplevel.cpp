@@ -182,7 +182,7 @@ TopLevel::TopLevel() : KSystemTray()
 	stop();                         // reset timer, disable some menu entries, etc.
 }
 
-/* slot: signal shutDown() from KApplication */
+/* slot: signal shutDown() from TDEApplication */
 /* (not currently needed)
 void TopLevel::queryExit()
 {

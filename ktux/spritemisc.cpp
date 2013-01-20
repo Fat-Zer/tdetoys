@@ -21,7 +21,7 @@ int SpriteRange::random() const
 
     if (mMax != mMin)
     {
-        val = (KApplication::random()%(mMax-mMin)) + mMin;
+        val = (TDEApplication::random()%(mMax-mMin)) + mMin;
     }
 
     return val;

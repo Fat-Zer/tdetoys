@@ -208,7 +208,7 @@ bool ServiceConfigWidget::dcopActive()
   bool isGood = true;
   DCOPClient *client = kapp->dcopClient();
   if ( !client->isApplicationRegistered( "KWeatherService" ) ) {
-    if ( KApplication::startServiceByDesktopName( "kweatherservice", TQStringList(), &error, &appID ) )
+    if ( TDEApplication::startServiceByDesktopName( "kweatherservice", TQStringList(), &error, &appID ) )
       isGood = false;
   }
 
