@@ -63,10 +63,10 @@ int main(int argc, char *argv[])
 {
 	/* Top level details */
 
-	KAboutData *aboutData = new KAboutData("kodo",
+	TDEAboutData *aboutData = new TDEAboutData("kodo",
 		I18N_NOOP("KOdometer"), "3.2",
 		I18N_NOOP("KOdometer measures your desktop mileage"),
-		KAboutData::License_GPL,
+		TDEAboutData::License_GPL,
 		"(c) 1998, Armen Nakashian",
 		I18N_NOOP("A mouse odometer"), 0,
 		"dev@gioelebarabucci.com");

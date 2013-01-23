@@ -36,7 +36,7 @@
 #include <dcopref.h>
 
 
-KonqSidebarWeather::KonqSidebarWeather(KInstance* inst, TQObject* parent,
+KonqSidebarWeather::KonqSidebarWeather(TDEInstance* inst, TQObject* parent,
                                          TQWidget* widgetParent,
                                          TQString& desktopName, const char* name)
 
@@ -149,7 +149,7 @@ void KonqSidebarWeather::update()
 
 extern "C"
 {
-    KDE_EXPORT void* create_weather_sidebar(KInstance* inst, TQObject* par, TQWidget*widp,
+    KDE_EXPORT void* create_weather_sidebar(TDEInstance* inst, TQObject* par, TQWidget*widp,
                                       TQString& desktopname, const char* name)
     {
         return new KonqSidebarWeather(inst, par, widp, desktopname, name);

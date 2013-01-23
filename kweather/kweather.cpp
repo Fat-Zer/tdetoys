@@ -126,8 +126,8 @@ void kweather::initDCOP()
 /** about box */
 void kweather::about(){
     kdDebug(12004) << "Telling about" << endl;
-    KAboutData aboutData("KWeather", "KWeather", "2.1.0",
-            I18N_NOOP("Weather applet for the Kicker"), KAboutData::License_GPL_V2);
+    TDEAboutData aboutData("KWeather", "KWeather", "2.1.0",
+            I18N_NOOP("Weather applet for the Kicker"), TDEAboutData::License_GPL_V2);
     aboutData.addAuthor("Ian Reinhart Geiser", "", "geiseri@kde.org",
             "http://www.kde.org/");
     //aboutData.addAuthor("Nadeem Hasan",  "", "nhasan@nadmm.com", "http://www.nadmm.com/");

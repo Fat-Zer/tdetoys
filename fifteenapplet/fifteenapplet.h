@@ -30,7 +30,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kpanelapplet.h>
 
 class TQPopupMenu;
-class KAboutData;
+class TDEAboutData;
 
 class PiecesTable : public QtTableView
 {
@@ -80,7 +80,7 @@ public:
 
 private:
     PiecesTable *_table;
-    KAboutData   *_aboutData;
+    TDEAboutData   *_aboutData;
 };
 
 #endif

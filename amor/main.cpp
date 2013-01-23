@@ -44,8 +44,8 @@ static const char description[] = I18N_NOOP("TDE creature for your desktop");
 
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData( "amor", I18N_NOOP("amor"),
-        AMOR_VERSION, description, KAboutData::License_GPL,
+    TDEAboutData aboutData( "amor", I18N_NOOP("amor"),
+        AMOR_VERSION, description, TDEAboutData::License_GPL,
         "(c) 1999, Martin R. Jones");
     aboutData.addAuthor("Martin R. Jones",0, "mjones@kde.org");
     aboutData.addAuthor("Gerardo Puga", I18N_NOOP("Current maintainer"), "gpuga@gioia.ing.unlp.edu.ar"); 

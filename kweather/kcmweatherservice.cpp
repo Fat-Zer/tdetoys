@@ -48,9 +48,9 @@ KCMWeatherService::KCMWeatherService( TQWidget *parent, const char *name )
   //connect(mWidget, TQT_SIGNAL(changed(bool)), this, TQT_SIGNAL(changed(bool)));
 
   layout->addWidget( mWidget );
-  KAboutData *about = new KAboutData( "kcmweatherservice",
+  TDEAboutData *about = new TDEAboutData( "kcmweatherservice",
                                       I18N_NOOP( "KWeather Configure Dialog" ),
-                                      0, 0, KAboutData::License_GPL,
+                                      0, 0, TDEAboutData::License_GPL,
                                       I18N_NOOP( "(c), 2003 Tobias Koenig" ) );
 
   about->addAuthor( "Tobias Koenig", 0, "tokoe@kde.org" );

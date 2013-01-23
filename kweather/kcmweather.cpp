@@ -72,10 +72,10 @@ KCMWeather::KCMWeather( TQWidget *parent, const char *name )
   connect( mWidget->m_textColor, TQT_SIGNAL( changed(const TQColor &) ),
                                  TQT_SLOT( textColorChanged(const TQColor &) ) );
 
-  KAboutData *about = new KAboutData(
+  TDEAboutData *about = new TDEAboutData(
       I18N_NOOP( "kcmweather" ),
       I18N_NOOP( "KWeather Configure Dialog" ),
-      0, 0, KAboutData::License_GPL,
+      0, 0, TDEAboutData::License_GPL,
       I18N_NOOP( "(c), 2003 Tobias Koenig" ) );
 
   about->addAuthor( "Tobias Koenig", 0, "tokoe@kde.org" );

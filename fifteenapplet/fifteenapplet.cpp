@@ -75,12 +75,12 @@ int FifteenApplet::heightForWidth(int w) const
 void FifteenApplet::about()
 {
     if(!_aboutData) {
-	_aboutData = new KAboutData("kfifteenapplet", I18N_NOOP("KFifteenApplet"), "1.0",
+	_aboutData = new TDEAboutData("kfifteenapplet", I18N_NOOP("KFifteenApplet"), "1.0",
                                     I18N_NOOP("Fifteen pieces applet.\n\n"
                                               "The goal is to put the sliding pieces into numerical order.\n"
                                               "Select \"Randomize Pieces\" from the right mouse button menu\n"
                                               "to start a game."),
-                                    KAboutData::License_BSD, "(c) 2001, Matthias Elter");
+                                    TDEAboutData::License_BSD, "(c) 2001, Matthias Elter");
 	_aboutData->addAuthor("Matthias Elter", 0, "elter@kde.org");
     }
 

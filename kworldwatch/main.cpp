@@ -175,7 +175,7 @@ static KCmdLineOptions options[] =
 
 int main(int argc, char *argv[])
 {
-  KAboutData about("kworldclock", I18N_NOOP("TDE World Clock"), "1.5");
+  TDEAboutData about("kworldclock", I18N_NOOP("TDE World Clock"), "1.5");
   TDECmdLineArgs::init(argc, argv, &about);
   TDECmdLineArgs::addCmdLineOptions(options);
   KUniqueApplication::addCmdLineOptions();
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
   TDECmdLineArgs *args = TDECmdLineArgs::parsedArgs();
   if (args->isSet("themes"))
   {
-    KInstance app(&about);
+    TDEInstance app(&about);
     listThemes();
     return 0;
   }

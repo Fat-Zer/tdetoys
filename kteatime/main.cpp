@@ -39,8 +39,8 @@ static const char version[] = "v1.1.0";
 
 int main(int argc, char *argv[])
 {
-  KAboutData aboutData( "kteatime", I18N_NOOP("KTeaTime"),
-    version, description, KAboutData::License_GPL,
+  TDEAboutData aboutData( "kteatime", I18N_NOOP("KTeaTime"),
+    version, description, TDEAboutData::License_GPL,
     "(c) 1998-1999, Matthias Hoelzer-Kluepfel\n(c) 2002-2003, Martin Willers");
   aboutData.addAuthor("Matthias Hoelzer-Kluepfel",0, "hoelzer@kde.org");
   aboutData.addAuthor("Martin Willers", 0, "willers@xm-arts.de");

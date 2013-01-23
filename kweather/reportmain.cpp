@@ -17,9 +17,9 @@ static KCmdLineOptions options[] =
 
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
 {
-    KAboutData aboutData("reportview", I18N_NOOP("Weather Report"),
+    TDEAboutData aboutData("reportview", I18N_NOOP("Weather Report"),
         "0.8", I18N_NOOP("Weather Report for KWeatherService"),
-        KAboutData::License_GPL, "(C) 2002-2003, Ian Reinhart Geiser");
+        TDEAboutData::License_GPL, "(C) 2002-2003, Ian Reinhart Geiser");
     aboutData.addAuthor("Ian Reinhart Geiser", I18N_NOOP("Developer"),
         "geiseri@kde.org");
     aboutData.addAuthor("Nadeem Hasan", I18N_NOOP("Developer"),
