@@ -314,7 +314,7 @@ TQString WeatherService::getTime(const TQString &stationID, TimeType timeType)
 		kdDebug(12006) << "station, lat, lon, time: " << upperStationID << " " <<
 			latitude << " " << longitude << " " << time << endl;
 
-		return KGlobal::locale()->formatTime(time);
+		return TDEGlobal::locale()->formatTime(time);
 	}
 }
 

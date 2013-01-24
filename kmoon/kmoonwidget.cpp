@@ -57,7 +57,7 @@ MoonWidget::MoonWidget(TQWidget *parent, const char *name)
     time_t clock;
 
     counter = -1;
-    KConfig *config = KGlobal::config();
+    KConfig *config = TDEGlobal::config();
     config->setGroup("General");
     _angle = config->readNumEntry("Rotation", 0);
     _north = config->readBoolEntry("Northern", true);
@@ -94,30 +94,30 @@ void MoonWidget::calcStatus( time_t time )
 
     TQDateTime ln;
     ln.setTime_t( last_new );
-    kdDebug() << KGlobal::locale()->formatDateTime( ln ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( ln ) << endl;
 
     time_t first_quarter = JDtoDate( moonphasebylunation( lun, 1 ), 0 );
     TQDateTime fq;
     fq.setTime_t( first_quarter );
-    kdDebug() << KGlobal::locale()->formatDateTime( fq ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( fq ) << endl;
 
     time_t full_moon = JDtoDate( moonphasebylunation( lun, 2 ), 0 );
     TQDateTime fm;
     fm.setTime_t( full_moon );
-    kdDebug() << KGlobal::locale()->formatDateTime( fm ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( fm ) << endl;
 
     time_t third_quarter = JDtoDate( moonphasebylunation( lun, 3 ), 0 );
     TQDateTime tq;
     tq.setTime_t( third_quarter );
-    kdDebug() << KGlobal::locale()->formatDateTime( tq ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( tq ) << endl;
 
     TQDateTime nn;
     nn.setTime_t( next_new );
-    kdDebug() << KGlobal::locale()->formatDateTime( nn ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( nn ) << endl;
 
     TQDateTime now;
     now.setTime_t( time );
-    kdDebug() << KGlobal::locale()->formatDateTime( now ) << endl;
+    kdDebug() << TDEGlobal::locale()->formatDateTime( now ) << endl;
 
     counter = ln.daysTo( now );
     kdDebug() << "counter " << counter << " " << fm.daysTo( now ) << endl;

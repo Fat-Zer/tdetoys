@@ -314,7 +314,7 @@ bool Amor::readConfig()
         TQStringList files;
         
         // Store relative paths into files to avoid storing absolute pathnames.
-        KGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
+        TDEGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
         int randomTheme = kapp->random() % files.count();
         mConfig.mTheme = (TQString)*files.at(randomTheme);
     }
@@ -606,7 +606,7 @@ void Amor::slotMouseClicked(const TQPoint &pos)
 
     if (!mMenu)
     {
-        KHelpMenu* help = new KHelpMenu(0, KGlobal::instance()->aboutData(), false);
+        KHelpMenu* help = new KHelpMenu(0, TDEGlobal::instance()->aboutData(), false);
         KPopupMenu* helpMnu = help->menu();
         mMenu = new KPopupMenu();
         mMenu->insertTitle("Amor"); // I really don't want this i18n'ed

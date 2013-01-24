@@ -64,14 +64,14 @@ reportView::~reportView(){
 
 /** Render the document */
 void reportView::render(){
-    TQFont generalFont = KGlobalSettings::generalFont();
+    TQFont generalFont = TDEGlobalSettings::generalFont();
     TQString fntFamily = generalFont.family();
     int fntSize = generalFont.pointSize();
     if (fntSize == -1)
        fntSize = TQFontInfo(generalFont).pointSize();
 
-    TQString textColor = KGlobalSettings::textColor().name();
-    TQString baseColor = KGlobalSettings::baseColor().name();
+    TQString textColor = TDEGlobalSettings::textColor().name();
+    TQString baseColor = TDEGlobalSettings::baseColor().name();
     TQColorGroup cg = palette().active();
     TQString bgColor = cg.background().name();
     TQString hlColor = cg.highlight().name();

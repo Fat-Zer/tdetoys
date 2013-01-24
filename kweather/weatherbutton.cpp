@@ -110,7 +110,7 @@ void WeatherButton::slotSettingsChanged( int category )
 {
     if ( category != TDEApplication::SETTINGS_MOUSE ) return;
 
-    bool changeCursor = KGlobalSettings::changeCursorOverIcon();
+    bool changeCursor = TDEGlobalSettings::changeCursorOverIcon();
 
     if ( changeCursor )
         setCursor( KCursor::handCursor() );

@@ -64,8 +64,8 @@ AmorBubble::AmorBubble()
     mBrowser->setHScrollBarMode( TQTextBrowser::AlwaysOff );
     mBrowser->viewport()->installEventFilter( this );
 
-    mBrowser->mimeSourceFactory()->addFilePath(KGlobal::dirs()->findResourceDir("data", "kdewizard/pics")+"kdewizard/pics/");
-    TQStringList icons = KGlobal::dirs()->resourceDirs("icon");
+    mBrowser->mimeSourceFactory()->addFilePath(TDEGlobal::dirs()->findResourceDir("data", "kdewizard/pics")+"kdewizard/pics/");
+    TQStringList icons = TDEGlobal::dirs()->resourceDirs("icon");
     TQStringList::Iterator it;
     for (it = icons.begin(); it != icons.end(); ++it)
 	mBrowser->mimeSourceFactory()->addFilePath(*it);

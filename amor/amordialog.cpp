@@ -115,7 +115,7 @@ void AmorDialog::readThemes()
 
     // Non-recursive search for theme files, with the relative paths stored
     // in files so that absolute paths are not used.
-    KGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
+    TDEGlobal::dirs()->findAllResources("appdata", "*rc", false, false, files);
 
     for (TQStringList::ConstIterator it = files.begin();
 	 it != files.end();

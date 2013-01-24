@@ -33,7 +33,7 @@
 dockwidget::dockwidget(const TQString &location, TQWidget *parent,
         const char *name) : TQWidget(parent,name), m_locationCode( location ), m_orientation(Qt::Horizontal )
 {
-    m_font = KGlobalSettings::generalFont();
+    m_font = TDEGlobalSettings::generalFont();
     setBackgroundOrigin( AncestorOrigin );
     initDock();
     connect(m_button, TQT_SIGNAL( clicked() ), TQT_SIGNAL( buttonClicked() ));
@@ -306,7 +306,7 @@ void dockwidget::resizeView( const TQSize &size )
 int dockwidget::widthForHeight(int h)
 {
     int w;
-    TQFontInfo fi(KGlobalSettings::generalFont());
+    TQFontInfo fi(TDEGlobalSettings::generalFont());
 
     if ( m_mode == ShowAll )
     {
@@ -322,7 +322,7 @@ int dockwidget::widthForHeight(int h)
         {
             if ( fi.pixelSize() * 3 <= (h/2) )  // half icon, half text
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else
             {
@@ -349,7 +349,7 @@ int dockwidget::widthForHeight(int h)
         {
             if ( fi.pixelSize() <= (h/2) )  // half icon, half text
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else
             {
@@ -377,14 +377,14 @@ int dockwidget::heightForWidth( int w )
 
     if ( m_mode == ShowAll )
     {
-        TQFontMetrics fmg(KGlobalSettings::generalFont());
+        TQFontMetrics fmg(TDEGlobalSettings::generalFont());
         int maxWidth = fmg.width("888 km/h NNWW");  // a good approximation
 
         if ( w <= 128 )  // top to bottom
         {
             if ( maxWidth <= w )  // enough space to use global font
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else  // we have to reduce the fontsize
             {
@@ -398,7 +398,7 @@ int dockwidget::heightForWidth( int w )
         {
             if ( w >= (maxWidth * 1.5) )  // half of text width shall be icon
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else
             {
@@ -412,14 +412,14 @@ int dockwidget::heightForWidth( int w )
     }
     else if ( m_mode == ShowTempOnly )
     {
-        TQFontMetrics fmg(KGlobalSettings::generalFont());
+        TQFontMetrics fmg(TDEGlobalSettings::generalFont());
         int maxWidth = fmg.width("888.88 CC");  // a good approximation
 
         if ( w <= 128 )  // top to bottom
         {
             if ( maxWidth <= w )  // enough space to use global font
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else  // we have to reduce the fontsize
             {
@@ -433,7 +433,7 @@ int dockwidget::heightForWidth( int w )
         {
             if ( w >= (maxWidth * 1.5) )  // half of text width shall be icon
             {
-                m_font = KGlobalSettings::generalFont();
+                m_font = TDEGlobalSettings::generalFont();
             }
             else
             {

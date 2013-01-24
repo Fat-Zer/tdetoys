@@ -35,7 +35,7 @@ extern "C"
 {
     KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
-        KGlobal::locale()->insertCatalogue("keyesapplet");
+        TDEGlobal::locale()->insertCatalogue("keyesapplet");
         EyesApplet *applet = new EyesApplet(configFile, KPanelApplet::Normal, 0, parent, "keyesapplet");
         return applet;
     }

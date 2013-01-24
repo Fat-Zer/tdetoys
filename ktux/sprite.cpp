@@ -46,7 +46,7 @@ extern "C"
 KSpriteSetup::KSpriteSetup( TQWidget *parent, const char *name )
   : TQDialog( parent, name, TRUE )
 {
-    KGlobal::locale()->insertCatalogue("ktux");
+    TDEGlobal::locale()->insertCatalogue("ktux");
     saver = 0;
 
     readSettings();
@@ -99,7 +99,7 @@ KSpriteSetup::~KSpriteSetup()
 // read settings from config file
 void KSpriteSetup::readSettings()
 {
-    KConfig *config = KGlobal::config();
+    KConfig *config = TDEGlobal::config();
     config->setGroup( "Settings" );
 
     speed = config->readNumEntry( "Speed", 50 );
@@ -119,7 +119,7 @@ void KSpriteSetup::slotSpeed(int s)
 // Ok pressed - save settings and exit
 void KSpriteSetup::slotOkPressed()
 {
-    KConfig *config = KGlobal::config();
+    KConfig *config = TDEGlobal::config();
     config->setGroup("Settings");
     config->writeEntry("Speed", speed);
     config->sync();
@@ -138,7 +138,7 @@ void KSpriteSetup::slotAbout()
 
 KSpriteSaver::KSpriteSaver( WId id ) : KScreenSaver( id )
 {
-    KGlobal::dirs()->addResourceType("sprite", KStandardDirs::kde_default("data") + "ktux/sprites/");
+    TDEGlobal::dirs()->addResourceType("sprite", KStandardDirs::kde_default("data") + "ktux/sprites/");
 
     initialise();
     readSettings();
@@ -171,12 +171,12 @@ void KSpriteSaver::readSettings()
 {
     TQString str;
 
-    KConfig *config = KGlobal::config();
+    KConfig *config = TDEGlobal::config();
     config->setGroup("Settings");
 
     mSpeed = config->readNumEntry("Speed", 50);
 
-    TQString path = KGlobal::dirs()->findResourceDir( "sprite", "bg.png" );
+    TQString path = TDEGlobal::dirs()->findResourceDir( "sprite", "bg.png" );
 
     SpritePixmapManager::manager()->setPixmapDir(path);
 

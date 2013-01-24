@@ -25,7 +25,7 @@ extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
     aboutData.addAuthor("Nadeem Hasan", I18N_NOOP("Developer"),
         "nhasan@kde.org");
 
-    KGlobal::locale()->setMainCatalogue( "kweather" );
+    TDEGlobal::locale()->setMainCatalogue( "kweather" );
 
     TDECmdLineArgs::init( argc, argv, &aboutData );
     TDECmdLineArgs::addCmdLineOptions( options );

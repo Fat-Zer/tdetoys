@@ -44,8 +44,8 @@ extern "C"
 {
   KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
-    KGlobal::locale()->insertCatalogue("kworldclock");
-    KGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
+    TDEGlobal::locale()->insertCatalogue("kworldclock");
+    TDEGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
     return new KWWApplet(configFile, KPanelApplet::Normal,
 			 0,
 			 parent, "kwwapplet");
@@ -58,7 +58,7 @@ KWWApplet::KWWApplet(const TQString& configFile, Type type, int actions,
   : KPanelApplet(configFile, type, actions, parent, name)
 {
   // make use of the icons installed for ksaferppp
-  KGlobal::iconLoader()->addAppDir("kworldwatch");
+  TDEGlobal::iconLoader()->addAppDir("kworldwatch");
 
   TQVBoxLayout *vbox = new TQVBoxLayout(this, 0,0);
 
@@ -106,7 +106,7 @@ void KWWApplet::mousePressEvent(TQMouseEvent *e)
 {
   bool clicked = false;
 
-  if (KGlobalSettings::singleClick())
+  if (TDEGlobalSettings::singleClick())
   {
     clicked = e->type() == TQMouseEvent::MouseButtonPress;
   }

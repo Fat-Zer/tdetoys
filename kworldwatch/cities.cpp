@@ -51,7 +51,7 @@ CityList::~CityList()
 
 void CityList::readCityLists()
 {
-  TQStringList lists = KGlobal::dirs()->findAllResources("data", "kworldclock/*.tab");
+  TQStringList lists = TDEGlobal::dirs()->findAllResources("data", "kworldclock/*.tab");
   for (TQStringList::Iterator it = lists.begin(); it != lists.end(); ++it)
     readCityList(*it);
 }

@@ -42,7 +42,7 @@ extern "C"
 {
     KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
-        KGlobal::locale()->insertCatalogue("kweather");
+        TDEGlobal::locale()->insertCatalogue("kweather");
         kweather *theApplet = new kweather(configFile, KPanelApplet::Normal,
                 0, parent, "kweather");
         return theApplet;
@@ -144,7 +144,7 @@ void kweather::about(){
             I18N_NOOP( "Improvements and more code cleanups" ), "jratke@comcast.net" );
 
     KAboutApplication about(&aboutData, this, 0);
-    about.setProgramLogo( KGlobal::instance()->iconLoader()->iconPath( "kweather", -KIcon::SizeLarge ) );
+    about.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "kweather", -KIcon::SizeLarge ) );
     about.exec();
 }
 

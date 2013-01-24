@@ -80,13 +80,13 @@ Kodometer::Kodometer(TQWidget* parent, const char* name)
 	tripLabel->installEventFilter(this);
 
 	// setup help menu
-	help = new KHelpMenu(this, KGlobal::instance()->aboutData(), false);
+	help = new KHelpMenu(this, TDEGlobal::instance()->aboutData(), false);
 	KPopupMenu* helpMnu = help->menu();
 
 	// Make the popup menu
 	menu = new KPopupMenu();
 
-	menu->insertTitle(kapp->miniIcon(), KGlobal::instance()->aboutData()->programName());
+	menu->insertTitle(kapp->miniIcon(), TDEGlobal::instance()->aboutData()->programName());
 
 	enabledID = menu->insertItem(i18n("&Enable"), this, TQT_SLOT(toggleEnabled()));
 	metricID = menu->insertItem(i18n("&Metric Display"), this,
@@ -556,7 +556,7 @@ TQString Kodometer::FormatDistance(double &dist, Units unit)
  */
 void Kodometer::readSettings(void)
 {
-	KConfig* config = KGlobal::config();
+	KConfig* config = TDEGlobal::config();
 	config->setGroup("Settings");
 
 	UseMetric = config->readNumEntry("UseMetric", false);
@@ -575,7 +575,7 @@ void Kodometer::readSettings(void)
  */
 void Kodometer::saveSettings(void)
 {
-	KConfig* config = KGlobal::config();
+	KConfig* config = TDEGlobal::config();
 	config->setGroup("Settings");
 
 	config->writeEntry("UseMetric", UseMetric);

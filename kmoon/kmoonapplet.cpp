@@ -55,7 +55,7 @@ extern "C"
 {
   KDE_EXPORT KPanelApplet *init(TQWidget *parent, const TQString& configFile)
   {
-    KGlobal::locale()->insertCatalogue("kmoon");
+    TDEGlobal::locale()->insertCatalogue("kmoon");
     return new MoonPAWidget(configFile, KPanelApplet::Normal,
 			    KPanelApplet::About|KPanelApplet::Preferences,
 			    parent, "kmoonapplet");
@@ -66,7 +66,7 @@ MoonPAWidget::MoonPAWidget(const TQString& configFile, Type type, int actions,
 			   TQWidget *parent, const char *name)
   : KPanelApplet(configFile, type, actions, parent, name)
 {
-    KConfig *config = KGlobal::config();
+    KConfig *config = TDEGlobal::config();
     config->setGroup("General");
 
     TQVBoxLayout *vbox = new TQVBoxLayout(this, 0,0);
@@ -129,7 +129,7 @@ void MoonPAWidget::settings()
 		moon->setAngle(dlg.getAngle());
                 moon->setNorthHemi(dlg.getNorthHemi());
 		moon->setMask(dlg.getMask());
-		KConfig *config = KGlobal::config();
+		KConfig *config = TDEGlobal::config();
 		config->setGroup("General");
 		config->writeEntry("Rotation", moon->angle());
                 config->writeEntry("Northern", moon->northHemi());

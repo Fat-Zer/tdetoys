@@ -41,7 +41,7 @@ extern "C"
 {
     KDE_EXPORT KPanelApplet* init(TQWidget *parent, const TQString& configFile)
     {
-        KGlobal::locale()->insertCatalogue("kfifteenapplet");
+        TDEGlobal::locale()->insertCatalogue("kfifteenapplet");
         return new FifteenApplet(configFile, KPanelApplet::Normal,
                                  KPanelApplet::About, parent, "kfifteenapplet");
     }
@@ -85,7 +85,7 @@ void FifteenApplet::about()
     }
 
     KAboutApplication dialog(_aboutData);
-    dialog.setProgramLogo( KGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -KIcon::SizeLarge ) );
+    dialog.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -KIcon::SizeLarge ) );
     dialog.exec();
 }
 

@@ -83,7 +83,7 @@ void WeatherLib::Data::clear()
 WeatherLib::WeatherLib(StationDatabase *stationDB, TQObject *parent, const char *name)
 	: TQObject (parent, name)
 {
-	KGlobal::locale()->insertCatalogue("kweather");
+	TDEGlobal::locale()->insertCatalogue("kweather");
 	
 	m_StationDb    = stationDB;
 	
@@ -136,7 +136,7 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 					if ( !s.isEmpty() )
 					{
 						kdDebug( 12006 ) << "Parse: " << s << endl;
-						MetarParser parser(m_StationDb, KGlobal::locale()->measureSystem());
+						MetarParser parser(m_StationDb, TDEGlobal::locale()->measureSystem());
 						d->wi = parser.processData(d->wi.reportLocation, s);
 						d->age = TQDateTime::currentDateTime().addSecs(1800);
 						emit fileUpdate(d->wi.reportLocation);
@@ -292,7 +292,7 @@ TQString WeatherLib::date(const TQString &stationID){
   {
     TQDateTime gmtDateTime(d->wi.qsDate, d->wi.qsTime);
     TQDateTime localDateTime = gmtDateTime.addSecs(KRFCDate::localUTCOffset() * 60);
-    return KGlobal::locale()->formatDateTime(localDateTime, false, false);
+    return TDEGlobal::locale()->formatDateTime(localDateTime, false, false);
   }
 }
 
@@ -327,8 +327,8 @@ void WeatherLib::update(const TQString &stationID)
 
 	TQDateTime timeout = TQDateTime::currentDateTime();
 
-	kdDebug (12006) << "Current Time: " << KGlobal::locale()->formatDateTime(timeout, false, false) <<
-			" Update at: " << KGlobal::locale()->formatDateTime(d->age, false, false) << endl;
+	kdDebug (12006) << "Current Time: " << TDEGlobal::locale()->formatDateTime(timeout, false, false) <<
+			" Update at: " << TDEGlobal::locale()->formatDateTime(d->age, false, false) << endl;
 	if( timeout >= d->age || !d->updated)
 		getData(d, true /* try even if host was down last time */);
 	else

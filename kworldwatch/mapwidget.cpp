@@ -369,7 +369,7 @@ TQString MapWidget::cityTime(const TQString &city)
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  result.append(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  result.append(TQString("%1, %2").arg(TDEGlobal::locale()->formatTime(dt.time(), true)).arg(TDEGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);
@@ -453,7 +453,7 @@ void MapWidget::showIndicator(const TQPoint &pos)
   int w = _cityIndicator->width();
   int h = _cityIndicator->height();
 
-  TQRect desk = KGlobalSettings::desktopGeometry(pos);
+  TQRect desk = TDEGlobalSettings::desktopGeometry(pos);
 
 	TQPoint newPos;
 

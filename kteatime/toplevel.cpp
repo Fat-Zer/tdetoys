@@ -139,7 +139,7 @@ TopLevel::TopLevel() : KSystemTray()
 
 	rebuildTeaMenus();      // populate tops of menus with tea-entries from config
 
-	KHelpMenu* help = new KHelpMenu(this, KGlobal::instance()->aboutData(), false);
+	KHelpMenu* help = new KHelpMenu(this, TDEGlobal::instance()->aboutData(), false);
 	KPopupMenu* helpMnu = help->menu();
 
 	start_menu->insertSeparator();

@@ -155,7 +155,7 @@ void ZoneClock::updateTime()
   time_t t = time(NULL);
   TQDateTime dt;
   dt.setTime_t(t);
-  _timeLabel->setText(TQString("%1, %2").arg(KGlobal::locale()->formatTime(dt.time(), true)).arg(KGlobal::locale()->formatDate(dt.date(), true)));
+  _timeLabel->setText(TQString("%1, %2").arg(TDEGlobal::locale()->formatTime(dt.time(), true)).arg(TDEGlobal::locale()->formatDate(dt.date(), true)));
 
   if (initial_TZ != 0)
     setenv("TZ", initial_TZ, 1);

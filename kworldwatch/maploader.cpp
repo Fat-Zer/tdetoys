@@ -49,7 +49,7 @@ TQPtrList<MapTheme> MapLoader::themes()
 {
   TQPtrList<MapTheme> result;
 
-  TQStringList files = KGlobal::dirs()->findAllResources("data", "kworldclock/maps/*/*.desktop");
+  TQStringList files = TDEGlobal::dirs()->findAllResources("data", "kworldclock/maps/*/*.desktop");
   for (TQStringList::Iterator it=files.begin(); it != files.end(); ++it)
     {
       KDesktopFile conf(*it);
@@ -63,7 +63,7 @@ TQPtrList<MapTheme> MapLoader::themes()
 
 TQStringList MapLoader::maps(const TQString &theme)
 {
-  return KGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").arg(theme));
+  return TDEGlobal::dirs()->findAllResources("data", TQString("kworldclock/maps/%1/*.jpg").arg(theme));
 }
 
 
