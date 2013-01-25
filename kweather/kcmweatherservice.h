@@ -24,7 +24,7 @@
 #ifndef KCMWEATHERSERVICE_H
 #define KCMWEATHERSERVICE_H
 
-#include <kcmodule.h>
+#include <tdecmodule.h>
 
 class ServiceConfigWidget;
 

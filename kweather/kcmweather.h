@@ -23,7 +23,7 @@
 #ifndef KCMWEATHER_H
 #define KCMWEATHER_H
 
-#include <kcmodule.h>
+#include <tdecmodule.h>
 
 class prefsDialogData;
 
