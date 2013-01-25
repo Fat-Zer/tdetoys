@@ -99,7 +99,7 @@ KSpriteSetup::~KSpriteSetup()
 // read settings from config file
 void KSpriteSetup::readSettings()
 {
-    KConfig *config = TDEGlobal::config();
+    TDEConfig *config = TDEGlobal::config();
     config->setGroup( "Settings" );
 
     speed = config->readNumEntry( "Speed", 50 );
@@ -119,7 +119,7 @@ void KSpriteSetup::slotSpeed(int s)
 // Ok pressed - save settings and exit
 void KSpriteSetup::slotOkPressed()
 {
-    KConfig *config = TDEGlobal::config();
+    TDEConfig *config = TDEGlobal::config();
     config->setGroup("Settings");
     config->writeEntry("Speed", speed);
     config->sync();
@@ -171,7 +171,7 @@ void KSpriteSaver::readSettings()
 {
     TQString str;
 
-    KConfig *config = TDEGlobal::config();
+    TDEConfig *config = TDEGlobal::config();
     config->setGroup("Settings");
 
     mSpeed = config->readNumEntry("Speed", 50);

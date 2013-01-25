@@ -69,9 +69,9 @@ MapWidget::MapWidget(bool applet, bool restore, TQWidget *parent, const char *na
 
   if (restore)
     {
-      KConfig *config = kapp->config();
+      TDEConfig *config = kapp->config();
       if (applet)
-	config = new KConfig("kwwwappletrc");
+	config = new TDEConfig("kwwwappletrc");
       _theme = config->readEntry("Theme", "depths");
       if (applet)
 	delete config;
@@ -162,7 +162,7 @@ MapWidget::~MapWidget()
 {
   if (_applet)
     {
-      KConfig *conf = new KConfig("kwwwappletrc");
+      TDEConfig *conf = new TDEConfig("kwwwappletrc");
       save(conf);
       delete conf;
     }
@@ -171,7 +171,7 @@ MapWidget::~MapWidget()
 }
 
 
-void MapWidget::load(KConfig *config)
+void MapWidget::load(TDEConfig *config)
 {
   setCities(config->readBoolEntry("Cities", true));
   setIllumination(config->readBoolEntry("Illumination", true));
@@ -190,7 +190,7 @@ void MapWidget::load(KConfig *config)
 }
 
 
-void MapWidget::save(KConfig *config)
+void MapWidget::save(TDEConfig *config)
 {
   config->writeEntry("Cities", _cities);
   config->writeEntry("Illumination", _illumination);

@@ -45,7 +45,7 @@ WeatherService::WeatherService(TQObject *parent, const char *name) : TQObject (p
 	connect(m_weatherLib, TQT_SIGNAL(stationRemoved(const TQString&)),
 			TQT_SLOT(slotStationRemoved(const TQString&)));
 
-	KConfig *conf = kapp->config();
+	TDEConfig *conf = kapp->config();
 
 	conf->setGroup("WEATHERSTATIONS");
 	TQStringList stations =conf->readListEntry("stations");
@@ -213,7 +213,7 @@ TQStringList WeatherService::listStations()
 
 void WeatherService::saveSettings()
 {
-	KConfig *conf = kapp->config();
+	TDEConfig *conf = kapp->config();
 	conf->setGroup("WEATHERSTATIONS");
 	conf->writeEntry( "stations", m_weatherLib->stations());
 	conf->sync();

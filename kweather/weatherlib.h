@@ -22,7 +22,7 @@
 #include <tqregexp.h>
 #include <tqdict.h>
 
-namespace KIO
+namespace TDEIO
 {
 	class Job;
 }
@@ -67,7 +67,7 @@ class WeatherLib : public TQObject
 		void stationRemoved(const TQString &stationID);
 
 	private slots:
-		void slotCopyDone(KIO::Job*);
+		void slotCopyDone(TDEIO::Job*);
 
 	private:
 		Data* findData(const TQString &stationID);

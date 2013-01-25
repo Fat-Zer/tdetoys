@@ -34,7 +34,7 @@
 //
 // Constructor
 //
-AmorAnim::AmorAnim(KConfigBase &config)
+AmorAnim::AmorAnim(TDEConfigBase &config)
     : mMaximumSize(0, 0)
 {
     mCurrent = 0;
@@ -69,7 +69,7 @@ const TQPixmap *AmorAnim::frame()
 // Read a single animation's parameters.  The config class should already
 // have its group set to the animation that is to be read.
 //
-void AmorAnim::readConfig(KConfigBase &config)
+void AmorAnim::readConfig(TDEConfigBase &config)
 {
     // Read the list of frames to display and load them into the pixmap
     // manager.

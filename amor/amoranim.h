@@ -46,7 +46,7 @@
 class AmorAnim
 {
 public:
-    AmorAnim(KConfigBase &config);
+    AmorAnim(TDEConfigBase &config);
     virtual ~AmorAnim();
 
     void reset()
@@ -71,7 +71,7 @@ public:
     const TQPixmap *frame();
 
 protected:
-    void readConfig(KConfigBase &config);
+    void readConfig(TDEConfigBase &config);
 
 protected:
     unsigned int   mCurrent;        // current frame in sequence

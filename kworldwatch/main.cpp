@@ -74,7 +74,7 @@ WorldWideWatch::WorldWideWatch(bool restore, TQWidget *parent, const char *name)
 }
 
 
-void WorldWideWatch::load(KConfig *config)
+void WorldWideWatch::load(TDEConfig *config)
 {
   _map->load(config);
   _clocks->load(config);
@@ -84,7 +84,7 @@ void WorldWideWatch::load(KConfig *config)
 }
 
 
-void WorldWideWatch::save(KConfig *config)
+void WorldWideWatch::save(TDEConfig *config)
 {
   _map->save(config);
   _clocks->save(config);

@@ -57,7 +57,7 @@ class WeatherLib::Data
 		KTempFile *target;
 		bool downloading;
 		bool updated;
-		KIO::Job *job;
+		TDEIO::Job *job;
 };
 
 WeatherLib::Data::Data()
@@ -94,14 +94,14 @@ WeatherLib::~WeatherLib()
 {
 }
 
-void WeatherLib::slotCopyDone(KIO::Job* job)
+void WeatherLib::slotCopyDone(TDEIO::Job* job)
 {
 	kdDebug(12006) << "Copy done..." << endl;
 	if( job->error())
 	{
 		kdDebug(12006) << "Error code: " << job->error() << endl;
 		//job->showErrorDialog(0L);
-		if ((job->error() == KIO::ERR_COULD_NOT_CONNECT || job->error() == KIO::ERR_UNKNOWN_HOST)
+		if ((job->error() == TDEIO::ERR_COULD_NOT_CONNECT || job->error() == TDEIO::ERR_UNKNOWN_HOST)
 		    && !hostDown)
 		{
 			hostDown= true;
@@ -164,15 +164,15 @@ void WeatherLib::slotCopyDone(KIO::Job* job)
 				d->job = 0L;
 
 			}
-			else if( job->error()  == KIO::ERR_DOES_NOT_EXIST)
+			else if( job->error()  == TDEIO::ERR_DOES_NOT_EXIST)
 			{
 				data.remove(d->wi.reportLocation);
 				kdDebug( 12006 ) << "Bad station data so i am going to remove it" << endl;
 				KPassivePopup::message( i18n("KWeather Error!"),
 				i18n("The requested station does not exist."),  0L,"error" );
 			}
-			else if(job->error() == KIO::ERR_COULD_NOT_CONNECT ||
-				job->error() == KIO::ERR_UNKNOWN_HOST)
+			else if(job->error() == TDEIO::ERR_COULD_NOT_CONNECT ||
+				job->error() == TDEIO::ERR_UNKNOWN_HOST)
 			{
 				kdDebug( 12006 ) << "Offline now..." << endl;
 				d->clear();
@@ -207,10 +207,10 @@ void WeatherLib::getData(Data *d, bool force /* try even if host was down last t
 		KURL url(u);
 		KURL local(d->target->name());
 
-		d->job = KIO::file_copy( url, local, -1, true, false, false);
+		d->job = TDEIO::file_copy( url, local, -1, true, false, false);
 		d->job->addMetaData("cache", "reload"); // Make sure to get fresh info
-		connect( d->job, TQT_SIGNAL( result( KIO::Job *)),
-			TQT_SLOT(slotCopyDone(KIO::Job *)));
+		connect( d->job, TQT_SIGNAL( result( TDEIO::Job *)),
+			TQT_SLOT(slotCopyDone(TDEIO::Job *)));
 		kdDebug( 12006 ) << "Copying " << url.prettyURL() << " to "
 			<< local.prettyURL() << endl;
 		emit fileUpdating(d->wi.reportLocation);

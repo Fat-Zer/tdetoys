@@ -550,13 +550,13 @@ TQString Kodometer::FormatDistance(double &dist, Units unit)
 }
 
 /*
- * Use KConfig to read all settings from disk.  Note that whatever
+ * Use TDEConfig to read all settings from disk.  Note that whatever
  * happens here overrides the defaults, but there's not much
  * sanity-checking.
  */
 void Kodometer::readSettings(void)
 {
-	KConfig* config = TDEGlobal::config();
+	TDEConfig* config = TDEGlobal::config();
 	config->setGroup("Settings");
 
 	UseMetric = config->readNumEntry("UseMetric", false);
@@ -575,7 +575,7 @@ void Kodometer::readSettings(void)
  */
 void Kodometer::saveSettings(void)
 {
-	KConfig* config = TDEGlobal::config();
+	TDEConfig* config = TDEGlobal::config();
 	config->setGroup("Settings");
 
 	config->writeEntry("UseMetric", UseMetric);

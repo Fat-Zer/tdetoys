@@ -52,7 +52,7 @@ bool SpriteObject::outOfBounds() const
 //
 // SpriteDef stores the animations that create an object
 //
-SpriteDef::SpriteDef(KConfigBase &config)
+SpriteDef::SpriteDef(TDEConfigBase &config)
 {
     read(config);
 }
@@ -82,7 +82,7 @@ SpriteObject *SpriteDef::create( TQCanvas *c )
 }
 
 //---------------------------------------------------------------------------
-void SpriteDef::read(KConfigBase &config)
+void SpriteDef::read(TDEConfigBase &config)
 {
     mDirX.set(config.readEntry("DirectionX", "0"));
     mDirY.set(config.readEntry("DirectionY", "0"));
@@ -101,7 +101,7 @@ void SpriteDef::read(KConfigBase &config)
 //
 // SpriteGroup
 //
-SpriteGroup::SpriteGroup(TQCanvas *c, KConfigBase &config)
+SpriteGroup::SpriteGroup(TQCanvas *c, TDEConfigBase &config)
     : mCanvas(c)
 {
     mAvailable.setAutoDelete(true);
@@ -141,7 +141,7 @@ void SpriteGroup::refresh()
 
 
 //---------------------------------------------------------------------------
-void SpriteGroup::read(KConfigBase &config)
+void SpriteGroup::read(TDEConfigBase &config)
 {
     SpriteRange countRange(config.readEntry("Count", "1"));
     mCount = countRange.random();

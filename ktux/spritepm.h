@@ -67,14 +67,14 @@ public:
     SpriteSequenceManager();
     ~SpriteSequenceManager();
  
-    SpritePixmapSequence *load(KConfigBase &config, const TQString & name);
+    SpritePixmapSequence *load(TDEConfigBase &config, const TQString & name);
     SpritePixmapSequence *sprite(const char *name)
         { return mSprites.find(name); }
 
     static SpriteSequenceManager *manager();
      
 protected:
-    SpritePixmapSequence *read(KConfigBase &config);
+    SpritePixmapSequence *read(TDEConfigBase &config);
 
 protected:
     TQDict<SpritePixmapSequence> mSprites;

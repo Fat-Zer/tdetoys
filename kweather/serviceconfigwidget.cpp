@@ -163,7 +163,7 @@ void ServiceConfigWidget::initGUI()
 
 void ServiceConfigWidget::loadLocations()
 {
-  KConfig config( locate( "data", "kweatherservice/weather_stations.desktop" ) );
+  TDEConfig config( locate( "data", "kweatherservice/weather_stations.desktop" ) );
 
   config.setGroup( "Main" );
   TQStringList regions = TQStringList::split( ' ', config.readEntry( "regions" ) );

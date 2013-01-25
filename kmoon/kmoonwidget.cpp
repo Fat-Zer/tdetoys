@@ -57,7 +57,7 @@ MoonWidget::MoonWidget(TQWidget *parent, const char *name)
     time_t clock;
 
     counter = -1;
-    KConfig *config = TDEGlobal::config();
+    TDEConfig *config = TDEGlobal::config();
     config->setGroup("General");
     _angle = config->readNumEntry("Rotation", 0);
     _north = config->readBoolEntry("Northern", true);

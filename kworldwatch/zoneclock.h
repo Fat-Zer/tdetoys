@@ -37,7 +37,7 @@
 
 class TQLabel;
 class SimpleFlow;
-class KConfig;
+class TDEConfig;
 
 
 class ClockDialog;
@@ -106,8 +106,8 @@ public:
 
   void addClock(const TQString &zone, const TQString &name);
 
-  void save(KConfig *config);
-  void load(KConfig *config);
+  void save(TDEConfig *config);
+  void load(TDEConfig *config);
 
 
 public slots:

@@ -111,7 +111,7 @@ protected:
     enum State { Focus, Blur, Normal, Sleeping, Waking, Destroy };
 
     bool readConfig();
-    void readGroupConfig(KConfigBase &config, TQPtrList<AmorAnim> &animList,
+    void readGroupConfig(TDEConfigBase &config, TQPtrList<AmorAnim> &animList,
                             const char *seq);
     void showBubble();
     AmorAnim *randomAnimation(TQPtrList<AmorAnim> &animList);

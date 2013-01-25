@@ -81,8 +81,8 @@ public:
   void removeNearestFlag(const TQPoint &target, int w, int h, int offset);
   void removeAllFlags();
 
-  void save(KConfig *config);
-  void load(KConfig *config);
+  void save(TDEConfig *config);
+  void load(TDEConfig *config);
   
 
 private:

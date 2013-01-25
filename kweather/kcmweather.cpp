@@ -43,14 +43,14 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weather( TQWidget *parent, const char * )
+  KDE_EXPORT TDECModule *create_weather( TQWidget *parent, const char * )
   {
     return new KCMWeather( parent, "kweather" );
   }
 }
 
 KCMWeather::KCMWeather( TQWidget *parent, const char *name )
-  : KCModule( parent, name )
+  : TDECModule( parent, name )
 {
   mWeatherService = new WeatherService_stub( "KWeatherService",
       "WeatherService" );
@@ -162,7 +162,7 @@ void KCMWeather::textColorChanged(const TQColor &)
 void KCMWeather::load()
 {
   kdDebug() << "Load" << endl;
-  KConfig config( "weather_panelappletrc" );
+  TDEConfig config( "weather_panelappletrc" );
 
   config.setGroup( "General Options" );
   bool enabled = config.readBoolEntry( "logging", false );
@@ -188,7 +188,7 @@ void KCMWeather::load()
 void KCMWeather::save()
 {
   kdDebug() << "Save" << endl;
-  KConfig config( "weather_panelappletrc" );
+  TDEConfig config( "weather_panelappletrc" );
 
   config.setGroup( "General Options" );
   config.writeEntry( "logging", mWidget->m_enableLog->isChecked() );

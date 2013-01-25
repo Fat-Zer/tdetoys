@@ -70,8 +70,8 @@ public:
   void setFlags(bool f);
   void setSize(int w, int h);
 
-  void save(KConfig *config);
-  void load(KConfig *config);
+  void save(TDEConfig *config);
+  void load(TDEConfig *config);
 
   void updateBackground();
 

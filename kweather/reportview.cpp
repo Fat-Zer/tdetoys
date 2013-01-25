@@ -37,7 +37,7 @@ reportView::reportView(const TQString &reportLocation)
     TQVBox *vbox = makeVBoxMainWidget();
     m_reportView = new KHTMLPart(vbox, "m_reportView");
 
-    KConfig config( "weather_panelappletrc" );
+    TDEConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
     TQSize defaultSize( 450, 325 );
     resize( config.readSizeEntry( "reportview_size", &defaultSize ) );
@@ -57,7 +57,7 @@ reportView::~reportView(){
     // we do not have to delete m_reportView because this class is
     // the parent of the TQVBox, and that is the parent of the KHTMLPart.
 
-    KConfig config( "weather_panelappletrc" );
+    TDEConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
     config.writeEntry( "reportview_size", size() );
 }

@@ -46,14 +46,14 @@ public:
 
   WorldWideWatch(bool restore=false, TQWidget *parent=0, const char *name=0);
 
-  void save(KConfig *config);
-  void load(KConfig *load);
+  void save(TDEConfig *config);
+  void load(TDEConfig *load);
 
 
 protected:
 
-  void readProperties(KConfig *sc) { load(sc); };
-  void saveProperties(KConfig *sc) { save(sc); };
+  void readProperties(TDEConfig *sc) { load(sc); };
+  void saveProperties(TDEConfig *sc) { save(sc); };
 
 
 private slots:

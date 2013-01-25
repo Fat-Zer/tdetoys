@@ -28,7 +28,7 @@
 
 class ServiceConfigWidget;
 
-class KCMWeatherService : public KCModule
+class KCMWeatherService : public TDECModule
 {
   Q_OBJECT
   

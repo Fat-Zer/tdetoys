@@ -204,7 +204,7 @@ void kweather::slotReportFinished(){
 /** load the application */
 void kweather::loadPrefs(){
     kdDebug(12004) << "Loading Prefs" << endl;
-    KConfig *kcConfig = config();
+    TDEConfig *kcConfig = config();
     kcConfig->reparseConfiguration();
 
     if (!kcConfig->hasGroup ("General Options") )
@@ -223,7 +223,7 @@ void kweather::loadPrefs(){
 /** Save the application mPrefs. */
 void kweather::savePrefs(){
     kdDebug(12004) << "Saving Prefs..." << endl;
-    KConfig *kcConfig = config();
+    TDEConfig *kcConfig = config();
     
     kcConfig->setGroup("General Options");
     kcConfig->writeEntry("logging", logOn);
@@ -324,7 +324,7 @@ void kweather::refresh(TQString stationID)
 
 void kweather::slotPrefsAccepted()
 {
-    // Preferences have been saved in the config file by the KCModule,
+    // Preferences have been saved in the config file by the TDECModule,
     // so read them out.
     loadPrefs();
 

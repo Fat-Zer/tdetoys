@@ -259,7 +259,7 @@ void ZoneClockPanel::addClock(const TQString &zone)
 }
 
 
-void ZoneClockPanel::save(KConfig *config)
+void ZoneClockPanel::save(TDEConfig *config)
 {
   config->writeEntry("Clocks", _clocks.count());
 
@@ -276,7 +276,7 @@ void ZoneClockPanel::save(KConfig *config)
 }
 
 
-void ZoneClockPanel::load(KConfig *config)
+void ZoneClockPanel::load(TDEConfig *config)
 {
   _clocks.clear();
 

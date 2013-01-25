@@ -49,12 +49,12 @@ protected:
 class SpriteDef
 {
 public:
-    SpriteDef(KConfigBase &config);
+    SpriteDef(TDEConfigBase &config);
 
     SpriteObject *create( TQCanvas *c );
 
 protected:
-    void read(KConfigBase &config);
+    void read(TDEConfigBase &config);
 
 protected:
     SpriteRange             mDirX;
@@ -75,14 +75,14 @@ protected:
 class SpriteGroup
 {
 public:
-    SpriteGroup(TQCanvas *c, KConfigBase &config);
+    SpriteGroup(TQCanvas *c, TDEConfigBase &config);
 
     void next();
     void refresh();
     int refreshTime() const { return mRefresh.random(); }
 
 protected:
-    void read(KConfigBase &config);
+    void read(TDEConfigBase &config);
 
 protected:
     TQPtrList<SpriteDef>        mAvailable;

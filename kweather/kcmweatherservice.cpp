@@ -33,13 +33,13 @@
 
 extern "C"
 {
-  KDE_EXPORT KCModule *create_weatherservice( TQWidget *parent, const char * ) {
+  KDE_EXPORT TDECModule *create_weatherservice( TQWidget *parent, const char * ) {
     return new KCMWeatherService( parent, "kweather" );
   }
 }
 
 KCMWeatherService::KCMWeatherService( TQWidget *parent, const char *name )
-  : KCModule( parent, name )
+  : TDECModule( parent, name )
 {
   TQVBoxLayout *layout = new TQVBoxLayout( this );
   mWidget = new ServiceConfigWidget( this );

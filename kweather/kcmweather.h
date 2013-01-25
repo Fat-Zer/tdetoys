@@ -27,7 +27,7 @@
 
 class prefsDialogData;
 
-class KCMWeather : public KCModule
+class KCMWeather : public TDECModule
 {
   Q_OBJECT
   

@@ -112,7 +112,7 @@ SpriteSequenceManager::~SpriteSequenceManager()
 // Returns:
 //   pointer to sprite if loaded successfully, 0 otherwise.
 //
-SpritePixmapSequence *SpriteSequenceManager::load(KConfigBase &config,
+SpritePixmapSequence *SpriteSequenceManager::load(TDEConfigBase &config,
     const TQString & name)
 {
     SpritePixmapSequence *sprite = mSprites.find(name);
@@ -133,7 +133,7 @@ SpritePixmapSequence *SpriteSequenceManager::load(KConfigBase &config,
 
 //---------------------------------------------------------------------------
 //
-SpritePixmapSequence *SpriteSequenceManager::read(KConfigBase &config)
+SpritePixmapSequence *SpriteSequenceManager::read(TDEConfigBase &config)
 {
     TQStrList strImages;
     TQStrList strDelays;

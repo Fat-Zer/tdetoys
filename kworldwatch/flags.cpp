@@ -113,7 +113,7 @@ void FlagList::removeAllFlags()
   _flags.clear();
 }
 
-void FlagList::save(KConfig *config)
+void FlagList::save(TDEConfig *config)
 {
   config->writeEntry("Flags", _flags.count());
   
@@ -129,7 +129,7 @@ void FlagList::save(KConfig *config)
 }
 
 
-void FlagList::load(KConfig *config)
+void FlagList::load(TDEConfig *config)
 {
   _flags.clear(); 
   int num = config->readNumEntry("Flags", 0);
