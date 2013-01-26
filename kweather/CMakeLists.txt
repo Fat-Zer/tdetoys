@@ -29,7 +29,7 @@ link_directories(
 tde_add_tdeinit_executable( kweatherreport AUTOMOC
   SOURCES reportmain.cpp weatherservice.stub
     reportview.cpp
-  LINK tdeui-shared khtml-shared
+  LINK tdeui-shared tdehtml-shared
 )
 
 
@@ -84,7 +84,7 @@ tde_add_kpart( weather_panelapplet AUTOMOC
   SOURCES reportview.cpp kweather.cpp
     dockwidget.cpp weatherIface.skel
     weatherservice.stub weatherbutton.cpp
-  LINK khtml-shared
+  LINK tdehtml-shared
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 
@@ -105,7 +105,7 @@ tde_add_kpart( kcm_weatherservice AUTOMOC
   SOURCES kcmweatherservice.cpp
     serviceconfigwidget.cpp serviceconfigdata.ui
     weatherservice.stub
-  LINK tdeui-shared khtml-shared
+  LINK tdeui-shared tdehtml-shared
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

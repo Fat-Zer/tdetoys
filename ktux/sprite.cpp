@@ -23,7 +23,7 @@
 #include "sprite.moc"
 
 
-// libkscreensaver interface
+// libtdescreensaver interface
 extern "C"
 {
     KDE_EXPORT const char *kss_applicationName = "ktux";

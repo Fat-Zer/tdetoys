@@ -56,7 +56,7 @@ kcm_weatherservice_la_LIBADD = $(LIB_TDEUI)
 #globaladddir   = $(kde_datadir)/konqsidebartng/add
 #globaladd_DATA = weatherbar_add.desktop
 
-kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -lktexteditor
+kweatherservice_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -ltdetexteditor
 kweatherservice_LDADD = $(LIB_KIO)
 kweatherservice_SOURCES = main.cpp metar_parser.cpp weatherlib.cpp \
                           weatherservice.cpp weatherservice.skel \

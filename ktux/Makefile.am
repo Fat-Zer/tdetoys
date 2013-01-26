@@ -12,10 +12,10 @@ bin_PROGRAMS = ktux
 INCLUDES         = $(all_includes)
 
 # the library search path. 
-ktux_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -lktexteditor
+ktux_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -ltdetexteditor
 
 # the libraries to link against.
-ktux_LDADD   = $(LIB_TDEUI) -lkscreensaver
+ktux_LDADD   = $(LIB_TDEUI) -ltdescreensaver
 
 # which sources should be compiled for ktux
 ktux_SOURCES =	spriteanim.cpp spritemisc.cpp spritepm.cpp sprite.cpp

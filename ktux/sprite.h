@@ -13,7 +13,7 @@
 #include <tqptrlist.h>
 #include <tqstrlist.h>
 #include <tqcanvas.h>
-#include <kscreensaver.h>
+#include <tdescreensaver.h>
 #include "spriteanim.h"
 
 //-----------------------------------------------------------------------------

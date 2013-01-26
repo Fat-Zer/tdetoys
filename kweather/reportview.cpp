@@ -19,8 +19,8 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <khtml_part.h>
-#include <khtmlview.h>
+#include <tdehtml_part.h>
+#include <tdehtmlview.h>
 #include <kglobalsettings.h>
 
 #include <tqvbox.h>

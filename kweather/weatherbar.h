@@ -23,9 +23,9 @@
 #define __KONTQSIDEBARWEATHER_H__
 
 #include <konqsidebarplugin.h>
-#include <kparts/part.h>
-#include <kparts/factory.h>
-#include <kparts/browserextension.h>
+#include <tdeparts/part.h>
+#include <tdeparts/factory.h>
+#include <tdeparts/browserextension.h>
 #include <tqdict.h>
 #include <dcopobject.h>
 #include <tqlayout.h>
