@@ -27,7 +27,7 @@ email                : geiseri@msoe.edu
 #include <kdebug.h>
 #include <math.h>
 #include <krfcdate.h>
-#include <kio/job.h>
+#include <tdeio/job.h>
 #include <kurl.h>
 #include <knotifyclient.h>
 #include <ktempfile.h>

@@ -31,7 +31,7 @@ tde_add_executable( amor AUTOMOC
     main.cpp amoranim.cpp amorpm.cpp
     amorbubble.cpp amorconfig.cpp amortips.cpp
     AmorIface.skel
-  LINK kio-shared Xext
+  LINK tdeio-shared Xext
   DESTINATION ${BIN_INSTALL_DIR}
 )
 

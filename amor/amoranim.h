@@ -36,7 +36,7 @@
 #include <tqmemarray.h>
 #include <tqdict.h>
 #include <tqstringlist.h>
-#include <kconfigbase.h>
+#include <tdeconfigbase.h>
 #include <ksimpleconfig.h>
 
 //---------------------------------------------------------------------------

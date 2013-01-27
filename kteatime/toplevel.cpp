@@ -38,7 +38,7 @@
 #include <tqpixmap.h>
 #include <tqbitmap.h>
 
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>
 #include <klocale.h>

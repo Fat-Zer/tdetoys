@@ -26,7 +26,7 @@ link_directories(
 
 tde_add_executable( kodo AUTOMOC
   SOURCES main.cpp kodometer.cpp kimagenumber.cpp
-  LINK kio-shared
+  LINK tdeio-shared
   DESTINATION ${BIN_INSTALL_DIR}
 )
 

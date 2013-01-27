@@ -28,7 +28,7 @@
 
 #include <kaboutdata.h>
 #include <kapplication.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kurlrequester.h>

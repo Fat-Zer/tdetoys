@@ -41,7 +41,7 @@
 #include <kcmdlineargs.h>
 #include <kiconloader.h>
 #include <kiconeffect.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <kdialogbase.h>
 
 #include "version.h"

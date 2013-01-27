@@ -38,7 +38,7 @@ tde_add_library( ww STATIC_PIC AUTOMOC
 
 tde_add_executable( kworldclock AUTOMOC
   SOURCES main.cpp
-  LINK kio-shared ww-static
+  LINK tdeio-shared ww-static
   DESTINATION ${BIN_INSTALL_DIR}
 )
 
@@ -47,7 +47,7 @@ tde_add_executable( kworldclock AUTOMOC
 
 tde_add_kpart( ww_panelapplet AUTOMOC
   SOURCES applet.cpp
-  LINK kio-shared ww-static
+  LINK tdeio-shared ww-static
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

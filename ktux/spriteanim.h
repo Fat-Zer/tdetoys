@@ -17,7 +17,7 @@
 #include <tqptrlist.h>
 #include <tqstrlist.h>
 #include <tqcanvas.h>
-#include <kconfigbase.h>
+#include <tdeconfigbase.h>
 #include <ksimpleconfig.h>                                                      
 
 //---------------------------------------------------------------------------

@@ -24,7 +24,7 @@
 #include <kiconloader.h>
 #include <kmessagebox.h>
 #include <kpopupmenu.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <ksettings/dialog.h>
 #include <ksettings/dispatcher.h>
 #include <dcopclient.h>

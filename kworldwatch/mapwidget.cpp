@@ -38,7 +38,7 @@
 #include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kcolordialog.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <kglobal.h>
 #include <kglobalsettings.h>
 #include <klocale.h>

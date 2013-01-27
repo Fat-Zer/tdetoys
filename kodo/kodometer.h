@@ -38,7 +38,7 @@
 #include <kaboutdata.h>
 #include <kuniqueapplication.h>
 #include <kcmdlineargs.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <kdebug.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>

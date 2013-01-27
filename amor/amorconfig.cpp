@@ -26,7 +26,7 @@
 */
 #include <kapplication.h>
 #include "amorconfig.h"
-#include <kconfig.h>
+#include <tdeconfig.h>
 
 //---------------------------------------------------------------------------
 //

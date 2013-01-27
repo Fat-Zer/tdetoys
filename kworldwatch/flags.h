@@ -38,7 +38,7 @@
 #include <tqbitmap.h>
 
 
-#include <kconfig.h>
+#include <tdeconfig.h>
 
 
 class Flag

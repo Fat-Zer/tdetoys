@@ -40,7 +40,7 @@ tde_add_executable( kweatherservice AUTOMOC
     weatherlib.cpp weatherservice.cpp
     weatherservice.skel stationdatabase.cpp
     sun.cpp weatherservice.stub
-  LINK kio-shared
+  LINK tdeio-shared
   DESTINATION ${BIN_INSTALL_DIR}
 )
 
@@ -94,7 +94,7 @@ tde_add_kpart( weather_panelapplet AUTOMOC
 tde_add_kpart( kcm_weather AUTOMOC
   SOURCES kcmweather.cpp prefdialogdata.ui
     weatherservice.stub
-  LINK kio-shared
+  LINK tdeio-shared
   DESTINATION ${PLUGIN_INSTALL_DIR}
 )
 

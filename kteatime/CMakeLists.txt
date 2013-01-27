@@ -27,7 +27,7 @@ link_directories(
 tde_add_executable( kteatime AUTOMOC
   SOURCES main.cpp toplevel.cpp tealist.cpp
     timeedit.cpp
-  LINK kio-shared
+  LINK tdeio-shared
   DESTINATION ${BIN_INSTALL_DIR}
 )
 

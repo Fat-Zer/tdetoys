@@ -30,7 +30,7 @@
 #include <tqgroupbox.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <kconfig.h>
+#include <tdeconfig.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 #include <dcopref.h>

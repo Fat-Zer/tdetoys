@@ -29,7 +29,7 @@ link_directories(
 tde_add_executable( ktux AUTOMOC
   SOURCES spriteanim.cpp spritemisc.cpp
     spritepm.cpp sprite.cpp
-  LINK kio-shared tdescreensaver-shared
+  LINK tdeio-shared tdescreensaver-shared
   DESTINATION ${BIN_INSTALL_DIR}
 )
 

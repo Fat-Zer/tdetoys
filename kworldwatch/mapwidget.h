@@ -43,7 +43,7 @@
 class TQPopupMenu;
 
 
-#include <kconfig.h>
+#include <tdeconfig.h>
 
 
 class CityList;

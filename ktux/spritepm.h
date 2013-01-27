@@ -15,7 +15,7 @@
 #include <tqdict.h>
 #include <tqpixmap.h>
 #include <tqcanvas.h>
-#include <kconfigbase.h>
+#include <tdeconfigbase.h>
 #include <ksimpleconfig.h>                                                      
 
 //---------------------------------------------------------------------------
