@@ -35,7 +35,7 @@ reportView::reportView(const TQString &reportLocation)
 	  m_locationCode(reportLocation)
 {
     TQVBox *vbox = makeVBoxMainWidget();
-    m_reportView = new KHTMLPart(vbox, "m_reportView");
+    m_reportView = new TDEHTMLPart(vbox, "m_reportView");
 
     TDEConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );
@@ -55,7 +55,7 @@ reportView::reportView(const TQString &reportLocation)
 reportView::~reportView(){
     delete m_weatherService;
     // we do not have to delete m_reportView because this class is
-    // the parent of the TQVBox, and that is the parent of the KHTMLPart.
+    // the parent of the TQVBox, and that is the parent of the TDEHTMLPart.
 
     TDEConfig config( "weather_panelappletrc" );
     config.setGroup( "General Options" );

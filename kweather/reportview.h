@@ -22,7 +22,7 @@
 #include <tqstringlist.h>
 
 
-class KHTMLPart;
+class TDEHTMLPart;
 class WeatherService_stub;
 
 /**This is the main report generated for the user.
@@ -41,7 +41,7 @@ public:
 
 private:
     WeatherService_stub *m_weatherService;
-    KHTMLPart *m_reportView;
+    TDEHTMLPart *m_reportView;
     TQString m_locationCode;
 };
 
