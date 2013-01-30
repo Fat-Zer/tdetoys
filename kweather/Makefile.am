@@ -48,7 +48,7 @@ kcm_weatherservice_la_LIBADD = $(LIB_TDEUI)
 
 #weather_sidebar_la_SOURCES = sidebarwidgetbase.ui sidebarwidget.cpp dockwidget.cpp weatherbar.cpp weatherbar.skel
 #weather_sidebar_la_LDFLAGS = $(all_libraries) -module -no-undefined
-#weather_sidebar_la_LIBADD = $(LIB_KPARTS) $(LIB_KFILE) -lkonqsidebarplugin
+#weather_sidebar_la_LIBADD = $(LIB_KPARTS) $(LIB_TDEFILE) -lkonqsidebarplugin
 
 #globalentrydir   = $(kde_datadir)/konqsidebartng/entries
 #globalentry_DATA = weatherbar.desktop
