@@ -35,7 +35,7 @@ email                : jratke@comcast.net
 #define TEMP_F_TO_C(x) ( ((x) - 32) * 5/9 )
 
 MetarParser::MetarParser(StationDatabase *stationDB,
-			 KLocale::MeasureSystem units,
+			 TDELocale::MeasureSystem units,
 			 TQDate date,
 			 TQTime time,
 			 unsigned int localUTCOffset) : 
@@ -158,7 +158,7 @@ bool MetarParser::parseCover(const TQString &s)
 		TQString skycondition;
 
 		height *= 100;
-		if (m_units == KLocale::Metric)
+		if (m_units == TDELocale::Metric)
 		{
 			height = height * 0.3048;
 			// using plural i18n form for proper translations
@@ -435,7 +435,7 @@ void MetarParser::calcTemperatureVariables()
 	}
 
 	TQString unit;
-	if (m_units == KLocale::Metric)
+	if (m_units == TDELocale::Metric)
 	{
 		unit = i18n("°C");
 		weatherInfo.qsTemperature.sprintf("%.1f", weatherInfo.tempC);
@@ -539,7 +539,7 @@ bool MetarParser::parseVisibility(TQStringList::ConstIterator it)
 	
 	if (fVisibility > 0)
 	{
-		if (m_units == KLocale::Metric)
+		if (m_units == TDELocale::Metric)
 		{
 			fVisibility *= 1.6;
 			weatherInfo.qsVisibility.setNum(fVisibility);
@@ -569,7 +569,7 @@ bool MetarParser::parsePressure( const TQString &s)
 		kdDebug(12006) << "Pressure: " << TQString(PressRegExp.capturedTexts().join("-"))
 				<< endl;
 
-		if (m_units == KLocale::Metric)
+		if (m_units == TDELocale::Metric)
 		{
 			if (type == "A")
 				fPressure *= (33.8639/100);
@@ -648,7 +648,7 @@ bool MetarParser::parseWindSpeed(const TQString &s)
 		kdDebug(12006) << "Wind: " << WindRegExp.capturedTexts().join("-")
 				<< endl;
 
-		if (m_units == KLocale::Metric)
+		if (m_units == TDELocale::Metric)
 		{
 			if (sWindUnit == "KT")
 			{
@@ -686,7 +686,7 @@ bool MetarParser::parseWindSpeed(const TQString &s)
 
 		if (gustSpeed >= 1)
 		{
-			if (m_units == KLocale::Metric)
+			if (m_units == TDELocale::Metric)
 			{
 				weatherInfo.qsCurrentList << i18n("Wind gusts up to 1 km/h", 
 			     "Wind gusts up to %n km/h", (int) gustSpeed);
@@ -802,7 +802,7 @@ void MetarParser::calcWindChill()
 
 	if (windChill < 48)
 	{
-		if (m_units == KLocale::Metric)
+		if (m_units == TDELocale::Metric)
 		{
 			weatherInfo.qsWindChill.setNum(TEMP_F_TO_C(windChill), 'f', 1);
 			removeTrailingDotZero(weatherInfo.qsWindChill);

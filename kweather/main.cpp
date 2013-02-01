@@ -8,7 +8,7 @@
 
 int main (int argc, char *argv[])
 {
-	KLocale::setMainCatalogue("tdelibs");
+	TDELocale::setMainCatalogue("tdelibs");
 	TDEAboutData aboutdata("KWeatherService", I18N_NOOP("TDE"),
 				"0.8", I18N_NOOP("KWeather DCOP Service"),
 				TDEAboutData::License_GPL, "(C) 2002, Ian Reinhart Geiser");

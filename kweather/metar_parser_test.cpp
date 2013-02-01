@@ -104,7 +104,7 @@ void test1()
 	TQTime Time(21, 7);  // hours, minutes,   seconds and ms defaults to 0
 
 	// Construct a MetarParser object for our tests.
-	MetarParser parser( stationDb, KLocale::Imperial, Date, Time, localUTCOffset );
+	MetarParser parser( stationDb, TDELocale::Imperial, Date, Time, localUTCOffset );
 
 	struct WeatherInfo results = parser.processData("KUGN", "2004/06/18 00:55 KUGN 180055Z AUTO 04004KT 9SM SCT050 17/15 A3005 RMK AO2 SLP167 T01670150 TSNO");
 
@@ -138,7 +138,7 @@ void test2()
 	TQTime Time(18, 43);  // hours, minutes,   seconds and ms defaults to 0
 	
 	// Construct a MetarParser object for our tests.
-	MetarParser parser( stationDb, KLocale::Imperial, Date, Time, localUTCOffset );
+	MetarParser parser( stationDb, TDELocale::Imperial, Date, Time, localUTCOffset );
 	
 	struct WeatherInfo results = parser.processData("KUGN", "2004/06/18 22:55 KUGN 182255Z 29005KT 10SM BKN110 21/13 A3010 RMK AO2 SLP187 T02110133");
 

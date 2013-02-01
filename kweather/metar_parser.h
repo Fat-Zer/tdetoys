@@ -59,7 +59,7 @@ class MetarParser
 {
 	public:
 		MetarParser(StationDatabase *stationDB,
-			    KLocale::MeasureSystem units = KLocale::Imperial,
+			    TDELocale::MeasureSystem units = TDELocale::Imperial,
 			    TQDate date = TQDate::currentDate(),
 			    TQTime time = TQTime::currentTime(), 
 			    unsigned int localUTCOffset = KRFCDate::localUTCOffset());
@@ -101,7 +101,7 @@ class MetarParser
 		void reset();
 
 		StationDatabase* const m_stationDb;
-		const KLocale::MeasureSystem m_units;
+		const TDELocale::MeasureSystem m_units;
 		const TQDate m_date;
 		const TQTime m_time;
 		const unsigned int m_localUTCOffset;
