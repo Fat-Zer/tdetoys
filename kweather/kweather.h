@@ -26,7 +26,7 @@
 class TQTimer;
 class dockwidget;
 class reportView;
-class KPopupMenu;
+class TDEPopupMenu;
 class WeatherService_stub;
 class TQPalette;
 
@@ -82,7 +82,7 @@ private: // Private methods
     reportView *mReport;
     DCOPClient *mClient;
     //DCOPRef *mWeatherService;
-    KPopupMenu *mContextMenu;
+    TDEPopupMenu *mContextMenu;
     WeatherService_stub *mWeatherService;
     KCMultiDialog *settingsDialog;
     TQColor mTextColor;

@@ -125,7 +125,7 @@ protected:
 	KImageNumber* totalLabel;
 	KImageNumber* speedLabel;
 
-	KPopupMenu* menu;
+	TDEPopupMenu* menu;
 	KHelpMenu* help;
 	int metricID;
 	int autoResetID;

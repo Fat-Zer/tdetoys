@@ -37,7 +37,7 @@ class MapWidget;
 class ZoneClockPanel;
 
 
-class WorldWideWatch : public KMainWindow
+class WorldWideWatch : public TDEMainWindow
 {
   Q_OBJECT
   

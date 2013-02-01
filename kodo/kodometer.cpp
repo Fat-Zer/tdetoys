@@ -81,10 +81,10 @@ Kodometer::Kodometer(TQWidget* parent, const char* name)
 
 	// setup help menu
 	help = new KHelpMenu(this, TDEGlobal::instance()->aboutData(), false);
-	KPopupMenu* helpMnu = help->menu();
+	TDEPopupMenu* helpMnu = help->menu();
 
 	// Make the popup menu
-	menu = new KPopupMenu();
+	menu = new TDEPopupMenu();
 
 	menu->insertTitle(kapp->miniIcon(), TDEGlobal::instance()->aboutData()->programName());
 

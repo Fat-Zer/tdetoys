@@ -35,7 +35,7 @@
 #include <ksystemtray.h>
 #include <tqpixmap.h>
 
-class KAction;
+class TDEAction;
 class KDialogBase;
 class TQCheckBox;
 class TimeEdit;
@@ -109,7 +109,7 @@ private:
 
 	TQPixmap mugPixmap, teaNotReadyPixmap, teaAnim1Pixmap, teaAnim2Pixmap;
 
-	KAction *startAct, *stopAct, *confAct, *anonAct;
+	TDEAction *startAct, *stopAct, *confAct, *anonAct;
 	TQPopupMenu *menu, *steeping_menu, *start_menu;
 	TQListView *listbox;
 	TQLineEdit *nameEdit, *actionEdit;

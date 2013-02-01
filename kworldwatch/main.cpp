@@ -49,7 +49,7 @@
 
 
 WorldWideWatch::WorldWideWatch(bool restore, TQWidget *parent, const char *name)
-  : KMainWindow(parent, name)
+  : TDEMainWindow(parent, name)
 {
   TDEGlobal::locale()->insertCatalogue("timezones"); // For time zone translation
 

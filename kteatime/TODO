@@ -18,7 +18,7 @@
 - KNotifyClient: passive popup cannot(?) have no timeout
   (--> hence no replacement for my own "Popup" action)
 - when steeping, display "stop <teaname>" on left-click, not just "stop"
-  (not easy when using KAction in a simple way?)
+  (not easy when using TDEAction in a simple way?)
 - use QMovie for tea-is-finished-icon instead of two alternating pixmaps?
 
 
@@ -31,7 +31,7 @@ internals:
   (or at least: x-maximize QListView's titles)
 - somehow make double-click with left button start 'current' tea
   without displaying start_menu?
-- figure out how to use KAction for "quit"-entry of menu
+- figure out how to use TDEAction for "quit"-entry of menu
   (somehow doesn't work as expected..)
 - some more tidying of configure-dialog
   (eg. initial position!, initial size)

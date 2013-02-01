@@ -85,7 +85,7 @@ kweather::~kweather()
 
 void kweather::initContextMenu()
 {
-    mContextMenu = new KPopupMenu(this);
+    mContextMenu = new TDEPopupMenu(this);
     mContextMenu->insertTitle(i18n("KWeather - %1").arg( reportLocation ), -1, 0);
     mContextMenu->insertItem(SmallIcon("viewmag"), i18n("Show &Report"),
         this, TQT_SLOT(doReport()), 0, -1, 1);

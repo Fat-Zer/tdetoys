@@ -607,8 +607,8 @@ void Amor::slotMouseClicked(const TQPoint &pos)
     if (!mMenu)
     {
         KHelpMenu* help = new KHelpMenu(0, TDEGlobal::instance()->aboutData(), false);
-        KPopupMenu* helpMnu = help->menu();
-        mMenu = new KPopupMenu();
+        TDEPopupMenu* helpMnu = help->menu();
+        mMenu = new TDEPopupMenu();
         mMenu->insertTitle("Amor"); // I really don't want this i18n'ed
         mMenu->insertItem(SmallIcon("configure"), i18n("&Configure..."), this, TQT_SLOT(slotConfigure()));
         mMenu->insertSeparator();

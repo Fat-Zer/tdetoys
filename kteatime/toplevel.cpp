@@ -117,15 +117,15 @@ TopLevel::TopLevel() : KSystemTray()
 	listempty = (teas.count() == 0);
 
 
-	startAct = new KAction(i18n("&Start"), "1rightarrow", 0,
+	startAct = new TDEAction(i18n("&Start"), "1rightarrow", 0,
 	                       TQT_TQOBJECT(this), TQT_SLOT(start()), actionCollection(), "start");
-	stopAct = new KAction(i18n("Sto&p"), "cancel", 0,
+	stopAct = new TDEAction(i18n("Sto&p"), "cancel", 0,
 	                      TQT_TQOBJECT(this), TQT_SLOT(stop()), actionCollection(), "stop");
-	confAct = new KAction(i18n("&Configure..."), "configure", 0,
+	confAct = new TDEAction(i18n("&Configure..."), "configure", 0,
 	                      TQT_TQOBJECT(this), TQT_SLOT(config()), actionCollection(), "configure");
-	anonAct = new KAction(i18n("&Anonymous..."), 0, 0,
+	anonAct = new TDEAction(i18n("&Anonymous..."), 0, 0,
 	                      TQT_TQOBJECT(this), TQT_SLOT(anonymous()), actionCollection(), "anonymous");
-//	KAction *quitAct = actionCollection()->action("file_quit");
+//	TDEAction *quitAct = actionCollection()->action("file_quit");
 
 	// create app menu (displayed on right-click)
 	menu = new TQPopupMenu();
@@ -140,7 +140,7 @@ TopLevel::TopLevel() : KSystemTray()
 	rebuildTeaMenus();      // populate tops of menus with tea-entries from config
 
 	KHelpMenu* help = new KHelpMenu(this, TDEGlobal::instance()->aboutData(), false);
-	KPopupMenu* helpMnu = help->menu();
+	TDEPopupMenu* helpMnu = help->menu();
 
 	start_menu->insertSeparator();
 	anonAct->plug(start_menu);

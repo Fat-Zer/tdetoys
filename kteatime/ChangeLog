@@ -46,7 +46,7 @@
 	- don't display ticks in left-click menu
 
 2003-02-15  Martin Willers <willers@xm-arts.de>
-	- using KActions for start, stop, and configure entries
+	- using TDEActions for start, stop, and configure entries
 	- display list of configured teas on left-click,
 	  making one-click starting of a new tea possible
 	- some cleanups
