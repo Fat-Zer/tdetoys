@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
   toplevel.show();
 
   app.setTopWidget(&toplevel);
-  KStartupInfo::appStarted();
+  TDEStartupInfo::appStarted();
 
   return app.exec();
 }

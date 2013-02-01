@@ -187,7 +187,7 @@ Amor::Amor() : DCOPObject( "AmorIface" ), TQObject()
 
 	mTipsQueue.setAutoDelete(true);
 
-	KStartupInfo::appStarted();
+	TDEStartupInfo::appStarted();
     }
     else
     {
