@@ -30,7 +30,7 @@
 
 #include <kdebug.h>
 
-#include <kpopupmenu.h>
+#include <tdepopupmenu.h>
 #include <tqtimer.h>
 #include <tqcursor.h>
 #include <tqvaluelist.h>

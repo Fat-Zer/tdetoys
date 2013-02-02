@@ -47,9 +47,9 @@
 #include <knotifyclient.h>
 #include <knuminput.h>
 #include <kseparator.h>
-#include <kpopupmenu.h>
+#include <tdepopupmenu.h>
 #include <kdialogbase.h>
-#include <kaction.h>
+#include <tdeaction.h>
 #include <knotifydialog.h>
 
 #include "tealist.h"

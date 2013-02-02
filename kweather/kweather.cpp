@@ -23,7 +23,7 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
-#include <kpopupmenu.h>
+#include <tdepopupmenu.h>
 #include <tdeconfig.h>
 #include <ksettings/dialog.h>
 #include <ksettings/dispatcher.h>

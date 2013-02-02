@@ -71,11 +71,11 @@ KMoonDlg::KMoonDlg(int a, bool n, bool m, TQWidget *parent, const char *name)
 
         connect(hemitoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleHemi()));
 
-        masktoggle = new TQPushButton(hbox2);
-	masktoggle->setText(mask ? i18n("Switch Masking Off") :
+        mastdetoggle = new TQPushButton(hbox2);
+	mastdetoggle->setText(mask ? i18n("Switch Masking Off") :
 			    i18n("Switch Masking On"));
 
-        connect(masktoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
+        connect(mastdetoggle, TQT_SIGNAL(clicked()), TQT_SLOT(toggleMask()));
         topLayout->addWidget(vbox);
 
 	moon = new MoonWidget(page, "preview");
@@ -107,7 +107,7 @@ void KMoonDlg::toggleHemi() {
 void KMoonDlg::toggleMask() {
     moon->setMask(!moon->mask());
     mask = moon->mask();
-    masktoggle->setText(mask ? i18n("Switch Masking Off") :
+    mastdetoggle->setText(mask ? i18n("Switch Masking Off") :
 			i18n("Switch Masking On"));
 }
 

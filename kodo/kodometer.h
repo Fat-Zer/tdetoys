@@ -44,9 +44,9 @@
 #include <kiconloader.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kpopupmenu.h>
+#include <tdepopupmenu.h>
 #include <kstandarddirs.h>
-#include <ktoolbar.h>
+#include <tdetoolbar.h>
 #include <twin.h>
 
 #include <X11/Xlib.h>

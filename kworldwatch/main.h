@@ -30,7 +30,7 @@
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
 #include <kuniqueapplication.h>
-#include <kmainwindow.h>
+#include <tdemainwindow.h>
 
 
 class MapWidget;
