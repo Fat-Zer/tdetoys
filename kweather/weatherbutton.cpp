@@ -100,10 +100,10 @@ void WeatherButton::generateIcons()
     TQImage image = pixmap()->convertToImage();
     image = image.smoothScale( pixmapSize(), TQ_ScaleMin );
 
-    KIconEffect effect;
+    TDEIconEffect effect;
 
-    m_normalIcon = effect.apply( image, KIcon::Panel, KIcon::DefaultState );
-    m_activeIcon = effect.apply( image, KIcon::Panel, KIcon::ActiveState );
+    m_normalIcon = effect.apply( image, TDEIcon::Panel, TDEIcon::DefaultState );
+    m_activeIcon = effect.apply( image, TDEIcon::Panel, TDEIcon::ActiveState );
 }
 
 void WeatherButton::slotSettingsChanged( int category )
@@ -120,7 +120,7 @@ void WeatherButton::slotSettingsChanged( int category )
 
 void WeatherButton::slotIconChanged( int group )
 {
-    if ( group != KIcon::Panel )
+    if ( group != TDEIcon::Panel )
         return;
 
     generateIcons();

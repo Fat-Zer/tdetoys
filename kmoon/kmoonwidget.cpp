@@ -229,8 +229,8 @@ TQImage MoonWidget::loadMoon(int index)
     if (path.isNull())
         kdFatal() << "cound't find " << filename << ". Exiting.\n";
     TQImage image(path);
-    KIconEffect iconeffect;
-    image=iconeffect.apply(image, KIcon::Panel, KIcon::DefaultState);
+    TDEIconEffect iconeffect;
+    image=iconeffect.apply(image, TDEIcon::Panel, TDEIcon::DefaultState);
     return image;
 }
 

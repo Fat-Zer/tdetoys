@@ -85,7 +85,7 @@ void FifteenApplet::about()
     }
 
     KAboutApplication dialog(_aboutData);
-    dialog.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -KIcon::SizeLarge ) );
+    dialog.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -TDEIcon::SizeLarge ) );
     dialog.exec();
 }
 
