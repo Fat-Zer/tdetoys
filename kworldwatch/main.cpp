@@ -162,14 +162,14 @@ static void listThemes()
   }
 }
 
-static KCmdLineOptions options[] =
+static TDECmdLineOptions options[] =
 {
   { "dump", I18N_NOOP("Write out a file containing the actual map"), 0 },
   { "theme <file>", I18N_NOOP("The name of the theme to use"), "depths"},
   { "themes", I18N_NOOP("List available themes"), 0 },
   { "o <file>", I18N_NOOP("The name of the file to write to"), "dump.ppm" },
   { "size <WxH>", I18N_NOOP("The size of the map to dump"), 0 },
-  KCmdLineLastOption
+  TDECmdLineLastOption
 };
 
 

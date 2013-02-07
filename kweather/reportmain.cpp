@@ -9,10 +9,10 @@
 #include <klocale.h>
 #include <dcopclient.h>
 
-static KCmdLineOptions options[] =
+static TDECmdLineOptions options[] =
 {
     { "+location", I18N_NOOP(  "METAR location code for the report" ), 0 },
-    KCmdLineLastOption
+    TDECmdLineLastOption
 };
 
 extern "C" KDE_EXPORT int kdemain(int argc, char *argv[])
