@@ -84,7 +84,7 @@ void FifteenApplet::about()
 	_aboutData->addAuthor("Matthias Elter", 0, "elter@kde.org");
     }
 
-    KAboutApplication dialog(_aboutData);
+    TDEAboutApplication dialog(_aboutData);
     dialog.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "fifteenpieces", -TDEIcon::SizeLarge ) );
     dialog.exec();
 }

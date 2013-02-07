@@ -143,7 +143,7 @@ void kweather::about(){
     aboutData.addCredit( "John Ratke",
             I18N_NOOP( "Improvements and more code cleanups" ), "jratke@comcast.net" );
 
-    KAboutApplication about(&aboutData, this, 0);
+    TDEAboutApplication about(&aboutData, this, 0);
     about.setProgramLogo( TDEGlobal::instance()->iconLoader()->iconPath( "kweather", -TDEIcon::SizeLarge ) );
     about.exec();
 }
