@@ -5,7 +5,7 @@
 // Copyright (c)  Martin R. Jones 1999
 //
 
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include "spritemisc.h"
 
 TQSize SpriteRange::mFieldSize;

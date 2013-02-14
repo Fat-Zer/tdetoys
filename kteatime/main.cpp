@@ -26,8 +26,8 @@
 
 #include <twin.h>
 #include <kstartupinfo.h>
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <tdecmdlineargs.h>
+#include <tdeaboutdata.h>
 
 #include "toplevel.h"
 

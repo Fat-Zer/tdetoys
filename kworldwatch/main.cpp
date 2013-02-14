@@ -35,10 +35,10 @@
 #include <tqwidget.h>
 
 
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <tdeconfig.h>
-#include <kaboutdata.h>
-#include <kcmdlineargs.h>
+#include <tdeaboutdata.h>
+#include <tdecmdlineargs.h>
 #include <klocale.h>
 #include <kdebug.h>
 

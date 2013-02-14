@@ -29,7 +29,7 @@
 #include <tqlabel.h>
 #include <tqslider.h>
 #include <tqpainter.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <ksimpleconfig.h>
 #include "amordialog.h"
 #include "amordialog.moc"

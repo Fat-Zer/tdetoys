@@ -23,7 +23,7 @@
 #ifndef TOPLEVEL_H
 #define TOPLEVEL_H
 
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <tqpopupmenu.h>
 #include <tqtimer.h>
 #include <tqlineedit.h>

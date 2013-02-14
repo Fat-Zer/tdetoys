@@ -35,9 +35,9 @@
 #include <tqkeycode.h>
 #include <tqtooltip.h>
 
-#include <kaboutdata.h>
+#include <tdeaboutdata.h>
 #include <kuniqueapplication.h>
-#include <kcmdlineargs.h>
+#include <tdecmdlineargs.h>
 #include <tdeconfig.h>
 #include <kdebug.h>
 #include <khelpmenu.h>

@@ -16,8 +16,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kaboutapplication.h>
-#include <kapplication.h>
+#include <tdeaboutapplication.h>
+#include <tdeapplication.h>
 #include <kcmultidialog.h>
 #include <kdebug.h>
 #include <klocale.h>

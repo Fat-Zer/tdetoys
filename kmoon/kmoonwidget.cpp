@@ -31,14 +31,14 @@
 
 #include <dcopclient.h>
 #include <kdebug.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <twin.h>
 #include <kstartupinfo.h>
 #include <kmessagebox.h>
-#include <kaboutdata.h>
+#include <tdeaboutdata.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-#include <kcmdlineargs.h>
+#include <tdecmdlineargs.h>
 #include <kiconloader.h>
 #include <kiconeffect.h>
 #include <tdeconfig.h>

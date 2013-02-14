@@ -1,10 +1,10 @@
 #include "reportview.h"
 
 #include <stdlib.h>
-#include <kapplication.h>
-#include <kcmdlineargs.h>
+#include <tdeapplication.h>
+#include <tdecmdlineargs.h>
 #include <kdebug.h>
-#include <kaboutdata.h>
+#include <tdeaboutdata.h>
 #include <kglobal.h>
 #include <klocale.h>
 #include <dcopclient.h>

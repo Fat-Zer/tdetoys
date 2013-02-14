@@ -24,7 +24,7 @@
 
 #include <klocale.h>
 #include <kglobal.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 
 #include "eyes.h"
 #include "eyes.moc"

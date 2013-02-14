@@ -25,7 +25,7 @@
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
 #include <stdlib.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include "amortips.h"
 #include <kstandarddirs.h>
 #include <klocale.h>

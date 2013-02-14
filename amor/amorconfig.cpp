@@ -24,7 +24,7 @@
 /*
 ** Bug reports and questions can be sent to kde-devel@kde.org
 */
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include "amorconfig.h"
 #include <tdeconfig.h>
 

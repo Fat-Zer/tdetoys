@@ -35,8 +35,8 @@
 
 #include <tqdatetime.h>
 
-#include <kapplication.h>
-#include <kcmdlineargs.h>
+#include <tdeapplication.h>
+#include <tdecmdlineargs.h>
 #include <kcolordialog.h>
 #include <tdeconfig.h>
 #include <kglobal.h>

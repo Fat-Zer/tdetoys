@@ -26,8 +26,8 @@
 #include <tqlabel.h>
 #include <tqlayout.h>
 
-#include <kaboutdata.h>
-#include <kapplication.h>
+#include <tdeaboutdata.h>
+#include <tdeapplication.h>
 #include <tdeconfig.h>
 #include <kdebug.h>
 #include <klocale.h>

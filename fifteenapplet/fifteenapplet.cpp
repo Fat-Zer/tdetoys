@@ -31,7 +31,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <klocale.h>
 #include <kglobal.h>
 #include <kmessagebox.h>
-#include <kaboutapplication.h>
+#include <tdeaboutapplication.h>
 #include <kiconloader.h>
 
 #include "fifteenapplet.h"

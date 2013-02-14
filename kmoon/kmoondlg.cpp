@@ -23,7 +23,7 @@
 #include <klocale.h>
 #include <tqwhatsthis.h>
 #include <tqvbox.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <tqpushbutton.h>
 
 #include "kmoondlg.h"

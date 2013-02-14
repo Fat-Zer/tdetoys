@@ -1,7 +1,7 @@
 #include <kuniqueapplication.h>
-#include <kcmdlineargs.h>
+#include <tdecmdlineargs.h>
 #include <kdebug.h>
-#include <kaboutdata.h>
+#include <tdeaboutdata.h>
 #include <klocale.h>
 #include <dcopclient.h>
 #include "weatherservice.h"

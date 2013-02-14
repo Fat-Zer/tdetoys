@@ -32,7 +32,7 @@ email                : geiseri@msoe.edu
 #include <knotifyclient.h>
 #include <ktempfile.h>
 #include <unistd.h>
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <kpassivepopup.h>
 
 #include "metar_parser.h"

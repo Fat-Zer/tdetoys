@@ -31,7 +31,7 @@
 #include <config.h>
 #endif
 
-#include <kapplication.h>
+#include <tdeapplication.h>
 #include <tqwidget.h>
 #include <tqbitmap.h>
 
