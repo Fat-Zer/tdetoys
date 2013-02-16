@@ -18,8 +18,8 @@ email                : jratke@comcast.net
 #ifndef METAR_PARSER_H
 #define METAR_PARSER_H
 
-#include <kglobal.h>
-#include <klocale.h>
+#include <tdeglobal.h>
+#include <tdelocale.h>
 #include <krfcdate.h>
 
 #include <tqdatetime.h>

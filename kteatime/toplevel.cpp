@@ -41,8 +41,8 @@
 #include <tdeconfig.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <tdelocale.h>
+#include <tdemessagebox.h>
 #include <kpassivepopup.h>
 #include <knotifyclient.h>
 #include <knuminput.h>

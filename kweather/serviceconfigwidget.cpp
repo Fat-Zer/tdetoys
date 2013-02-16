@@ -25,9 +25,9 @@
 #include <tdeapplication.h>
 #include <tdeconfig.h>
 #include <kdialog.h>
-#include <kglobal.h>
+#include <tdeglobal.h>
 #include <tdelistview.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kpushbutton.h>
 #include <kstandarddirs.h>
 

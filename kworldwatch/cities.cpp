@@ -31,7 +31,7 @@
 #include <tqpainter.h>
 
 
-#include <kglobal.h>
+#include <tdeglobal.h>
 #include <kstandarddirs.h>
 
 

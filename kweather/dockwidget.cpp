@@ -27,8 +27,8 @@
 #include <tqobjectlist.h>
 
 #include <kdebug.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
+#include <tdeglobalsettings.h>
+#include <tdelocale.h>
 
 dockwidget::dockwidget(const TQString &location, TQWidget *parent,
         const char *name) : TQWidget(parent,name), m_locationCode( location ), m_orientation(Qt::Horizontal )

@@ -25,7 +25,7 @@
  */
 
 #include <twin.h>
-#include <kstartupinfo.h>
+#include <tdestartupinfo.h>
 #include <tdecmdlineargs.h>
 #include <tdeaboutdata.h>
 

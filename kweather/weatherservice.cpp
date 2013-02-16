@@ -22,8 +22,8 @@
 #include <kdebug.h>
 #include <tdeapplication.h>
 #include <tdeconfig.h>
-#include <kglobal.h>
-#include <klocale.h>
+#include <tdeglobal.h>
+#include <tdelocale.h>
 #include <kstandarddirs.h>
 
 #include "weatherlib.h"

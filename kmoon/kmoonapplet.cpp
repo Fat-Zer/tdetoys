@@ -33,10 +33,10 @@
 #include <kdebug.h>
 #include <tdeapplication.h>
 #include <twin.h>
-#include <kstartupinfo.h>
-#include <kmessagebox.h>
+#include <tdestartupinfo.h>
+#include <tdemessagebox.h>
 #include <tdeaboutdata.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kstandarddirs.h>
 #include <tdecmdlineargs.h>
 #include <kiconloader.h>

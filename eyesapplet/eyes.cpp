@@ -22,8 +22,8 @@
 #include <tqcursor.h>
 #include <tqimage.h>
 
-#include <klocale.h>
-#include <kglobal.h>
+#include <tdelocale.h>
+#include <tdeglobal.h>
 #include <tdeapplication.h>
 
 #include "eyes.h"

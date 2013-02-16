@@ -5,8 +5,8 @@
 #include <tdecmdlineargs.h>
 #include <kdebug.h>
 #include <tdeaboutdata.h>
-#include <kglobal.h>
-#include <klocale.h>
+#include <tdeglobal.h>
+#include <tdelocale.h>
 #include <dcopclient.h>
 
 static TDECmdLineOptions options[] =

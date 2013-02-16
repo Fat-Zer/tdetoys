@@ -20,7 +20,7 @@
 
 #include <tqslider.h>
 #include <tqlayout.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <tqwhatsthis.h>
 #include <tqvbox.h>
 #include <tdeapplication.h>

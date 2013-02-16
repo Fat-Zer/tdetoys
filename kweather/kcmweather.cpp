@@ -30,7 +30,7 @@
 #include <tdeapplication.h>
 #include <tdeconfig.h>
 #include <kdebug.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kurlrequester.h>
 #include <kcombobox.h>
 #include <kcolorbutton.h>

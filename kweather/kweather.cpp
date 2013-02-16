@@ -20,9 +20,9 @@
 #include <tdeapplication.h>
 #include <kcmultidialog.h>
 #include <kdebug.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kiconloader.h>
-#include <kmessagebox.h>
+#include <tdemessagebox.h>
 #include <tdepopupmenu.h>
 #include <tdeconfig.h>
 #include <ksettings/dialog.h>

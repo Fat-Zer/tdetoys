@@ -12,7 +12,7 @@
 #include <tqlayout.h>
 #include <tqslider.h>
 #include <kstandarddirs.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kdebug.h>
 #include <kstdguiitem.h>
 #include <kbuttonbox.h>

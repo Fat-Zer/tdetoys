@@ -39,7 +39,7 @@
 #include <tdeconfig.h>
 #include <tdeaboutdata.h>
 #include <tdecmdlineargs.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kdebug.h>
 
 

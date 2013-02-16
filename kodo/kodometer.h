@@ -42,8 +42,8 @@
 #include <kdebug.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <tdelocale.h>
+#include <tdemessagebox.h>
 #include <tdepopupmenu.h>
 #include <kstandarddirs.h>
 #include <tdetoolbar.h>

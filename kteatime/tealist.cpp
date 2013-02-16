@@ -6,7 +6,7 @@
 
  ------------------------------------------------------------- */
 
-#include <klocale.h>
+#include <tdelocale.h>
 #include <tqlistview.h>
 #include "tealist.h"
 

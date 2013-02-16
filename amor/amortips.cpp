@@ -28,7 +28,7 @@
 #include <tdeapplication.h>
 #include "amortips.h"
 #include <kstandarddirs.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <tqfile.h>
 #include <tqregexp.h>
 #include <kdebug.h>

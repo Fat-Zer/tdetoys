@@ -16,7 +16,7 @@
 #include <tqmap.h>
 #include <tqstring.h>
 
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kstandarddirs.h>
 
 /**

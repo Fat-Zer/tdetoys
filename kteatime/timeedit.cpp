@@ -6,7 +6,7 @@
 
  ------------------------------------------------------------- */
 
-#include <klocale.h>
+#include <tdelocale.h>
 #include <tqlabel.h>
 #include <tqlayout.h>
 

@@ -35,9 +35,9 @@
 #include <tqcursor.h>
 #include <tqvaluelist.h>
 
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kstartupinfo.h>
+#include <tdelocale.h>
+#include <tdemessagebox.h>
+#include <tdestartupinfo.h>
 #include <twin.h>
 #include <twinmodule.h>
 #include <kstandarddirs.h>

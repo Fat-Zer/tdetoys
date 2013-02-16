@@ -17,11 +17,11 @@
 
 #include <tdeconfig.h>
 #include <kdebug.h>
-#include <klocale.h>
+#include <tdelocale.h>
 #include <kstandarddirs.h>
 #include <tdehtml_part.h>
 #include <tdehtmlview.h>
-#include <kglobalsettings.h>
+#include <tdeglobalsettings.h>
 
 #include <tqvbox.h>
 #include <tqpixmap.h>

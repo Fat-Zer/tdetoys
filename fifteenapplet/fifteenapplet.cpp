@@ -28,9 +28,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <tqpainter.h>
 #include <tqpopupmenu.h>
 
-#include <klocale.h>
-#include <kglobal.h>
-#include <kmessagebox.h>
+#include <tdelocale.h>
+#include <tdeglobal.h>
+#include <tdemessagebox.h>
 #include <tdeaboutapplication.h>
 #include <kiconloader.h>
 

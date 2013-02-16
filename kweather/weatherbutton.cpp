@@ -23,7 +23,7 @@
 
 #include <tdeapplication.h>
 #include <kcursor.h>
-#include <kglobalsettings.h>
+#include <tdeglobalsettings.h>
 #include <kiconeffect.h>
 #include <kicontheme.h>
 #include <kipc.h>

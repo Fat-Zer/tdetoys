@@ -39,10 +39,10 @@
 #include <tdecmdlineargs.h>
 #include <kcolordialog.h>
 #include <tdeconfig.h>
-#include <kglobal.h>
-#include <kglobalsettings.h>
-#include <klocale.h>
-#include <kmessagebox.h>
+#include <tdeglobal.h>
+#include <tdeglobalsettings.h>
+#include <tdelocale.h>
+#include <tdemessagebox.h>
 #include <kstandarddirs.h>
 
 #include <tqcursor.h>

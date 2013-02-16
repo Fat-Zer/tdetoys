@@ -35,7 +35,7 @@
 #include <tqstringlist.h>
 
 
-#include <kglobal.h>
+#include <tdeglobal.h>
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
 #include <kimageeffect.h>
