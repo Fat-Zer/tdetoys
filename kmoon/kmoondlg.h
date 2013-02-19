@@ -44,7 +44,7 @@ class KMoonDlg : public KDialogBase {
   bool north;
   bool mask;
   TQPushButton *hemitoggle;
-  TQPushButton *mastdetoggle;
+  TQPushButton *masktoggle;
   
  private slots:
   void help();
