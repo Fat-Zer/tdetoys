@@ -6,10 +6,10 @@ bin_PROGRAMS = kteatime
 kteatime_SOURCES = main.cpp toplevel.cpp tealist.cpp timeedit.cpp
 
 kteatime_METASOURCES = AUTO
-kteatime_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -ltdetexteditor
+kteatime_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_TDEIO) -ltdetexteditor
 
-# LIB_KIO needed for KNotifyDialog
-kteatime_LDADD = $(LIB_TDEUI) $(LIB_KIO)
+# LIB_TDEIO needed for KNotifyDialog
+kteatime_LDADD = $(LIB_TDEUI) $(LIB_TDEIO)
 
 KDE_ICON = kteatime
 

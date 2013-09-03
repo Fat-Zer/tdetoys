@@ -11,7 +11,7 @@ INCLUDES = $(all_includes)
 
 kworldclock_SOURCES = main.cpp 
 kworldclock_LDADD = libww.la $(LIB_TDEUI) -ltdefx
-kworldclock_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -ltdetexteditor
+kworldclock_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_TDEIO) -ltdetexteditor
 
 xdg_apps_DATA= kworldclock.desktop
 
@@ -35,7 +35,7 @@ tabdir = $(kde_datadir)/kworldclock
 EXTRA_DIST = $(lnk_DATA)
 
 ww_panelapplet_la_LDFLAGS = $(KDE_PLUGIN) -module $(all_libraries)
-ww_panelapplet_la_LIBADD = libww.la $(LIB_KSYCOCA) 
+ww_panelapplet_la_LIBADD = libww.la $(LIB_TDESYCOCA) 
 
 messages: rc.cpp
 	$(XGETTEXT) rc.cpp $(kworldclock_SOURCES) $(libww_la_SOURCES) -o $(podir)/kworldclock.pot

@@ -15,7 +15,7 @@ amor_SOURCES	= amordialog.cpp amor.cpp amorwidget.cpp main.cpp amoranim.cpp amor
 include_HEADERS = AmorIface.h
 
 # the library search path
-amor_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_KIO) -ltdetexteditor
+amor_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_QT) -lDCOP $(LIB_TDECORE) $(LIB_TDEUI) -ltdefx $(LIB_TDEIO) -ltdetexteditor
 
 # the libraries to link against. Be aware of the order. First the libraries,
 # that depend on the following ones.
